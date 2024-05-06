@@ -6,15 +6,16 @@ import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem, NavbarMenu,
+  NavbarItem,
+  NavbarMenu,
   NavbarMenuItem,
   Link,
-  Button
+  Button,
 } from "@nextui-org/react";
 
 const AcmeLogo = () => "X";
 
-export function TopNavbar() {
+export default function TopNavbar() {
   const menuItems = [
     "Profile",
     "Dashboard",
@@ -29,24 +30,27 @@ export function TopNavbar() {
   ];
 
   return (
-    <Navbar className="mt-2 border shadow" isBordered={true}>
+    <Navbar className="">
       <NavbarContent justify="start">
         {/* <NavbarMenuToggle className="me-3" /> */}
 
         <NavbarBrand>
           <AcmeLogo />
-          <p className="font-bold text-inherit ps-1">HitzStudio</p>
+          <p className="hidden xs:block font-bold text-inherit ps-1">HitzStudio</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent justify="end">
         <NavbarItem>
           <Button
+            size="md"
+            radius="md"
             color="warning"
             variant="flat"
-            className="relative rounded-md"
+            startContent={<IoMdPower fontSize={14} className="text-success" />}
+            endContent={<IoMdMusicalNotes />}
           >
-            <IoMdPower fontSize={20} className="text-success" /> ARTIST MODE <IoMdMusicalNotes />
+            ARTIST MODE
           </Button>
         </NavbarItem>
       </NavbarContent>
@@ -56,11 +60,13 @@ export function TopNavbar() {
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               className="w-full"
-              color={index === 2
-                ? "warning"
-                : index === menuItems.length - 1
+              color={
+                index === 2
+                  ? "warning"
+                  : index === menuItems.length - 1
                   ? "danger"
-                  : "foreground"}
+                  : "foreground"
+              }
               href="#"
               size="lg"
             >

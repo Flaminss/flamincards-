@@ -9,7 +9,7 @@ export function Providers({children}: { children: React.ReactNode }) {
       {/* <IconContext.Provider value={{ color: "blue", className: "global-class-name" }}> */}
       <IconContext.Provider value={{}}>
       {children}
-      </IconContext.Provider>;
+      </IconContext.Provider>
     </NextUIProvider>
   )
 }

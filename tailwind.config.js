@@ -20,6 +20,11 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    screens: {
+      "3xs": "196px",
+      "2xs": "312px",
+      "xs": "416px",
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

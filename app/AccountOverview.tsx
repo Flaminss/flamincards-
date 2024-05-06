@@ -11,7 +11,7 @@ export default function AccountOverview() {
     };
 
   return (
-    <Card className="rounded-md">
+    <Card className="dark" radius="md">
       <CardHeader className="flex gap-3 items-end bg-dimgray-100">
         <Image
           alt="nextui logo"
