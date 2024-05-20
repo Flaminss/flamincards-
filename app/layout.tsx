@@ -1,66 +1,52 @@
-import {Providers} from "./providers";
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
+import { Metadata, Viewport } from "next";
+import { siteConfig } from "@/config/site";
+import { Providers } from "./providers";
+import clsx from "clsx";
+import "@/styles/globals.css";
+import { Inter as FontSans } from "next/font/google";
 
-const APP_NAME = "Studio: Music and Exchange";
-const APP_DEFAULT_TITLE = "RealzStudio";
-const APP_TITLE_TEMPLATE = "%s - RealzStudio";
-const APP_DESCRIPTION = "Best PWA app in the world!";
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
-  applicationName: APP_NAME,
   title: {
-    default: APP_DEFAULT_TITLE,
-    template: APP_TITLE_TEMPLATE,
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
   },
-  description: APP_DESCRIPTION,
-  manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: APP_DEFAULT_TITLE,
-    // startUpImage: [],
-  },
-  formatDetection: {
-    telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    siteName: APP_NAME,
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
-    description: APP_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary",
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
-    description: APP_DESCRIPTION,
+  description: siteConfig.description,
+  icons: {
+    icon: "/favicon.ico",
   },
 };
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
-  themeColor: "#FFFFFF",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
-export default function RootLayout({children}: Readonly<{
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className='dark'>
-      <body className={inter.className}>
-        <Providers>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={clsx(
+          "min-h-screen bg-zinc-200 font-sans antialiased xl:bg-zinc-950",
+          fontSans.variable
+        )}
+      >
+        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {children}
         </Providers>
       </body>
     </html>
   );
 }
-
