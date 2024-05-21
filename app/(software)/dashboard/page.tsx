@@ -1,5 +1,7 @@
 "use client";
 
+import clsx from "clsx";
+import Image from "next/image";
 import { useState, useMemo } from "react";
 import {
   Input,
@@ -12,6 +14,8 @@ import {
   DropdownItem,
   Select,
   SelectItem,
+  Chip,
+  Link,
 } from "@nextui-org/react";
 import {
   SearchIcon,
@@ -25,6 +29,8 @@ import {
   LineChart,
   Landmark,
   BadgeDollarSign,
+  ArrowRightCircle,
+  ArrowRight,
 } from "lucide-react";
 import icons from "currency-icons";
 
@@ -45,42 +51,32 @@ export default function DashboardPage() {
   );
 
   return (
-    <>
+    <div>
       <header className="py-5 px-4 mb-5">
         <h1 className="text-xl font-semibold md:text-3xl">Dashboard</h1>
       </header>
+
       <section className="px-4">
         <header className="mb-4">
           <h2 className="text-lg font-semibold">Account Overview</h2>
         </header>
-        <article className="flex flex-col rounded-lg border border-gray-100 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 mb-4">
-          <div className="flex justify-between items-center">
-            <p className="flex items-center whitespace-nowrap mb-2.5 text-sm">
-              <ShieldCheck className="text-success-400 me-1" size={15} />
-              Total Balance
-            </p>
-            <Button
-              variant="flat"
-              color="primary"
-              size="sm"
-              radius="lg"
-              className="self-start mb-5"
-            >
-              <span className="hidden sm:inline-block">Hide Balance</span>< <EyeOff className="ms-1" size={16} />
-            </Button>
-          </div>
+        <article className="relative flex flex-col rounded-lg border border-gray-100 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 mb-5">
+          <p className="flex items-center whitespace-nowrap mb-2.5 text-sm">
+            <ShieldCheck className="text-success-400 me-1" size={15} />
+            Total Balance
+          </p>
           <p className="text-4xl mb-5 font-semibold">
             {icons["NGN"]?.symbol || "#"} 40,000.00
           </p>
-          {/* <Button
+          <Button
             variant="flat"
             color="primary"
             size="sm"
-            radius="lg"
+            radius="none"
             className="self-start mb-5"
           >
             Hide Balance <EyeOff className="ms-1" size={16} />
-          </Button> */}
+          </Button>
           <Progress
             label={
               <span className="flex items-center flex-row-reverse gap-x-1">
@@ -97,7 +93,7 @@ export default function DashboardPage() {
           />
         </article>
         <Button
-          className="w-full py-2 text-lg"
+          className="w-full py-4 text-base max-h-none"
           variant="solid"
           color="primary"
           size="md"
@@ -106,11 +102,12 @@ export default function DashboardPage() {
           Withdraw
         </Button>
       </section>
-      <section className="py-8 px-4">
-        <header className="pt-2 pb-4">
+
+      <section className="py-8">
+        <header className="pt-2 pb-4 px-4">
           <h2 className="text-lg font-semibold">Recent Transactions</h2>
         </header>
-        <article className="flex flex-col gap-5">
+        <article className="flex flex-col gap-5 px-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <div className="flex items-center justify-center rounded-lg w-10 h-10 bg-primary-100 text-primary-400">
@@ -142,66 +139,116 @@ export default function DashboardPage() {
               <p className="text-sm font-semibold">
                 - {icons["NGN"]?.symbol || "#"} 10,000.00
               </p>
-              <p className="text-xs text-gray-500">1 day ago</p>
+              <p className="text-xs text-danger-400">Failed</p>
             </div>
           </div>
         </article>
       </section>
-      <section className="py-8 px-4">
-        <header className="mb-4 px-2.5">
-          <h2 className="text-lg font-semibold uppercase mb-4">Giftcards</h2>
-          <div className="flex items-center gap-x-4">
-            <Select
-              radius="md"
-              label="Showing giftcard"
-              defaultSelectedKeys={["all"]}
-            >
-              {sortOrders.map(({ key, icon, title }) => (
-                <SelectItem key={key} value={title} startContent={icon}>
-                  {title}
-                </SelectItem>
-              ))}
-            </Select>
-            <Input
-              isClearable
-              radius="sm"
-              classNames={{
-                label: "text-black/50 dark:text-white/90",
-                input: [
-                  "!px-2.5",
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                ],
-                innerWrapper: "bg-transparent",
-                inputWrapper: [
-                  "h-12",
-                  "shadow-xl",
-                  "bg-default-200/50",
-                  "dark:bg-default/60",
-                  "backdrop-blur-xl",
-                  "backdrop-saturate-200",
-                  "hover:bg-default-200/70",
-                  "dark:hover:bg-default/70",
-                  "group-data-[focus=true]:bg-default-200/50",
-                  "dark:group-data-[focus=true]:bg-default/60",
-                  "!cursor-text",
-                ],
-              }}
-              placeholder="Search by Giftcard name..."
-              startContent={
-                <SearchIcon
-                  size="20"
-                  className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0"
-                />
-              }
-            />
-          </div>
+
+      <section className="py-8">
+        <header className="px-4 flex justify-between items-center gap-2 mb-4">
+          <h2 className="text-lg font-semibold">Sell(REDEEM) Giftcards</h2>
+          <Button variant="light" color="primary" className="pe-0">
+            View All
+          </Button>
         </header>
+        <div className="px-4 mb-8">
+          <ul className="flex flex-wrap overflow-x-auto items-start gap-4">
+            {[
+              {
+                name: "Steam",
+                rate: {
+                  value: 1400,
+                  from: "NGN",
+                  to: "USD",
+                },
+                tag: {
+                  title: "Hot",
+                  status: "danger",
+                },
+              },
+              {
+                name: "Appple Pay",
+                rate: {
+                  value: 1400,
+                  from: "NGN",
+                  to: "USD",
+                },
+                tag: {
+                  title: "Low Rate",
+                  status: "warning",
+                },
+              },
+              {
+                name: "Steam",
+                rate: {
+                  value: 1400,
+                  from: "NGN",
+                  to: "USD",
+                },
+                tag: {
+                  title: "Low Rate",
+                  status: "success",
+                },
+              },
+              {
+                name: "Steam",
+                rate: {
+                  value: 1400,
+                  from: "NGN",
+                  to: "USD",
+                },
+                tag: {
+                  title: "Low Rate",
+                  status: "success",
+                },
+              },
+            ].map(({ name, rate, tag }, index) => {
+              return (
+                <li className="border rounded-lg px-3 py-2.5 min-h-12 grow max-w-[50%] min-w-32">
+                  <div className="relative">
+                    <Image
+                      src=""
+                      alt=""
+                      className="bg-gray-400 h-20 mb-2 rounded-md w-full"
+                    />
+                    <Chip
+                      variant="solid"
+                      color={tag.status as any}
+                      radius="none"
+                      className="absolute top-1 right-1 text-xs p-0"
+                    >
+                      {tag.title}
+                    </Chip>
+                  </div>
+                  <div className="flex items-start justify-between gap-x-4">
+                    <h5 className="text-base mb-1">{name}</h5>
+                  </div>
+                  <p className="text-success-400 text-sm">{`${
+                    icons[rate.from]?.symbol
+                  }${rate.value}/${icons[rate.to]?.symbol}`}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <Link
+          color="primary"
+          size="lg"
+          underline="always"
+          className="mx-auto flex gap-x-2 items-center"
+        >
+          🤑 See more cards at the market <ArrowRight size={18} />
+        </Link>
       </section>
+
+      <section className="py-8">
+
+      </section>
+
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center"></div>
       </section>
-    </>
+    </div>
   );
 }
