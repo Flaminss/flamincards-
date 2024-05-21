@@ -11,7 +11,7 @@ export default function TopNavigation({ className }: { className?: string }) {
   return (
     <div
       className={clsx(
-        "navbar navbar-glass border-b sticky top-0 left-0 w-full px-4",
+        "navbar navbar-glass border-b sticky top-0 left-0 w-full px-4 z-30",
         className
       )}
     >
