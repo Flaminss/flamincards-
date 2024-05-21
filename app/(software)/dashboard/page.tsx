@@ -16,6 +16,10 @@ import {
   SelectItem,
   Chip,
   Link,
+  CardFooter,
+  Image as ImageNext,
+  Card,
+  CardHeader,
 } from "@nextui-org/react";
 import {
   SearchIcon,
@@ -52,58 +56,82 @@ export default function DashboardPage() {
 
   return (
     <div>
-      <header className="py-5 px-4 mb-5">
-        <h1 className="text-xl font-semibold md:text-3xl">Dashboard</h1>
+      <header className="py-5 md:pt-0 px-4 mb-2">
+        <h1 className="text-xl font-semibold md:text-3xl uppercase sm:capitalize">
+          Dashboard
+        </h1>
       </header>
 
-      <section className="px-4">
-        <header className="mb-4">
-          <h2 className="text-lg font-semibold">Account Overview</h2>
-        </header>
-        <article className="relative flex flex-col rounded-lg border border-gray-100 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 mb-5">
-          <p className="flex items-center whitespace-nowrap mb-2.5 text-sm">
-            <ShieldCheck className="text-success-400 me-1" size={15} />
-            Total Balance
-          </p>
-          <p className="text-4xl mb-5 font-semibold">
-            {icons["NGN"]?.symbol || "#"} 40,000.00
-          </p>
+      <section className="px-4 py-6 md:pt-0 md:flex md:gap-x-6">
+        <div className="max-w-lg grow w-full">
+          <article className="relative flex flex-col rounded-lg border border-gray-100 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 mb-4">
+            <p className="flex items-center whitespace-nowrap mb-2 text-sm">
+              <ShieldCheck className="text-success-400 me-1" size={15} />
+              Total Balance
+            </p>
+            <p className="text-4xl mb-4 font-semibold">
+              {icons["NGN"]?.symbol || "#"}1,000,000.00
+            </p>
+            <Button
+              variant="flat"
+              color="primary"
+              size="sm"
+              radius="sm"
+              className="self-start mb-6"
+            >
+              Hide Balance <EyeOff className="ms-0.5" size={14} />
+            </Button>
+            <Progress
+              label={
+                <span className="flex items-center flex-row-reverse gap-x-1">
+                  Earnings Incoming{" "}
+                  <LineChart size={18} className="text-success-400" />
+                </span>
+              }
+              size="sm"
+              value={500}
+              maxValue={3000}
+              color="success"
+              formatOptions={{ style: "currency", currency: "NGN" }}
+              showValueLabel={true}
+              className="max-w-md"
+            />
+          </article>
           <Button
-            variant="flat"
+            className="w-full text-base shadow-lg"
+            variant="solid"
             color="primary"
-            size="sm"
-            radius="none"
-            className="self-start mb-5"
+            size="lg"
+            radius="sm"
           >
-            Hide Balance <EyeOff className="ms-1" size={16} />
+            Withdraw
           </Button>
-          <Progress
-            label={
-              <span className="flex items-center flex-row-reverse gap-x-1">
-                <LineChart size={15} /> Profits{" "}
-              </span>
-            }
-            size="sm"
-            value={500}
-            maxValue={3000}
-            color="success"
-            formatOptions={{ style: "currency", currency: "NGN" }}
-            showValueLabel={true}
-            className="max-w-md"
-          />
-        </article>
-        <Button
-          className="w-full py-4 text-base max-h-none"
-          variant="solid"
-          color="primary"
-          size="md"
-          radius="lg"
+        </div>
+        <Card
+          isFooterBlurred
+          className="h-[300px] md:h-[270px] grow"
         >
-          Withdraw
-        </Button>
+          <CardHeader className="absolute z-10 top-1 flex-col items-start">
+            <p className="text-tiny text-white/60 uppercase font-bold">Bank Details</p>
+          </CardHeader>
+          {/* <CardFooter className="absolute bottom-0 border-t-1 border-gray-100/50 z-10 justify-between">
+            <div>
+              <p className="text-black text-tiny">Available soon.</p>
+              <p className="text-black text-tiny">Get notified.</p>
+            </div>
+            <Button
+              className="text-tiny"
+              color="primary"
+              radius="full"
+              size="sm"
+            >
+              Notify Me
+            </Button>
+          </CardFooter> */}
+        </Card>
       </section>
 
-      <section className="py-8">
+      <section className="py-6">
         <header className="pt-2 pb-4 px-4">
           <h2 className="text-lg font-semibold">Recent Transactions</h2>
         </header>
@@ -145,9 +173,9 @@ export default function DashboardPage() {
         </article>
       </section>
 
-      <section className="py-8">
+      <section className="py-5">
         <header className="px-4 flex justify-between items-center gap-2 mb-4">
-          <h2 className="text-lg font-semibold">Sell(REDEEM) Giftcards</h2>
+          <h2 className="text-lg font-semibold">Redeem/Sell Giftcards</h2>
           <Button variant="light" color="primary" className="pe-0">
             View All
           </Button>
@@ -210,23 +238,25 @@ export default function DashboardPage() {
                     <Image
                       src=""
                       alt=""
-                      className="bg-gray-400 h-20 mb-2 rounded-md w-full"
+                      className="dark:bg-gray-900 h-20 mb-2 rounded-sm border-none w-full"
                     />
                     <Chip
                       variant="solid"
                       color={tag.status as any}
                       radius="none"
-                      className="absolute top-1 right-1 text-xs p-0"
+                      size="sm"
+                      className="absolute top-1 right-1"
                     >
                       {tag.title}
                     </Chip>
                   </div>
-                  <div className="flex items-start justify-between gap-x-4">
-                    <h5 className="text-base mb-1">{name}</h5>
-                  </div>
-                  <p className="text-success-400 text-sm">{`${
-                    icons[rate.from]?.symbol
-                  }${rate.value}/${icons[rate.to]?.symbol}`}</p>
+                  <h5 className="text-base font-medium">{name}</h5>
+                  <p className="text-success-400 text-sm flex items-end gap-x-1 align-baseline">
+                    <span>🔥</span>
+                    <span>{`${icons[rate.from]?.symbol}${rate.value}/${
+                      icons[rate.to]?.symbol
+                    }`}</span>
+                  </p>
                 </li>
               );
             })}
@@ -236,15 +266,19 @@ export default function DashboardPage() {
           color="primary"
           size="lg"
           underline="always"
-          className="mx-auto flex gap-x-2 items-center"
+          className="mx-auto flex gap-x-2 items-center w-max"
         >
-          🤑 See more cards at the market <ArrowRight size={18} />
+          See more cards at the market <ArrowRight size={18} />
         </Link>
       </section>
 
-      <section className="py-8">
-
+      <section className="py-5">
+        <header className="pt-2 pb-4 px-4">
+          <h2 className="text-lg font-semibold">Investments Portfolio</h2>
+        </header>
       </section>
+
+      <section className="py-8"></section>
 
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center"></div>
