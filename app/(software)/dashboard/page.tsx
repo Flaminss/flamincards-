@@ -54,22 +54,33 @@ export default function DashboardPage() {
           <h2 className="text-lg font-semibold">Account Overview</h2>
         </header>
         <article className="flex flex-col rounded-lg border border-gray-100 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 mb-4">
-          <p className="flex items-center whitespace-nowrap mb-2 text-sm">
-            <ShieldCheck className="text-success-400 me-1" size={15} />
-            Total Balance
-          </p>
-          <p className="text-4xl mb-4 font-semibold">
+          <div className="flex justify-between items-center">
+            <p className="flex items-center whitespace-nowrap mb-2.5 text-sm">
+              <ShieldCheck className="text-success-400 me-1" size={15} />
+              Total Balance
+            </p>
+            <Button
+              variant="flat"
+              color="primary"
+              size="sm"
+              radius="lg"
+              className="self-start mb-5"
+            >
+              <span className="hidden sm:inline-block">Hide Balance</span>< <EyeOff className="ms-1" size={16} />
+            </Button>
+          </div>
+          <p className="text-4xl mb-5 font-semibold">
             {icons["NGN"]?.symbol || "#"} 40,000.00
           </p>
-          <Button
+          {/* <Button
             variant="flat"
             color="primary"
             size="sm"
-            radius="sm"
-            className="self-start text-xs mb-4"
+            radius="lg"
+            className="self-start mb-5"
           >
             Hide Balance <EyeOff className="ms-1" size={16} />
-          </Button>
+          </Button> */}
           <Progress
             label={
               <span className="flex items-center flex-row-reverse gap-x-1">
@@ -86,7 +97,7 @@ export default function DashboardPage() {
           />
         </article>
         <Button
-          className="w-full"
+          className="w-full py-2 text-lg"
           variant="solid"
           color="primary"
           size="md"
