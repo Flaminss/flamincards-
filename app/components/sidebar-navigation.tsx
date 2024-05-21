@@ -46,7 +46,7 @@ export default function SidebarNavigation({ className }: { className?: any }) {
         <div className="grow grid gap-y-4 h-full py-5">
           <Listbox
             aria-label="Applicaitno Menu"
-            onAction={(key) => alert(key)}
+            // onAction={(key) => alert(key)}
             className="p-0 gap-0 divide-y overflow-visible rounded-md px-2"
             itemClasses={{
               base: "px-1 py-2 riounded-md shadow-md text-lg gap-3 data-[hover=true]:bg-default-100/80",
@@ -66,6 +66,25 @@ export default function SidebarNavigation({ className }: { className?: any }) {
               }
             >
               Dashboard
+            </ListboxItem>
+            <ListboxItem
+              key="actions" 
+              href="/market"
+              endContent={<ItemCounter number={2} />}
+              classNames={{
+                title: "text-base",
+              }}
+              startContent={
+                // <IconWrapper className="bg-warning/10 text-warning">
+                <IconWrapper className="bg-default/50 text-foreground">
+                  <LineChart className="text-lg " />
+                </IconWrapper>
+              }
+            >
+              Market{" "}
+              <Chip variant="flat" color="danger" className="ms-2" size="sm" radius="sm">
+                Hot
+              </Chip>
             </ListboxItem>
             <ListboxItem
               key="pull_requests"
@@ -95,21 +114,6 @@ export default function SidebarNavigation({ className }: { className?: any }) {
               }
             >
               Transactions
-            </ListboxItem>
-            <ListboxItem
-              key="actions"
-              endContent={<ItemCounter number={2} />}
-              classNames={{
-                title: "text-base",
-              }}
-              startContent={
-                // <IconWrapper className="bg-warning/10 text-warning">
-                <IconWrapper className="bg-default/50 text-foreground">
-                  <LineChart className="text-lg " />
-                </IconWrapper>
-              }
-            >
-              Investments
             </ListboxItem>
             {/* <ListboxItem
               key="license"
