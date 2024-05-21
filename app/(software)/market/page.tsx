@@ -9,7 +9,9 @@ import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
-  DropdownItem, Select, SelectItem
+  DropdownItem,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
 import {
   SearchIcon,
@@ -26,47 +28,33 @@ const sortOrders = [
   { key: "low", icon: "📉", title: "Lowest Rate" },
 ];
 
-
 export default function MarketPage() {
   const menu = [
     { title: "Giftcards", unread: 0 },
     { title: "Cryptocurrency", unread: 4 },
-    { title: "Funds and Transfers", unread: 4 },
-    { title: "Trade Investment", unread: 4 },
+    { title: "Funds", unread: 4 },
+    { title: "Investment", unread: 4 },
   ];
   return (
     <div className="pt-4">
-       <header>
-        <h1 className="text-lg font-semibold md:text-3xl">Market</h1>
+      <header className="py-5 px-4 mb-5">
+        <h1 className="text-xl font-semibold md:text-3xl">Market</h1>
       </header>
-      <Tabs
-        variant="underlined"
-        aria-label="Tabs variants"
-        classNames={{
-          tabList: "flex",
-          tab: "grow",
-        }}
-      >
-        {menu.map(({ title, unread }, index) => {
-          return (
-            <Tab
-              key={index}
-              title={
-                <div className="flex items-center">
-                  {title}{" "}
-                  {!unread ? (
-                    0
-                  ) : (
-                    <span className="ms-2 badge badge-flat-primary">
-                      {unread}
-                    </span>
-                  )}
-                </div>
-              }
-            />
-          );
-        })}
-      </Tabs>
+
+      <section className="pb-8 overflow-x-hidden">
+        <Tabs
+          variant="underlined"
+          aria-label="Tabs variants"
+          classNames={{
+            tabList: "gap-x-0 flex overflow-x-scroll",
+            tab: "grow px-6",
+          }}
+        >
+          {menu.map(({ title }, index) => {
+            return <Tab key={index} title={title} className="text-lg" />;
+          })}
+        </Tabs>
+      </section>
     </div>
   );
 }
