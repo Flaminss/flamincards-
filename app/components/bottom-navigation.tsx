@@ -47,7 +47,7 @@ export default function BottomNavigationPro({
       color="primary"
       aria-label="Options"
       selectedKey={pathname}
-      className={clsx(classNames?.base, "w-full")}
+      className={clsx(classNames?.base, "w-full z-30")}
       classNames={{
         cursor: "hidden",
         tab: "h-auto pt-2.5",
