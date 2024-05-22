@@ -27,7 +27,7 @@ export default function DashboardPage({
       {/* NOTE: "pe-4" adds breathing room between content and scrollbar */}
       <main className="grow w-full h-full md:pe-3.5">
         {children}
-        <div className="flex w-full flex-row flex-wrap gap-4">
+        {/* <div className="flex w-full flex-row flex-wrap gap-4">
           <div className="my-4 grid w-full grid-cols-2 gap-4">
             <div className="flex h-40 w-full items-center justify-center border-2 border-dashed border-border bg-gray-1">
               +
@@ -66,7 +66,7 @@ export default function DashboardPage({
               +
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
       <BottomNavigation
         classNames={{
