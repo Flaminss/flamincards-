@@ -1,4 +1,4 @@
-import { title } from "@components/primitives";
+import { title } from "@/app/primitives";
 
 export default function TransaferHistoryPage() {
 	return (

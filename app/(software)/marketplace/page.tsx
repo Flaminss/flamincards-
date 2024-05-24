@@ -1,9 +1,11 @@
 "use client";
 
-import AutosizeInput from "react-18-input-autosize";
+import { useRef } from "react";
+import { useWizard, Wizard } from "react-use-wizard";
+import { AnimatedStep, Step } from "./animated-step";
 import axios from "axios";
 import icons from "currency-icons";
-import GiftcardCatalog from "@/app/components/giftcard-catalog";
+import GiftcardCatalog from "@/app/giftcard-catalog";
 import {
   Tabs,
   Tab,
@@ -49,6 +51,7 @@ import {
 } from "lucide-react";
 import BTCsvg from "cryptocoins-icons/SVG/BTC.svg";
 import { NG } from "country-flag-icons/react/3x2";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
@@ -79,6 +82,9 @@ export default function MarketPage() {
     { title: "$cashtags", unread: 4 },
     { title: "Trading Investment", unread: 4 },
   ];
+
+  const previousStep = useRef<number>(0);
+
   return (
     <div>
       <header className="py-5 md:pt-0 px-4">
@@ -533,7 +539,7 @@ export default function MarketPage() {
                   type="coin"
                   label="Coin"
                   placeholder="BTC"
-                  labelPlacement="outside" 
+                  labelPlacement="outside"
                   isDisabled={true}
                   size="lg"
                   startContent={
@@ -544,7 +550,7 @@ export default function MarketPage() {
                   type="network"
                   label="Network"
                   placeholder="TON"
-                  labelPlacement="outside" 
+                  labelPlacement="outside"
                   isDisabled={true}
                   size="lg"
                   startContent={
@@ -607,7 +613,15 @@ export default function MarketPage() {
                   </Button>
                 </div>
 
-                <Button variant="solid" radius="sm" color="primary" className="w-full shadow-lg" size="lg" >Complete Order</Button>
+                <Button
+                  variant="solid"
+                  radius="sm"
+                  color="primary"
+                  className="w-full shadow-lg"
+                  size="lg"
+                >
+                  Complete Order
+                </Button>
               </form>
             </section>
             <div className="py-12"></div>
@@ -634,8 +648,8 @@ export default function MarketPage() {
                       />
                     </svg>
                     <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                      <span className="font-semibold">Click to upload</span> or drag
-                      and drop
+                      <span className="font-semibold">Click to upload</span> or
+                      drag and drop
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       SVG, PNG, JPG or GIF (MAX. 800x400px)

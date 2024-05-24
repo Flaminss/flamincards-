@@ -3,9 +3,9 @@ import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@components/primitives";
-import { GithubIcon } from "@components/icons";
-import { Navbar } from "@components/navbar";
+import { title, subtitle } from "@/app/primitives";
+import { GithubIcon } from "@/app/icons";
+import { Navbar } from "@/app/navbar";
 
 export default function Home() {
   return (

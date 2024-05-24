@@ -1,8 +1,8 @@
 "use client";
 
-import TopNavigation from "@components/top-navigation";
-import BottomNavigation from "@components/bottom-navigation";
-import SidebarNavigation from "@components/sidebar-navigation";
+import TopNavigation from "@/app/top-navigation";
+import BottomNavigation from "@/app/bottom-navigation";
+import SidebarNavigation from "@/app/sidebar-navigation";
 import clsx from "clsx";
 
 export default function DashboardPage({
