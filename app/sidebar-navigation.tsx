@@ -12,6 +12,7 @@ import {
   Share2,
   DollarSign,
   LineChart,
+  Clapperboard,
 } from "lucide-react";
 import { BrandName } from "./top-navigation";
 
@@ -21,7 +22,7 @@ export default function SidebarNavigation({ className }: { className?: any }) {
       className={clsx(
         "@container",
         className,
-        "sidebar-sticky sidebar justify-start overflow-x-hidden rounded-xl"
+        "sidebar-sticky sidebar max-w-56 justify-start overflow-x-hidden rounded-xl"
       )}
     >
       <div className="h-full overflow-y-auto flex flex-col">
@@ -75,7 +76,7 @@ export default function SidebarNavigation({ className }: { className?: any }) {
             </ListboxItem>
             <ListboxItem
               key="actions"
-              href="/market"
+              href={`/market/${marketMenu.giftcard.path}`}
               endContent={
                 <Chip
                   variant="flat"
@@ -99,6 +100,33 @@ export default function SidebarNavigation({ className }: { className?: any }) {
               }
             >
               Market
+            </ListboxItem>
+            <ListboxItem
+              key="actions"
+              href={`/market/${marketMenu.giftcard.path}`}
+              endContent={
+                <Chip
+                  variant="flat"
+                  color="success"
+                  className="ms-2"
+                  size="sm"
+                  radius="md"
+                >
+                  New
+                </Chip>
+              }
+              classNames={{
+                title: "text-base",
+              }}
+              startContent={
+                // <IconWrapper className="bg-warning/10 text-warning">
+                // <IconWrapper className="bg-default/50 text-foreground">
+                //   <LineChart className="text-lg " />
+                // </IconWrapper>
+                <Clapperboard className="text-lg" />
+              }
+            >
+              Library
             </ListboxItem>
             <ListboxItem
               key="transactions"
@@ -220,6 +248,7 @@ export default function SidebarNavigation({ className }: { className?: any }) {
 }
 
 import { cn } from "@nextui-org/react";
+import { marketMenu } from "./(software)/market/layout";
 
 export const IconWrapper = ({
   children,
