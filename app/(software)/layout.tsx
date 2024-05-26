@@ -13,7 +13,7 @@ export default function DashboardPage({
   return (
     <div
       className={clsx(
-        "md:gap-x-4 md:flex md:h-screen md:flex-row md:overflow-y-auto max-w-xl mx-auto md:max-w-none xl:max-w-7xl xl:bg-transparent bg-zinc-950 shadow-2xl",
+        "md:gap-x-4 lg:gap-x-6 md:flex md:h-screen md:flex-row md:overflow-y-auto max-w-xl mx-auto md:max-w-none xl:max-w-7xl xl:bg-transparent bg-zinc-950 shadow-2xl",
         `lg:p-2.5 xl:px-0 xl:py-4`
       )}
     >
@@ -25,7 +25,7 @@ export default function DashboardPage({
         )}
       />
       {/* NOTE: "pe-4" adds breathing room between content and scrollbar */}
-      <main className="grow w-full h-full md:pe-3.5">
+      <main className="grow w-full h-full md:pe-3.5 md:pt-4 lg:pt-0">
         {children}
         {/* <div className="flex w-full flex-row flex-wrap gap-4">
           <div className="my-4 grid w-full grid-cols-2 gap-4">
