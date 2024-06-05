@@ -4,7 +4,7 @@ import { Tab, Tabs } from "@nextui-org/react";
 import GiftcardMarketplacePage from "./giftcard/page";
 import CryptoSellPage from "./crypto/sell/page";
 import CashtagLendPage from "./cashtag/page";
-import { ComingSoonScene } from "@/app/coming-soon-scene";
+import InstrumentalCatalogPage from "./instrumentals/page";
 
 export const marketMenu = {
   giftcard: {
@@ -24,25 +24,28 @@ export const marketMenu = {
   },
   instrumental: {
     title: "Instrumentals (Beatz)",
-    path: "beatz",
-    Page: ComingSoonScene,
+    path: "instrumentals",
+    Page: InstrumentalCatalogPage,
   },
 };
 
 export default function MarketPage({ children }: { children: any }) {
   return (
     <div>
-      <header className="py-5 md:pt-0 px-4 sm:px-2">
+      {/* <header className="py-5 md:pt-0 px-4 sm:px-2 lg:px-4">
         <h1 className="text-xl font-semibold md:text-2xl uppercase sm:capitalize">
           Market
         </h1>
+      </header> */}
+      <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
+        <h1 className="text-xl md:text-2xl lg:text-3xl">Marketplace</h1>
       </header>
 
-      <section className="pb-8">
+      <section className="pb-8 px-4">
         <Tabs
           variant="underlined"
           aria-label="Tabs variants"
-          className="px-2 md:px-0 mb-4"
+          className="md:px-0 mb-4"
           classNames={{
             tabList:
               "gap-x-0 md:gap-x-4 flex overflow-x-scroll scrollbar-show px-0 w-full",
