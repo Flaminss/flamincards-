@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { Badge, Button, Chip, Listbox, ListboxItem } from "@nextui-org/react";
+import Link from "next/link";
 import {
   ChevronRight,
   Heart,
@@ -13,6 +14,8 @@ import {
   DollarSign,
   LineChart,
   Clapperboard,
+  BellIcon,
+  GiftIcon,
 } from "lucide-react";
 import { BrandName } from "./top-navigation";
 
@@ -22,12 +25,12 @@ export default function SidebarNavigation({ className }: { className?: any }) {
       className={clsx(
         "@container",
         className,
-        "sidebar-sticky sidebar max-w-56 justify-start overflow-x-hidden rounded-xl"
+        "sidebar-sticky sidebar max-w-52 justify-start overflow-x-hidden rounded-xl"
       )}
     >
       <div className="h-full overflow-y-auto flex flex-col">
-        <header className="gap-x-4 justify-between sticky top-0 bg-zinc-900 z-20 border-b p-2 flex items-center">
-          <div className="flex items-center gap-x-2">
+        <header className="gap-x-4 justify-between sticky top-0 shadow-sm z-20 border-b p-2 flex items-center bg-zinc-800">
+          <div className="flex items-center gap-x-1">
             <svg
               fill="none"
               height="42"
@@ -45,13 +48,28 @@ export default function SidebarNavigation({ className }: { className?: any }) {
             </svg>
             <BrandName className="@max-w-20:hidden" />
           </div>
-          <Button href="/activity" radius="sm" variant="light" color="default">
-            <Badge content={2} size="sm" color="primary" showOutline={false}>
-              <Bell className="text-lg" />
-            </Badge>
-          </Button>
+          <Link href="/notifications">
+            <Button
+              className="min-w-[unset] h-auto p-2"
+              size="md"
+              radius="sm"
+              variant="flat"
+              // color="primary"
+            >
+              <Badge
+                content={6}
+                // isInvisible={true}
+                size="md"
+                color="warning"
+                showOutline={false}
+                className="font-medium"
+              >
+                <Bell className="text-base" />
+              </Badge>
+            </Button>
+          </Link>
         </header>
-        <div className="grow grid gap-y-4 h-full py-5">
+        <section className="grow grid gap-y-4 h-full py-5 mb-16">
           <Listbox
             aria-label="Applicaitno Menu"
             // onAction={(key) => alert(key)}
@@ -64,12 +82,13 @@ export default function SidebarNavigation({ className }: { className?: any }) {
               key="dashboard"
               href="/dashboard"
               classNames={{
+                base: "gap-x-4 py-3 px-2",
                 title: "text-base",
               }}
               startContent={
                 // <IconWrapper className="bg-success/10 text-success p-1">
                 // <IconWrapper className="bg-default/50 text-foreground">
-                <Home className="text-lg" />
+                <Home className="" />
               }
             >
               Dashboard
@@ -77,18 +96,8 @@ export default function SidebarNavigation({ className }: { className?: any }) {
             <ListboxItem
               key="actions"
               href={`/market/${marketMenu.giftcard.path}`}
-              endContent={
-                <Chip
-                  variant="flat"
-                  color="danger"
-                  className="ms-2"
-                  size="sm"
-                  radius="md"
-                >
-                  Hot
-                </Chip>
-              }
               classNames={{
+                base: "gap-x-4 py-3 px-2",
                 title: "text-base",
               }}
               startContent={
@@ -96,26 +105,16 @@ export default function SidebarNavigation({ className }: { className?: any }) {
                 // <IconWrapper className="bg-default/50 text-foreground">
                 //   <LineChart className="text-lg " />
                 // </IconWrapper>
-                <LineChart className="text-lg" />
+                <LineChart className="" />
               }
             >
-              Market
+              Marketplace
             </ListboxItem>
             <ListboxItem
               key="actions"
               href={`/market/${marketMenu.giftcard.path}`}
-              endContent={
-                <Chip
-                  variant="flat"
-                  color="success"
-                  className="ms-2"
-                  size="sm"
-                  radius="md"
-                >
-                  New
-                </Chip>
-              }
               classNames={{
+                base: "gap-x-4 py-3 px-2",
                 title: "text-base",
               }}
               startContent={
@@ -123,15 +122,25 @@ export default function SidebarNavigation({ className }: { className?: any }) {
                 // <IconWrapper className="bg-default/50 text-foreground">
                 //   <LineChart className="text-lg " />
                 // </IconWrapper>
-                <Clapperboard className="text-lg" />
+                <Clapperboard className="" />
               }
             >
-              Library
+              Your Library{" "}
+              {/* <Chip
+                variant="flat"
+                color="success"
+                className="ms-2"
+                size="sm"
+                radius="md"
+              >
+                New
+              </Chip> */}
             </ListboxItem>
             <ListboxItem
               key="transactions"
               href="/transactions"
               classNames={{
+                base: "gap-x-4 py-3 px-2",
                 title: "text-base",
               }}
               startContent={<History className="text-lg " />}
@@ -153,7 +162,7 @@ export default function SidebarNavigation({ className }: { className?: any }) {
             </ListboxItem> */}
           </Listbox>
 
-          <Listbox
+          {/* <Listbox
             aria-label="application Menu"
             onAction={(key) => alert(key)}
             className="p-0 gap-0 divide-y overflow-visible rounded-md px-2 mt-auto"
@@ -162,30 +171,26 @@ export default function SidebarNavigation({ className }: { className?: any }) {
             }}
           >
             <ListboxItem
-              key="actions"
-              endContent={
-                <ChevronRight className="text-default-400 me-2 text-xl" />
-              }
-              classNames={{
-                title: "text-sm",
-              }}
+              key="invite-friends"
               description="Earn Rewards and Insentives"
               startContent={
                 <IconWrapper className="bg-success/10 text-success">
                   <Share2 />
                 </IconWrapper>
               }
+              endContent={
+                <ChevronRight className="text-default-400 me-2 text-xl" />
+              }
+              className="text-success-400"
+              classNames={{
+                base: "shadow-none",
+                description: "text-success-800",
+              }}
             >
               Share with friends
             </ListboxItem>
             <ListboxItem
-              key="license"
-              endContent={
-                <span className="text-small text-default-400">MIT</span>
-              }
-              classNames={{
-                title: "text-sm",
-              }}
+              key="sponsor"
               description="Keep us alive. Empower our future"
               startContent={
                 // <IconWrapper className="bg-danger/10 text-danger dark:text-danger-500">
@@ -193,28 +198,122 @@ export default function SidebarNavigation({ className }: { className?: any }) {
                   <DollarSign />
                 </IconWrapper>
               }
+              endContent={
+                <ChevronRight className="text-default-400 me-2 text-xl" />
+              }
+              className="text-primary-400"
+              classNames={{
+                base: "shadow-none",
+                description: "text-primary-800",
+              }}
             >
               Sponsor us
             </ListboxItem>
-          </Listbox>
-          {/* <article className="p-4">
-            <div className="card">
-              <div className="card-body p-4">
-                <h2 className="card-header text-center">Invite a Friend(s)</h2>
-                <p className="text-gray-200 text-sm">
-                  Stand a chance to win Rewards and Prizes
-                </p>
-                <div className="card-footer">
-                  <button className="btn-secondary btn w-full rounded-md">Share invitation link <Share /></button> 
-                </div>
-              </div>
+          </Listbox> */}
+
+          <div className="px-2 mt-4">
+            <Button
+              variant="light"
+              size="md"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Sponsor Us
+            </Button>
+            <Button
+              variant="light"
+              size="md"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Get Help
+            </Button>
+            <Button
+              variant="light"
+              size="md"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Terms and Conditions
+            </Button>
           </div>
-          </article> */}
-        </div>
-        <footer className="sticky mt-auto bottom-0 flex flex-wrap items-center gap-2 p-2  bg-zinc-900 z-20">
+
+          <div className="px-2 mt-auto py-6">
+            <article className="border rounded-lg p-4 bg-primary-950">
+              <header className="mb-4">
+                <GiftIcon className="mb-2 text-primary-400" />
+                <h2 className="text-lg text-primary-900">
+                  Invite and Earn with Friends!
+                </h2>
+                <p className="text-gray-500 text-sm">
+                  Stand a chance to win rewards and prizes!
+                </p>
+              </header>
+              <div className="card-footer">
+                <Button
+                  variant="flat"
+                  size="md"
+                  fullWidth
+                  color="primary"
+                  radius="sm"
+                >
+                  Share invitation link{" "}
+                  <Share2 className="text-base" size={18} />
+                </Button>
+              </div>
+            </article>
+          </div>
+
+          {/* <div className="px-2 mt-4">
+            <Button
+              variant="light"
+              size="md"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Sponsor Us
+            </Button>
+            <Button
+              variant="light"
+              size="md"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Get Help
+            </Button>
+            <Button
+              variant="light"
+              size="md"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Terms and Conditions
+            </Button>
+          </div> */}
+        </section>
+        <footer className="absolute inset-x-0 mt-auto bottom-0 flex flex-wrap items-center gap-2 p-2 z-20 bg-zinc-800">
           <Button
             href="#"
-            className="gap-2 p-2 h-auto grow justify-start rounded-lg border bg-zinc-900"
+            className="gap-2 p-2 h-auto grow justify-start rounded-lg border"
+            variant="faded"
             startContent={
               <img
                 alt=""
@@ -235,9 +334,10 @@ export default function SidebarNavigation({ className }: { className?: any }) {
           </Button>
           <Button
             isIconOnly
-            aria-label="logout"
-            className="rounded-md bg-zinc-900 border h-auto self-stretch my-1"
             variant="faded"
+            aria-label="logout"
+            color="danger"
+            className="rounded-md border h-auto self-stretch text-danger-400.."
           >
             <LogOut size="18" />
           </Button>

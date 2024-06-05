@@ -55,7 +55,7 @@ export function BrandName({ className }: { className?: any }) {
         className
       )}
     >
-      RML<span className="text-primary-400">Pay</span>
+      RML<span className="text-primary-400">pay</span>
     </Link>
   );
 }
