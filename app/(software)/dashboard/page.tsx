@@ -96,7 +96,7 @@ export default function DashboardPage() {
       <section className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
         <div className="grid max-w-lg grow xl:shrink-0 border p-4 space-y-12">
           <article className="relative flex flex-col">
-            <h3 className="text-lg sm:text-xl xl:text-2xl mb-6">
+            <h3 className="text-lg sm:text-xl xl:text-2xl mb-6 xl:mb-8">
               Welcome back, Mr. Daniel 🌞
               {/* 🌞 👋*/}
             </h3>
@@ -143,26 +143,27 @@ export default function DashboardPage() {
           <ButtonGroup
             className="mt-auto flex gap-1 flex-wrap content-end shadow-lg"
             radius="sm"
-            variant="flat"
+            variant="solid"
+            color="primary"
             size="md"
           >
             <Button
               className="shadow-lg grow font-medium"
-              color="primary"
+              // color="secondary"
               startContent={<Gift size={20} />}
             >
               Redeem
             </Button>
             <Button
               className="shadow-lg grow font-medium"
-              color="warning"
+              // color="secondary"
               startContent={<ShareIcon size={20} />}
             >
               Withdraw
             </Button>
             <Button
               className="shadow-lg grow font-medium"
-              color="success"
+              // color="secondary"
               startContent={<Handshake size={20} />}
             >
               Invest
