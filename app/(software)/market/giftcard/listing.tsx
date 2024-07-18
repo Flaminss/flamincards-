@@ -202,7 +202,7 @@ export default function GiftcardListing() {
                 src={imageUri}
               />
             </CardBody>
-            <CardFooter className="flex-wrap gap-x-4 gap-y-1 justify-between">
+            <CardFooter className="flex-wrap gap-x-4 gap-y-1 sm:flex-nowrap justify-between">
               <h4 className="font-medium text-base">{title}</h4>
               <p className="text-success-500 text-sm">{`${
                 icons[rate.from]?.symbol
