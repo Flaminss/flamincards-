@@ -347,7 +347,7 @@ export default function SidebarNavigation({ className }: { className?: any }) {
   );
 }
 
-import { cn } from "@nextui-org/react";
+import classnames from "clsx";
 import { marketMenu } from "./(software)/market/layout";
 
 export const IconWrapper = ({
@@ -358,7 +358,7 @@ export const IconWrapper = ({
   className?: string;
 }) => (
   <div
-    className={cn(
+    className={classnames(
       className,
       "flex items-center rounded-md justify-center w-10 h-10 shrink-0"
     )}
