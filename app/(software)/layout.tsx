@@ -20,12 +20,12 @@ export default function PublicUserInterface({
       <TopNavigation className="md:hidden" />
       <SidebarNavigation
         className={clsx(
-          "hidden md:block max-w-[30%] lg:max-w-80 sticky-top shadow-lg",
+          "hidden md:block max-w-[30%] lg:max-w-72 sticky-top shadow-lg",
           "lg:h-[calc(100vh_-_(0.625rem_*_2))]"
         )}
       />
-      {/* NOTE: "pe-4" adds breathing room between content and scrollbar */}
-      <main className="grow w-full h-full md:pe-3 md:pt-4 lg:pt-0">
+      {/* NOTE: "pe-x" adds breathing room between content and scrollbar */}
+      <main className="grow w-full h-full lg:pe-4 md:pt-4 lg:pt-0">
         {children}
         {/* <div className="flex w-full flex-row flex-wrap gap-4">
           <div className="my-4 grid w-full grid-cols-2 gap-4">
