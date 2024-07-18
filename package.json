@@ -54,6 +54,7 @@
 		"typescript": "^5.4.5"
 	},
 	"resolutions": {
-		"**/**/react": "^18.2.0"
+		"**/**/react": "^18.2.0",
+		"react-multistep": "^5.5.9"
 	}
 }
