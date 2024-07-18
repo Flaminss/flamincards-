@@ -52,5 +52,8 @@
 	"devDependencies": {
 		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.4.5"
+	},
+	"resolutions": {
+		"react": "18.2.0"
 	}
 }
