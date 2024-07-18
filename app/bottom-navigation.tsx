@@ -29,7 +29,7 @@ export default function BottomNavigationPro({
       notificationCount: 2,
     },
     {
-      title: "transactions",
+      title: "History",
       href: "/Transactions",
       Icon: History,
       notificationCount: 0,
@@ -61,7 +61,7 @@ export default function BottomNavigationPro({
             key={href}
             href={href}
             title={
-              <div className="text-center grid sm:flex gap-x-2 justify-center items-center space-y-1.5 grow max-w-[4ch]">
+              <div className="text-center text-xs grid sm:flex gap-x-2 justify-center items-center space-y-1 grow max-w-[4ch]">
                 <Icon className="mx-auto" />
                 <span>{title}</span>
               </div>
