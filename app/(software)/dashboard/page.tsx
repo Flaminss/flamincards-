@@ -47,6 +47,9 @@ import {
   ArrowRightCircleIcon,
   CoinsIcon,
   CircleDollarSignIcon,
+  AlertCircle,
+  Link2Off,
+  OutdentIcon,
 } from "lucide-react";
 import icons from "currency-icons";
 import FInancesLineChart from "./finances-line-chart";
@@ -68,15 +71,15 @@ export default function DashboardPage() {
   );
 
   return (
-    <div>
+    <div className="pb-20">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
-        <h1 className="text-xl md:text-2xl lg:text-3xl">Dashboard</h1>
+        <h1 className="text-2xl lg:text-3xl">Dashboard</h1>
       </header>
 
-      <section className="px-4 pb-6 block">
-        <div className="rounded-lg shadow bg-primary-50 text-primary-800 px-5 py-2.5 flex gap-x-4 items-center">
+      <section className="px-4 hidden">
+        <div className="rounded-lg shadow bg-primary-50 text-primary-800 px-4 sm:px-5 py-2.5 flex gap-x-4 items-center">
           <MessageCircleWarningIcon />
-          <p>This should be an annoucement</p>
+          <p className="text-sm sm:text-base">This should be an annoucement</p>
           <Button
             isIconOnly
             size="sm"
@@ -90,80 +93,89 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="px-4 py-6 md:pt-0 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-8">
-        <div className="max-w-lg grow shrink-0 border border-slate-800 rounded-lg p-4 shadow-md">
-          <article className="relative flex flex-col rounded-lg border.. p-2 border-slate-800 0 mb-4">
-            <p className="text-medium mb-4">Good Morning, Daniel</p>
-            <p className="flex items-center whitespace-nowrap mb-2 text-base gap-x-1">
-              <ShieldCheck className="text-success-400 me-1" size={18} />
+      <section className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
+        <div className="grid max-w-lg grow xl:shrink-0 border p-4 space-y-12">
+          <article className="relative flex flex-col">
+            <h3 className="text-lg sm:text-xl xl:text-2xl mb-6">
+              Welcome back, Mr. Daniel 🌞
+              {/* 🌞 👋*/}
+            </h3>
+
+            <p className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-base gap-x-1">
+              <ShieldCheck className="text-success-400 me-.5 sm:m4-1 size-4" />
               Total Balance
             </p>
-            <p className="text-4xl mb-4 font-medium">
-              {icons["NGN"]?.symbol || "#"}1,000,000.00
+            <p className="text-3xl sm:text-4xl mb-4">
+              {icons["NGN"]?.symbol || "#"}64,000.00
             </p>
             <Button
               variant="flat"
               color="primary"
               size="sm"
               radius="sm"
-              className="self-start mb-6"
+              className="self-start"
             >
-              Hide Balance <EyeOff className="ms-0.5" size={14} />
+              Hide Balance <EyeOff className="ms-0.5" size={15} />
             </Button>
-            <Progress
-              label={
-                <span className="flex items-center flex-row-reverse gap-x-1">
-                  Incoming Profits{" "}
-                  <LineChart size={18} className="text-success-400" />
-                </span>
-              }
-              size="sm"
-              value={500}
-              maxValue={3000}
-              color="success"
-              formatOptions={{ style: "currency", currency: "NGN" }}
-              showValueLabel={true}
-              className="max-w-md"
-            />
+
+            <Link
+              href="#investment-portfolio"
+              className="mt-8 text-white hidden"
+            >
+              <Progress
+                label={
+                  <span className="flex items-center flex-row-reverse gap-x-1">
+                    Investments{" "}
+                    <LineChart size={18} className="text-warning-400" />
+                  </span>
+                }
+                size="sm"
+                value={500}
+                maxValue={3000}
+                color="warning"
+                formatOptions={{ style: "currency", currency: "NGN" }}
+                showValueLabel={true}
+                className="max-w-md"
+              />
+            </Link>
           </article>
-          <ButtonGroup className="flex gap-2 flex-wrap items-center">
+
+          <ButtonGroup
+            className="mt-auto flex gap-1 flex-wrap content-end shadow-lg"
+            radius="sm"
+            variant="flat"
+            size="md"
+          >
             <Button
-              className="shadow-lg text-medium grow"
-              variant="solid"
+              className="shadow-lg grow font-medium"
               color="primary"
-              size="lg"
-              radius="sm"
-              startContent={<Gift />}
+              startContent={<Gift size={20} />}
             >
               Redeem
             </Button>
             <Button
-              className="shadow-lg text-medium grow"
-              variant="solid"
-              color="primary"
-              size="lg"
-              radius="sm"
-              startContent={<ShareIcon />}
+              className="shadow-lg grow font-medium"
+              color="warning"
+              startContent={<ShareIcon size={20} />}
             >
               Withdraw
             </Button>
             <Button
-              className="shadow-lg text-medium grow"
-              variant="solid"
-              color="primary"
-              size="lg"
-              radius="sm"
-              startContent={<Handshake />}
+              className="shadow-lg grow font-medium"
+              color="success"
+              startContent={<Handshake size={20} />}
             >
               Invest
             </Button>
           </ButtonGroup>
         </div>
-        <div className="flex flex-col gap-y-4 justify-between grow">
+
+        <aside className="flex flex-col lg:flex-row-reverse.. lg:gap-x-12 items-center.. justify-between grow gap-y-10 xl:gap-y-8">
           <BankDetailsCard />
-          <section className="py-4 lg:p-0 w-full">
-            <header className="mb-2 flex items-center justify-between gap-x-8 flex-wrap gap-y-1">
-              <h2 className="text-base font-medium">Recent Transactions</h2>
+
+          <article className="w-full">
+            <header className="mb-4 flex items-center justify-between gap-x-8 flex-wrap gap-y-1">
+              <h2 className="text-lg font-medium..">Recent Transactions</h2>
               <Button
                 variant="light"
                 size="sm"
@@ -210,184 +222,173 @@ export default function DashboardPage() {
                 </div>
               </div>
             </article>
-          </section>
-        </div>
-      </section>
-
-      <section className="px-4 py-6">
-        <Card isFooterBlurred className="h-[300px] md:h-[420px] grow mb-4">
-          <CardHeader>
-            <h3 className="mb-4 text-base px-2 text-slate-400">
-              Your Finances Reports
-            </h3>
-          </CardHeader>
-          <CardBody className="block">
-            <FInancesLineChart />
-          </CardBody>
-          {/* <CardFooter className="absolute bottom-0 border-t-1 border-gray-100/50 z-10 justify-between">
-              <div>
-                <p className="text-black text-tiny">Available soon.</p>
-                <p className="text-black text-tiny">Get notified.</p>
-              </div>
-              <Button
-                className="text-tiny"
-                color="primary"
-                radius="full"
-                size="sm"
-              >
-                Notify Me
-              </Button>
-            </CardFooter> */}
-        </Card>
-        <div className="flex gap-x-8" about="">
-          <div>
-            <article>
-              <h3 className="mb-4 text-medium font-semibold">
-                Your Investments
-              </h3>
-              <ul className="flex flex-wrap gap-4">
-                {[, 2, 3, 4].map((commodity) => {
-                  return (
-                    <li>
-                      <Card className="bg-gradient-to-r from-blue-500 to-purple-500">
-                        <CardHeader>Passive Income</CardHeader>
-                        <CardBody>
-                          <p>Capital: ${40}</p>
-                          <p>Trading details: {"Running"}</p>
-                        </CardBody>
-                        <CardFooter>
-                          Expected 80% capital return at the end of the month.
-                        </CardFooter>
-                      </Card>
-                    </li>
-                  );
-                })}
-              </ul>
-            </article>
-            <article>
-              <h3 className="mb-4 text-medium font-semibold">Services</h3>
-              <ul className="flex gap-2 grow">
-                {[1, 2, 3].map((service) => {
-                  return (
-                    <div className="border rounded-lg p-4 flex items-center shadow-lg gap-x-4">
-                      <p>$Cashtag</p>
-                    </div>
-                  );
-                })}
-              </ul>
-            </article>
-          </div>
-          <article className="ms-auto">
-            <h4 className="mb-4 text-lg hidden text-start">
-              <span className="text-danger-400..">🤑 Buy</span>,{" "}
-              <span className="text-primary-400..">Sell</span> and{" "}
-              <span className="text-success-400">Earn!</span>
-            </h4>
-            <div className="grid gap-y-2">
-              <div className="flex items-center gap-x-4 bg-zinc-900 p-3 rounded-lg shadow">
-                <Chip size="lg" radius="sm" className="py-6">
-                  <CircleDollarSignIcon />
-                </Chip>
-                <p>Sell your Notcoins</p>
-                <Button
-                  isIconOnly
-                  variant="light"
-                  size="sm"
-                  color="primary"
-                  className="ms-auto"
-                >
-                  <ArrowRightCircleIcon />
-                </Button>
-              </div>
-              <div className="flex items-center gap-x-4 bg-zinc-900 p-3 rounded-lg shadow">
-                <Chip size="lg" radius="sm" className="py-6">
-                  <CircleDollarSignIcon />
-                </Chip>
-                <p>Buy some TON</p>
-                <Button
-                  isIconOnly
-                  variant="light"
-                  size="sm"
-                  color="primary"
-                  className="ms-auto"
-                >
-                  <ArrowRightCircleIcon />
-                </Button>
-              </div>
-              <Link
-                href="/market/giftcard"
-                className="flex items-center gap-x-4 bg-zinc-900 p-3 rounded-lg shadow"
-              >
-                <Chip size="lg" radius="sm" className="py-6">
-                  <CircleDollarSignIcon />
-                </Chip>
-                <p>Do more at our Marketplace</p>
-                <Button
-                  isIconOnly
-                  variant="light"
-                  size="sm"
-                  color="primary"
-                  className="ms-auto"
-                >
-                  <ArrowRightCircleIcon />
-                </Button>
-              </Link>
-            </div>
           </article>
-        </div>
+        </aside>
       </section>
 
-      <section className="py-6 px-4">
-        <header className="mb-4 flex justify-between items-center">
-          <h2 className="text-lg lg:text-xl">News and Entertainment</h2>
-          <p className="text-slate-600 text-sm">
-            Keep up with the latest trends
+      <section className="px-4 py-8" id="investment-portfolio">
+        <header className="mb-6 space-y-2">
+          <h2 className="text-xl">Your Investments Portfolio</h2>
+          <p className="text-sm text-warning-500 leading-snug flex items-center gap-x-4 sm:gap-x-2">
+            <AlertCircle className="size-8 sm:size-4" />{" "}
+            <p>
+              Choose a Plan - You have{" "}
+              <span className="font-medium text-white">0 of 2</span> investment
+              running.
+            </p>
           </p>
         </header>
-        <Card className="h-[240px] md:h-[320px]" />
-        <ul className="hidden grid.. grid-cols-[repeat(3,_minmax(28ch,_1fr))] gap-4 py-4">
-          {[1, 2, 3].map((article) => {
-            return (
-              <article className="card max-w-[34ch] grow">
-                <div className="card-body">
-                  <figure className="card-image"></figure>
-                  <div>
-                    <h4 className="card-title">
-                      This is something yoiu should read now
-                    </h4>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-          {/* <article className="card grow lg:row-span-2 lg:col-start-3 lg:row-start-1">
-            <div className="card-body">
-              <figure className="card-image"></figure>
-              <div>
-                <h4 className="card-title">
-                  This is something yoiu should read now
-                </h4>
-              </div>
-            </div>
-          </article> */}
+
+        <ul className="flex flex-wrap gap-6">
+          {[{ title: "Basic" }, { title: "Silver" }, { title: "Gold" }].map(
+            ({ title }, index) => {
+              return (
+                <li className="grow max-w-72..">
+                  <Card className="p-2 shadow-lg border">
+                    <CardHeader className="text-lg font-bold py-2 shadow-lg bg-yellow-100 text-yellow-800 text-center justify-center">
+                      {title}
+                    </CardHeader>
+                    <CardBody className="pt-8">
+                      <div className="space-y-1.5">
+                        <p className="flex justify-between">
+                          Capital:{" "}
+                          <span className="text-primary-400..">${40}</span>
+                        </p>
+                        <p className="flex justify-between">
+                          Returns:{" "}
+                          <span className="text-success-400">${100}/month</span>
+                        </p>
+                        <p className="flex justify-between">
+                          Lifespan: <span className="">30 days</span>
+                        </p>
+                      </div>
+                      <Progress
+                        label={
+                          <span className="flex items-center flex-row-reverse gap-x-1">
+                            Progress{" "}
+                            {/* <LineChart size={18} className="text-warning-400" /> */}
+                          </span>
+                        }
+                        size="sm"
+                        value={15}
+                        maxValue={30}
+                        color="warning"
+                        showValueLabel={true}
+                        className="max-w-md mt-6"
+                      />
+                    </CardBody>
+                    <CardFooter>
+                      {index % 2 === 0 ? (
+                        <Button
+                          fullWidth
+                          variant="flat"
+                          size="lg"
+                          color="success"
+                        >
+                          Running
+                        </Button>
+                      ) : (
+                        // <Button fullWidth color="primary">Invest</Button>
+                        <Button fullWidth size="lg">
+                          Unavailable
+                        </Button>
+                      )}
+                    </CardFooter>
+                  </Card>
+                </li>
+              );
+            }
+          )}
         </ul>
       </section>
 
-      <div className="h-48"></div>
+      <section className="px-4 py-8 space-y-6">
+        <header className="mb-6 flex justify-between items-center">
+          <h2 className="text-lg">🔥 Latest - Promotions, Trends, & News</h2>
+        </header>
+
+        <div className="flex gap-x-4">
+          <div className="hidden xl:grid gap-y-2">
+            <div className="flex items-center gap-x-4 bg-zinc-900 p-3 rounded-lg shadow">
+              <Chip size="lg" radius="sm" className="py-6">
+                <CircleDollarSignIcon />
+              </Chip>
+              <p>Sell your Notcoins</p>
+              <Button
+                isIconOnly
+                variant="light"
+                size="sm"
+                color="primary"
+                className="ms-auto"
+              >
+                <ArrowRightCircleIcon />
+              </Button>
+            </div>
+            <div className="flex items-center gap-x-4 bg-zinc-900 p-3 rounded-lg shadow">
+              <Chip size="lg" radius="sm" className="py-6">
+                <CircleDollarSignIcon />
+              </Chip>
+              <p>Buy some TON</p>
+              <Button
+                isIconOnly
+                variant="light"
+                size="sm"
+                color="primary"
+                className="ms-auto"
+              >
+                <ArrowRightCircleIcon />
+              </Button>
+            </div>
+            <Link
+              href="/market/giftcard"
+              isExternal
+              className="border rounded-lg text-primary-900 shadow p-3 gap-x-4"
+            >
+              <Chip size="lg" radius="sm" className="py-6">
+                <CircleDollarSignIcon />
+              </Chip>
+              Buy and Sell - See and do more at our marketplace
+              <Button
+                isIconOnly
+                variant="light"
+                size="sm"
+                color="primary"
+                className="ms-auto"
+              >
+                <ArrowRightCircleIcon />
+              </Button>
+            </Link>
+          </div>
+          <Card about="carousel" className="h-[260px] md:h-[320px] w-full" />
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          {[1, 2, 3].map((article) => {
+            return (
+              <article className="flex gap-x-2 max-w-[34ch] grow">
+                <figure className="w-14 h-12 bg-zinc-800"></figure>
+                <Link className="underline text-sm xl:text-base underline-offset-2">
+                  Jagaban set the Nation on Haster Tonight!
+                </Link>
+              </article>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 }
 
 function BankDetailsCard() {
   return (
-    <div className="grid gap-y-1">
-      <article className="relative border border-slate-800 shadow-md rounded-md p-5 lg:p-4">
-        <div className="flex gap-x-2 items-center mb-2">
+    <div className="grid gap-y-1 max-w-md w-full">
+      <article className="relative border border-slate-800.. shadow-md p-4 sm:p-5 lg:p-4">
+        <div className="flex gap-x-2.5 items-center mb-2">
           <div className="inline-flex items-center">
             <div className="h-4 w-4 rounded-full bg-warning-400"></div>
             <div className="h-4 w-4 rounded-full bg-danger-400 -ms-1.5"></div>
           </div>
-          <span className="text-xs">Bank Details</span>
+          <span className="text-sm">Bank Details</span>
         </div>
         <p className="text-xl font-semibold">1234 2342 2422</p>
         <p className="text-medium font-mono flex items-center justify-between gap-x-4">
@@ -399,13 +400,13 @@ function BankDetailsCard() {
           color="success"
           size="sm"
           radius="sm"
-          className="text-xs p-0 absolute top-0 right-0"
+          className="text-xs absolute top-2 right-2"
         >
           Edit
         </Button>
       </article>
-      <Divider className="w-[90%] mx-auto block bg-slate-800" />
-      <Divider className="w-[80%] mx-auto block bg-slate-800" />
+      <Divider className="w-[90%] mx-auto block border" />
+      <Divider className="w-[80%] mx-auto block border" />
     </div>
   );
 }
