@@ -76,7 +76,7 @@ export default function DashboardPage() {
         <h1 className="text-2xl lg:text-3xl">Dashboard</h1>
       </header>
 
-      <section className="px-4 hidden">
+      <section className="px-4">
         <div className="rounded-lg shadow bg-primary-50 text-primary-800 px-4 sm:px-5 py-2.5 flex gap-x-4 items-center">
           <MessageCircleWarningIcon />
           <p className="text-sm sm:text-base">This should be an annoucement</p>
@@ -225,6 +225,64 @@ export default function DashboardPage() {
             </article>
           </article>
         </aside>
+      </section>
+
+      <section className="px-4 py-8">
+        <header className="mb-6">
+          <h2 className="text-xl">Our Services</h2>
+        </header>
+
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 items-center gap-4">
+          {[
+            {
+              title: "Sell your GIftcards",
+              href: "/giftcard",
+              color: "primary",
+            },
+            {
+              title: "Airdrop Earnings Withdrawl",
+              href: "/crypto",
+              color: "warning",
+            },
+            {
+              title: "Recieve with reliable $cashtag",
+              href: "/crypto",
+              color: "danger",
+            },
+            {
+              title: "Buy Cheap Data Plans",
+              href: "/crypto",
+              color: "success",
+            },
+            {
+              title: "Download Free Instrumentals",
+              href: "/crypto",
+              color: "secondary",
+            },
+          ].map(({ title, href, color }, index) => {
+            return (
+              <Button
+                href={href}
+                variant="light"
+                size="lg"
+                className={`border h-auto w-auto text-white py-4 text-sm md:text-medium justify-between gap-x-4 rounded-none ${
+                  index === 0 ? "lg:col-start-3 lg:row-start-1 lg:row-span-2 lg:h-full" : ""
+                }`}
+              >
+                <span className="whitespace-break-spaces text-start">{title}</span>
+                <Button
+                  isIconOnly
+                  variant="light"
+                  size="sm"
+                  color="primary"
+                  className={`ms-auto ${index === 0 ? "lg:ms-0" : ""}`}
+                >
+                  <ArrowRightCircleIcon />
+                </Button>
+              </Button>
+            );
+          })}
+        </div>
       </section>
 
       <section className="px-4 py-8" id="investment-portfolio">
