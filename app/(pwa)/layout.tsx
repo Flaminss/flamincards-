@@ -1,8 +1,8 @@
 "use client";
 
-import TopNavigation from "@/app/top-navigation";
-import BottomNavigation from "@/app/bottom-navigation";
-import SidebarNavigation from "@/app/sidebar-navigation";
+import TopNavigation from "@/app/(pwa)/navigation-top";
+import BottomNavigation from "@/app/(pwa)/navigation-bottom";
+import SidebarNavigation from "@/app/(pwa)/navigation-left";
 import clsx from "clsx";
 
 export default function PublicUserInterface({

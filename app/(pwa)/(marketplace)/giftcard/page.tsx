@@ -3,7 +3,7 @@
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/react";
 import { ArrowUpDown, SearchIcon } from "lucide-react";
-import GiftcardListing from "@/app/(software)/market/giftcard/listing";
+import GiftcardListing from "@/app/(pwa)/(marketplace)/giftcard/listing";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },

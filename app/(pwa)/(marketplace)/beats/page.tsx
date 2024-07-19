@@ -30,7 +30,7 @@ import {
   Trash2Icon,
   VerifiedIcon,
 } from "lucide-react";
-import GiftcardListing from "@/app/(software)/market/giftcard/listing";
+import GiftcardListing from "@/app/(pwa)/(marketplace)/giftcard/listing";
 import ComingSoonScene from "../../transactions/page";
 
 const sortOrders = [

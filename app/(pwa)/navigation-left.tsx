@@ -17,9 +17,9 @@ import {
   BellIcon,
   GiftIcon,
 } from "lucide-react";
-import { BrandName } from "./top-navigation";
+import { BrandName } from "./(pwa)/navigation-top";
 
-export default function SidebarNavigation({ className }: { className?: any }) {
+export default function NavigationLeft({ className }: { className?: any }) {
   return (
     <aside
       className={clsx(
@@ -348,7 +348,7 @@ export default function SidebarNavigation({ className }: { className?: any }) {
 }
 
 import classnames from "clsx";
-import { marketMenu } from "./(software)/market/layout";
+import { marketMenu } from "./(pwa)/(marketplace)/layout";
 
 export const IconWrapper = ({
   children,

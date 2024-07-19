@@ -2,9 +2,9 @@
 
 import { Tab, Tabs } from "@nextui-org/react";
 import GiftcardMarketplacePage from "./giftcard/page";
-import CryptoSellPage from "./crypto/sell/page";
+import CryptoSellPage from "./crypto/page";
 import CashtagLendPage from "./cashtag/page";
-import InstrumentalCatalogPage from "./instrumentals/page";
+import InstrumentalCatalogPage from "./beats/page";
 
 export const marketMenu = {
   giftcard: {
