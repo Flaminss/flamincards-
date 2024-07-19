@@ -35,7 +35,7 @@ import {
 
 import { Logo } from "@/lib/icons";
 
-export default function LandingPage() {
+export default function HomePage() {
   return (
     <div className="relative flex flex-col h-screen">
       <TopNavigation />
