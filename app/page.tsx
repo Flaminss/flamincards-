@@ -47,6 +47,7 @@ export default function HomePage() {
   return (
     <div className="relative flex flex-col h-screen">
       <TopNavigation />
+
       <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
         <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
           <div className="inline-block max-w-lg text-center justify-center">
@@ -92,15 +93,15 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <footer className="w-full flex items-center justify-center py-3">
+      <footer className="w-full flex items-center justify-center py-4">
         <Link
           isExternal
-          className="flex items-center gap-1 text-current"
-          href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-          title="nextui.org homepage"
+          href="t.me/everurstruly"
+          title="Development team portfolio website"
+          className="flex items-center gap-1 text-current font-mono font-sm"
         >
-          <span className="text-default-600">Powered by</span>
-          <p className="text-primary">NextUI</p>
+          <span className="text-default-600">Developed by</span>
+          <p className="text-primary">YoursTruly</p>
         </Link>
       </footer>
     </div>
