@@ -373,7 +373,7 @@ export default function DashboardPage() {
         {/* CAROUSEL */}
         <Card about="carousel" className="h-[260px] md:h-[320px] w-full" />
 
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap lg:flex-nowrap gap-8 lg:gap-10">
           {[1, 2, 3].map((article) => {
             return (
               <article className="flex gap-x-2 max-w-[34ch] grow">
