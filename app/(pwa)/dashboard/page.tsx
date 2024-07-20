@@ -144,27 +144,26 @@ export default function DashboardPage() {
 
           <ButtonGroup
             className="mt-auto flex gap-1 flex-wrap content-end shadow-lg"
-            radius="sm"
             variant="solid"
             color="primary"
             size="md"
           >
             <Button
-              className="shadow-lg grow font-medium"
+              className="shadow-lg grow font-medium rounded-lg xl:rounded-e-none"
               // color="secondary"
               startContent={<DownloadIcon size={20} />}
             >
               Deposit
             </Button>
             <Button
-              className="shadow-lg grow font-medium"
+              className="shadow-lg grow font-medium !rounded-lg xl:!rounded-none"
               // color="secondary"
               startContent={<CircleDollarSignIcon size={20} />}
             >
               Withdraw
             </Button>
             <Button
-              className="shadow-lg grow font-medium"
+              className="shadow-lg grow font-medium rounded-lg xl:rounded-s-none"
               // color="secondary"
               startContent={<Handshake size={20} />}
             >
