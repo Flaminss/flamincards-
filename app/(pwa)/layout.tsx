@@ -20,7 +20,7 @@ export default function PublicUserInterface({
       <TopNavigation className="md:hidden" />
       <SidebarNavigation
         className={clsx(
-          "hidden md:block max-w-[30%] lg:max-w-72 sticky-top shadow-lg",
+          "hidden md:block max-w-[28%] lg:max-w-72 sticky-top shadow-lg",
           "lg:h-[calc(100vh_-_(0.625rem_*_2))]"
         )}
       />
