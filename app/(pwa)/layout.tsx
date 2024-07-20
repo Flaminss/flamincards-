@@ -13,7 +13,7 @@ export default function PublicUserInterface({
   return (
     <div
       className={clsx(
-        "md:gap-x-3.5 md:flex md:h-screen md:flex-row md:overflow-y-auto max-w-lg mx-auto md:max-w-none xl:max-w-7xl xl:bg-transparent bg-zinc-950 shadow-2xl",
+        "md:gap-x-3.5 md:flex md:h-screen md:flex-row md:overflow-y-auto mx-auto md:max-w-none xl:max-w-7xl xl:bg-transparent bg-zinc-950 shadow-2xl",
         `lg:p-2.5 xl:px-0 xl:py-4`
       )}
     >
