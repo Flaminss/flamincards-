@@ -50,6 +50,8 @@ import {
   AlertCircle,
   Link2Off,
   OutdentIcon,
+  DownloadIcon,
+  DollarSignIcon,
 } from "lucide-react";
 import icons from "currency-icons";
 import FInancesLineChart from "./finances-line-chart";
@@ -94,9 +96,9 @@ export default function DashboardPage() {
       </section>
 
       <section className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
-        <div className="grid max-w-lg grow w-full shrink-0 lg:shrink xl:shrink-0.. border p-4 sm:p-6 pt-6 space-y-10 mx-auto">
+        <div className="grid max-w-lg grow w-full shrink-0 lg:shrink border p-4 sm:p-6 pt-6 space-y-10 mx-auto">
           <article className="relative flex flex-col">
-            <h3 className="text-lg sm:text-xl mb-6">
+            <h3 className="text-lg sm:text-xl mb-6 lg:mb-9">
               Welcome back, Mr. Daniel 🌞
               {/* 🌞 👋*/}
             </h3>
@@ -150,14 +152,14 @@ export default function DashboardPage() {
             <Button
               className="shadow-lg grow font-medium"
               // color="secondary"
-              startContent={<Gift size={20} />}
+              startContent={<DownloadIcon size={20} />}
             >
-              Redeem
+              Deposit
             </Button>
             <Button
               className="shadow-lg grow font-medium"
               // color="secondary"
-              startContent={<ShareIcon size={20} />}
+              startContent={<CircleDollarSignIcon size={20} />}
             >
               Withdraw
             </Button>
