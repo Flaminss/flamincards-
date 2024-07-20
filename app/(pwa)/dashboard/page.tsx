@@ -94,7 +94,7 @@ export default function DashboardPage() {
       </section>
 
       <section className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
-        <div className="grid max-w-lg grow xl:shrink-0 border p-4 pt-6 space-y-10">
+        <div className="grid max-w-lg grow w-full shrink-0 lg:shrink xl:shrink-0.. border p-4 sm:p-6 pt-6 space-y-10 mx-auto">
           <article className="relative flex flex-col">
             <h3 className="text-lg sm:text-xl mb-6">
               Welcome back, Mr. Daniel 🌞
@@ -171,12 +171,12 @@ export default function DashboardPage() {
           </ButtonGroup>
         </div>
 
-        <aside className="flex flex-col lg:flex-row-reverse.. lg:gap-x-12 items-center.. justify-between grow gap-y-10 xl:gap-y-8">
+        <aside className="flex flex-col lg:gap-x-12 justify-between grow gap-y-10 xl:gap-y-8">
           <BankDetailsCard />
 
           <article className="w-full">
-            <header className="mb-4 flex items-center justify-between gap-x-8 flex-wrap gap-y-1">
-              <h2 className="text-lg font-medium..">Recent Transactions</h2>
+            <header className="mb-4 flex flex-wrap lg:flex-nowrap items-center justify-between gap-x-8 gap-y-1">
+              <h2 className="text-lg whitespace-nowrap">Recent Transactions</h2>
               <Button
                 variant="light"
                 size="sm"
@@ -195,11 +195,11 @@ export default function DashboardPage() {
                   </div>
                   <div>
                     <p className="text-sm font-meidum">Investment</p>
-                    <p className="text-sm text-gray-500">May 20th at 9:00pm</p>
+                    <p className="text-xs text-gray-500">May 20th at 9:00pm</p>
                   </div>
                 </div>
                 <div className="grid justify-items-end">
-                  <p className="text-sm font-semibold">
+                  <p className="text-sm font-semibold whitespace-nowrap">
                     + {icons["BTC"]?.symbol || "₿"} 0.0005
                   </p>
                   <p className="text-sm text-success-400">Successful</p>
@@ -212,11 +212,11 @@ export default function DashboardPage() {
                   </div>
                   <div>
                     <p className="text-sm font-meidum">Withdrawal</p>
-                    <p className="text-sm text-gray-500">May 20th at 05:50am</p>
+                    <p className="text-xs text-gray-500">May 20th at 05:50am</p>
                   </div>
                 </div>
                 <div className="grid justify-items-end">
-                  <p className="text-sm font-semibold">
+                  <p className="text-sm font-semibold whitespace-nowrap">
                     - {icons["NGN"]?.symbol || "#"} 10,000.00
                   </p>
                   <p className="text-xs text-danger-400">Failed</p>
@@ -390,7 +390,7 @@ export default function DashboardPage() {
 
 function BankDetailsCard() {
   return (
-    <div className="grid gap-y-1 max-w-md w-full">
+    <div className="grid gap-y-1 max-w-md w-full mx-auto">
       <article className="relative border border-slate-800.. shadow-md p-4 sm:p-5 lg:p-4">
         <div className="flex gap-x-2.5 items-center mb-2">
           <div className="inline-flex items-center">
