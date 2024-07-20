@@ -94,9 +94,9 @@ export default function DashboardPage() {
       </section>
 
       <section className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
-        <div className="grid max-w-lg grow xl:shrink-0 border p-4 space-y-12">
+        <div className="grid max-w-lg grow xl:shrink-0 border p-4 pt-6 space-y-10">
           <article className="relative flex flex-col">
-            <h3 className="text-lg sm:text-xl xl:text-2xl mb-6 xl:mb-8">
+            <h3 className="text-lg sm:text-xl mb-6">
               Welcome back, Mr. Daniel 🌞
               {/* 🌞 👋*/}
             </h3>
@@ -228,9 +228,7 @@ export default function DashboardPage() {
       </section>
 
       <section className="px-4 py-8">
-        <header className="mb-6">
-          <h2 className="text-xl">Our Services</h2>
-        </header>
+        <h2 className="text-xl lg:text-2xl mb-6">Our Services</h2>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3 items-center gap-4">
           {[
@@ -291,7 +289,7 @@ export default function DashboardPage() {
 
       <section className="px-4 py-8" id="investment-portfolio">
         <header className="mb-6 space-y-2">
-          <h2 className="text-xl">Your Investments Portfolio</h2>
+          <h2 className="text-xl lg:text-2xl">Your Investments Portfolio</h2>
           <p className="text-sm text-warning-500 leading-snug flex items-center gap-x-4 sm:gap-x-2">
             <AlertCircle className="size-8 sm:size-4" />{" "}
             <p>
@@ -366,9 +364,9 @@ export default function DashboardPage() {
       </section>
 
       <section className="px-4 py-8 space-y-6">
-        <header className="mb-6 flex justify-between items-center">
-          <h2 className="text-lg">🔥 News and Promotions</h2>
-        </header>
+        <h2 className="text-xl lg:text-2xl mb-6">
+          Latest News, Trends and Promotions
+        </h2>
 
         {/* CAROUSEL */}
         <Card about="carousel" className="h-[260px] md:h-[320px] w-full" />
