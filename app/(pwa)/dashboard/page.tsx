@@ -265,11 +265,15 @@ export default function DashboardPage() {
                 href={href}
                 variant="light"
                 size="lg"
-                className={`border h-auto w-auto text-white py-4 text-sm md:text-medium justify-between gap-x-4 rounded-none ${
-                  index === 0 ? "lg:col-start-3 lg:row-start-1 lg:row-span-2 lg:h-full" : ""
+                className={`border items-center self-stretch h-auto w-auto text-white py-4 text-sm md:text-medium justify-between gap-x-4 rounded-none ${
+                  index === 0
+                    ? "lg:col-start-3 lg:row-start-1 lg:row-span-2 lg:h-full"
+                    : ""
                 }`}
               >
-                <span className="whitespace-break-spaces text-start">{title}</span>
+                <span className="whitespace-break-spaces text-start">
+                  {title}
+                </span>
                 <Button
                   isIconOnly
                   variant="light"
@@ -363,65 +367,13 @@ export default function DashboardPage() {
 
       <section className="px-4 py-8 space-y-6">
         <header className="mb-6 flex justify-between items-center">
-          <h2 className="text-lg">🔥 Latest - Promotions, Trends, & News</h2>
+          <h2 className="text-lg">🔥 News and Promotions</h2>
         </header>
 
-        <div className="flex gap-x-4">
-          <div className="hidden xl:grid gap-y-2">
-            <div className="flex items-center gap-x-4 bg-zinc-900 p-3 rounded-lg shadow">
-              <Chip size="lg" radius="sm" className="py-6">
-                <CircleDollarSignIcon />
-              </Chip>
-              <p>Sell your Notcoins</p>
-              <Button
-                isIconOnly
-                variant="light"
-                size="sm"
-                color="primary"
-                className="ms-auto"
-              >
-                <ArrowRightCircleIcon />
-              </Button>
-            </div>
-            <div className="flex items-center gap-x-4 bg-zinc-900 p-3 rounded-lg shadow">
-              <Chip size="lg" radius="sm" className="py-6">
-                <CircleDollarSignIcon />
-              </Chip>
-              <p>Buy some TON</p>
-              <Button
-                isIconOnly
-                variant="light"
-                size="sm"
-                color="primary"
-                className="ms-auto"
-              >
-                <ArrowRightCircleIcon />
-              </Button>
-            </div>
-            <Link
-              href="/market/giftcard"
-              isExternal
-              className="border rounded-lg text-primary-900 shadow p-3 gap-x-4"
-            >
-              <Chip size="lg" radius="sm" className="py-6">
-                <CircleDollarSignIcon />
-              </Chip>
-              Buy and Sell - See and do more at our marketplace
-              <Button
-                isIconOnly
-                variant="light"
-                size="sm"
-                color="primary"
-                className="ms-auto"
-              >
-                <ArrowRightCircleIcon />
-              </Button>
-            </Link>
-          </div>
-          <Card about="carousel" className="h-[260px] md:h-[320px] w-full" />
-        </div>
+        {/* CAROUSEL */}
+        <Card about="carousel" className="h-[260px] md:h-[320px] w-full" />
 
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-6">
           {[1, 2, 3].map((article) => {
             return (
               <article className="flex gap-x-2 max-w-[34ch] grow">
