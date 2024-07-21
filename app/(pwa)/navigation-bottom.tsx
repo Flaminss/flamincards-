@@ -1,10 +1,30 @@
 "use client";
 
-import { Tabs, Tab, Chip } from "@nextui-org/react";
-import { Home, CandlestickChart, History, Menu } from "lucide-react";
+import {
+  Tabs,
+  Tab,
+  Chip,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  Listbox,
+  ModalBody,
+  ModalFooter,
+  ListboxItem,
+  useDisclosure,
+} from "@nextui-org/react";
+import {
+  Home,
+  CandlestickChart,
+  History,
+  Menu,
+  SearchIcon,
+} from "lucide-react";
 import { Badge, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { Input } from "postcss";
+import Link from "next/link";
 
 export default function BottomNavigationPro({
   classNames,
@@ -15,22 +35,28 @@ export default function BottomNavigationPro({
   };
 }) {
   const pathname = usePathname();
+  const {
+    isOpen: sendableTokenSelectOpened,
+    onOpen: openSendableTokenSelect,
+    onOpenChange: onSendableTokenSelectChange,
+  } = useDisclosure();
+
   const menu = [
     {
-      title: "Home",
+      title: "Dashboard",
       href: "/dashboard",
       Icon: Home,
       notificationCount: 0,
     },
     {
       title: "Market",
-      href: "/market",
       Icon: CandlestickChart,
       notificationCount: 2,
+      list: ["Giftcard", "Airtime"],
     },
     {
-      title: "History",
-      href: "/Transactions",
+      title: "Transactions",
+      href: "/transactions",
       Icon: History,
       notificationCount: 0,
     },
@@ -55,18 +81,93 @@ export default function BottomNavigationPro({
         tabContent: "group-data-[selected=true]:text-primary-500",
       }}
     >
-      {menu.map(({ title, href, Icon, notificationCount }) => {
+      {menu.map(({ title, href, Icon, list, notificationCount }) => {
         return (
           <Tab
             key={href}
             href={href}
+            onClick={() => {
+              alert("hello marketplace");
+              // if (!menu) {
+              //   return;
+              // }
+
+              // openSendableTokenSelect();
+            }}
             title={
               <div className="text-center text-xs grid sm:flex gap-x-2 justify-center items-center space-y-1 grow max-w-[4ch]">
                 <Icon className="mx-auto" />
                 <span>{title}</span>
               </div>
             }
-          />
+          >
+            {list?.length === 0 ? null : (
+              <Modal
+                backdrop="blur"
+                isOpen={sendableTokenSelectOpened}
+                classNames={{
+                  backdrop: "z-[100]",
+                  wrapper: "z-[110]",
+                  base: "border max-h-[min(80vh,_500px)]",
+                }}
+                shadow="lg"
+                onOpenChange={onSendableTokenSelectChange}
+                motionProps={{
+                  variants: {
+                    enter: {
+                      y: 0,
+                      opacity: 1,
+                      transition: {
+                        duration: 0.3,
+                        ease: "easeOut",
+                      },
+                    },
+                    exit: {
+                      y: -20,
+                      opacity: 0,
+                      transition: {
+                        duration: 0.2,
+                        ease: "easeIn",
+                      },
+                    },
+                  },
+                }}
+              >
+                <ModalContent>
+                  {(onClose) => (
+                    <>
+                      <ModalHeader className="flex flex-col gap-1 py-6">
+                        Explore Our Marketplace
+                      </ModalHeader>
+                      <ModalBody>
+                        {list?.map((item) => {
+                          return (
+                            <Link
+                              href="/"
+                              className="flex items-center justify-between text-lg"
+                            >
+                              {item}
+                            </Link>
+                          );
+                        })}
+                      </ModalBody>
+                      <ModalFooter className="flex-col text-sm text-gray-600 text-center justify-center">
+                        <Button
+                          variant="solid"
+                          color="danger"
+                          size="lg"
+                          radius="sm"
+                          className="w-full"
+                        >
+                          Close
+                        </Button>
+                      </ModalFooter>
+                    </>
+                  )}
+                </ModalContent>
+              </Modal>
+            )}
+          </Tab>
         );
       })}
     </Tabs>
