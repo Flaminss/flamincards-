@@ -10,12 +10,7 @@ const musicLibraryTabs = [
     Page: ComingSoonScene,
   },
   {
-    title: "Wishlist",
-    path: "wishlist",
-    Page: ComingSoonScene,
-  },
-  {
-    title: "Downloads",
+    title: "Purchases",
     path: "downloads",
     Page: ComingSoonScene,
   },
