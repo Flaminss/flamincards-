@@ -19,6 +19,7 @@ import {
   History,
   Menu,
   SearchIcon,
+  MusicIcon,
 } from "lucide-react";
 import { Badge, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
@@ -61,9 +62,9 @@ export default function BottomNavigationPro({
       notificationCount: 0,
     },
     {
-      title: "More",
-      href: "/account",
-      Icon: Menu,
+      title: "Music",
+      href: "/music",
+      Icon: MusicIcon,
       notificationCount: 0,
     },
   ];

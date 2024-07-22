@@ -16,6 +16,7 @@ import {
   Clapperboard,
   BellIcon,
   GiftIcon,
+  ListMusicIcon,
 } from "lucide-react";
 import { BrandName } from "./navigation-top";
 
@@ -122,10 +123,10 @@ export default function NavigationLeft({ className }: { className?: any }) {
                 // <IconWrapper className="bg-default/50 text-foreground">
                 //   <LineChart className="text-lg " />
                 // </IconWrapper>
-                <Clapperboard className="" />
+                <ListMusicIcon className="" />
               }
             >
-              Your Library{" "}
+              Music Library{" "}
               {/* <Chip
                 variant="flat"
                 color="success"
