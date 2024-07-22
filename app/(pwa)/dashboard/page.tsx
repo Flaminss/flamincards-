@@ -149,22 +149,19 @@ export default function DashboardPage() {
             size="md"
           >
             <Button
-              className="shadow-lg grow font-medium rounded-lg xl:rounded-e-none"
-              // color="secondary"
+              className="shadow-lg grow font-medium !rounded-md xl:!rounded-s-lg xl:rounded-e-none"
               startContent={<DownloadIcon size={20} />}
             >
               Deposit
             </Button>
             <Button
-              className="shadow-lg grow font-medium !rounded-lg xl:!rounded-none"
-              // color="secondary"
+              className="shadow-lg grow font-medium !rounded-md xl:!rounded-none"
               startContent={<CircleDollarSignIcon size={20} />}
             >
               Withdraw
             </Button>
             <Button
-              className="shadow-lg grow font-medium rounded-lg xl:rounded-s-none"
-              // color="secondary"
+              className="shadow-lg grow font-medium !rounded-md xl:!rounded-e-lg xl:rounded-s-none"
               startContent={<Handshake size={20} />}
             >
               Invest
