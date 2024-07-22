@@ -55,6 +55,7 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
           <div className="p-4 py-8 lg:order-2 lg:min-w-[30%] lg:shrink-0">
             <figure className="flex items-center justify-center mb-3 rounded-md">
               <Image
+                alt=""
                 src="https://th.bing.com/th?id=OIP.AzGsz6YA4Aup3paQ_poIAwHaHa&w=249&h=249&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
                 width={180}
                 height={180}
@@ -227,7 +228,7 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
                 <h3 className="text-3xl">Successfully Submitted</h3>
                 Your order is pending and waiting to be reviewed....
                 <p>😊Thank you for doing business with us! </p>
-                WHile you wait, woul'd you like to:
+                {/* WHile you wait, woul'd you like to: */}
               </ModalBody>
               <ModalFooter className="grid gap-y-6 justify-center items-center">
                 <Button
