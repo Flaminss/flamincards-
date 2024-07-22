@@ -1,22 +1,32 @@
 "use client";
 
-import { Tabs } from "@nextui-org/react";
+import { Tab, Tabs } from "@nextui-org/react";
 import { ComingSoonScene } from "@/app/coming-soon-scene";
 
-export const marketMenu = {
-  giftcard: {
-    title: "Instrumentals",
+const musicLibraryTabs = [
+  {
+    title: "Beats & Instrumentals",
     path: "instrumentals",
     Page: ComingSoonScene,
   },
-};
+  {
+    title: "Wishlist",
+    path: "wishlist",
+    Page: ComingSoonScene,
+  },
+  {
+    title: "Downloads",
+    path: "downloads",
+    Page: ComingSoonScene,
+  },
+];
 
 export default function MusicLayout({ children }: { children: any }) {
   return (
     <div>
       <header className="py-5 md:pt-0 px-2">
         <h1 className="text-xl font-semibold md:text-2xl uppercase sm:capitalize">
-          Music
+          Music Library
         </h1>
       </header>
 
@@ -30,7 +40,11 @@ export default function MusicLayout({ children }: { children: any }) {
               "gap-x-0 flex overflow-x-scroll scrollbar-show px-0 w-full",
             tab: "grow uppercase",
           }}
-        />
+        >
+          {musicLibraryTabs.map(({ title, path, Page }) => {
+            return <Tab title={title} key={path} href={path} />;
+          })}
+        </Tabs>
         {children}
       </section>
     </div>
