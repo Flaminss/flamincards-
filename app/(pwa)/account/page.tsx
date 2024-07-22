@@ -33,7 +33,7 @@ export default function BlogPage() {
         <h1 className="text-2xl lg:text-3xl">Your Account Settings</h1>
       </header>
 
-      <section className="px-4 space-y-10">
+      <section className="pt-6 lg:pt-0 px-4 space-y-10">
         <article
           about="banner"
           className="flex items-center gap-x-4 rounded-xl shadow-lg p-3 bg-primary-50 lg:hidden"
