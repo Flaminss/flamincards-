@@ -74,12 +74,17 @@ export default function BlogPage() {
         <MenuBlock
           title="Security & Preference"
           list={[
-            { title: "Phone", description: "080xx24x24x", Icon: PhoneIcon },
+            {
+              title: "Phone",
+              description: "080xx24x24x",
+              Icon: PhoneIcon,
+            },
             {
               title: "Email",
               description: "softwaredev@email.com",
               Icon: MailWarningIcon,
             },
+            { title: "Change Transaction PIN", Icon: KeyRoundIcon },
             { title: "Change Password", Icon: KeyRoundIcon },
             {
               title: "Dark Mode",
