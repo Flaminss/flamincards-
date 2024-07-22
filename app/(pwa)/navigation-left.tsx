@@ -95,7 +95,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </ListboxItem>
             <ListboxItem
               key="actions"
-              href={`/market/${marketMenu.giftcard.path}`}
+              href={`/${marketMenu.giftcard.path}`}
               classNames={{
                 base: "gap-x-4 py-3 px-2",
                 title: "text-base",
@@ -112,7 +112,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </ListboxItem>
             <ListboxItem
               key="actions"
-              href={`/market/${marketMenu.giftcard.path}`}
+              href={`/library`}
               classNames={{
                 base: "gap-x-4 py-3 px-2",
                 title: "text-base",
@@ -232,7 +232,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
                 <ChevronRight size={16} className="ms-auto text-gray-600" />
               }
             >
-              Get Help
+              Contact Us
             </Button>
             <Button
               variant="light"
@@ -311,7 +311,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
         </section>
         <footer className="absolute inset-x-0 mt-auto bottom-0 flex flex-wrap items-center gap-2 p-2 z-20 bg-zinc-800">
           <Button
-            href="/account" 
+            href="/account"
             className="gap-2 p-2 h-auto grow justify-start rounded-lg border"
             variant="faded"
             startContent={
@@ -321,7 +321,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
                 className="size-10 rounded-lg object-cover shadow-sm"
               />
             }
-            endContent={<ChevronRight size="18" />} 
+            endContent={<ChevronRight size="18" />}
             as={Link}
           >
             <p className="grow text-start">
