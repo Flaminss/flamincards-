@@ -5,8 +5,6 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/app/primitives";
 import { GithubIcon } from "@/lib/icons";
-import { Navbar } from "@/app/navbar";
-//
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -65,7 +63,7 @@ export default function HomePage() {
           <div className="flex gap-3">
             <Link
               isExternal
-              href={siteConfig.links.docs}
+              href="/"
               className={buttonStyles({
                 color: "primary",
                 radius: "full",
@@ -77,7 +75,7 @@ export default function HomePage() {
             <Link
               isExternal
               className={buttonStyles({ variant: "bordered", radius: "full" })}
-              href={siteConfig.links.github}
+              href="/"
             >
               <GithubIcon size={20} />
               GitHub
