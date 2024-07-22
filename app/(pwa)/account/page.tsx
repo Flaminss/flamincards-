@@ -28,12 +28,12 @@ import Link from "next/link";
 
 export default function BlogPage() {
   return (
-    <div className="max-w-xl mx-auto lg:mx-0 pb-10">
+    <div className="max-w-xl mx-auto lg:mx-auto pb-10">
       <header className="px-4 py-4">
-        <h1 className="text-2xl lg:text-3xl">Account Settings</h1>
+        <h1 className="text-2xl lg:text-3xl">Your Account Settings</h1>
       </header>
 
-      <section className="px-4 space-y-8">
+      <section className="px-4 space-y-10">
         <article
           about="banner"
           className="flex items-center gap-x-4 rounded-xl shadow-lg p-3 bg-primary-50 lg:hidden"
