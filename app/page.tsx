@@ -106,7 +106,7 @@ export default function HomePage() {
   );
 }
 
-export const TopNavigation = () => {
+const TopNavigation = () => {
   const searchInput = (
     <Input
       aria-label="Search"
