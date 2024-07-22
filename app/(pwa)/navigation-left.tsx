@@ -95,8 +95,8 @@ export default function NavigationLeft({ className }: { className?: any }) {
               Dashboard
             </ListboxItem>
             <ListboxItem
-              key="actions"
-              href={`/${marketMenu.giftcard.path}`}
+              key="marketplace"
+              href="/giftcard"
               classNames={{
                 base: "gap-x-4 py-3 px-2",
                 title: "text-base",
@@ -112,8 +112,8 @@ export default function NavigationLeft({ className }: { className?: any }) {
               Marketplace
             </ListboxItem>
             <ListboxItem
-              key="actions"
-              href={`/library`}
+              key="music"
+              href="/music"
               classNames={{
                 base: "gap-x-4 py-3 px-2",
                 title: "text-base",
