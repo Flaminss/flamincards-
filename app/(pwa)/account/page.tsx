@@ -161,13 +161,12 @@ function MenuBlock({
                 )
               }
               startContent={
-                <div className="bg-primary/10 p-1.5 rounded-md text-primary">
-                  <Icon className="text-lg lg:text-xl" />
+                <div className="p-1 rounded-md text-primary">
+                  <Icon className="size-4 lg:size-6" />
                 </div>
               }
               classNames={{
-                base: "py-2 lg:px-2.5 lg:py-2.5 gap-x-4",
-                description: "text-zinc-500 shrink-0 font-meidum",
+                base: "py-2 gap-x-3",
               }}
               title={title}
               description={description}
