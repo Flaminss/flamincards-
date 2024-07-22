@@ -50,7 +50,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             <BrandName className="@max-w-20:hidden" />
           </div>
           <Link href="/notifications">
-            <Button
+            {/* <Button
               className="min-w-[unset] h-auto p-2"
               size="md"
               radius="sm"
@@ -67,7 +67,27 @@ export default function NavigationLeft({ className }: { className?: any }) {
               >
                 <Bell className="text-base" />
               </Badge>
-            </Button>
+            </Button> */}
+            <Badge
+              content={""}
+              shape="circle"
+              color="danger"
+              variant="solid"
+              size="sm"
+              href="/notifications"
+              as={Link}
+            >
+              <Button
+                isIconOnly
+                radius="lg"
+                aria-label="unread notifications count"
+                variant="flat"
+                size="md"
+                className="text-zinc-300"
+              >
+                <Bell className="size-5" />
+              </Button>
+            </Badge>
           </Link>
         </header>
         <section className="grow grid gap-y-4 h-full py-5 mb-16">
