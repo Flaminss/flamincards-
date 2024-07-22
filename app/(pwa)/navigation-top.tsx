@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button, Badge } from "@nextui-org/react";
-import { Bell, Settings2 } from "lucide-react";
+import { Bell, LogInIcon, Settings2, UserCircle2Icon } from "lucide-react";
 import clsx from "clsx";
 
 export default function TopNavigation({ className }: { className?: string }) {
@@ -19,26 +19,49 @@ export default function TopNavigation({ className }: { className?: string }) {
         <BrandName />
       </div>
       <div className="navbar-end gap-x-2">
-        <Button color="primary" variant="light">
+        <Button
+          endContent={<LogInIcon className="size-5" />}
+          color="primary"
+          variant="solid"
+          size="md"
+          radius="lg"
+          className="hidden"
+        >
           Login
         </Button>
+
+        <Button
+          isIconOnly
+          radius="lg"
+          aria-label="unread notifications count"
+          variant="flat"
+          size="md"
+          className="text-zinc-300"
+          href="/account"
+          as={Link}
+        >
+          <UserCircle2Icon className="size-6" />
+        </Button>
+
         <Badge
-          content={notificationCount}
+          content={""}
           isInvisible={notificationCount <= 0}
           shape="circle"
           color="danger"
-          variant="flat"
-          size="lg"
-          showOutline={false}
+          variant="solid"
+          size="sm"
+          href="/notifications"
+          as={Link}
         >
           <Button
             isIconOnly
             radius="lg"
             aria-label="unread notifications count"
             variant="flat"
-            className="text-inherit"
+            size="md"
+            className="text-zinc-300"
           >
-            <Bell />
+            <Bell className="size-5" />
           </Button>
         </Badge>
       </div>
@@ -51,11 +74,12 @@ export function BrandName({ className }: { className?: any }) {
     <Link
       href="/"
       className={clsx(
-        "navbar-item flex items-center font-semibold text-lg px-0",
+        "navbar-item flex items-center text-medium px-0 font-meidum",
         className
       )}
     >
-      RML<span className="text-primary-400">pay</span>
+      RML
+      <span className="px-.5 font-semibold text-primary-500">PAID</span>
     </Link>
   );
 }
