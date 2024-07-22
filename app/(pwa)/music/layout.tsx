@@ -5,18 +5,18 @@ import { ComingSoonScene } from "@/app/coming-soon-scene";
 
 export const marketMenu = {
   giftcard: {
-    title: "My Beats",
-    path: "beatz",
+    title: "Instrumentals",
+    path: "instrumentals",
     Page: ComingSoonScene,
   },
 };
 
-export default function MarketPage({ children }: { children: any }) {
+export default function MusicLayout({ children }: { children: any }) {
   return (
     <div>
       <header className="py-5 md:pt-0 px-2">
         <h1 className="text-xl font-semibold md:text-2xl uppercase sm:capitalize">
-          Library
+          Music
         </h1>
       </header>
 
