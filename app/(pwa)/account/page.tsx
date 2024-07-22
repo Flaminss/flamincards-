@@ -28,7 +28,7 @@ import Link from "next/link";
 
 export default function BlogPage() {
   return (
-    <div className="max-w-xl mx-auto lg:mx-auto pb-10">
+    <div className="max-w-xl mx-auto lg:mx-auto">
       <header className="px-4 py-4">
         <h1 className="text-2xl lg:text-3xl">Your Account Settings</h1>
       </header>
@@ -119,8 +119,11 @@ export default function BlogPage() {
         </Button>
       </section>
 
-      <footer className="px-4 py-4 text-center">
-        <Link href="t.me/everurstruly" className="text-sm text-zinc-200">
+      <footer className="mt-10 px-4 py-4 text-center">
+        <Link
+          href="t.me/everurstruly"
+          className="text-sm text-zinc-200 font-mono"
+        >
           Developed by <span className="text-primary-400">YoursTruly</span>
         </Link>
       </footer>
