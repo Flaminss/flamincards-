@@ -76,7 +76,7 @@ export default function BlogPage() {
           list={[
             {
               title: "Phone",
-              description: "080xx24x24x",
+              description: "080XX24124X",
               Icon: PhoneIcon,
             },
             {
