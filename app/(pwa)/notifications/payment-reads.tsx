@@ -16,7 +16,7 @@ export default function PaymentReads() {
     <div className="grid gap-y-6 px-4">
       {[1, 2, 3, 4].map((count) => {
         return (
-          <Card className="w-full max-w-[64ch] lg:w-[64ch] shadow">
+          <Card key={count} className="w-full max-w-[64ch] lg:w-[64ch] shadow">
             <CardHeader className="justify-between items-start">
               <div className="flex gap-x-2">
                 🎁

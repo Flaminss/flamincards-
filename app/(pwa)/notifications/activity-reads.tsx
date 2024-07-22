@@ -17,7 +17,7 @@ export default function ActivityReads() {
     <div className="grid gap-y-6 px-4">
       {[1, 2, 3, 4].map((count) => {
         return (
-          <Card className="max-w-[64ch] lg:w-[64ch] shadow">
+          <Card key={count} className="max-w-[64ch] lg:w-[64ch] shadow">
             <CardHeader>
               <Link href="/">
                 <Image

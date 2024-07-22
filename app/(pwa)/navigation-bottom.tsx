@@ -144,6 +144,7 @@ export default function BottomNavigationPro({
                         {list?.map((item) => {
                           return (
                             <Link
+                              key={item}
                               href="/"
                               className="flex items-center justify-between text-lg"
                             >

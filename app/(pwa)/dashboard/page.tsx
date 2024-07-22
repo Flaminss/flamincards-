@@ -258,6 +258,7 @@ export default function DashboardPage() {
           ].map(({ title, href, color }, index) => {
             return (
               <Button
+                key={href}
                 href={href}
                 variant="light"
                 size="lg"
@@ -302,7 +303,7 @@ export default function DashboardPage() {
           {[{ title: "Basic" }, { title: "Silver" }, { title: "Gold" }].map(
             ({ title }, index) => {
               return (
-                <li className="grow max-w-72..">
+                <li key={title} className="grow max-w-72..">
                   <Card className="p-2 shadow-lg border">
                     <CardHeader className="text-lg font-bold py-2 shadow-lg bg-yellow-100 text-yellow-800 text-center justify-center">
                       {title}
@@ -372,7 +373,7 @@ export default function DashboardPage() {
         <div className="flex flex-wrap lg:flex-nowrap gap-8 lg:gap-10">
           {[1, 2, 3].map((article) => {
             return (
-              <article className="flex gap-x-2 max-w-[34ch] grow">
+              <article key={article} className="flex gap-x-2 max-w-[34ch] grow">
                 <figure className="w-14 h-12 bg-zinc-800"></figure>
                 <Link className="underline text-sm xl:text-base underline-offset-2">
                   Jagaban set the Nation on Haster Tonight!
