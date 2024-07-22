@@ -8,15 +8,18 @@ import {
   CalendarDaysIcon,
   ChevronRightCircleIcon,
   ChevronRightIcon,
+  CircleDollarSign,
   ClapperboardIcon,
   CreditCardIcon,
   HeadsetIcon,
   KeyRoundIcon,
   LineChartIcon,
+  Mail,
   MailWarningIcon,
   MessageCircleQuestionIcon,
   MoonIcon,
   PhoneIcon,
+  ShieldPlusIcon,
   TrophyIcon,
   UserCircleIcon,
   WalletIcon,
@@ -68,7 +71,7 @@ export default function BlogPage() {
               Icon: CalendarDaysIcon,
             },
             { title: "Bank Details", Icon: WalletIcon },
-            { title: "Investment Plans", Icon: LineChartIcon },
+            { title: "Investment Plans", Icon: CircleDollarSign },
           ]}
         />
         <MenuBlock
@@ -82,9 +85,9 @@ export default function BlogPage() {
             {
               title: "Email",
               description: "softwaredev@email.com",
-              Icon: MailWarningIcon,
+              Icon: Mail,
             },
-            { title: "Change Transaction PIN", Icon: KeyRoundIcon },
+            { title: "Change Transaction PIN", Icon: ShieldPlusIcon },
             { title: "Change Password", Icon: KeyRoundIcon },
             {
               title: "Dark Mode",
