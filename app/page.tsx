@@ -1,12 +1,13 @@
+"use client";
+
 import { Link } from "@nextui-org/link";
 import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/app/primitives";
 import { GithubIcon } from "@/lib/icons";
 import {
-  Navbar as NextUINavbar,
+  Navbar,
   NavbarContent,
   NavbarMenu,
   NavbarMenuToggle,
@@ -14,80 +15,75 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
+import React from "react";
+import NextLink from "next/link";
+import { BrandName } from "./(pwa)/navigation-top";
+import { ThemeSwitch } from "@/app/theme-switch";
 import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Input } from "@nextui-org/input";
-
-import { link as linkStyles } from "@nextui-org/theme";
-
-import NextLink from "next/link";
+import { HeartFilledIcon, SearchIcon } from "@/lib/icons";
 import clsx from "clsx";
-
-import { ThemeSwitch } from "@/app/theme-switch";
-import {
-  TwitterIcon,
-  DiscordIcon,
-  HeartFilledIcon,
-  SearchIcon,
-} from "@/lib/icons";
-
-import { Logo } from "@/lib/icons";
-import { BrandName } from "./(pwa)/navigation-top";
-import {
-  InstagramIcon,
-  Music2Icon,
-  PhoneIcon,
-  SendHorizontalIcon,
-} from "lucide-react";
-import { Chip } from "@nextui-org/react";
 
 export default function HomePage() {
   return (
-    <div className="relative flex flex-col h-screen">
+    <div className="relative flex flex-col h-screen bg-black">
       <TopNavigation />
 
-      <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-        <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-          <div className="inline-block max-w-lg text-center justify-center">
-            <h1 className={title()}>Make&nbsp;</h1>
-            <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-            <br />
-            <h1 className={title()}>
-              websites regardless of your design experience.
-            </h1>
-            <h2 className={subtitle({ class: "mt-4" })}>
-              Beautiful, fast and modern React UI library.
-            </h2>
-          </div>
-
-          <div className="flex gap-3">
-            <Link
-              isExternal
-              href="/"
-              className={buttonStyles({
-                color: "primary",
-                radius: "full",
-                variant: "shadow",
-              })}
-            >
-              Documentation
-            </Link>
-            <Link
-              isExternal
-              className={buttonStyles({ variant: "bordered", radius: "full" })}
-              href="/"
-            >
-              <GithubIcon size={20} />
-              GitHub
-            </Link>
-          </div>
-
-          <div className="mt-8">
-            <Snippet hideSymbol hideCopyButton variant="flat">
-              <span>
-                Get started by editing <Code color="primary">app/page.tsx</Code>
+      <main className="container mx-auto max-w-7xl flex-grow">
+        <section
+          id="home"
+          className="relative z-10 overflow-hidden pt-14 md:pt-40 xl:pt-45 px-5"
+        >
+          <div className="relative z-1 mx-auto max-w-[900px] lg:text-center">
+            <h1 className="mb-6 text-3xl font-medium text-white sm:text-5xl xl:text-heading-1">
+              <span className="">Trade</span>,{" "}
+              <span className="text-success">Earn</span>,{" "}
+              <span className="">Vibe</span>:
+              <br />
+              <span className="text-3xl font-black">
+                Your Go-To Platform for{" "}
+                <span className="text-primary">Giftcards</span>, Crypto, and{" "}
+                <span className="text-warning">Music</span>!
               </span>
-            </Snippet>
+            </h1>
+            <p className="font-medium mx-auto mb-9 max-w-[500px] md:text-lg">
+              Trade, earn rewards, and immerse yourself in a vibrant digital
+              marketplace tailored to your interests.
+            </p>
+            <Button
+              color="primary"
+              variant="solid"
+              size="md"
+              href="/dashboard"
+              radius="full"
+            >
+              🎉 Start Trading Today! 🎉
+            </Button>
+          </div>
+
+          <div
+            className="relative mx-auto mt-17 aspect-[1170/411] w-full max-w-[1170px]"
+            data-wow-delay="0.1s"
+          >
+            <img
+              alt="hero"
+              loading="lazy"
+              decoding="async"
+              data-nimg="fill"
+              className="mx-auto"
+              style={{
+                position: "absolute",
+                height: "100%",
+                width: "100%",
+                left: 0,
+                top: 0,
+                right: 0,
+                bottom: 0,
+                color: "transparent",
+              }}
+              src="./images/hero/hero.svg"
+            />
           </div>
         </section>
       </main>
@@ -107,94 +103,75 @@ export default function HomePage() {
 }
 
 const TopNavigation = () => {
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const menuItems = [
+    "Dashboard",
+    "Our Blog",
+    "Contact us",
+    "FAQ",
+    "Sponsor Us",
+  ];
 
   return (
-    <NextUINavbar maxWidth="lg" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <BrandName />
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent>
+        {/* <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        /> */}
+        <NavbarBrand>
+          <BrandName />
+        </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <ThemeSwitch />
-        <NavbarMenuToggle />
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        {menuItems.map((item, id) => {
+          return (
+            <NavbarItem>
+              <Link key={id} color="foreground" href="#">
+                {item}
+              </Link>
+            </NavbarItem>
+          );
+        })}
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        {/* <NavbarItem className="hidden lg:flex">
+          <Link href="#">Login</Link>
+        </NavbarItem> */}
+        {/* <NavbarItem>
+          <Button as={Link} color="primary" href="#" variant="flat">
+            Start here!
+          </Button>
+        </NavbarItem> */}
       </NavbarContent>
 
       <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </div>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2
+                  ? "primary"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
+              }
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
       </NavbarMenu>
-
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full items-center"
-        justify="end"
-      >
-        <NavbarItem className="hidden md:flex">
-          <NextLink href="/dashboard">Dashboard</NextLink>
-        </NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <NextLink href="gistnaija.com">Blog</NextLink>
-        </NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Button as={Link} variant="light">
-            Contact
-          </Button>
-        </NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Button
-            isExternal
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100"
-            href={siteConfig.links.sponsor}
-            startContent={
-              <HeartFilledIcon className="text-sm size-4 text-danger" />
-            }
-            variant="flat"
-            size="md"
-          >
-            Sponsor
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <ThemeSwitch />
-        </NavbarItem>
-      </NavbarContent>
-    </NextUINavbar>
+    </Navbar>
   );
 };
