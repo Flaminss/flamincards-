@@ -24,6 +24,11 @@ import { Kbd } from "@nextui-org/kbd";
 import { Input } from "@nextui-org/input";
 import { HeartFilledIcon, SearchIcon } from "@/lib/icons";
 import clsx from "clsx";
+import {
+  ChevronRightIcon,
+  ChevronsRight,
+  ChevronsRightIcon,
+} from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -106,11 +111,11 @@ const TopNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
-    "Dashboard",
-    "Our Blog",
-    "Contact us",
-    "FAQ",
-    "Sponsor Us",
+    { title: "Dashboard", href: "/dashboard" },
+    { title: "Our Blog", href: "gistnaija.com" },
+    { title: "Contact us", href: "/" },
+    { title: "FAQ", href: "/#faq" },
+    { title: "Sponsor Us", href: "/sponsor" },
   ];
 
   return (
@@ -121,23 +126,28 @@ const TopNavigation = () => {
           className="sm:hidden"
         /> */}
         <NavbarBrand>
-          <BrandName />
+          <BrandName className="sm:text-xl" />
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {menuItems.map((item, id) => {
+      <NavbarContent className="hidden sm:flex gap-x-6" justify="end">
+        {menuItems.map(({ title, href }, id) => {
           return (
             <NavbarItem key={id}>
-              <Link color="foreground" href="#">
-                {item}
+              <Link
+                color="foreground"
+                href={href}
+                size="md"
+                className="px-2 py-2 font-medium"
+              >
+                {title}
               </Link>
             </NavbarItem>
           );
         })}
       </NavbarContent>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="sm:hidden">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
@@ -153,21 +163,15 @@ const TopNavigation = () => {
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+        {menuItems.map(({ title, href }, id) => (
+          <NavbarMenuItem key={id}>
             <Link
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              className="w-full"
-              href="#"
-              size="lg"
+              href={href}
+              color="foreground"
+              className="flex justify-between items-center gap-x-2 w-full py-2 font-medium"
             >
-              {item}
+              {title}
+              <ChevronRightIcon className="" />
             </Link>
           </NavbarMenuItem>
         ))}
