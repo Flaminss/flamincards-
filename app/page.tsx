@@ -32,13 +32,13 @@ import {
 
 export default function HomePage() {
   return (
-    <div className="relative flex flex-col h-screen bg-black">
+    <div className="flex flex-col bg-black">
       <TopNavigation />
 
-      <main className="container mx-auto max-w-7xl flex-grow">
-        <section id="home" className="pt-20 md:pt-40 xl:pt-45 pb-20 px-4">
-          <div className="relative z-1 mx-auto max-w-[900px] lg:text-center">
-            <h1 className="mb-6 text-3xl font-bold text-white sm:text-5xl xl:text-heading-1">
+      <main className="flex-grow">
+        <section id="hero" className="pt-20 md:pt-28 pb-20 px-4">
+          <div className="mx-auto max-w-lg sm:max-w-[900px] lg:max-w-2xl">
+            <h1 className="mb-6 text-3xl font-semibold text-center text-white sm:text-5xl">
               Trade, <span className="text-success">Earn</span>, Vibe:
               <br />
               <span className="inline-block pt-2">
@@ -47,7 +47,7 @@ export default function HomePage() {
                 <span className="text-warning">Music</span>!
               </span>
             </h1>
-            <p className="font-medium text-lg mx-auto mb-9 max-w-[500px] md:text-lg">
+            <p className="mx-auto mb-9 max-w-[500px] md:text-lg text-center">
               Trade, earn rewards, and immerse yourself in a vibrant digital
               marketplace tailored to your interests.
             </p>
@@ -57,13 +57,15 @@ export default function HomePage() {
               size="lg"
               href="/dashboard"
               radius="md"
+              className="flex mx-auto"
             >
               Start Trading Today!
             </Button>
           </div>
         </section>
       </main>
-      <footer className="w-full flex items-center justify-center py-4">
+
+      <footer className="py-4 px-4 grid place-content-center">
         <Link
           isExternal
           href="t.me/everurstruly"
@@ -71,7 +73,7 @@ export default function HomePage() {
           className="text-default-600 font-mono font-medium flex items-center gap-x-2"
         >
           Developed by
-          <span className="text-success font-medium">YoursTruly</span>
+          <span className="text-primary font-semibold">YoursTruly</span>
         </Link>
       </footer>
     </div>
