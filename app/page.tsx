@@ -36,17 +36,14 @@ export default function HomePage() {
       <TopNavigation />
 
       <main className="container mx-auto max-w-7xl flex-grow">
-        <section
-          id="home"
-          className="relative z-10 overflow-hidden pt-14 md:pt-40 xl:pt-45 px-5"
-        >
+        <section id="home" className="pt-20 md:pt-40 xl:pt-45 px-4">
           <div className="relative z-1 mx-auto max-w-[900px] lg:text-center">
-            <h1 className="mb-6 text-3xl font-medium text-white sm:text-5xl xl:text-heading-1">
+            <h1 className="mb-6 text-3xl font-extrabold text-white sm:text-5xl xl:text-heading-1">
               <span className="">Trade</span>,{" "}
               <span className="text-success">Earn</span>,{" "}
               <span className="">Vibe</span>:
               <br />
-              <span className="text-3xl font-black">
+              <span className="text-4xl font-black">
                 Your Go-To Platform for{" "}
                 <span className="text-primary">Giftcards</span>, Crypto, and{" "}
                 <span className="text-warning">Music</span>!
@@ -119,7 +116,7 @@ const TopNavigation = () => {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} classNames={{ wrapper: "px-4" }}>
       <NavbarContent>
         {/* <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
