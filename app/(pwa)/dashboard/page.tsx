@@ -53,9 +53,10 @@ import {
   DownloadIcon,
   DollarSignIcon,
 } from "lucide-react";
-import icons from "currency-icons";
 import FInancesLineChart from "./finances-line-chart";
 import AnnoucementSection from "./annoucement-section";
+import Wallet from "./wallet";
+import icons from "currency-icons";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
@@ -82,78 +83,7 @@ export default function DashboardPage() {
       <AnnoucementSection />
 
       <section className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
-        <div className="grid max-w-lg grow w-full shrink-0 lg:shrink border p-4 sm:p-6 pt-6 space-y-10 mx-auto">
-          <article className="relative flex flex-col">
-            <h3 className="text-lg sm:text-xl mb-6 lg:mb-9">
-              Welcome back, Mr. Daniel 🌞
-              {/* 🌞 👋*/}
-            </h3>
-
-            <p className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-base gap-x-1">
-              <ShieldCheck className="text-success-400 me-.5 sm:m4-1 size-4" />
-              Total Balance
-            </p>
-            <p className="text-3xl sm:text-4xl mb-4">
-              {icons["NGN"]?.symbol || "#"}64,000.00
-            </p>
-            <Button
-              variant="flat"
-              color="primary"
-              size="sm"
-              radius="sm"
-              className="self-start"
-            >
-              Hide Balance <EyeOff className="ms-0.5" size={15} />
-            </Button>
-
-            <Link
-              href="#investment-portfolio"
-              className="mt-8 text-white hidden"
-            >
-              <Progress
-                label={
-                  <span className="flex items-center flex-row-reverse gap-x-1">
-                    Investments{" "}
-                    <LineChart size={18} className="text-warning-400" />
-                  </span>
-                }
-                size="sm"
-                value={500}
-                maxValue={3000}
-                color="warning"
-                formatOptions={{ style: "currency", currency: "NGN" }}
-                showValueLabel={true}
-                className="max-w-md"
-              />
-            </Link>
-          </article>
-
-          <ButtonGroup
-            className="mt-auto flex gap-1 flex-wrap content-end shadow-lg"
-            variant="solid"
-            color="primary"
-            size="md"
-          >
-            <Button
-              className="shadow-lg grow font-medium !rounded-md xl:!rounded-s-lg xl:rounded-e-none"
-              startContent={<DownloadIcon size={20} />}
-            >
-              Deposit
-            </Button>
-            <Button
-              className="shadow-lg grow font-medium !rounded-md xl:!rounded-none"
-              startContent={<CircleDollarSignIcon size={20} />}
-            >
-              Withdraw
-            </Button>
-            <Button
-              className="shadow-lg grow font-medium !rounded-md xl:!rounded-e-lg xl:rounded-s-none"
-              startContent={<Handshake size={20} />}
-            >
-              Invest
-            </Button>
-          </ButtonGroup>
-        </div>
+        <Wallet />
 
         <aside className="flex flex-col lg:gap-x-12 justify-between grow gap-y-10 xl:gap-y-8">
           <BankDetailsCard />
