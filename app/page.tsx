@@ -128,8 +128,8 @@ const TopNavigation = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {menuItems.map((item, id) => {
           return (
-            <NavbarItem>
-              <Link key={id} color="foreground" href="#">
+            <NavbarItem key={id}>
+              <Link color="foreground" href="#">
                 {item}
               </Link>
             </NavbarItem>
