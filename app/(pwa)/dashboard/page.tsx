@@ -55,6 +55,7 @@ import {
 } from "lucide-react";
 import icons from "currency-icons";
 import FInancesLineChart from "./finances-line-chart";
+import AnnoucementSection from "./annoucement-section";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
@@ -78,22 +79,7 @@ export default function DashboardPage() {
         <h1 className="text-2xl lg:text-3xl">Dashboard</h1>
       </header>
 
-      <section className="px-4">
-        <div className="rounded-lg shadow bg-primary-50 text-primary-800 px-4 sm:px-5 py-2.5 flex gap-x-4 items-center">
-          <MessageCircleWarningIcon />
-          <p className="text-sm sm:text-base">This should be an annoucement</p>
-          <Button
-            isIconOnly
-            size="sm"
-            radius="full"
-            color="primary"
-            variant="flat"
-            className="ms-auto"
-          >
-            <XIcon size={16} />
-          </Button>
-        </div>
-      </section>
+      <AnnoucementSection />
 
       <section className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
         <div className="grid max-w-lg grow w-full shrink-0 lg:shrink border p-4 sm:p-6 pt-6 space-y-10 mx-auto">
