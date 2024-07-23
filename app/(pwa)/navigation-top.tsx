@@ -74,7 +74,7 @@ export function BrandName({ className }: { className?: any }) {
     <Link
       href="/"
       className={clsx(
-        "navbar-item flex items-center text-medium px-0 font-meidum",
+        "navbar-item flex items-center text-lg px-0 font-meidum",
         className
       )}
     >
