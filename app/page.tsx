@@ -32,7 +32,7 @@ import {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col bg-black">
+    <div className="min-h-screen flex flex-col bg-black">
       <TopNavigation />
 
       <main className="flex-grow">
