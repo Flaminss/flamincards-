@@ -112,10 +112,10 @@ const TopNavigation = () => {
 
   const menuItems = [
     { title: "Dashboard", href: "/dashboard" },
-    { title: "Our Blog", href: "gistnaija.com" },
-    { title: "Contact us", href: "/" },
+    { title: "Blog", href: "gistnaija.com" },
     { title: "FAQ", href: "/#faq" },
-    { title: "Sponsor Us", href: "/sponsor" },
+    { title: "Contact us", href: "/" },
+    { title: "Sponsor us", href: "/sponsor" },
   ];
 
   return (
