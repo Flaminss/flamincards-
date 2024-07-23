@@ -36,56 +36,30 @@ export default function HomePage() {
       <TopNavigation />
 
       <main className="container mx-auto max-w-7xl flex-grow">
-        <section id="home" className="pt-20 md:pt-40 xl:pt-45 px-4">
+        <section id="home" className="pt-20 md:pt-40 xl:pt-45 pb-20 px-4">
           <div className="relative z-1 mx-auto max-w-[900px] lg:text-center">
-            <h1 className="mb-6 text-3xl font-extrabold text-white sm:text-5xl xl:text-heading-1">
-              <span className="">Trade</span>,{" "}
-              <span className="text-success">Earn</span>,{" "}
-              <span className="">Vibe</span>:
+            <h1 className="mb-6 text-3xl font-bold text-white sm:text-5xl xl:text-heading-1">
+              Trade, <span className="text-success">Earn</span>, Vibe:
               <br />
-              <span className="text-4xl font-black">
+              <span className="inline-block pt-2">
                 Your Go-To Platform for{" "}
                 <span className="text-primary">Giftcards</span>, Crypto, and{" "}
                 <span className="text-warning">Music</span>!
               </span>
             </h1>
-            <p className="font-medium mx-auto mb-9 max-w-[500px] md:text-lg">
+            <p className="font-medium text-lg mx-auto mb-9 max-w-[500px] md:text-lg">
               Trade, earn rewards, and immerse yourself in a vibrant digital
               marketplace tailored to your interests.
             </p>
             <Button
               color="primary"
               variant="solid"
-              size="md"
+              size="lg"
               href="/dashboard"
-              radius="full"
+              radius="md"
             >
-              🎉 Start Trading Today! 🎉
+              Start Trading Today!
             </Button>
-          </div>
-
-          <div
-            className="relative mx-auto mt-17 aspect-[1170/411] w-full max-w-[1170px]"
-            data-wow-delay="0.1s"
-          >
-            <img
-              alt="hero"
-              loading="lazy"
-              decoding="async"
-              data-nimg="fill"
-              className="mx-auto"
-              style={{
-                position: "absolute",
-                height: "100%",
-                width: "100%",
-                left: 0,
-                top: 0,
-                right: 0,
-                bottom: 0,
-                color: "transparent",
-              }}
-              src="./images/hero/hero.svg"
-            />
           </div>
         </section>
       </main>
@@ -94,10 +68,10 @@ export default function HomePage() {
           isExternal
           href="t.me/everurstruly"
           title="Development team portfolio website"
-          className="flex items-center gap-1 text-current font-mono font-sm"
+          className="text-default-600 font-mono font-medium flex items-center gap-x-2"
         >
-          <span className="text-default-600">Developed by</span>
-          <p className="text-primary">YoursTruly</p>
+          Developed by
+          <span className="text-success font-medium">YoursTruly</span>
         </Link>
       </footer>
     </div>
