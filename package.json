@@ -26,6 +26,7 @@
     "chart.js": "^4.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "comma-number": "^2.1.0",
     "country-flag-icons": "^1.5.11",
     "cryptocurrency-icons": "^0.18.1",
     "currency-icons": "^1.0.14",
