@@ -33,7 +33,7 @@ import { useState } from "react";
 import clsx from "clsx";
 
 const figureAsBalance = (figure: number) => {
-  return "64,000";
+  return "64,000.00";
 };
 
 export default function Wallet() {
