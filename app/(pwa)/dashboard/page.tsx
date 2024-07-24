@@ -312,9 +312,9 @@ function BankDetailsCard() {
             <div className="h-4 w-4 rounded-full bg-warning-400"></div>
             <div className="h-4 w-4 rounded-full bg-danger-400 -ms-1.5"></div>
           </div>
-          <span className="text-sm">Bank Details</span>
+          {/* <span className="text-sm text-zinc-400">Bank Details</span> */}
         </div>
-        <p className="text-xl font-semibold">1234 2342 2422</p>
+        <p className="text-xl font-medium mb-1">1234 2342 2422</p>
         <p className="text-medium font-mono flex items-center justify-between gap-x-4">
           <span>John Doe</span>
           <span className="text-sm">09/10</span>
