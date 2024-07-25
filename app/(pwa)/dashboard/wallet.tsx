@@ -12,20 +12,28 @@ import {
   Progress,
   Input,
   useDisclosure,
+  useInput,
 } from "@nextui-org/react";
 import {
+  ChevronDown,
+  ChevronRightCircle,
+  ChevronUp,
+  ChevronsRightIcon,
   CircleAlertIcon,
   CircleDollarSignIcon,
   CloudUploadIcon,
+  CopyIcon,
   DownloadIcon,
   EyeIcon,
   EyeOff,
   Handshake,
+  Hash,
   LandmarkIcon,
   LineChart,
   ScrollIcon,
   SearchIcon,
   ShieldCheck,
+  UserCircleIcon,
   WalletIcon,
 } from "lucide-react";
 import icons from "currency-icons";
@@ -73,12 +81,24 @@ export default function Wallet() {
     isOpen: depositing,
     onOpen: startDepositProcess,
     onOpenChange: onDeposit,
-    onClose: cancelDepositProcess,
+    onClose: closeDepositProcess,
   } = useDisclosure();
+
+  const receiptAttached = false;
+
+  const [depositTransactionDetails, setDepositTransactionDetails] = useState({
+    detailsHidden: false,
+    amount: 2000,
+    date: "20th July, 2024",
+    description: "DEPOSIT to RML-PAID Wallet",
+  });
+
+  const [depositProcessStep, setDepositProcessStep] = useState(1);
+  const [amountToBeDeposited, setAmountToBeDeposited] = useState(0);
 
   return (
     <>
-      <div className="flex flex-col max-w-lg grow w-full shrink-0 lg:shrink border p-4 sm:p-6 lg:py-4 space-y-10 xl:space-y-4 mx-auto">
+      <div className="flex flex-col max-w-lg grow w-full shrink-0 lg:shrink border p-4 sm:p-6 lg:py-4 space-y-8 xl:space-y-4 mx-auto">
         <article className="relative flex flex-col lg:mb-auto">
           <h3 className="text-lg sm:text-xl... sm:hidden mb-6 lg:mb-9 hidden">
             Welcome back, Mr. {user.lastname} 🌞
@@ -103,7 +123,7 @@ export default function Wallet() {
             })}
           >
             {icons["NGN"]?.symbol || "#"}
-            {figureAsBalance(finances.balance)}.00
+            {figureAsBalance(finances.balance)}
           </p>
           <Button
             variant="flat"
@@ -205,77 +225,251 @@ export default function Wallet() {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 py-4">
-                <h4 className="text-xl">Add to your Balance</h4>
+                <h4 className="text-xl">Add Money</h4>
               </ModalHeader>
-              <ModalBody className="pt-4 pb-8">
-                <Listbox className="px-0">
-                  <ListboxItem
-                    key="bank"
-                    startContent={
-                      <div className="p-3 rounded-md text-primary bg-primary-50">
-                        <LandmarkIcon className="size-8" />
-                      </div>
-                    }
-                    classNames={{ title: "text-medium", base: "px-0 py-2.5" }}
-                    title="Palmpay"
-                    description="Bank"
-                  />
-                  <ListboxItem
-                    key="acct-no"
-                    startContent={
-                      <div className="p-3 rounded-md text-primary bg-primary-50">
-                        <LandmarkIcon className="size-8" />
-                      </div>
-                    }
-                    classNames={{ title: "text-lg", base: "px-0 py-2.5" }}
-                    title="903-622-7457"
-                    description="Account Number"
-                  />
-                  <ListboxItem
-                    key="acct-name"
-                    startContent={
-                      <div className="p-3 rounded-md text-primary bg-primary-50">
-                        <LandmarkIcon className="size-8" />
-                      </div>
-                    }
-                    classNames={{ title: "text-medium", base: "px-0 py-2.5" }}
-                    title="Sunday Awanu Paul"
-                    description="Account Name"
-                  />
-                </Listbox>
-                <div className="grid gap-y-3 w-full">
-                  <p className="flex gap-x-2 mb-1 items-center text-sm text-warning">
-                    <CircleAlertIcon size={16} /> Make sure you upload a clear
-                    picture
+              <ModalBody className="pb-4 space-y-4">
+                <div
+                  className={clsx("space-y-4", {
+                    block: depositProcessStep === 1,
+                    hidden: depositProcessStep !== 1,
+                  })}
+                >
+                  <Listbox className="px-0">
+                    <ListboxItem
+                      key="bank"
+                      startContent={
+                        <div className="p-3 rounded-md text-success bg-success-50">
+                          <LandmarkIcon className="size-6" />
+                        </div>
+                      }
+                      endContent={
+                        <span className="text-zinc-400">
+                          <CopyIcon className="size-4" />
+                        </span>
+                      }
+                      classNames={{
+                        title: "text-medium",
+                        base: "px-0 gap-x-4",
+                      }}
+                      title="Palmpay"
+                      description="Bank"
+                    />
+                    <ListboxItem
+                      key="acct-no"
+                      startContent={
+                        <div className="p-3 rounded-md text-success bg-success-50">
+                          <Hash className="size-6" />
+                        </div>
+                      }
+                      endContent={
+                        <span className="text-zinc-400">
+                          <CopyIcon className="size-4" />
+                        </span>
+                      }
+                      classNames={{
+                        title: "text-xl font-semibold",
+                        base: "px-0 gap-x-4",
+                      }}
+                      title="903 622 7457"
+                      description="Account Number"
+                    />
+                    <ListboxItem
+                      key="acct-name"
+                      startContent={
+                        <div className="p-3 rounded-md text-success bg-success-50">
+                          <UserCircleIcon className="size-6" />
+                        </div>
+                      }
+                      endContent={
+                        <span className="text-zinc-400">
+                          <CopyIcon className="size-4" />
+                        </span>
+                      }
+                      classNames={{
+                        title: "text-medium",
+                        base: "px-0 gap-x-4",
+                      }}
+                      title="Sunday Awanu Paul"
+                      description="Account Name"
+                    />
+                  </Listbox>
+
+                  <div className="pt-2">
+                    <Input
+                      type="number"
+                      label="Amount"
+                      value={amountToBeDeposited.toString()}
+                      onValueChange={(value) => {
+                        setAmountToBeDeposited(parseInt(value));
+                      }}
+                      placeholder="5,000"
+                      size="lg"
+                      classNames={{
+                        label: "ps-1 text-zinc-400 text-sm",
+                        input: "text-xl",
+                      }}
+                      labelPlacement="outside"
+                      startContent={
+                        <span className="text-xl font-meidum">₦</span>
+                      }
+                    />
+                  </div>
+
+                  <p className="text-sm items-start text-warning flex gap-x-2 px-2">
+                    <CircleAlertIcon className="size-4 mt-1" />
+                    Kobo will not be recognized
                   </p>
-                  <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed rounded-lg cursor-pointer"
-                  >
-                    <span className="text-default">
-                      <CloudUploadIcon className="size-8" />
-                    </span>
-                    <p className="mt-2 mb-2 text-sm text-zinc-200 dark:text-gray-400">
-                      <span className="font-semibold">Upload your receipt</span>{" "}
-                      or drag and drop
+
+                  <footer className="pt-8">
+                    <Button
+                      variant="flat"
+                      color="success"
+                      size="lg"
+                      radius="md"
+                      fullWidth
+                      onClick={() => setDepositProcessStep(2)}
+                      className="font-semibold"
+                      endContent={
+                        <span className="ms-auto">
+                          <ChevronsRightIcon className="size-5" />
+                        </span>
+                      }
+                      isDisabled={!amountToBeDeposited}
+                    >
+                      Submit Recepit
+                    </Button>
+                  </footer>
+                </div>
+
+                <div
+                  className={clsx("space-y-6", {
+                    block: depositProcessStep === 2,
+                    hidden: depositProcessStep !== 2,
+                  })}
+                >
+                  <div className="space-y-4">
+                    <ul
+                      className={clsx("space-y-1.5", {
+                        hidden: depositTransactionDetails.detailsHidden,
+                      })}
+                    >
+                      <li className="flex gap-x-6 justify-between items-center">
+                        <span className="text-zinc-400">Amount:</span>{" "}
+                        <span className="text-zinc-200">$2,000</span>
+                      </li>
+                      <li className="flex gap-x-6 justify-between items-center">
+                        <span className="text-zinc-400">Date:</span>{" "}
+                        <span className="text-zinc-200">20th July, 2004</span>
+                      </li>
+                      <li className="flex gap-x-6 justify-between items-center">
+                        <span className="text-zinc-400">Description:</span>{" "}
+                        <span className="text-zinc-200 text-sm max-w-[28ch]">
+                          {depositTransactionDetails.description}
+                        </span>
+                      </li>
+                    </ul>
+
+                    <Button
+                      variant="flat"
+                      size="sm"
+                      color="default"
+                      fullWidth
+                      className="justify-between"
+                      onClick={() => {
+                        setDepositTransactionDetails((curr) => {
+                          return {
+                            ...curr,
+                            detailsHidden: !curr.detailsHidden,
+                          };
+                        });
+                      }}
+                      endContent={
+                        <span>
+                          {depositTransactionDetails.detailsHidden ? (
+                            <ChevronDown className="size-4" />
+                          ) : (
+                            <ChevronUp className="size-4" />
+                          )}
+                        </span>
+                      }
+                    >
+                      {depositTransactionDetails.detailsHidden
+                        ? "Show"
+                        : "Hide"}{" "}
+                      transaction details
+                    </Button>
+                  </div>
+
+                  <div className="grid gap-y-4 w-full">
+                    <label
+                      htmlFor="dropzone-file"
+                      className="mb-1 flex flex-col items-center justify-center w-full h-32.. border-2 pt-4 p-1.5 border-dashed rounded-lg cursor-pointer"
+                    >
+                      <span className="text-default">
+                        <CloudUploadIcon className="size-8" />
+                      </span>
+                      <p className="mt-2 mb-1.5 text-sm text-zinc-200 dark:text-gray-400">
+                        <span className="font-semibold">
+                          Upload your receipt
+                        </span>{" "}
+                        or drag and drop
+                      </p>
+                      <p className="mb-6 text-xs text-gray-500 dark:text-gray-400">
+                        SVG, PNG, JPG or GIF (MAX. 800x400px)
+                      </p>
+                      <Input type="file" radius="lg" />
+                    </label>
+                    <p className="flex gap-x-2 items-center text-sm text-warning">
+                      <CircleAlertIcon className="size-4" /> Ensure you upload a
+                      clear picture
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      SVG, PNG, JPG or GIF (MAX. 800x400px)
-                    </p>
-                    <input id="dropzone-file" type="file" className="hidden" />
-                  </label>
+                  </div>
+
+                  <footer className="pt-8 flex items-center gap-x-2">
+                    <Button
+                      variant="flat"
+                      color="danger"
+                      size="lg"
+                      radius="md"
+                      fullWidth
+                      onClick={() => {
+                        setDepositProcessStep(1);
+                      }}
+                      isDisabled={receiptAttached}
+                    >
+                      New Deposit
+                    </Button>
+                    <Button
+                      variant="flat"
+                      color="success"
+                      size="lg"
+                      radius="md"
+                      fullWidth
+                      onClick={() => closeDepositProcess()}
+                      isDisabled={!receiptAttached}
+                    >
+                      Complete Deposit
+                    </Button>
+                  </footer>
                 </div>
               </ModalBody>
-              <ModalFooter className="flex-col text-sm text-gray-600 text-center justify-center">
+              <ModalFooter className="hidden flex-col text-sm text-gray-600 text-center justify-center">
                 <Button
                   variant="flat"
                   color="success"
                   size="lg"
                   radius="lg"
                   fullWidth
-                  onClick={() => cancelDepositProcess()}
+                  onClick={() => closeDepositProcess()}
+                  className="font-semibold hidden"
+                  endContent={
+                    <span className="ms-auto">
+                      <ChevronRightCircle className="size-5" />
+                    </span>
+                  }
+                  // isDisabled={!receiptAttached}
                 >
-                  Mark as Done
+                  Submit Recepit
                 </Button>
               </ModalFooter>
             </>
