@@ -69,6 +69,7 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
                 {/* <div className="w-8 h-8 rounded-md bg-success-200 shrink-0"></div> */}
                 <Image
                   src="/cryptocoins-icons/SVG/USDT.svg"
+                  alt=""
                   className=""
                   width={32}
                   height={32}
