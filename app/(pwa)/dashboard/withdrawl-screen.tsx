@@ -147,9 +147,14 @@ export default function WithdrawlScreen({
                 </div>
 
                 <div className="hidden lg:flex flex-wrap gap-3">
-                  {[1000, 5000, 10_000].map((amount) => {
+                  {[1000, 5000, 10_000].map((amount, index) => {
                     return (
-                      <Button radius="full" size="md" className="h-9">
+                      <Button
+                        key={`${amount}-${index}`}
+                        radius="full"
+                        size="md"
+                        className="h-9"
+                      >
                         # {amount}
                       </Button>
                     );
@@ -159,9 +164,13 @@ export default function WithdrawlScreen({
                 <footer className="pt-4">
                   <div className="lg:hidden mb-2">
                     <div className="grid grid-cols-3 gap-1.5">
-                      {[1, 2, 3, 4, 5, 9, 0, "00"].map((digit) => {
+                      {[1, 2, 3, 4, 5, 9, 0, "00"].map((digit, index) => {
                         return (
-                          <Button radius="sm" className="text-xl font-medium">
+                          <Button
+                            key={`${digit}#${index}`}
+                            radius="sm"
+                            className="text-xl font-medium"
+                          >
                             {digit}
                           </Button>
                         );
