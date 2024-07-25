@@ -242,7 +242,7 @@ export default function DepositionScreen({
                     fullWidth
                     className="justify-between"
                     onClick={() => {
-                      setDepositTransactionDetails((curr) => {
+                      setDepositTransactionDetails((curr: any) => {
                         return {
                           ...curr,
                           detailsHidden: !curr.detailsHidden,
