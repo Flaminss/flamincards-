@@ -1,0 +1,6 @@
+Pay Bills 
+- Airtime (MTN, ) {{Phone Call In Icon}}
+- Mobile Data (MTN, Airtel) {{Mobile Wifi Icon}} 
+- Internet & Router (Spectranet) {{Laptop Wifi Icon}}
+- Electricity (IKEDC, BEDC, JEDC, and more) {{Plug Icon}}
+- Betting Funding (Sportybet, Bet9ja and more) {{Basketball Icon}}
