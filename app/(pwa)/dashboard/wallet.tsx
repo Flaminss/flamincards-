@@ -227,10 +227,10 @@ export default function Wallet() {
               <ModalHeader className="flex flex-col gap-1 py-4">
                 <h4 className="text-xl">Add Money</h4>
               </ModalHeader>
-              <ModalBody className="pb-4 space-y-4">
+              <ModalBody className="pt-0 pb-4">
                 <div
-                  className={clsx("space-y-4", {
-                    block: depositProcessStep === 1,
+                  className={clsx({
+                    "space-y-4 block": depositProcessStep === 1,
                     hidden: depositProcessStep !== 1,
                   })}
                 >
@@ -238,7 +238,7 @@ export default function Wallet() {
                     <ListboxItem
                       key="bank"
                       startContent={
-                        <div className="p-3 rounded-md text-success bg-success-50">
+                        <div className="p-3 rounded-md text-primary bg-primary-50 shadow">
                           <LandmarkIcon className="size-6" />
                         </div>
                       }
@@ -257,7 +257,7 @@ export default function Wallet() {
                     <ListboxItem
                       key="acct-no"
                       startContent={
-                        <div className="p-3 rounded-md text-success bg-success-50">
+                        <div className="p-3 rounded-md text-primary bg-primary-50 shadow">
                           <Hash className="size-6" />
                         </div>
                       }
@@ -276,7 +276,7 @@ export default function Wallet() {
                     <ListboxItem
                       key="acct-name"
                       startContent={
-                        <div className="p-3 rounded-md text-success bg-success-50">
+                        <div className="p-3 rounded-md text-primary bg-primary-50 shadow">
                           <UserCircleIcon className="size-6" />
                         </div>
                       }
@@ -322,8 +322,8 @@ export default function Wallet() {
 
                   <footer className="pt-8">
                     <Button
-                      variant="flat"
-                      color="success"
+                      variant="solid"
+                      color="primary"
                       size="lg"
                       radius="md"
                       fullWidth
@@ -347,22 +347,26 @@ export default function Wallet() {
                     hidden: depositProcessStep !== 2,
                   })}
                 >
-                  <div className="space-y-4">
+                  <div>
                     <ul
-                      className={clsx("space-y-1.5", {
+                      className={clsx("space-y-1.5 mb-4", {
                         hidden: depositTransactionDetails.detailsHidden,
                       })}
                     >
                       <li className="flex gap-x-6 justify-between items-center">
-                        <span className="text-zinc-400">Amount:</span>{" "}
+                        <span className="text-zinc-500 font-medium">
+                          Amount:
+                        </span>{" "}
                         <span className="text-zinc-200">$2,000</span>
                       </li>
                       <li className="flex gap-x-6 justify-between items-center">
-                        <span className="text-zinc-400">Date:</span>{" "}
+                        <span className="text-zinc-500 font-medium">Date:</span>{" "}
                         <span className="text-zinc-200">20th July, 2004</span>
                       </li>
                       <li className="flex gap-x-6 justify-between items-center">
-                        <span className="text-zinc-400">Description:</span>{" "}
+                        <span className="text-zinc-500 font-medium">
+                          Description:
+                        </span>{" "}
                         <span className="text-zinc-200 text-sm max-w-[28ch]">
                           {depositTransactionDetails.description}
                         </span>
@@ -425,7 +429,7 @@ export default function Wallet() {
                     </p>
                   </div>
 
-                  <footer className="pt-8 flex items-center gap-x-2">
+                  <footer className="pt-6 flex items-center gap-x-2">
                     <Button
                       variant="flat"
                       color="danger"
@@ -440,38 +444,19 @@ export default function Wallet() {
                       New Deposit
                     </Button>
                     <Button
-                      variant="flat"
-                      color="success"
+                      variant="solid"
+                      color="primary"
                       size="lg"
                       radius="md"
                       fullWidth
                       onClick={() => closeDepositProcess()}
-                      isDisabled={!receiptAttached}
+                      // isDisabled={!receiptAttached}
                     >
-                      Complete Deposit
+                      Done!
                     </Button>
                   </footer>
                 </div>
               </ModalBody>
-              <ModalFooter className="hidden flex-col text-sm text-gray-600 text-center justify-center">
-                <Button
-                  variant="flat"
-                  color="success"
-                  size="lg"
-                  radius="lg"
-                  fullWidth
-                  onClick={() => closeDepositProcess()}
-                  className="font-semibold hidden"
-                  endContent={
-                    <span className="ms-auto">
-                      <ChevronRightCircle className="size-5" />
-                    </span>
-                  }
-                  // isDisabled={!receiptAttached}
-                >
-                  Submit Recepit
-                </Button>
-              </ModalFooter>
             </>
           )}
         </ModalContent>
