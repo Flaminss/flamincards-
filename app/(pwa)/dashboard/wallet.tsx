@@ -40,6 +40,7 @@ import icons from "currency-icons";
 import { useState } from "react";
 import clsx from "clsx";
 import DepositionScreen from "./deposition-screen";
+import WithdrawlScreen from "./withdrawl-screen";
 
 const figureAsBalance = (figure: number) => {
   return "64,000.00";
@@ -85,7 +86,15 @@ export default function Wallet() {
     onClose: closeDepositProcess,
   } = useDisclosure();
 
+  const {
+    isOpen: withdrawing,
+    onOpen: startWithdrawlProcess,
+    onOpenChange: onWithdraw,
+    onClose: pauseWithdrawlProcess,
+  } = useDisclosure();
+
   const receiptAttached = false;
+  const withdrawlReceiptAttached = false;
 
   const [depositTransactionDetails, setDepositTransactionDetails] = useState({
     detailsHidden: false,
@@ -94,8 +103,18 @@ export default function Wallet() {
     description: "DEPOSIT to RML-PAID Wallet",
   });
 
-  const [depositProcessStep, setDepositProcessStep] = useState(1);
+  const [withdrawlTransactionDetails, setWithdrawlTransactionDetails] =
+    useState({
+      detailsHidden: false,
+      amount: 2000,
+      date: "20th July, 2024",
+      description: "DEPOSIT to RML-PAID Wallet",
+    });
+
   const [amountToBeDeposited, setAmountToBeDeposited] = useState(0);
+  const [amountToBeWithdrawn, setAmountToBeWithdrawn] = useState(0);
+  const [depositProcessStep, setDepositProcessStep] = useState(1);
+  const [withdrawProcessStep, setWithdrawlProcessStep] = useState(1);
 
   return (
     <>
@@ -176,6 +195,7 @@ export default function Wallet() {
           <Button
             className="shadow-lg grow font-medium !rounded-md xl:!rounded-none"
             startContent={<CircleDollarSignIcon size={20} />}
+            onClick={() => startWithdrawlProcess()}
           >
             Withdraw
           </Button>
@@ -201,6 +221,19 @@ export default function Wallet() {
         setDepositTransactionDetails={setDepositTransactionDetails}
         receiptAttached={receiptAttached}
         closeDepositProcess={closeDepositProcess}
+      />
+
+      <WithdrawlScreen
+        withdrawing={withdrawing}
+        onWithdraw={onWithdraw}
+        withdrawProcessStep={withdrawProcessStep}
+        amountToBeWithdrawn={amountToBeWithdrawn}
+        setAmountToBeWithdrawn={setAmountToBeWithdrawn}
+        setWithdrawlProcessStep={setWithdrawlProcessStep}
+        withdrawlTransactionDetails={withdrawlTransactionDetails}
+        setWithdrawlTransactionDetails={setWithdrawlTransactionDetails}
+        withdrawlReceiptAttached={withdrawlReceiptAttached}
+        pauseWithdrawlProcess={pauseWithdrawlProcess}
       />
     </>
   );
