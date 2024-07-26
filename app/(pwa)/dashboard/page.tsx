@@ -55,7 +55,7 @@ import {
 } from "lucide-react";
 import FInancesLineChart from "./finances-line-chart";
 import AnnoucementSection from "./annoucement-section";
-import Wallet from "./wallet";
+import Wallet from "./wallet-section";
 import icons from "currency-icons";
 import PrimaryBankCard from "./primary-bank-card";
 
