@@ -62,6 +62,7 @@ import RecentTransactionsSection from "./recent-transactions-section";
 import ServicesOfferedSection from "./services-offered-section";
 import InvestmentPortfolioSection from "./investment-portfolio-section";
 import NewsAndPromotionsSection from "./news-and-promotions-section";
+import GiftCardEntisementSection from "./giftcard-entisement-section";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
@@ -95,12 +96,10 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      <GiftCardEntisementSection />
       <ServicesOfferedSection />
-
       <InvestmentPortfolioSection />
-
       <NewsAndPromotionsSection />
     </div>
   );
 }
-
