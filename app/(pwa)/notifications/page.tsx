@@ -17,46 +17,37 @@ export default function NotificationsPage() {
         <h1 className="text-xl md:text-2xl lg:text-3xl">Notifications</h1>
       </header>
 
-      <div className="flex">
-        <section>
-          <Tabs
-            variant="underlined"
-            size="lg"
-            aria-label="something"
-            className="mb-6"
-            classNames={{
-              base: "px-2",
-              tab: "text-lg",
-            }}
-          >
-            {menu.map(({ title, unread, render }, index) => {
-              return (
-                <Tab
-                  key={index}
-                  title={
-                    <div className="flex items-center">
-                      {title}{" "}
-                      {!unread ? null : (
-                        <span className="ms-2 badge badge-flat-primary">
-                          {unread}
-                        </span>
-                      )}
-                    </div>
-                  }
-                >
-                  {!render ? null : render()}
-                </Tab>
-              );
-            })}
-          </Tabs>
-        </section>
-
-        <section className="mt-20 border w-full max-w-72 mx-auto overflow-hidden shadow-lg object-contain h-screen">
-          <p className="p-6 text-center text-lg font-medium">
-            Contact us to place an advert
-          </p>
-        </section>
-      </div>
+      <Tabs
+        variant="underlined"
+        size="lg"
+        aria-label="something"
+        className="mb-6"
+        classNames={{
+          base: "px-2",
+          tab: "text-lg",
+          panel: "px-0"
+        }}
+      >
+        {menu.map(({ title, unread, render }, index) => {
+          return (
+            <Tab
+              key={index}
+              title={
+                <div className="flex items-center">
+                  {title}{" "}
+                  {!unread ? null : (
+                    <span className="ms-2 badge badge-flat-primary">
+                      {unread}
+                    </span>
+                  )}
+                </div>
+              }
+            >
+              {!render ? null : render()}
+            </Tab>
+          );
+        })}
+      </Tabs>
     </div>
   );
 }
