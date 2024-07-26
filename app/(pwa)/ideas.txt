@@ -1,4 +1,4 @@
-Pay Bills 
+Pay Bills (Bills & Utiilty Payments)
 - Airtime (MTN, ) {{Phone Call In Icon}}
 - Mobile Data (MTN, Airtel) {{Mobile Wifi Icon}} 
 - Internet & Router (Spectranet) {{Laptop Wifi Icon}}
