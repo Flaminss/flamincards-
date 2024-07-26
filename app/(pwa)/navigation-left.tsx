@@ -116,7 +116,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </ListboxItem>
             <ListboxItem
               key="marketplace"
-              href="/giftcard"
+              href="/giftcards"
               classNames={{
                 base: "gap-x-4 py-3 px-2",
                 title: "text-base",

@@ -1,20 +1,20 @@
 "use client";
 
 import { Tab, Tabs } from "@nextui-org/react";
-import GiftcardMarketplacePage from "./giftcard/page";
+import GiftcardMarketplacePage from "./giftcards/page";
 import CryptoSellPage from "./crypto/page";
 import CashtagLendPage from "./cashtag/page";
 import InstrumentalCatalogPage from "../music/page";
 
 export const marketMenu = {
   giftcard: {
-    title: "Gift Cards",
-    path: "giftcard",
+    title: "Giftcards",
+    path: "giftcards",
     Page: GiftcardMarketplacePage,
   },
   crypto: {
     title: "Crypto",
-    path: "crypto/sell",
+    path: "crypto",
     Page: CryptoSellPage,
   },
   cashtag: {
@@ -24,7 +24,7 @@ export const marketMenu = {
   },
   instrumental: {
     title: "Instrumentals (Beatz)",
-    path: "instrumentals",
+    path: "beatz",
     Page: InstrumentalCatalogPage,
   },
 };
@@ -32,11 +32,6 @@ export const marketMenu = {
 export default function MarketPage({ children }: { children: any }) {
   return (
     <div>
-      {/* <header className="py-5 md:pt-0 px-4 sm:px-2 lg:px-4">
-        <h1 className="text-xl font-semibold md:text-2xl uppercase sm:capitalize">
-          Market
-        </h1>
-      </header> */}
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
         <h1 className="text-xl md:text-2xl lg:text-3xl">Marketplace</h1>
       </header>
@@ -53,7 +48,7 @@ export default function MarketPage({ children }: { children: any }) {
           }}
         >
           {Object.values(marketMenu).map(({ title, path }) => {
-            return <Tab title={title} key={path} href={`/market/${path}`} />;
+            return <Tab title={title} key={path} href={`/${path}`} />;
           })}
         </Tabs>
         {children}
