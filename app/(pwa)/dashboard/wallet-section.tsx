@@ -41,7 +41,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import DepositionScreen from "./deposition-screen";
 import WithdrawlScreen from "./withdrawl-screen";
-import QuickWalletActions from "./quick-wallet-actions.tsx";
+import QuickWalletActions from "./quick-wallet-actions";
 
 const figureAsBalance = (figure: number) => {
   return "64,000.00";
