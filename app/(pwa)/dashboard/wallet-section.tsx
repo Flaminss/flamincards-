@@ -41,6 +41,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import DepositionScreen from "./deposition-screen";
 import WithdrawlScreen from "./withdrawl-screen";
+import QuickWalletActions from "./quick-wallet-actions.tsx";
 
 const figureAsBalance = (figure: number) => {
   return "64,000.00";
@@ -176,7 +177,7 @@ export default function Wallet() {
           </Link>
         </article>
 
-        <ButtonGroup
+        {/* <ButtonGroup
           className="mt-auto.. items-start flex gap-1 flex-wrap content-end shadow-lg"
           variant="solid"
           // variant="light"
@@ -207,7 +208,8 @@ export default function Wallet() {
           >
             Invest
           </Button>
-        </ButtonGroup>
+        </ButtonGroup> */}
+        <QuickWalletActions />
       </div>
 
       <DepositionScreen
