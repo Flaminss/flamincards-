@@ -55,7 +55,7 @@ import {
 } from "lucide-react";
 import FInancesLineChart from "./finances-line-chart";
 import AnnoucementSection from "./annoucement-section";
-import Wallet from "./wallet-section";
+import WalletSection from "./wallet-section";
 import icons from "currency-icons";
 import PrimaryBankCard from "./primary-bank-card";
 import RecentTransactionsSection from "./recent-transactions-section";
@@ -89,7 +89,7 @@ export default function DashboardPage() {
       <AnnoucementSection />
 
       <div className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
-        <Wallet />
+        <WalletSection />
         <div className="flex flex-col lg:gap-x-12 justify-between grow gap-y-10 xl:gap-y-8">
           <PrimaryBankCard />
           <RecentTransactionsSection />
