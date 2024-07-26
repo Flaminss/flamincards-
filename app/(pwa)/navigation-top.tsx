@@ -50,8 +50,6 @@ export default function TopNavigation({ className }: { className?: string }) {
           color="danger"
           variant="solid"
           size="sm"
-          href="/notifications"
-          as={Link}
         >
           <Button
             isIconOnly
@@ -60,6 +58,8 @@ export default function TopNavigation({ className }: { className?: string }) {
             variant="flat"
             size="md"
             className="text-zinc-300"
+            href="/notifications"
+            as={Link}
           >
             <Bell className="size-5" />
           </Button>
