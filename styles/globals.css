@@ -82,3 +82,38 @@
       var(--nextui-primary-400-opacity, var(--tw-text-opacity))
   );
 }
+
+.cardBackground {
+  --tw-backdrop-blur: blur(8px) !important;
+  --tw-backdrop-saturate: saturate(50%) !important;
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+    var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+    var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+    var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+    var(--tw-backdrop-sepia) !important;
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+    var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+    var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+    var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+    var(--tw-backdrop-sepia) !important;
+  background-color: rgb(var(--gray-1) / 0.7) !important;
+}
+
+
+/* Thin scrollbar styles */
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #444; /* Color of the scrollbar thumb */
+  border-radius: 0px; /* Rounded corners */
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--nextui-primary-400); /* Darker color on hover */
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: rgb(var(--gray-1)); /* Background of the scrollbar track */
+}
