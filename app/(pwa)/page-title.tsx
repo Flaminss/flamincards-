@@ -1,3 +1,3 @@
 export default function PWAPageTitle({ title }: { title: string }) {
-  return <h1 className="text-zinc-400 text-lg sm:text-2xl">{title}</h1>;
+  return <h1 className="text-lg sm:text-2xl lg:pt-2">{title}</h1>;
 }
