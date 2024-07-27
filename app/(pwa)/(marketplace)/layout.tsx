@@ -39,20 +39,20 @@ export default function MarketPage({ children }: { children: any }) {
       </header>
 
       <section className="pb-8 px-4">
-        <Tabs
+        {/* <Tabs
           variant="underlined"
           aria-label="Tabs variants"
-          className="md:px-0 mb-4"
+          className="mb-4"
           classNames={{
+            tab: "-mx-2 lg:text-lg font-medium grow",
             tabList:
-              "gap-x-0 md:gap-x-4 flex overflow-x-scroll scrollbar-show px-0 w-full",
-            tab: "text-lg font-medium grow",
+              "gap-x-0 !px-0 md:gap-x-4 flex overflow-x-scroll scrollbar-show px-0 w-full",
           }}
         >
           {Object.values(marketMenu).map(({ title, path }) => {
             return <Tab title={title} key={path} href={`/${path}`} />;
           })}
-        </Tabs>
+        </Tabs> */}
         {children}
       </section>
     </div>
