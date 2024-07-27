@@ -63,6 +63,7 @@ import ServicesOfferedSection from "./services-offered-section";
 import InvestmentPortfolioSection from "./investment-portfolio-section";
 import NewsAndPromotionsSection from "./news-and-promotions-section";
 import GiftCardEntisementSection from "./giftcard-entisement-section";
+import PWAPageTitle from "../page-title";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
@@ -83,7 +84,7 @@ export default function DashboardPage() {
   return (
     <div className="pb-20">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
-        <h1 className="text-2xl lg:text-3xl">Dashboard</h1>
+        <PWAPageTitle title="Dashboard" />
       </header>
 
       <AnnoucementSection />

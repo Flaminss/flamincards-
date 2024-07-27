@@ -12,6 +12,7 @@ import {
 import icons from "currency-icons";
 import { useState } from "react";
 import clsx from "clsx";
+import PWAPageTitle from "../page-title";
 
 export default function WithdrawlPage() {
   const {
@@ -27,7 +28,8 @@ export default function WithdrawlPage() {
   return (
     <div className="pb-20">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
-        <h1 className="text-2xl lg:text-3xl">Withdrawal Funds</h1>
+        {/* <h1 className="text-2xl lg:text-3xl">Withdrawal Funds</h1> */}
+        <PWAPageTitle title="Withdraw Funds" />
       </header>
 
       <section className="pt-0 pb-4 overflow-y-auto px-4 max-w-xl">

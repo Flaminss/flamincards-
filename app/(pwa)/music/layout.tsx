@@ -2,6 +2,7 @@
 
 import { Tab, Tabs } from "@nextui-org/react";
 import { ComingSoonScene } from "@/app/coming-soon-scene";
+import PWAPageTitle from "../page-title";
 
 const musicLibraryTabs = [
   {
@@ -20,9 +21,10 @@ export default function MusicLayout({ children }: { children: any }) {
   return (
     <div>
       <header className="py-5 md:pt-0 px-2">
-        <h1 className="text-xl font-semibold md:text-2xl uppercase sm:capitalize">
+        {/* <h1 className="text-xl font-semibold md:text-2xl uppercase sm:capitalize">
           Music Library
-        </h1>
+        </h1> */}
+        <PWAPageTitle title="Music Library" />
       </header>
 
       <section className="pb-8 overflow-x-hidden">

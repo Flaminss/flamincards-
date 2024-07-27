@@ -5,6 +5,7 @@ import GiftcardMarketplacePage from "./giftcards/page";
 import CryptoSellPage from "./crypto/page";
 import CashtagLendPage from "./cashtag/page";
 import InstrumentalCatalogPage from "../music/page";
+import PWAPageTitle from "../page-title";
 
 export const marketMenu = {
   giftcard: {
@@ -33,7 +34,8 @@ export default function MarketPage({ children }: { children: any }) {
   return (
     <div>
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
-        <h1 className="text-xl md:text-2xl lg:text-3xl">Marketplace</h1>
+        {/* <h1 className="text-xl md:text-2xl lg:text-3xl">Marketplace</h1> */}
+        <PWAPageTitle title="Marketplace" />
       </header>
 
       <section className="pb-8 px-4">

@@ -4,6 +4,7 @@ import { Tabs, Tab } from "@nextui-org/react";
 import PaymentReads from "./payment-reads";
 import InboxReads from "./inbox-reads";
 import ActivityReads from "./activity-reads";
+import PWAPageTitle from "../page-title";
 
 export default function NotificationsPage() {
   const menu = [
@@ -14,7 +15,8 @@ export default function NotificationsPage() {
   return (
     <div>
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
-        <h1 className="text-xl md:text-2xl lg:text-3xl">Notifications</h1>
+        {/* <h1 className="text-xl md:text-2xl lg:text-3xl">Notifications</h1> */}
+        <PWAPageTitle title="Notifications" />
       </header>
 
       <Tabs
@@ -25,7 +27,7 @@ export default function NotificationsPage() {
         classNames={{
           base: "px-2",
           tab: "text-lg",
-          panel: "px-0"
+          panel: "px-0",
         }}
       >
         {menu.map(({ title, unread, render }, index) => {

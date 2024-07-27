@@ -25,12 +25,14 @@ import {
   WalletIcon,
 } from "lucide-react";
 import Link from "next/link";
+import PWAPageTitle from "../page-title";
 
 export default function BlogPage() {
   return (
     <div className="max-w-xl mx-auto lg:mx-auto">
       <header className="px-4 py-4">
-        <h1 className="text-2xl lg:text-3xl">Your Account Settings</h1>
+        {/* <h1 className="text-2xl lg:text-3xl">Your Account Settings</h1> */}
+        <PWAPageTitle title="Your Account Settings" />
       </header>
 
       <section className="pt-6 lg:pt-0 px-4 space-y-10">
