@@ -1,5 +1,6 @@
 import { ArrowRightCircleIcon } from "lucide-react";
 import { Button } from "@nextui-org/react";
+import PWASectionTitle from "../section-title";
 
 const servicesList = [
   {
@@ -32,7 +33,9 @@ const servicesList = [
 export default function ServicesOfferedSection() {
   return (
     <section className="px-4 py-8">
-      <h2 className="text-xl lg:text-2xl mb-6">Our Services</h2>
+      <header className="mb-4">
+        <PWASectionTitle title="Our Services" />
+      </header>
 
       <div className="grid md:grid-cols-2 xl:grid-cols-3 items-center gap-4">
         {servicesList.map(({ title, href, color }, index) => {
