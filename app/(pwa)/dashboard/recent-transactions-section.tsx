@@ -28,10 +28,10 @@ export default function RecentTransactionsSection() {
               <HandshakeIcon className="size-6" />
             </div>
             <div>
-              <p className="text-sm sm:text-medium font-meidum mb-1">
+              <p className="text-sm font-meidum mb-1">
                 Investment
               </p>
-              <p className="text-xs sm:text-sm text-zinc-400">
+              <p className="text-xs text-zinc-400">
                 May 20th at 9:00pm
               </p>
             </div>
@@ -49,10 +49,10 @@ export default function RecentTransactionsSection() {
               <Landmark className="size-6" />
             </div>
             <div>
-              <p className="text-sm sm:text-medium font-meidum mb-1">
+              <p className="text-sm font-meidum mb-1">
                 Withdrawal
               </p>
-              <p className="text-xs sm:text-sm text-zinc-400">
+              <p className="text-xs text-zinc-400">
                 May 20th at 05:50am
               </p>
             </div>
