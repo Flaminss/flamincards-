@@ -26,17 +26,18 @@ export default function NavigationLeft({ className }: { className?: any }) {
       className={clsx(
         "@container",
         className,
-        "sidebar-sticky sidebar max-w-52 justify-start overflow-x-hidden rounded-xl"
+        "sidebar-sticky sidebar max-w-52 justify-start overflow-x-hidden rounded-xl border"
       )}
     >
-      <div className="h-full overflow-y-auto flex flex-col">
-        <header className="gap-x-4 justify-between sticky top-0 shadow-sm z-20 border-b p-2 flex items-center bg-zinc-800">
+      <div className="h-full overflow-y-auto flex flex-col thin-scrollbar">
+        <header className="gap-x-4 justify-between absolute top-0 w-full shadow-sm z-50 border-b p-2 px-4 flex items-center bg-zinc-800.. cardBackground">
           <div className="flex items-center gap-x-1">
             <svg
               fill="none"
               height="42"
               viewBox="0 0 32 32"
-              width="42"
+              // width="42"
+              className="size-10 -ms-2"
               xmlns="http://www.w3.org/2000/svg"
             >
               <rect height="100%" rx="16" width="100%"></rect>
@@ -90,7 +91,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </Badge>
           </Link>
         </header>
-        <section className="grow grid gap-y-4 h-full py-5 mb-16">
+        <section className="grow grid gap-y-4 h-full py-5 pt-20 mb-16 bg-zinc-950">
           <Listbox
             aria-label="Applicaitno Menu"
             // onAction={(key) => alert(key)}
@@ -103,8 +104,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               key="dashboard"
               href="/dashboard"
               classNames={{
-                base: "gap-x-4 py-3 px-2",
-                title: "text-base",
+                title: "text-medium ps-1",
               }}
               startContent={
                 // <IconWrapper className="bg-success/10 text-success p-1">
@@ -118,8 +118,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               key="marketplace"
               href="/giftcards"
               classNames={{
-                base: "gap-x-4 py-3 px-2",
-                title: "text-base",
+                title: "text-medium ps-1",
               }}
               startContent={
                 // <IconWrapper className="bg-warning/10 text-warning">
@@ -135,8 +134,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               key="music"
               href="/music"
               classNames={{
-                base: "gap-x-4 py-3 px-2",
-                title: "text-base",
+                title: "text-medium ps-1",
               }}
               startContent={
                 // <IconWrapper className="bg-warning/10 text-warning">
@@ -161,8 +159,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               key="transactions"
               href="/transactions"
               classNames={{
-                base: "gap-x-4 py-3 px-2",
-                title: "text-base",
+                title: "text-medium ps-1",
               }}
               startContent={<History className="text-lg " />}
             >
@@ -330,7 +327,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </Button>
           </div> */}
         </section>
-        <footer className="absolute inset-x-0 mt-auto bottom-0 flex flex-wrap items-center gap-2 p-2 z-20 bg-zinc-800">
+        <footer className="absolute inset-x-0 mt-auto bottom-0 flex flex-wrap items-center gap-2 p-2 z-20 bg-zinc-800.. cardBackground">
           <Button
             href="/account"
             className="gap-2 p-2 h-auto grow justify-start rounded-lg border"
