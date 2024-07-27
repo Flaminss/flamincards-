@@ -64,17 +64,16 @@ export default function Wallet() {
     user.wallet.settings.balanceVisible
   );
 
-  const renderBalanceVisibilityToggleContent = () => {
-    if (!balanceVisible) {
-      return (
-        <>
-          Show Balance <EyeIcon className="ms-0.5" size={15} />
-        </>
-      );
-    }
+  const renderBalanceVisibilityToggleContent = (balanceVisible: boolean) => {
+    const actionAccessible = {
+      label: balanceVisible ? "Hide" : "Show",
+      Icon: balanceVisible ? EyeOff : EyeIcon,
+    };
+
     return (
       <>
-        Hide Balance <EyeOff className="ms-0.5" size={15} />
+        {actionAccessible.label} Balance{" "}
+        {<actionAccessible.Icon className="ms-0.5 size-4" />}
       </>
     );
   };
@@ -154,7 +153,7 @@ export default function Wallet() {
             onClick={() => setBalanceVisible((visible) => !visible)}
           >
             {/* Hide Balance <EyeOff className="ms-0.5" size={15} /> */}
-            {renderBalanceVisibilityToggleContent()}
+            {renderBalanceVisibilityToggleContent(balanceVisible)}
           </Button>
 
           <Link href="#investment-portfolio" className="px-1 mt-7 text-white">
