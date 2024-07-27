@@ -11,46 +11,26 @@ export default function TopNavigation({ className }: { className?: string }) {
   return (
     <div
       className={clsx(
-        "navbar navbar-glass border-b sticky top-0 left-0 w-full px-4 z-30",
+        "navbar navbar-glass border-b sticky top-0 left-0 w-full px-0 z-30",
         className
       )}
     >
-      <div className="navbar-start">
-        <BrandName />
-      </div>
-      <div className="navbar-end gap-x-2">
-        <Button
-          endContent={<LogInIcon className="size-5" />}
-          color="primary"
-          variant="solid"
-          size="md"
-          radius="lg"
-          className="hidden"
-        >
-          Login
-        </Button>
+      <div className="flex max-w-xl w-full flex-grow mx-auto px-4">
+        <div className="">
+          <BrandName />
+        </div>
+        <div className="navbar-end ms-auto gap-x-2">
+          <Button
+            endContent={<LogInIcon className="size-5" />}
+            color="primary"
+            variant="solid"
+            size="md"
+            radius="lg"
+            className="hidden"
+          >
+            Login
+          </Button>
 
-        <Button
-          isIconOnly
-          radius="lg"
-          aria-label="unread notifications count"
-          variant="flat"
-          size="md"
-          className="text-zinc-300"
-          href="/account"
-          as={Link}
-        >
-          <UserCircle2Icon className="size-6" />
-        </Button>
-
-        <Badge
-          content={""}
-          isInvisible={notificationCount <= 0}
-          shape="circle"
-          color="danger"
-          variant="solid"
-          size="sm"
-        >
           <Button
             isIconOnly
             radius="lg"
@@ -58,12 +38,34 @@ export default function TopNavigation({ className }: { className?: string }) {
             variant="flat"
             size="md"
             className="text-zinc-300"
-            href="/notifications"
+            href="/account"
             as={Link}
           >
-            <Bell className="size-5" />
+            <UserCircle2Icon className="size-6" />
           </Button>
-        </Badge>
+
+          <Badge
+            content={""}
+            isInvisible={notificationCount <= 0}
+            shape="circle"
+            color="danger"
+            variant="solid"
+            size="sm"
+          >
+            <Button
+              isIconOnly
+              radius="lg"
+              aria-label="unread notifications count"
+              variant="flat"
+              size="md"
+              className="text-zinc-300"
+              href="/notifications"
+              as={Link}
+            >
+              <Bell className="size-5" />
+            </Button>
+          </Badge>
+        </div>
       </div>
     </div>
   );
