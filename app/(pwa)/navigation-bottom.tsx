@@ -77,10 +77,11 @@ export default function BottomNavigationPro({
 
   return (
     <>
-      {menu.map(({ list }) => {
+      {menu.map(({ href, list }, index) => {
         if (!list) return;
         return (
           <Modal
+            key={`${href}#${index}`}
             backdrop="blur"
             isOpen={sendableTokenSelectOpened}
             classNames={{
