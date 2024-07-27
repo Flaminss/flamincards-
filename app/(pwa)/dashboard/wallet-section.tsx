@@ -33,6 +33,7 @@ import {
   ScrollIcon,
   SearchIcon,
   ShieldCheck,
+  SunIcon,
   UserCircleIcon,
   WalletIcon,
 } from "lucide-react";
@@ -72,8 +73,8 @@ export default function Wallet() {
 
     return (
       <>
+        {<actionAccessible.Icon className="me-0.5 size-4" />}
         {actionAccessible.label} Balance{" "}
-        {<actionAccessible.Icon className="ms-0.5 size-4" />}
       </>
     );
   };
@@ -117,25 +118,19 @@ export default function Wallet() {
 
   return (
     <>
-      <div className="flex flex-col max-w-lg grow w-full shrink-0 lg:shrink border p-4 sm:p-6 lg:py-4 space-y-8 xl:space-y-4 mx-auto">
-        <article className="relative flex flex-col lg:mb-auto">
-          <h3 className="text-lg sm:text-xl... sm:hidden mb-6 lg:mb-9 hidden">
-            Welcome back, Mr. {user.lastname} 🌞
-            {/* 🌞 👋*/}
-          </h3>
+      <div className="flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink border p-4 sm:p-6 mx-auto">
+        <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
+          Good morning,
+          <span className="text-white text-base">
+            Mr. {user.lastname} {user.firstname}
+          </span>
+        </h3>
 
-          <h3 className="text-xs text-zinc-400 mb-6 flex flex-col sm:hidden">
-            Good morning,{" "}
-            <span className="text-white text-base">
-              Mr. {user.lastname} {user.firstname}
-            </span>
-            {/* 🌞 👋*/}
-          </h3>
-
-          <p className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-sm gap-x-1 text-zinc-400 font-semibold">
-            <WalletIcon className="text-success-400 me-.5 sm:me-1 size-4" />
-            Total Balance
-          </p>
+        <div className="mb-8">
+          <span className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-sm gap-x-1 text-zinc-400 font-semibold">
+            <WalletIcon className="me-.5 sm:me-1 size-4" />
+            Balance
+          </span>
           <p
             className={clsx("text-3xl font-medium sm:text-4xl mb-4", {
               "filter blur": !balanceVisible,
@@ -149,14 +144,13 @@ export default function Wallet() {
             color="warning"
             size="sm"
             radius="sm"
-            className="self-start"
             onClick={() => setBalanceVisible((visible) => !visible)}
           >
-            {/* Hide Balance <EyeOff className="ms-0.5" size={15} /> */}
             {renderBalanceVisibilityToggleContent(balanceVisible)}
           </Button>
+        </div>
 
-          <Link href="#investment-portfolio" className="px-1 mt-7 text-white">
+        {/* <Link href="#investment-portfolio" className="px-1 mt-7 text-white">
             <Progress
               label={
                 <span className="flex items-center flex-row-reverse gap-x-1">
@@ -172,8 +166,7 @@ export default function Wallet() {
               showValueLabel={true}
               className="max-w-md"
             />
-          </Link>
-        </article>
+          </Link> */}
 
         {/* <ButtonGroup
           className="mt-auto.. items-start flex gap-1 flex-wrap content-end shadow-lg"
