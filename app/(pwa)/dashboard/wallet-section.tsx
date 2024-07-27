@@ -51,18 +51,16 @@ export default function Wallet() {
   const user = {
     firstname: "Sunday",
     lastname: "Awanu",
-  };
-
-  const finances = {
-    balance: 64_000,
-  };
-
-  const userWalletSettings = {
-    balanceVisible: true,
+    wallet: {
+      balance: 64_000,
+      settings: {
+        balanceVisible: true,
+      },
+    },
   };
 
   const [balanceVisible, setBalanceVisible] = useState(
-    userWalletSettings.balanceVisible
+    user.wallet.settings.balanceVisible
   );
 
   const renderBalanceVisibilityToggleContent = () => {
@@ -144,7 +142,7 @@ export default function Wallet() {
             })}
           >
             {icons["NGN"]?.symbol || "#"}
-            {figureAsBalance(finances.balance)}
+            {figureAsBalance(user.wallet.balance)}
           </p>
           <Button
             variant="flat"
