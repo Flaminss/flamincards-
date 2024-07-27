@@ -74,11 +74,15 @@ export default function BottomNavigationPro({
       color="primary"
       aria-label="Options"
       selectedKey={pathname}
-      className={clsx(classNames?.base, "w-full z-30")}
+      className={clsx(classNames?.base, "w-full z-28")}
       classNames={{
+        base: "!z-[10000]",
         cursor: "hidden",
-        tab: "h-auto pt-2.5",
-        tabList: clsx(classNames?.list, "flex p-1.5 gap-4"),
+        tab: "h-auto pt-2.5 max-w-32",
+        tabList: clsx(
+          classNames?.list,
+          "flex p-1.5 gap-4 sm:gap-x-8 justify-center"
+        ),
         tabContent: "group-data-[selected=true]:text-primary-500",
       }}
     >
@@ -96,7 +100,7 @@ export default function BottomNavigationPro({
               // openSendableTokenSelect();
             }}
             title={
-              <div className="text-center text-xs grid sm:flex gap-x-2 justify-center items-center space-y-1 grow max-w-[4ch]">
+              <div className="text-center text-xs grid gap-x-2 justify-center items-center space-y-1.5 grow max-w-[4ch]">
                 <Icon className="mx-auto" />
                 <span>{title}</span>
               </div>
