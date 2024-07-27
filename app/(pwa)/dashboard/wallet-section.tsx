@@ -118,7 +118,7 @@ export default function Wallet() {
 
   return (
     <>
-      <div className="cardBackground border rounded-lg flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-4 sm:p-6 mx-auto">
+      <div className="cardBackground border rounded-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-5 sm:p-6 mx-auto">
         <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
           Good morning,
           <span className="text-white text-base">
@@ -141,7 +141,7 @@ export default function Wallet() {
           </p>
           <Button
             variant="flat"
-            color="warning"
+            color="primary"
             size="sm"
             radius="sm"
             onClick={() => setBalanceVisible((visible) => !visible)}
