@@ -12,7 +12,7 @@ import {
 export default function QuickWalletActions() {
   return (
     <ButtonGroup
-      className="!mt-auto items-start flex gap-1 flex-wrap content-end shadow-lg"
+      className="!mt-auto items-start flex gap-1 flex-wrap content-end shadow"
       variant="solid"
       color="primary"
       size="md"
