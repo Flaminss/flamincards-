@@ -15,7 +15,7 @@ const sortOrders = [
 export default function GiftcardMarketplacePage() {
   return (
     <>
-      <div className="px-3 md:px-2 flex mb-4 items-center gap-x-4 pt-4">
+      <div className="px-4. . md:px-2 flex mb-4 items-center gap-x-4 pt-4">
         <Input
           isClearable
           radius="lg"
