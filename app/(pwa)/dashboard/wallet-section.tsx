@@ -58,7 +58,7 @@ export default function Wallet() {
   };
 
   const userWalletSettings = {
-    balanceVisible: false,
+    balanceVisible: true,
   };
 
   const [balanceVisible, setBalanceVisible] = useState(
