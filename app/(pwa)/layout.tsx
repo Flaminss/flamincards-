@@ -14,7 +14,7 @@ export default function PublicUserInterface({
     <div
       className={clsx(
         "flex flex-col min-h-screen md:gap-x-3.5 md:h-screen md:flex-row md:overflow-y-auto mx-auto md:max-w-none xl:max-w-7xl xl:bg-transparent bg-zinc-950 shadow-2xl",
-        `lg:p-2.5 xl:px-0 xl:py-4`
+        `lg:p-2.5 xl:px-0 xl:py-4 pe-0 thin-scrollbar`
       )}
     >
       <TopNavigation className="md:hidden" />
