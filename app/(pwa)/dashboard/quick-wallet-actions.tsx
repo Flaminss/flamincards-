@@ -2,14 +2,18 @@
 
 import Link from "next/link";
 import { Button, ButtonGroup } from "@nextui-org/react";
-import { CircleDollarSignIcon, DownloadIcon, Handshake } from "lucide-react";
+import {
+  CircleDollarSignIcon,
+  DollarSignIcon,
+  DownloadIcon,
+  Handshake,
+} from "lucide-react";
 
 export default function QuickWalletActions() {
   return (
     <ButtonGroup
-      className="mt-auto.. items-start flex gap-1 flex-wrap content-end shadow-lg"
+      className="!mt-auto items-start flex gap-1 flex-wrap content-end shadow-lg"
       variant="solid"
-      // variant="light"
       color="primary"
       size="md"
     >
@@ -27,7 +31,7 @@ export default function QuickWalletActions() {
         as={Link}
         href="/withdrawl"
         className="shadow-lg grow font-medium !rounded-md xl:!rounded-none"
-        startContent={<CircleDollarSignIcon className="size-5" />}
+        startContent={<DollarSignIcon className="size-5" />}
       >
         Withdraw
       </Button>
