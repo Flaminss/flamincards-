@@ -42,9 +42,10 @@ import clsx from "clsx";
 import DepositionScreen from "./deposition-screen";
 import WithdrawlScreen from "./withdrawl-screen";
 import QuickWalletActions from "./quick-wallet-actions";
+import commaNumber from "comma-number";
 
 const figureAsBalance = (figure: number) => {
-  return "64,000.00";
+  return commaNumber(figure) + ".00";
 };
 
 export default function Wallet() {
