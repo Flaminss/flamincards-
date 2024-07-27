@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { Card } from "@nextui-org/react";
+import PWASectionTitle from "../section-title";
 
 export default function NewsAndPromotionsSection() {
   return (
     <section className="px-4 py-8 space-y-6">
-      <h2 className="text-xl lg:text-2xl mb-6">
+      {/* <h2 className="text-xl lg:text-2xl mb-6">
         Latest News, Trends and Promotions
-      </h2>
+      </h2> */}
+
+      <PWASectionTitle title="Latest News, Trends and Promotions" />
 
       {/* CAROUSEL */}
       <Card about="carousel" className="h-[260px] md:h-[320px] w-full" />
