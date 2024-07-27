@@ -82,14 +82,14 @@ export default function DashboardPage() {
   );
 
   return (
-    <div className="pb-20">
+    <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
         <PWAPageTitle title="Dashboard" />
       </header>
 
       <AnnoucementSection />
 
-      <div className="px-4 py-6 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
+      <div className="px-4 pt-2 pb-8 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
         <WalletSection />
         <div className="flex flex-col lg:gap-x-12 justify-between grow gap-y-10 xl:gap-y-8">
           <PrimaryBankCard />
