@@ -1,4 +1,4 @@
-import { BadgeDollarSign, Landmark } from "lucide-react";
+import { BadgeDollarSign, HandshakeIcon, Landmark } from "lucide-react";
 import { Button } from "@nextui-org/react";
 import icons from "currency-icons";
 import Link from "next/link";
@@ -7,7 +7,9 @@ export default function RecentTransactionsSection() {
   return (
     <section className="w-full">
       <header className="mb-4 flex flex-wrap lg:flex-nowrap items-center justify-between gap-x-8 gap-y-1">
-        <h2 className="text-lg whitespace-nowrap">Recent Transactions</h2>
+        <h2 className="text-medium font-medium whitespace-nowrap">
+          Recent Transactions
+        </h2>
         <Button
           variant="light"
           size="sm"
@@ -16,42 +18,50 @@ export default function RecentTransactionsSection() {
           href="/transactions"
           as={Link}
         >
-          See more
+          View all
         </Button>
       </header>
       <article className="flex flex-col gap-4">
         <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center justify-center rounded-lg w-10 h-10 bg-primary-100 text-primary-400">
-              <BadgeDollarSign size={20} />
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center rounded-md p-3 bg-success-50 text-success">
+              <HandshakeIcon className="size-6" />
             </div>
             <div>
-              <p className="text-sm font-meidum">Investment</p>
-              <p className="text-xs text-gray-500">May 20th at 9:00pm</p>
+              <p className="text-sm sm:text-medium font-meidum mb-1">
+                Investment
+              </p>
+              <p className="text-xs sm:text-sm text-zinc-400">
+                May 20th at 9:00pm
+              </p>
             </div>
           </div>
           <div className="grid justify-items-end">
-            <p className="text-sm font-semibold whitespace-nowrap">
-              + {icons["BTC"]?.symbol || "₿"} 0.0005
+            <p className="text-sm lg:text-base whitespace-nowrap text-success">
+              + {icons["NGN"]?.symbol || "₿"} 0.0005
             </p>
-            <p className="text-sm text-success-400">Successful</p>
+            {/* <p className="text-sm text-success font-semibold">Successful</p> */}
           </div>
         </div>
         <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center justify-center rounded-lg w-10 h-10 bg-warning-100 text-warning-400">
-              <Landmark size={20} />
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center rounded-md p-3 bg-secondary-50 text-secondary">
+              <Landmark className="size-6" />
             </div>
             <div>
-              <p className="text-sm font-meidum">Withdrawal</p>
-              <p className="text-xs text-gray-500">May 20th at 05:50am</p>
+              <p className="text-sm sm:text-medium font-meidum mb-1">
+                Withdrawal
+              </p>
+              <p className="text-xs sm:text-sm text-zinc-400">
+                May 20th at 05:50am
+              </p>
             </div>
           </div>
           <div className="grid justify-items-end">
-            <p className="text-sm font-semibold whitespace-nowrap">
+            <p className="text-sm lg:text-base whitespace-nowrap text-danger">
               - {icons["NGN"]?.symbol || "#"} 10,000.00
             </p>
-            <p className="text-xs text-danger-400">Failed</p>
+            {/* <p className="text-sm text-danger font-semibold">Failed</p> */}
           </div>
         </div>
       </article>
