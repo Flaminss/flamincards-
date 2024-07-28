@@ -83,7 +83,8 @@
   );
 }
 
-.cardBackground {
+.cardBackground,
+.slick-dark-bg {
   --tw-backdrop-blur: blur(8px) !important;
   --tw-backdrop-saturate: saturate(50%) !important;
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
@@ -99,6 +100,9 @@
   background-color: rgb(var(--gray-1) / 0.7) !important;
 }
 
+.slick-dark-bg {
+  --tw-backdrop-blur: blur(0px) !important;
+}
 
 /* Thin scrollbar styles */
 .thin-scrollbar::-webkit-scrollbar {
