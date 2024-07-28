@@ -11,6 +11,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { CircleArrowRightIcon, Share2Icon } from "lucide-react";
+import ReadFooter from "./read-footer";
 
 export default function InboxReads() {
   return (
@@ -18,35 +19,21 @@ export default function InboxReads() {
       {[1, 2, 3, 4].map((count) => {
         return (
           <Card key={count} className="max-w-[64ch] lg:w-[64ch] shadow">
-            <CardHeader className="items-center gap-x-3 px-4">
-              <Chip
-                size="lg"
-                radius="sm"
-                className="text-xl"
-                classNames={{ base: "p-2 h-auto", content: "p-0" }}
-              >
-                📢
-              </Chip>
-              <h4 className="text-ellipsis overflow-hidden max-h-20 leading-snug text-xl max-w-[38ch]">
+            <CardHeader className="items-center gap-x-3 px-4 pb-2 pt-4">
+              📢
+              <h4 className="text-ellipsis overflow-hidden max-h-20 leading-snug lg:text-lg font-medium max-w-[38ch]">
                 Congratulations!
-                {/* Winner! You are doing great! */}
+                {/* Winner! You did very well! */}
               </h4>
             </CardHeader>
-            <CardBody className="px-4">
+            <CardBody className="px-4 text-sm sm:text-base leading-relaxed text-zinc-200">
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
                 doloremque laudantium expedita, deleniti necessitatibus aliquid
                 inventore blanditiis amet? Ipsa, ab.
               </p>
             </CardBody>
-            <CardFooter className="justify-between items-center">
-              <p className="text-primary-800 text-sm px-2">
-                May 02, 2023 at 9:30pm
-              </p>
-              <Button size="md" variant="light">
-                View Details <CircleArrowRightIcon size={16} />
-              </Button>
-            </CardFooter>
+            <ReadFooter />
           </Card>
         );
       })}
