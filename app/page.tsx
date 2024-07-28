@@ -52,14 +52,15 @@ export default function HomePage() {
               marketplace tailored to your interests.
             </p>
             <Button
+              as={Link}
               color="primary"
               variant="solid"
               size="lg"
-              href="/dashboard"
-              radius="md"
-              className="flex mx-auto"
+              href="/register"
+              radius="md" 
+              className="block w-fit h-auto py-3 mx-auto"
             >
-              Start Trading Today!
+              Register with us Today!
             </Button>
           </div>
         </section>
