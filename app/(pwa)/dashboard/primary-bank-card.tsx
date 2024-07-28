@@ -33,17 +33,17 @@ export default function PrimaryBankCard() {
 
   return (
     <div className="grid gap-y-1 max-w-md w-full mx-auto">
-      <article className="relative border shadow p-4 sm:p-5 lg:p-4">
-        <div className="flex gap-x-4 items-end mb-2">
+      <article className="relative border shadow p-4 sm:p-5 lg:p-4 text-zinc-100">
+        <div className="flex gap-x-3 mb-3">
           <div className="inline-flex items-center">
             <div className="h-4 w-4 rounded-full bg-warning"></div>
             <div className="h-4 w-4 rounded-full bg-danger -ms-1.5"></div>
           </div>
-          <span className="text-xs text-zinc-400 font-mono">
+          <span className="text-xs text-zinc-400 font-mono.. uppercase">
             Primary Bank
           </span>
         </div>
-        <p className="text-xl font-medium mb-1">1234 2342 2422</p>
+        <p className="text-xl font-mono mb-1">1234 2342 2422</p>
         <p className="text-medium font-mono flex items-center justify-between gap-x-4">
           <span>John Doe</span>
           <span className="text-sm">09/10</span>
