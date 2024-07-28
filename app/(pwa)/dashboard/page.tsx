@@ -1,7 +1,6 @@
 "use client";
 
 import clsx from "clsx";
-import Image from "next/image";
 import { useState, useMemo } from "react";
 import {
   Input,
@@ -16,8 +15,8 @@ import {
   SelectItem,
   Chip,
   Link,
+  Image,
   CardFooter,
-  Image as ImageNext,
   Card,
   CardHeader,
   Divider,
@@ -64,6 +63,7 @@ import InvestmentPortfolioSection from "./investment-portfolio-section";
 import NewsAndPromotionsSection from "./news-and-promotions-section";
 import GiftCardEntisementSection from "./giftcard-entisement-section";
 import PWAPageTitle from "../page-title";
+import MiscellaneousSection from "./miscellaneous-section";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
@@ -98,8 +98,37 @@ export default function DashboardPage() {
       </div>
 
       <GiftCardEntisementSection />
-      <ServicesOfferedSection />
+
+      <MiscellaneousSection title="Airdrops & Crypto Currency">
+        <div className="px-4 flex items-center gap-x-4">
+          {[1, 2, 3].map((card) => {
+            return (
+              <Link href="/crypto" className="w-full block max-w-2xl">
+                <Card shadow="lg">
+                  <CardBody className="overflow-visible p-0">
+                    <Image
+                      shadow="lg"
+                      radius="lg"
+                      width="100%"
+                      alt="noticoin"
+                      className="w-full object-cover h-[164px] lg:h-[284px]"
+                    />
+                  </CardBody>
+                  {/* <CardFooter className="flex-wrap gap-x-4 gap-y-1 sm:flex-nowrap justify-between">
+                    <h4 className="font-medium text-base">{title}</h4>
+                    <p className="text-success-500 text-sm">{`${
+                      icons[rate.from]?.symbol
+                    }${rate.value}/${icons[rate.to]?.symbol}`}</p>
+                  </CardFooter> */}
+                </Card>
+              </Link>
+            );
+          })}
+        </div>
+      </MiscellaneousSection>
+
       <InvestmentPortfolioSection />
+
       <NewsAndPromotionsSection />
     </div>
   );
