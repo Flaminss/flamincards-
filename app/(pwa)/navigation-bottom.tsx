@@ -78,6 +78,7 @@ export default function BottomNavigationPro({
           Icon: WifiIcon,
           label: "Buy Cheap Data & Airtime",
           href: "/bills/internet",
+          disabled: true,
         },
       ],
     },
@@ -127,7 +128,7 @@ export default function BottomNavigationPro({
               {(onClose) => (
                 <>
                   <ModalBody className="p-3 pt-5 gap-y-4">
-                    {list?.map(({ label, Icon, href }) => {
+                    {list?.map(({ label, Icon, href, disabled }) => {
                       return (
                         <Button
                           as={Link}
@@ -135,6 +136,7 @@ export default function BottomNavigationPro({
                           href={href}
                           size="lg"
                           variant="light"
+                          isDisabled={disabled}
                           className="text-white text-medium rounded-lg gap-x-4 justify-normal px-2 py-3 h-auto"
                           onClick={() => closeSubMenu()}
                           startContent={
