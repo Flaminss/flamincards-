@@ -34,7 +34,7 @@ export function UnderDevelopmentComponent() {
           extraordinary!
         </p>
         <div className="flex justify-center">
-          <img
+          <Image
             src="under_development_image.jpg"
             alt="Under Development"
             className="w-full h-auto rounded-lg shadow-md"
