@@ -22,7 +22,7 @@ export default function GiftCardEntisementSection() {
           </Button>
         </header>
 
-        <ul className="grid grid-cols-2 lg:grid-cols-3 overflow-x-auto items-start gap-4 lg:gap-6">
+        <ul className="grid grid-cols-2 overflow-x-auto items-start gap-4 lg:gap-6">
           {[
             {
               name: "Steam",
@@ -77,35 +77,39 @@ export default function GiftCardEntisementSection() {
               <Link
                 key={`${index}#${tag}`}
                 href={`/giftcards/${name}`}
-                className="block text-white shadow rounded-sm p-4 border border-zinc-800"
+                className="slick-dark-bg.. bg-zinc-900 text-white shadow rounded-lg p-4 lg:p-5 flex items-center gap-x-4"
               >
-                <h5 className="text-sm lg:text-lg flex items-start justify-between mb-1">
-                  {name}{" "}
-                  <span
-                    className={clsx(
-                      "text-xs whitespace-nowrap leading-6 font-medium px-2 rounded-xl hidden",
-                      `text-${tag.status} bg-${tag.status}-50`
-                    )}
-                  >
-                    {tag.title}
-                  </span>
-                </h5>
-                <div className="flex justify-between gap-x-4">
-                  <p className="text-success text-sm lg:text-base font-medium flex items-end gap-x-1 align-baseline">
+                <Image
+                  radius="sm"
+                  alt="giftcard"
+                  className="size-10 object-cover hidden lg:block.."
+                />
+                <div className="space-y-1 lg:space-y-1.5">
+                  <h5 className="text-sm lg:text-base">
+                    {name}{" "}
+                    <span
+                      className={clsx(
+                        "text-xs whitespace-nowrap leading-6 font-medium px-2 rounded-xl hidden",
+                        `text-${tag.status} bg-${tag.status}-50`
+                      )}
+                    >
+                      {tag.title}
+                    </span>
+                  </h5>
+                  <span className="text-success text-sm font-medium">
                     <span>{`${icons[rate.from]?.symbol} ${rate.value}/${
                       icons[rate.to]?.symbol
                     }`}</span>
-                  </p>
-
-                  <Button
-                    isIconOnly
-                    variant="light"
-                    size="sm"
-                    className="h-auto"
-                  >
-                    <ChevronsRight className="size-4 lg:size-5" />
-                  </Button>
+                  </span>
                 </div>
+                <Button
+                  isIconOnly
+                  variant="light"
+                  size="sm"
+                  className="ms-auto"
+                >
+                  <ChevronsRight className="size-4 lg:size-5" />
+                </Button>
               </Link>
             );
           })}
