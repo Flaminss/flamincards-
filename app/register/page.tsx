@@ -133,9 +133,10 @@ function SetupPassword() {
             Transaction PIN
           </label>
           <div className="flex gap-x-6">
-            {[1, 2, 3, 4].map((digit) => {
+            {[1, 2, 3, 4].map((digit, index) => {
               return (
-                <Input
+                <Input 
+                key={`${digit}#${index}`}
                   type="number"
                   size="lg"
                   minLength={1}
