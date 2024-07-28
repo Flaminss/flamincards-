@@ -92,10 +92,11 @@ export default function BottomNavigationPro({
             key={`${href}#${index}`}
             backdrop="blur"
             isOpen={sendableTokenSelectOpened}
+            className="cardBackground"
             classNames={{
               backdrop: "z-[20000]",
               wrapper: "z-[20000]",
-              base: "max-h-[min(80vh,_500px)] rounded-b-none",
+              base: "rounded-b-none..",
             }}
             shadow="lg"
             placement="bottom"
@@ -120,32 +121,36 @@ export default function BottomNavigationPro({
                 },
               },
             }}
+            hideCloseButton
           >
             <ModalContent>
               {(onClose) => (
                 <>
-                  <ModalHeader className="flex flex-col gap-1 py-6">
-                    Explore Our Marketplace
-                  </ModalHeader>
-                  <ModalBody>
-                    {list?.map(({ label, href }) => {
+                  <ModalBody className="p-3 pt-5 gap-y-4">
+                    {list?.map(({ label, Icon, href }) => {
                       return (
-                        <Link
+                        <Button
+                          as={Link}
                           key={href}
                           href={href}
-                          className="py-2 text-white text-medium font-medium rounded-lg flex items-center justify-between"
+                          size="lg"
+                          variant="light"
+                          className="text-white text-medium rounded-lg gap-x-4 justify-normal px-2 py-3 h-auto"
                           onClick={() => closeSubMenu()}
+                          startContent={
+                            <Icon className="size-6 text-primary.." />
+                          }
+                          endContent={
+                            <ChevronsRight className="ms-auto size-4" />
+                          }
                         >
                           {label}
-                          <ChevronsRight className="size-5" />
-                        </Link>
+                        </Button>
                       );
                     })}
                   </ModalBody>
-                  <ModalFooter className="flex-col text-sm text-gray-600 text-center justify-center">
+                  <ModalFooter className="pt-6 px-4">
                     <Button
-                      variant="solid"
-                      color="danger"
                       size="lg"
                       radius="sm"
                       fullWidth
