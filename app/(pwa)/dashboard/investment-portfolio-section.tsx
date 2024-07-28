@@ -18,16 +18,12 @@ import PWASectionTitle from "../section-title";
 export default function InvestmentPortfolioSection() {
   return (
     <section className="px-4 py-8" id="investment-portfolio">
-      <header className="mb-6 space-y-4">
+      <header className="mb-6 space-y-1">
         <PWASectionTitle title="Your Investments Portfolio" />
-        <p className="text-sm text-warning-500 leading-snug flex items-center gap-x-3 sm:gap-x-2">
-          <span className="p-2 rounded-lg bg-warning-50">
-            <AlertCircle className="size-5" />{" "}
-          </span>
-          <p className="max-w-[28ch]">
-            Choose a Plan - You have{" "}
-            <span className="px-1 text-white">0 of 2</span> investment running.
-          </p>
+        <p className="text-sm text-default-500 leading-snug flex items-center gap-x-3 sm:gap-x-2">
+          Choose a Plan - You have{" "}
+          <span className="px-.5 text-primary-900">0 of 2</span> investment
+          running.
         </p>
       </header>
 
@@ -35,13 +31,13 @@ export default function InvestmentPortfolioSection() {
         {[{ title: "Basic" }, { title: "Silver" }, { title: "Gold" }].map(
           ({ title }, index) => {
             return (
-              <li key={title} className="grow min-w-[24ch].. max-w-72..">
-                <Card className="shadow p-2">
-                  <CardHeader className="text-medium py-3 shadow-lg bg-default font-medium uppercase text-center justify-center">
+              <li key={title} className="grow min-w-[32ch] max-w-[74ch]">
+                <Card className="shadow p-4 cardBackground">
+                  <CardHeader className="text-medium py-3 text- uppercase bg-none font-medium justify-center border-2">
                     {title}
                   </CardHeader>
-                  <CardBody className="pt-8 px-2">
-                    <div className="space-y-1.5">
+                  <CardBody className="pt-8 pb-4 px-2">
+                    <div className="space-y-2 text-sm">
                       <p className="flex justify-between">
                         Capital:{" "}
                         <span className="text-primary-400..">${40}</span>
@@ -69,20 +65,21 @@ export default function InvestmentPortfolioSection() {
                       className="max-w-md mt-6"
                     />
                   </CardBody>
-                  <CardFooter>
+                  <CardFooter className="pb-0 px-0 h-auto rounded-none">
                     {index % 2 === 0 ? (
                       <Button
                         fullWidth
                         variant="flat"
                         size="lg"
-                        color="success"
+                        color="primary"
+                        radius="sm"
                       >
-                        Running
+                        Earning...
                       </Button>
                     ) : (
                       // <Button fullWidth color="primary">Invest</Button>
-                      <Button fullWidth size="lg">
-                        Unavailable
+                      <Button fullWidth size="lg" radius="sm" isDisabled>
+                        Not available
                       </Button>
                     )}
                   </CardFooter>
