@@ -23,6 +23,9 @@ import {
   MusicIcon,
   ChevronsRight,
   MenuIcon,
+  GiftIcon,
+  CircleDollarSignIcon,
+  WifiIcon,
 } from "lucide-react";
 import { Badge, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
@@ -47,30 +50,35 @@ export default function BottomNavigationPro({
 
   const menu = [
     {
-      title: "Home",
+      title: "Dashboard",
       href: "/dashboard",
       Icon: Home,
-      notificationCount: 0,
     },
     {
       title: "Music",
       href: "/music",
       Icon: MusicIcon,
-      notificationCount: 0,
     },
     {
-      title: "History",
+      title: "Transactions",
       href: "/transactions",
       Icon: History,
-      notificationCount: 0,
     },
     {
       title: "More",
       Icon: MenuIcon,
-      notificationCount: 2,
       list: [
-        { label: "Sell your Giftcards", href: "/giftcards" },
-        { label: "Withdraw your Airdrop Earning", href: "/crypto" },
+        { Icon: GiftIcon, label: "Sell Gift Cards", href: "/giftcards" },
+        {
+          Icon: CircleDollarSignIcon,
+          label: "Cashout Airdrop Earnings",
+          href: "/crypto",
+        },
+        {
+          Icon: WifiIcon,
+          label: "Buy Cheap Data & Airtime",
+          href: "/bills/internet",
+        },
       ],
     },
   ];
@@ -169,7 +177,7 @@ export default function BottomNavigationPro({
           panel: "p-0",
         }}
       >
-        {menu.map(({ title, href, Icon, list, notificationCount }) => {
+        {menu.map(({ title, href, Icon, list }) => {
           return (
             <Tab
               key={href}
