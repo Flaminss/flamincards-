@@ -29,36 +29,13 @@ import PWAPageTitle from "../page-title";
 
 export default function BlogPage() {
   return (
-    <div className="max-w-xl mx-auto lg:mx-auto">
-      <header className="px-4 py-4">
+    <div className="max-w-xl mx-auto lg:mx-0">
+      <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
         {/* <h1 className="text-2xl lg:text-3xl">Your Account Settings</h1> */}
         <PWAPageTitle title="Your Account Settings" />
       </header>
 
-      <section className="pt-6 lg:pt-0 px-4 space-y-10">
-        <article
-          about="banner"
-          className="flex items-center gap-x-4 rounded-xl shadow-lg p-3 bg-primary-50 lg:hidden"
-        >
-          <Chip
-            color="primary"
-            variant="flat"
-            size="lg"
-            className="h-full py-2.5 self-stretch"
-            radius="sm"
-          >
-            <span className="text-2xl">🏆</span>
-          </Chip>
-          <div className="me-auto">
-            <h3 className="text-base font-mono">Invite friends. Win!</h3>
-            <p className="text-sm text-primary-500">
-              Stand a chance to earn rewards ✨
-            </p>
-          </div>
-          <span className="text-primary-500">
-            <ChevronRightCircleIcon className="size-6" />
-          </span>
-        </article>
+      <section className="pt-4 px-4 space-y-10">
         <MenuBlock
           title="Profile"
           list={[
@@ -146,7 +123,7 @@ function MenuBlock({
   }[];
 }) {
   return (
-    <article className="space-y-3">
+    <article className="space-y-4">
       <h3 className="text-zinc-400 text-sm ps-1">{title}</h3>
 
       <Listbox
@@ -165,19 +142,19 @@ function MenuBlock({
                 renderEndContent !== undefined ? (
                   renderEndContent()
                 ) : (
-                  <ChevronRightIcon className="text-zinc-500 shrink-0 size-4" />
+                  <ChevronRightIcon className="text-zinc-400 shrink-0 size-4" />
                 )
               }
               startContent={
-                <div className="p-1 rounded-md text-primary">
-                  <Icon className="size-4 lg:size-6" />
+                <div className="p-1 rounded-md text-zinc-400">
+                  <Icon className="size-6 lg:size-6" />
                 </div>
               }
               classNames={{
-                base: "py-2 gap-x-3",
+                base: "py-2.5 px-3 gap-x-3",
               }}
               title={title}
-              description={description}
+              // description={description}
             />
           );
         })}
