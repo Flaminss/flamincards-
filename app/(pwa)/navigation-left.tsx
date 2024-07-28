@@ -1,5 +1,12 @@
 import clsx from "clsx";
-import { Badge, Button, Chip, Listbox, ListboxItem } from "@nextui-org/react";
+import {
+  Badge,
+  Button,
+  Chip,
+  Image,
+  Listbox,
+  ListboxItem,
+} from "@nextui-org/react";
 import Link from "next/link";
 import {
   ChevronRight,
@@ -333,7 +340,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             className="gap-2 p-2 h-auto grow justify-start rounded-lg border"
             variant="faded"
             startContent={
-              <img
+              <Image
                 alt=""
                 src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
                 className="size-10 rounded-lg object-cover shadow-sm"
