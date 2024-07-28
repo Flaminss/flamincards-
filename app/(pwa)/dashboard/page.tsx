@@ -101,9 +101,9 @@ export default function DashboardPage() {
 
       <MiscellaneousSection title="Airdrops & Crypto Currency">
         <div className="px-4 flex items-center gap-x-4">
-          {[1, 2, 3].map((card) => {
+          {[1, 2, 3].map((card, index) => {
             return (
-              <Link href="/crypto" className="w-full block max-w-2xl">
+              <Link key={`${card}#${index}`} href="/crypto" className="w-full block max-w-2xl">
                 <Card shadow="lg">
                   <CardBody className="overflow-visible p-0">
                     <Image
