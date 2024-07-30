@@ -26,7 +26,7 @@ export default function LoginPage() {
           <header>
             <UserCircle className="block mx-auto size-10 mb-2.5 sm:size-12 sm:mb-4" />
             <h1 className="text-2xl sm:text-3xl text-center mb-1 sm:mb-2 font-medium">
-              Welcome Back! 👋
+              Welcome Back 👋
             </h1>
             <p className="text-sm text-zinc-400 text-center">
               Provide your login details below to get started.
@@ -68,6 +68,8 @@ export default function LoginPage() {
                 radius="sm"
                 size="lg"
                 className="mb-2"
+                as={Link}
+                href="/dashboard"
               >
                 Login
               </Button>
