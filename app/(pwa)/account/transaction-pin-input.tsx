@@ -5,7 +5,7 @@ export default function TransactionPINInput() {
   return (
     <OTPInput
       maxLength={4}
-      containerClassName="group flex items-center gap-x-4 has-[:disabled]:opacity-30"
+      containerClassName="group flex items-center gap-x-2 has-[:disabled]:opacity-30"
       render={({ slots }) => (
         <>
           {slots.map((slot, idx) => (
@@ -22,10 +22,10 @@ function Slot(props: SlotProps) {
   return (
     <div
       className={cn(
-        "relative w-14 h-14 text-lg",
+        "relative w-10 h-10 text-base font-medium",
         "flex items-center justify-center",
         "transition-all duration-300",
-        "rounded-md bg-default-100",
+        "rounded-md bg-zinc-700",
         // "border-border border-y border-r first:border-l first:rounded-l-md last:rounded-r-md",
         "group-hover:border-accent-foreground/20 group-focus-within:border-accent-foreground/20",
         // "outline outline-0 outline-accent-foreground/20",
