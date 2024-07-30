@@ -27,11 +27,13 @@ import {
   CircleDollarSignIcon,
   WifiIcon,
   ChevronRightCircleIcon,
+  UserPlusIcon,
 } from "lucide-react";
 import { Badge, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { Input } from "postcss";
+import { Span } from "next/dist/trace";
 
 export default function BottomNavigationPro({
   classNames,
@@ -81,6 +83,11 @@ export default function BottomNavigationPro({
           href: "/bills/internet",
           disabled: true,
         },
+        {
+          Icon: UserPlusIcon,
+          label: "Invite Friends",
+          description: "Stand a chance to earn rewards",
+        },
       ],
     },
   ];
@@ -129,44 +136,39 @@ export default function BottomNavigationPro({
               {(onClose) => (
                 <>
                   <ModalBody className="p-3 pt-5 gap-y-4">
-                    {list?.map(({ label, Icon, href, disabled }) => {
-                      return (
-                        <Button
-                          as={Link}
-                          key={href}
-                          href={href}
-                          size="lg"
-                          variant="light"
-                          isDisabled={disabled}
-                          className="text-white text-medium rounded-lg gap-x-4 justify-normal px-2 py-3 h-auto"
-                          onClick={() => closeSubMenu()}
-                          startContent={
-                            <Icon className="size-6 text-primary.." />
-                          }
-                          endContent={
-                            <ChevronsRight className="ms-auto size-4" />
-                          }
-                        >
-                          {label}
-                        </Button>
-                      );
-                    })}
-                    <article
-                      about="banner"
-                      className="flex items-center gap-x-4 rounded-xl shadow p-4 bg-warning-50 lg:hidden"
-                    >
-                      <div className="me-auto">
-                        <h3 className="text-base font-mono uppercase">
-                          🏆 Invite Friends
-                        </h3>
-                        <p className="text-sm text-warning-500">
-                          ✨ Stand a chance to win rewards ✨
-                        </p>
-                      </div>
-                      <span className="text-warning-500">
-                        <ChevronRightCircleIcon className="size-6" />
-                      </span>
-                    </article>
+                    {list?.map(
+                      ({ label, Icon, href, description, disabled }) => {
+                        return (
+                          <Button
+                            as={Link}
+                            key={href}
+                            href={href}
+                            size="lg"
+                            variant="light"
+                            isDisabled={disabled}
+                            className="text-white text-medium rounded-lg gap-x-4 justify-normal px-2 py-3 h-auto"
+                            onClick={() => closeSubMenu()}
+                            startContent={
+                              <Icon className="size-6 text-primary.." />
+                            }
+                            endContent={
+                              <ChevronsRight className="ms-auto size-4" />
+                            }
+                          >
+                            {!description ? (
+                              label
+                            ) : (
+                              <div className="grid gap-y-.5">
+                                <span>{label}</span>
+                                <span className="block text-sm text-zinc-400 text-ellipsis text-nowrap">
+                                  {description}
+                                </span>
+                              </div>
+                            )}
+                          </Button>
+                        );
+                      }
+                    )}
                   </ModalBody>
                   <ModalFooter className="pt-6 px-4">
                     <Button
