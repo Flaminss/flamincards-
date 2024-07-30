@@ -24,6 +24,10 @@ import {
   BellIcon,
   GiftIcon,
   ListMusicIcon,
+  UserCheckIcon,
+  UserIcon,
+  UserCheck,
+  ChevronRightCircle,
 } from "lucide-react";
 import { BrandName } from "./navigation-top";
 
@@ -31,7 +35,6 @@ export default function NavigationLeft({ className }: { className?: any }) {
   return (
     <aside
       className={clsx(
-        "@container",
         className,
         "sidebar-sticky sidebar max-w-52 justify-start overflow-x-hidden rounded-xl border"
       )}
@@ -98,7 +101,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </Badge>
           </Link>
         </header>
-        <section className="grow grid gap-y-4 h-full py-5 pt-20 mb-16 bg-zinc-950">
+        <section className="grow grid gap-y-4 py-5 pt-20 pb-32 bg-zinc-950">
           <Listbox
             aria-label="Applicaitno Menu"
             // onAction={(key) => alert(key)}
@@ -236,51 +239,15 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </ListboxItem>
           </Listbox> */}
 
-          <div className="px-2 mt-4">
-            <Button
-              variant="light"
-              size="md"
-              fullWidth
-              className="text-start"
-              endContent={
-                <ChevronRight size={16} className="ms-auto text-gray-600" />
-              }
-            >
-              Sponsor Us
-            </Button>
-            <Button
-              variant="light"
-              size="md"
-              fullWidth
-              className="text-start"
-              endContent={
-                <ChevronRight size={16} className="ms-auto text-gray-600" />
-              }
-            >
-              Contact Us
-            </Button>
-            <Button
-              variant="light"
-              size="md"
-              fullWidth
-              className="text-start"
-              endContent={
-                <ChevronRight size={16} className="ms-auto text-gray-600" />
-              }
-            >
-              Terms and Conditions
-            </Button>
-          </div>
-
-          <div className="px-2 mt-auto py-6">
-            <article className="border rounded-lg p-4 bg-primary-950">
+          <div className="px-4 py-4">
+            <article className="rounded-lg p-4 bg-primary-50">
               <header className="mb-4">
-                <GiftIcon className="mb-2 text-primary-400" />
-                <h2 className="text-lg text-primary-900">
-                  Invite and Earn with Friends!
+                <h2 className="text-primary-900 flex items-center gap-x-2 mb-2 text-lg">
+                  <GiftIcon className="mb-2.. text-primary-400.. size-5" />{" "}
+                  Invite Friends!
                 </h2>
-                <p className="text-gray-500 text-sm">
-                  Stand a chance to win rewards and prizes!
+                <p className="text-gray-500 text-sm leading-snug">
+                  Stand a chance to eard rewards and win prizes!
                 </p>
               </header>
               <div className="card-footer">
@@ -290,12 +257,51 @@ export default function NavigationLeft({ className }: { className?: any }) {
                   fullWidth
                   color="primary"
                   radius="sm"
+                  className="gap-x-4"
                 >
-                  Share invitation link{" "}
-                  <Share2 className="text-base" size={18} />
+                  Share invitation link <Share2 className="size-4" />
                 </Button>
               </div>
             </article>
+          </div>
+
+          <div className="px-2">
+            <Button
+              variant="light"
+              size="md"
+              radius="sm"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Sponsor us
+            </Button>
+            <Button
+              variant="light"
+              size="md"
+              radius="sm"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Contact us
+            </Button>
+            <Button
+              variant="light"
+              size="md"
+              radius="sm"
+              fullWidth
+              className="text-start"
+              endContent={
+                <ChevronRight size={16} className="ms-auto text-gray-600" />
+              }
+            >
+              Terms and Conditions
+            </Button>
           </div>
 
           {/* <div className="px-2 mt-4">
@@ -333,31 +339,72 @@ export default function NavigationLeft({ className }: { className?: any }) {
               Terms and Conditions
             </Button>
           </div> */}
+
+          {/* <div className="py-32"></div> */}
         </section>
-        <footer className="absolute inset-x-0 mt-auto bottom-0 flex flex-wrap items-center gap-2 p-2 z-20 bg-zinc-800.. cardBackground">
-          <Button
+        <Button
+          href="/account"
+          className="absolute inset-x-0 mt-auto bottom-0 z-20 cardBackground gap-4 py-3 px-4 h-auto border-t rounded-t-none"
+          color="primary"
+          // variant="bordered"
+          startContent={
+            <span className="ps-1">
+              <UserCheck className="lg:size-7" />
+            </span>
+            // <Image
+            //   alt=""
+            //   src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+            //   className="size-10 rounded-lg object-cover shadow-sm"
+            // />
+          }
+          endContent={
+            <span className="px-2 text-primary">
+              <ChevronRightCircle className="size-6" />
+            </span>
+          }
+          as={Link}
+        >
+          <p className="grow text-start">
+            <strong className="text-sm block font-normal">
+              Eric Frusciante
+            </strong>
+            <small className="text-sm text-slate-400">
+              eric@frusciante.com{" "}
+            </small>
+          </p>
+        </Button>
+        <footer className="hidden absolute inset-x-0 mt-auto bottom-0 flex.. flex-wrap items-center gap-2 p-2.. z-20 bg-zinc-800.. cardBackground">
+          {/* <Button
             href="/account"
-            className="gap-2 p-2 h-auto grow justify-start rounded-lg border"
-            variant="faded"
+            className="gap-4 p-2 h-auto grow justify-start rounded-md border"
+            // color="primary"
+            // variant="bordered"
             startContent={
-              <Image
-                alt=""
-                src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                className="size-10 rounded-lg object-cover shadow-sm"
-              />
+              <span className="p-2.5 rounded-md">
+                <UserIcon className="lg:size-6" />
+              </span>
+              // <Image
+              //   alt=""
+              //   src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+              //   className="size-10 rounded-lg object-cover shadow-sm"
+              // />
             }
-            endContent={<ChevronRight size="18" />}
+            endContent={
+              <span className="px-2">
+                <ChevronRight className="size-4 text-zinc-200" />
+              </span>
+            }
             as={Link}
           >
             <p className="grow text-start">
-              <strong className="text-sm block font-medium">
+              <strong className="text-sm block font-normal">
                 Eric Frusciante
               </strong>
               <small className="text-sm text-slate-400">
                 eric@frusciante.com{" "}
               </small>
             </p>
-          </Button>
+          </Button> */}
         </footer>
       </div>
     </aside>
@@ -366,6 +413,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
 
 import classnames from "clsx";
 import { marketMenu } from "./(marketplace)/layout";
+import { Span } from "next/dist/trace";
 
 export const IconWrapper = ({
   children,
