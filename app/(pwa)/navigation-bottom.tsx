@@ -99,13 +99,14 @@ export default function BottomNavigationPro({
         return (
           <Modal
             key={`${href}#${index}`}
-            backdrop="blur"
+            backdrop="opaque"
             isOpen={sendableTokenSelectOpened}
-            className="cardBackground"
+            className="cardBackground mx-0 mb-0 h-auto"
+            size="full"
             classNames={{
-              backdrop: "z-[20000]",
-              wrapper: "z-[20000]",
-              base: "rounded-b-none..",
+              backdrop: "z-[20000] md:hidden",
+              wrapper: "z-[20000] md:hidden",
+              base: "rounded-b-none",
             }}
             shadow="lg"
             placement="bottom"
@@ -135,7 +136,7 @@ export default function BottomNavigationPro({
             <ModalContent>
               {(onClose) => (
                 <>
-                  <ModalBody className="p-3 pt-5 gap-y-4">
+                  <ModalBody className="p-4 gap-y-4">
                     {list?.map(
                       ({ label, Icon, href, description, disabled }) => {
                         return (
@@ -146,13 +147,13 @@ export default function BottomNavigationPro({
                             size="lg"
                             variant="light"
                             isDisabled={disabled}
-                            className="text-white text-medium rounded-lg gap-x-4 justify-normal px-2 py-3 h-auto"
+                            className="text-white text-medium rounded-lg gap-x-4 justify-normal px-3.5 py-3 h-auto"
                             onClick={() => closeSubMenu()}
                             startContent={
-                              <Icon className="size-6 text-primary.." />
+                              <Icon className="size-6 text-primary.. shrink-0" />
                             }
                             endContent={
-                              <ChevronsRight className="ms-auto size-4" />
+                              <ChevronsRight className="ms-auto size-4 shrink-0" />
                             }
                           >
                             {!description ? (
@@ -170,10 +171,12 @@ export default function BottomNavigationPro({
                       }
                     )}
                   </ModalBody>
-                  <ModalFooter className="pt-6 px-4">
+                  <ModalFooter className="px-4">
                     <Button
                       size="lg"
                       radius="sm"
+                      // color="danger"
+                      variant="flat"
                       fullWidth
                       onClick={() => closeSubMenu()}
                     >
