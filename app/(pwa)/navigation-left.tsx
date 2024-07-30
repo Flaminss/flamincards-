@@ -358,15 +358,6 @@ export default function NavigationLeft({ className }: { className?: any }) {
               </small>
             </p>
           </Button>
-          <Button
-            isIconOnly
-            variant="faded"
-            aria-label="logout"
-            color="danger"
-            className="rounded-md border h-auto self-stretch text-danger-400.."
-          >
-            <LogOut size="18" />
-          </Button>
         </footer>
       </div>
     </aside>
