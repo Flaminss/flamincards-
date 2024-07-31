@@ -74,7 +74,7 @@ export default function Wallet() {
     return (
       <>
         {<actionAccessible.Icon className="me-0.5 size-4" />}
-        {actionAccessible.label} Balance{" "}
+        {actionAccessible.label} balance{" "}
       </>
     );
   };
@@ -117,8 +117,8 @@ export default function Wallet() {
   const [withdrawProcessStep, setWithdrawlProcessStep] = useState(1);
 
   return (
-    <>
-      <div className="cardBackground border rounded-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-5 sm:p-6 mx-auto">
+    <section className="grid gap-y-2 grow">
+      <div className="cardBackground border rounded-t-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-5 sm:p-6 mx-auto">
         <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
           Good morning,
           <span className="text-white text-base">
@@ -126,29 +126,33 @@ export default function Wallet() {
           </span>
         </h3>
 
-        <div className="mb-8">
-          <span className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-sm gap-x-1 text-zinc-400 font-semibold">
-            <WalletIcon className="me-.5 sm:me-1 size-4" />
-            Balance
-          </span>
-          <p
-            className={clsx("text-3xl font-medium sm:text-4xl mb-4", {
-              "filter blur": !balanceVisible,
-            })}
-          >
-            {icons["NGN"]?.symbol || "#"}
-            {figureAsBalance(user.wallet.balance)}
+        <div className="flex flex-wrap items-end justify-between gap-y-8 gap-x-4">
+          <p about="total-user-balance">
+            <span className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-sm gap-x-1 text-zinc-400 font-semibold">
+              <WalletIcon className="me-1 size-4" />
+              Total Balance
+            </span>
+            <span
+              className={clsx("text-3xl font-medium sm:text-4xl", {
+                blur: !balanceVisible,
+              })}
+            >
+              {icons["NGN"]?.symbol || "#"}
+              {figureAsBalance(user.wallet.balance)}
+            </span>
           </p>
           <Button
             variant="flat"
             color="primary"
             size="sm"
-            radius="sm"
+            className="rounded-md"
             onClick={() => setBalanceVisible((visible) => !visible)}
           >
             {renderBalanceVisibilityToggleContent(balanceVisible)}
           </Button>
         </div>
+
+        {/* <QuickWalletActions /> */}
 
         {/* <Link href="#investment-portfolio" className="px-1 mt-7 text-white">
             <Progress
@@ -200,6 +204,9 @@ export default function Wallet() {
             Invest
           </Button>
         </ButtonGroup> */}
+      </div>
+
+      <div className="cardBackground border rounded-b-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-4 sm:pt-1.5 mx-auto">
         <QuickWalletActions />
       </div>
 
@@ -228,6 +235,6 @@ export default function Wallet() {
         withdrawlReceiptAttached={withdrawlReceiptAttached}
         pauseWithdrawlProcess={pauseWithdrawlProcess}
       />
-    </>
+    </section>
   );
 }
