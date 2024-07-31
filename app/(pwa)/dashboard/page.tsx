@@ -103,7 +103,13 @@ export default function DashboardPage() {
         <div className="px-4 flex items-center gap-x-4">
           {[1, 2, 3].map((card, index) => {
             return (
-              <Link key={`${card}#${index}`} href="/crypto" className="w-full block max-w-2xl">
+              <Link
+                key={`${card}#${index}`}
+                href="/crypto"
+                className={clsx("hidden lg:block w-full max-w-2xl", {
+                  block: index === 1,
+                })}
+              >
                 <Card shadow="lg">
                   <CardBody className="overflow-visible p-0">
                     <Image
@@ -111,15 +117,9 @@ export default function DashboardPage() {
                       radius="lg"
                       width="100%"
                       alt="noticoin"
-                      className="w-full object-cover h-[164px] lg:h-[284px]"
+                      className="w-full object-cover h-[196px] lg:h-[284px]"
                     />
                   </CardBody>
-                  {/* <CardFooter className="flex-wrap gap-x-4 gap-y-1 sm:flex-nowrap justify-between">
-                    <h4 className="font-medium text-base">{title}</h4>
-                    <p className="text-success-500 text-sm">{`${
-                      icons[rate.from]?.symbol
-                    }${rate.value}/${icons[rate.to]?.symbol}`}</p>
-                  </CardFooter> */}
                 </Card>
               </Link>
             );
