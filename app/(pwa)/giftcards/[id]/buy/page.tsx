@@ -46,6 +46,7 @@ import {
 } from "lucide-react";
 import currencyIcons from "currency-icons";
 import { useRouter } from "next/navigation";
+import PWAPageTitle from "@/app/(pwa)/page-title";
 
 export default function GiftcardBuyPage() {
   // const multipleCardSelection = [
@@ -71,7 +72,8 @@ export default function GiftcardBuyPage() {
   return (
     <div className="pt-4 pb-48">
       <header className="mb-6 px-4 sm:px-6 md:px-2 w-full">
-        <h1 className="text-2xl font-medium">Sell (Redeem) your Gift Card</h1>
+        {/* <h1 className="text-2xl font-medium">Sell (Redeem) your Gift Card</h1> */}
+        <PWAPageTitle title="Sell (Redeem) your Gift Card" />
       </header>
       {/* <section className="px-2 md:hidden">
         <Image
