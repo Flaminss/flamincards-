@@ -106,7 +106,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
           </Link>
         </header>
 
-        <section className="grow grid gap-y-4 py-5 pt-20 pb-16 bg-zinc-950">
+        <section className="grow grid py-5 pt-20 pb-16 bg-zinc-950">
           <Listbox
             aria-label="Applicaitno Menu"
             // onAction={(key) => alert(key)}
@@ -207,9 +207,8 @@ export default function NavigationLeft({ className }: { className?: any }) {
           </Listbox>
 
           <Listbox
-            aria-label="application Menu"
             onAction={(key) => alert(key)}
-            classNames={{ list: "px-2 gap-y-2.5" }}
+            classNames={{ list: "px-2 gap-y-3" }}
             itemClasses={{
               base: "px-1 rounded-md shadow-md gap-3 data-[hover=true]:bg-default-100/80",
             }}
