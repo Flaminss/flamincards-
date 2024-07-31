@@ -20,7 +20,7 @@ export default function InvestmentPortfolioSection() {
     <section className="px-4 py-8" id="investment-portfolio">
       <header className="mb-6 space-y-1">
         <PWASectionTitle title="Your Investments Portfolio" />
-        <p className="text-sm text-default-500 leading-snug flex items-center gap-x-3 sm:gap-x-2">
+        <p className="text-sm text-default-500 leading-snug">
           Choose a Plan - You have{" "}
           <span className="px-.5 text-primary-900">0 of 2</span> investment
           running.
@@ -28,11 +28,11 @@ export default function InvestmentPortfolioSection() {
       </header>
 
       <ul className="flex flex-wrap gap-6">
-        {[{ title: "Basic" }, { title: "Silver" }, { title: "Gold" }].map(
+        {[{ title: "Bronze" }, { title: "Silver" }, { title: "Gold" }].map(
           ({ title }, index) => {
             return (
               <li key={title} className="grow min-w-[32ch] max-w-[74ch]">
-                <Card className="shadow p-4 cardBackground">
+                <Card className="shadow p-4">
                   <CardHeader className="text-medium py-3 text- uppercase bg-none font-medium justify-center border-2">
                     {title}
                   </CardHeader>
