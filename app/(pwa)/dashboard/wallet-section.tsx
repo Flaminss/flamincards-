@@ -118,7 +118,7 @@ export default function Wallet() {
 
   return (
     <section className="grid gap-y-2 grow">
-      <div className="cardBackground border rounded-t-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-5 sm:p-6 mx-auto">
+      <div className="cardBackground border rounded-t-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-5 pb-6 justify-center mx-auto">
         <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
           Good morning,
           <span className="text-white text-base">
