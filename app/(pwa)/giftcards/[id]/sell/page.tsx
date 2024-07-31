@@ -75,13 +75,13 @@ export default function GiftcardBuyPage() {
         <PWAPageTitle title="Sell (Redeem) your Gift Card" />
       </header>
 
-      <section className="px-4 py-8">
+      <section className="px-4 py-6">
         <Image
           shadow="lg"
           radius="lg"
           src="https://th.bing.com/th/id/OIP.I89DeQMyCgVqj_eo-QgPYAHaEr?rs=1&pid=ImgDetMain"
           alt=""
-          className=" md:hidden object-contain h-[160px] w-full max-w-screen-md mb-8 me-auto"
+          className="md:hidden object-contain h-[172px] w-full max-w-screen-md mb-12 me-auto"
           classNames={{ wrapper: "bg-default-50 !max-w-[unset] w-full" }}
         />
 
@@ -477,7 +477,6 @@ export default function GiftcardBuyPage() {
           <section className="grow w-full md:max-w-sm">
             <Card className="shadow-xl border bg-transparent" radius="lg">
               <CardHeader className="flex-col">
-                <h4 className="text-2xl mb-3">Google Play</h4>
                 <Image
                   shadow="lg"
                   radius="lg"
@@ -498,28 +497,25 @@ export default function GiftcardBuyPage() {
               </CardHeader>
               <CardBody className="pb-6 px-5">
                 <p className="flex items-center gap-x-4 mb-1">
-                  <span className="inline-flex items-center text-ellipsis gap-x-2">
-                    <ArrowLeftRightIcon size={18} className="inline-flex" />{" "}
-                    Excnahge Rate:
-                    <ArrowLeftRightIcon
-                      size={18}
-                      className="inline-flex"
-                    />{" "}
+                  <span className="inline-flex items-center text-ellipsis gap-x-2 text-sm">
+                    <ArrowLeftRightIcon className="inline-flex size-4" />{" "}
+                    Exchange Rate:
+                    <ArrowLeftRightIcon className="inline-flex size-4" />{" "}
                   </span>{" "}
-                  <span className="ms-auto text-warning-600">
+                  <span className="ms-auto text-warning">
                     {currencyIcons["NGN"]?.symbol}1200/
                     {currencyIcons["USD"]?.symbol}
                   </span>
                 </p>
-                <div className="flex flex-wrap justify-between items-end gap-x-6 gap-y-2">
-                  <h4 className="text-base">
-                    <WalletMinimalIcon size={18} className="me-1 inline-flex" />{" "}
+                <p className="flex flex-wrap justify-between items-end gap-x-6 gap-y-2">
+                  <span className="text-sm">
+                    <WalletMinimalIcon className="me-1 inline-flex size-4" />{" "}
                     You'll receive:
-                  </h4>
-                  <p className="text-3xl font-medium text-success-600">
+                  </span>
+                  <span className="text-3xl font-medium text-success..">
                     {currencyIcons["NGN"]?.symbol}5000
-                  </p>
-                </div>
+                  </span>
+                </p>
               </CardBody>
               <CardFooter className="flex-col items-start px-5 pb-5 gap-y-4">
                 <Checkbox size="sm" radius="full" color="primary">
