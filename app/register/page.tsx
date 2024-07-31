@@ -90,7 +90,7 @@ export default function RegisterPage() {
               radius="sm"
               size="lg"
             >
-              Done! Goto Dashboard
+              Done! Go-to Dashboard
             </Button>
           </form>
         </section>
