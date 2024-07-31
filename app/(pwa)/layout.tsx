@@ -25,7 +25,7 @@ export default function PublicUserInterface({
         )}
       />
       {/* NOTE: "pe-x" adds breathing room between content and scrollbar */}
-      <main className="grow w-full h-full lg:pe-4 md:pt-4 lg:pt-0">
+      <main className="grow w-full h-full lg:pe-4 md:pt-4 lg:pt-6">
         {children}
         {/* <div className="flex w-full flex-row flex-wrap gap-4">
           <div className="my-4 grid w-full grid-cols-2 gap-4">
