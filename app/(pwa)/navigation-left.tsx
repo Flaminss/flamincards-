@@ -6,6 +6,7 @@ import {
   Image,
   Listbox,
   ListboxItem,
+  ListboxSection,
 } from "@nextui-org/react";
 import Link from "next/link";
 import {
@@ -28,6 +29,9 @@ import {
   UserIcon,
   UserCheck,
   ChevronRightCircle,
+  Gift,
+  UserPlus,
+  PiggyBank,
 } from "lucide-react";
 import { BrandName } from "./navigation-top";
 
@@ -101,7 +105,8 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </Badge>
           </Link>
         </header>
-        <section className="grow grid gap-y-4 py-5 pt-20 pb-32 bg-zinc-950">
+
+        <section className="grow grid gap-y-4 py-5 pt-20 pb-16 bg-zinc-950">
           <Listbox
             aria-label="Applicaitno Menu"
             // onAction={(key) => alert(key)}
@@ -124,22 +129,33 @@ export default function NavigationLeft({ className }: { className?: any }) {
             >
               Dashboard
             </ListboxItem>
-            <ListboxItem
-              key="marketplace"
-              href="/giftcards"
-              classNames={{
-                title: "text-medium ps-1",
+            {/* <ListboxSection
+              title="Store"
+              classNames={{ heading: "pt-4 ps-2" }}
+              itemClasses={{
+                base: "px-3 py-3 rounded-md shadow-md text-lg gap-3 data-[hover=true]:bg-default-100/80",
               }}
-              startContent={
-                // <IconWrapper className="bg-warning/10 text-warning">
-                // <IconWrapper className="bg-default/50 text-foreground">
-                //   <LineChart className="text-lg " />
-                // </IconWrapper>
-                <LineChart className="" />
-              }
             >
-              Marketplace
-            </ListboxItem>
+              <ListboxItem
+                key="lskdj"
+                href="/giftcards"
+                classNames={{
+                  title: "text-medium ps-1",
+                }}
+                startContent={<Gift />}
+              >
+                Gift Cards
+              </ListboxItem>
+              <ListboxItem
+                key="23k2"
+                classNames={{
+                  title: "text-medium ps-1",
+                }}
+                startContent={<ListMusicIcon />}
+              >
+                Music
+              </ListboxItem>
+            </ListboxSection> */}
             <ListboxItem
               key="music"
               href="/music"
@@ -154,7 +170,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
                 <ListMusicIcon className="" />
               }
             >
-              Music Library{" "}
+              Music Store{" "}
               {/* <Chip
                 variant="flat"
                 color="success"
@@ -190,10 +206,10 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </ListboxItem> */}
           </Listbox>
 
-          {/* <Listbox
+          <Listbox
             aria-label="application Menu"
             onAction={(key) => alert(key)}
-            className="p-0 gap-0 divide-y overflow-visible rounded-md px-2 mt-auto"
+            classNames={{ list: "px-2 gap-y-2.5" }}
             itemClasses={{
               base: "px-1 rounded-md shadow-md gap-3 data-[hover=true]:bg-default-100/80",
             }}
@@ -202,34 +218,33 @@ export default function NavigationLeft({ className }: { className?: any }) {
               key="invite-friends"
               description="Earn Rewards and Insentives"
               startContent={
-                <IconWrapper className="bg-success/10 text-success">
-                  <Share2 />
-                </IconWrapper>
+                <span className="p-2 rounded-lg bg-success/10 text-success">
+                  <UserPlus className="size-6" />
+                </span>
               }
               endContent={
                 <ChevronRight className="text-default-400 me-2 text-xl" />
               }
-              className="text-success-400"
+              className="text-success-400 gap-x-3 py-2 bg-success/10"
               classNames={{
                 base: "shadow-none",
                 description: "text-success-800",
               }}
             >
-              Share with friends
+              Invite friends
             </ListboxItem>
             <ListboxItem
-              key="sponsor"
-              description="Keep us alive. Empower our future"
+              key="invite-friends"
+              description="Keep us alive!"
               startContent={
-                // <IconWrapper className="bg-danger/10 text-danger dark:text-danger-500">
-                <IconWrapper className="bg-primary/10 text-primary">
-                  <DollarSign />
-                </IconWrapper>
+                <span className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <PiggyBank className="size-6" />
+                </span>
               }
               endContent={
                 <ChevronRight className="text-default-400 me-2 text-xl" />
               }
-              className="text-primary-400"
+              className="text-primary-400 gap-x-3 py-2 bg-primary/10"
               classNames={{
                 base: "shadow-none",
                 description: "text-primary-800",
@@ -237,46 +252,22 @@ export default function NavigationLeft({ className }: { className?: any }) {
             >
               Sponsor us
             </ListboxItem>
-          </Listbox> */}
-
-          <div className="px-4 py-4">
-            <article className="rounded-lg p-4 bg-primary-50">
-              <header className="mb-4">
-                <h2 className="text-primary-900 flex items-center gap-x-2 mb-2 text-lg">
-                  <GiftIcon className="mb-2.. text-primary-400.. size-5" />{" "}
-                  Invite Friends!
-                </h2>
-                <p className="text-gray-500 text-sm leading-snug">
-                  Stand a chance to eard rewards and win prizes!
-                </p>
-              </header>
-              <div className="card-footer">
-                <Button
-                  variant="flat"
-                  size="md"
-                  fullWidth
-                  color="primary"
-                  radius="sm"
-                  className="gap-x-4"
-                >
-                  Share invitation link <Share2 className="size-4" />
-                </Button>
-              </div>
-            </article>
-          </div>
+          </Listbox>
 
           <div className="px-2">
             <Button
+              as={Link}
               variant="light"
               size="md"
               radius="sm"
               fullWidth
               className="text-start"
+              href="/#faq"
               endContent={
                 <ChevronRight size={16} className="ms-auto text-gray-600" />
               }
             >
-              Sponsor us
+              FAQ
             </Button>
             <Button
               variant="light"
@@ -303,45 +294,8 @@ export default function NavigationLeft({ className }: { className?: any }) {
               Terms and Conditions
             </Button>
           </div>
-
-          {/* <div className="px-2 mt-4">
-            <Button
-              variant="light"
-              size="md"
-              fullWidth
-              className="text-start"
-              endContent={
-                <ChevronRight size={16} className="ms-auto text-gray-600" />
-              }
-            >
-              Sponsor Us
-            </Button>
-            <Button
-              variant="light"
-              size="md"
-              fullWidth
-              className="text-start"
-              endContent={
-                <ChevronRight size={16} className="ms-auto text-gray-600" />
-              }
-            >
-              Get Help
-            </Button>
-            <Button
-              variant="light"
-              size="md"
-              fullWidth
-              className="text-start"
-              endContent={
-                <ChevronRight size={16} className="ms-auto text-gray-600" />
-              }
-            >
-              Terms and Conditions
-            </Button>
-          </div> */}
-
-          {/* <div className="py-32"></div> */}
         </section>
+
         <Button
           href="/account"
           className="absolute inset-x-0 mt-auto bottom-0 z-20 cardBackground gap-4 py-3 px-4 h-auto border-t rounded-t-none"
@@ -373,39 +327,6 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </small>
           </p>
         </Button>
-        <footer className="hidden absolute inset-x-0 mt-auto bottom-0 flex.. flex-wrap items-center gap-2 p-2.. z-20 bg-zinc-800.. cardBackground">
-          {/* <Button
-            href="/account"
-            className="gap-4 p-2 h-auto grow justify-start rounded-md border"
-            // color="primary"
-            // variant="bordered"
-            startContent={
-              <span className="p-2.5 rounded-md">
-                <UserIcon className="lg:size-6" />
-              </span>
-              // <Image
-              //   alt=""
-              //   src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              //   className="size-10 rounded-lg object-cover shadow-sm"
-              // />
-            }
-            endContent={
-              <span className="px-2">
-                <ChevronRight className="size-4 text-zinc-200" />
-              </span>
-            }
-            as={Link}
-          >
-            <p className="grow text-start">
-              <strong className="text-sm block font-normal">
-                Eric Frusciante
-              </strong>
-              <small className="text-sm text-slate-400">
-                eric@frusciante.com{" "}
-              </small>
-            </p>
-          </Button> */}
-        </footer>
       </div>
     </aside>
   );
