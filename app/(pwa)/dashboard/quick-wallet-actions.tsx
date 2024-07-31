@@ -2,11 +2,17 @@
 
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
-import { DollarSignIcon, DownloadIcon, Handshake } from "lucide-react";
+import {
+  DollarSignIcon,
+  DownloadIcon,
+  Gift,
+  Handshake,
+  History,
+} from "lucide-react";
 
 export default function QuickWalletActions() {
   return (
-    <div className="!mt-auto items-start flex gap-1 lg:gap-x-4 flex-wrap lg:flex-nowrap content-end shadow">
+    <div className="!mt-auto items-start flex gap-1 lg:gap-x-4.. flex-wrap lg:flex-nowrap content-end shadow">
       <Button
         as={Link}
         variant="light"
@@ -46,11 +52,11 @@ export default function QuickWalletActions() {
         className="grow h-auto gap-x-4 grid justify-center items-center text-center hover:!bg-transparent hover:text-primary-800"
         startContent={
           <span className="shadow shrink-0 justify-self-center py-3 px-3.5 rounded-lg bg-primary.. border text-white group-hover:bg-primary group-hover:border-transparent">
-            <Handshake className="size-5" />
+            <History className="size-5" />
           </span>
         }
       >
-        Invest
+        Transactions
       </Button>
     </div>
   );
