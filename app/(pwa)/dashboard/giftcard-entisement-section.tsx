@@ -82,7 +82,7 @@ export default function GiftCardEntisementSection() {
                 <Image
                   radius="sm"
                   alt="giftcard"
-                  className="size-10 object-cover hidden lg:block.."
+                  classNames={{ wrapper: "hidden lg:block border-2 size-12" }}
                 />
                 <div className="space-y-1 lg:space-y-1.5">
                   <h5 className="text-sm lg:text-base">
