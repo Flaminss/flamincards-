@@ -16,16 +16,16 @@ export default function AnnoucementSection() {
     <section
       className={clsx("px-4 pb-6", { block: !dismissed, hidden: dismissed })}
     >
-      <div className="rounded-lg shadow bg-primary-50 text-primary px-4 sm:px-5 py-3 flex gap-x-4 items-center">
-        <MessageCircleWarningIcon className="size-7 shrink-0" />
-        <p className="w-full text-sm lg:text-base font-medium">
+      <div className="shadow border-warning bg-default-50 rounded-xl text-warning px-4 sm:px-5 py-3 flex gap-x-4 items-center">
+        <MessageCircleWarningIcon className="size-6 shrink-0" />
+        <p className="w-full text-medium lg:text-base">
           This should be an annoucement
         </p>
         <Button
           isIconOnly
           size="sm"
-          radius="full"
-          color="primary"
+          radius="md"
+          color="warning"
           variant="flat"
           className="ms-auto"
           onClick={() => dismiss()}
