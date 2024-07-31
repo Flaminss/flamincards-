@@ -19,7 +19,7 @@ const musicLibraryTabs = [
   },
 ];
 
-export default function MusicPage({ children }: { children: any }) {
+export default function MusicPage() {
   return (
     <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
       {/* <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2 flex items-center flex-col gap-y-4 lg:flex-row justify-between flex-wrap gap-x-6"> */}
