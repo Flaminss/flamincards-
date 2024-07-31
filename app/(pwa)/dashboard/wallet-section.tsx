@@ -133,7 +133,7 @@ export default function Wallet() {
               Total Balance
             </span>
             <span
-              className={clsx("text-3xl font-medium sm:text-4xl", {
+              className={clsx("text-4xl font-medium", {
                 blur: !balanceVisible,
               })}
             >
