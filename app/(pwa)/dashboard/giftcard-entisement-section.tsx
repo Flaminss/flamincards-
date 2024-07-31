@@ -76,7 +76,7 @@ export default function GiftCardEntisementSection() {
             return (
               <Link
                 key={`${index}#${tag}`}
-                href={`/giftcards/${name}/buy`}
+                href={`/giftcards/${name}/sell`}
                 className="slick-dark-bg.. bg-zinc-900 text-white shadow rounded-lg p-4 lg:p-5 flex items-center gap-x-4"
               >
                 <Image
