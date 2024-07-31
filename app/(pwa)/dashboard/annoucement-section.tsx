@@ -18,7 +18,7 @@ export default function AnnoucementSection() {
     >
       <div className="shadow border-warning bg-default-50 rounded-xl text-warning px-4 sm:px-5 py-3 flex gap-x-4 items-center">
         <MessageCircleWarningIcon className="size-6 shrink-0" />
-        <p className="w-full text-medium lg:text-base">
+        <p className="w-full text-sm lg:text-base">
           This should be an annoucement
         </p>
         <Button
