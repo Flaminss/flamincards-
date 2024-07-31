@@ -28,6 +28,7 @@ import {
   WifiIcon,
   ChevronRightCircleIcon,
   UserPlusIcon,
+  Gift,
 } from "lucide-react";
 import { Badge, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
@@ -63,9 +64,9 @@ export default function BottomNavigationPro({
       Icon: MusicIcon,
     },
     {
-      title: "Transactions",
-      href: "/transactions",
-      Icon: History,
+      title: "GiftCard",
+      href: "/giftcards",
+      Icon: Gift,
     },
     {
       title: "More",
