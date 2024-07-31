@@ -43,8 +43,8 @@ export default function PrimaryBankCard() {
             Primary Bank
           </span>
         </div>
-        <p className="text-xl font-mono mb-1">1234 2342 2422</p>
-        <p className="text-medium font-mono flex items-center justify-between gap-x-4">
+        <p className="text-lg sm:text-xl font-mono mb-1">1234 2342 2422</p>
+        <p className="text-sm sm:text-medium font-mono flex items-center justify-between gap-x-4">
           <span>John Doe</span>
           <span className="text-sm">09/10</span>
         </p>
