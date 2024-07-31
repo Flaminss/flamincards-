@@ -19,3 +19,7 @@ Our comprehensive 'Get in Touch' section on the website offers answers to freque
 
 [4] Is it required to Fund my account? Why? 
 Funding your account makes you eligible to participate in investments and use our bills-payment services
+
+
+FEATURE IDEA
+if a feature like "Bills" come into play. Navigation mobile bottom becomes = [Dashboad, Music, Bills, More] and the wallet actions becomes = [Deposit, Withdrawl, Invest, History]
