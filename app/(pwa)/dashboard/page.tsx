@@ -127,7 +127,7 @@ export default function DashboardPage() {
         </div>
       </MiscellaneousSection>
 
-      <InvestmentPortfolioSection />
+      {/* <InvestmentPortfolioSection /> */}
 
       <NewsAndPromotionsSection />
     </div>
