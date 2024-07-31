@@ -126,7 +126,7 @@ export default function Wallet() {
           </span>
         </h3>
 
-        <div className="flex flex-wrap items-end justify-between gap-y-8 gap-x-4">
+        <div className="flex flex-wrap items-end justify-between gap-y-4 gap-x-4">
           <p about="total-user-balance">
             <span className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-sm gap-x-1 text-zinc-400 font-semibold">
               <WalletIcon className="me-1 size-4" />
