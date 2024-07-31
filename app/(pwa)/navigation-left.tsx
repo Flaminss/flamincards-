@@ -412,8 +412,6 @@ export default function NavigationLeft({ className }: { className?: any }) {
 }
 
 import classnames from "clsx";
-import { marketMenu } from "./(marketplace)/layout";
-import { Span } from "next/dist/trace";
 
 export const IconWrapper = ({
   children,
