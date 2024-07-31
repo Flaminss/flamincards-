@@ -1,48 +1,57 @@
 "use client";
 
 import Link from "next/link";
-import { Button, ButtonGroup } from "@nextui-org/react";
-import {
-  CircleDollarSignIcon,
-  DollarSignIcon,
-  DownloadIcon,
-  Handshake,
-} from "lucide-react";
+import { Button } from "@nextui-org/react";
+import { DollarSignIcon, DownloadIcon, Handshake } from "lucide-react";
 
 export default function QuickWalletActions() {
   return (
-    <ButtonGroup
-      className="!mt-auto items-start flex gap-1 flex-wrap content-end shadow"
-      variant="solid"
-      color="primary"
-      size="md"
-    >
+    <div className="!mt-auto items-start flex gap-1 lg:gap-x-4 flex-wrap lg:flex-nowrap content-end shadow">
       <Button
         as={Link}
+        variant="light"
         href="/funding"
-        className="shadow-lg grow font-medium !rounded-md xl:!rounded-s-lg xl:!rounded-e-none"
-        startContent={<DownloadIcon className="size-5" />}
-        // className="shadow-lg grow font-medium !rounded-md xl:!rounded-s-lg xl:rounded-e-none flex-col h-20"
-        // startContent={<DownloadIcon className="size-5" className="lg:size-8 flex-shrink-0" />}
+        radius="sm"
+        size="md"
+        className="grow h-auto gap-x-4 grid justify-center items-center text-center hover:!bg-transparent hover:text-primary-800"
+        startContent={
+          <span className="shadow shrink-0 justify-self-center py-3 px-3.5 rounded-lg bg-primary.. border text-white group-hover:bg-primary group-hover:border-transparent">
+            <DownloadIcon className="size-5" />
+          </span>
+        }
       >
         Deposit
       </Button>
       <Button
         as={Link}
+        variant="light"
         href="/withdrawl"
-        className="shadow-lg grow font-medium !rounded-md xl:!rounded-none"
-        startContent={<DollarSignIcon className="size-5" />}
+        radius="sm"
+        size="md"
+        className="grow h-auto gap-x-4 grid justify-center items-center text-center hover:!bg-transparent hover:text-primary-800"
+        startContent={
+          <span className="shadow shrink-0 justify-self-center py-3 px-3.5 rounded-lg bg-primary.. border text-white group-hover:bg-primary group-hover:border-transparent">
+            <DollarSignIcon className="size-5" />
+          </span>
+        }
       >
         Withdraw
       </Button>
       <Button
         as={Link}
+        variant="light"
         href="/dashboard#investment-portfolio"
-        className="shadow-lg grow font-medium !rounded-md xl:!rounded-e-lg xl:!rounded-s-none"
-        startContent={<Handshake className="size-5" />}
+        radius="sm"
+        size="md"
+        className="grow h-auto gap-x-4 grid justify-center items-center text-center hover:!bg-transparent hover:text-primary-800"
+        startContent={
+          <span className="shadow shrink-0 justify-self-center py-3 px-3.5 rounded-lg bg-primary.. border text-white group-hover:bg-primary group-hover:border-transparent">
+            <Handshake className="size-5" />
+          </span>
+        }
       >
         Invest
       </Button>
-    </ButtonGroup>
+    </div>
   );
 }
