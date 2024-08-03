@@ -29,6 +29,7 @@ import {
   ChevronRightCircleIcon,
   UserPlusIcon,
   Gift,
+  ShieldCheckIcon,
 } from "lucide-react";
 import { Badge, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
@@ -72,10 +73,14 @@ export default function BottomNavigationPro({
       title: "More",
       Icon: MenuIcon,
       list: [
-        { Icon: GiftIcon, label: "Sell Gift Cards", href: "/giftcards" },
+        {
+          Icon: ShieldCheckIcon,
+          label: "Buy USDT",
+          href: "/crypto",
+        },
         {
           Icon: CircleDollarSignIcon,
-          label: "Cashout Airdrop Earnings",
+          label: "Withdrawl Airdrop Earnings",
           href: "/crypto",
         },
         {
@@ -100,9 +105,10 @@ export default function BottomNavigationPro({
         return (
           <Modal
             key={`${href}#${index}`}
-            backdrop="opaque"
+            backdrop="blur"
             isOpen={sendableTokenSelectOpened}
-            className="cardBackground mx-0 mb-0 h-auto"
+            className="cardBackground h-auto"
+            radius="lg"
             size="full"
             classNames={{
               backdrop: "z-[20000] md:hidden",
@@ -137,8 +143,36 @@ export default function BottomNavigationPro({
             <ModalContent>
               {(onClose) => (
                 <>
-                  <ModalBody className="p-4 gap-y-4">
+                  {/* <ModalBody className="py-4 px-4 gap-y-3"> */}
+                  <ModalBody className="py-4 px-4 flex flex-row flex-wrap gap-4">
                     {list?.map(
+                      ({ label, Icon, href, description, disabled }) => {
+                        return (
+                          <Button
+                            as={Link}
+                            key={href}
+                            href={href}
+                            size="lg"
+                            isDisabled={disabled}
+                            className="text-white rounded-lg gap-x-4 justify-normal px-3.5 py-3 h-auto flex-col gap-y-3 text-xs max-w-[28ch].. grow whitespace-normal text-center"
+                            onClick={() => closeSubMenu()}
+                            startContent={<Icon className="size-6 shrink-0" />}
+                          >
+                            {!description ? (
+                              label
+                            ) : (
+                              <div className="grid gap-y-1">
+                                <span>{label}</span>
+                                <span className="block text-xs text-zinc-400 text-ellipsis text-nowrap">
+                                  {description}
+                                </span>
+                              </div>
+                            )}
+                          </Button>
+                        );
+                      }
+                    )}
+                    {/* {list?.map(
                       ({ label, Icon, href, description, disabled }) => {
                         return (
                           <Button
@@ -170,15 +204,14 @@ export default function BottomNavigationPro({
                           </Button>
                         );
                       }
-                    )}
+                    )} */}
                   </ModalBody>
                   <ModalFooter className="px-4">
                     <Button
                       size="lg"
                       radius="sm"
-                      // color="danger"
-                      variant="flat"
                       fullWidth
+                      color="primary"
                       onClick={() => closeSubMenu()}
                     >
                       Close
