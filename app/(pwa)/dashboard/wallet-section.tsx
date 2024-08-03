@@ -15,11 +15,15 @@ import {
   useInput,
 } from "@nextui-org/react";
 import {
+  ArrowBigRightDashIcon,
+  ArrowRightSquareIcon,
   ChevronDown,
   ChevronRightCircle,
+  ChevronRightCircleIcon,
   ChevronUp,
   ChevronsRightIcon,
   CircleAlertIcon,
+  CircleArrowRightIcon,
   CircleDollarSignIcon,
   CloudUploadIcon,
   CopyIcon,
@@ -34,6 +38,7 @@ import {
   SearchIcon,
   ShieldCheck,
   SunIcon,
+  TrendingUpIcon,
   UserCircleIcon,
   WalletIcon,
 } from "lucide-react";
@@ -45,7 +50,7 @@ import WithdrawlScreen from "./withdrawl-screen";
 import QuickWalletActions from "./quick-wallet-actions";
 import commaNumber from "comma-number";
 
-const figureAsBalance = (figure: number) => {
+export const figureAsBalance = (figure: number) => {
   return commaNumber(figure) + ".00";
 };
 
@@ -73,7 +78,7 @@ export default function Wallet() {
 
     return (
       <>
-        {<actionAccessible.Icon className="me-0.5 size-4" />}
+        {<actionAccessible.Icon className="me-0.5 size-3" />}
         {actionAccessible.label} balance{" "}
       </>
     );
@@ -128,7 +133,7 @@ export default function Wallet() {
 
         <div className="flex flex-wrap items-end justify-between gap-y-4 gap-x-4">
           <p about="total-user-balance">
-            <span className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-sm gap-x-1 text-zinc-400 font-semibold">
+            <span className="flex items-center whitespace-nowrap mb-1 text-xs sm:text-sm gap-x-1 text-zinc-400">
               <WalletIcon className="me-1 size-4" />
               Total Balance
             </span>
@@ -145,32 +150,35 @@ export default function Wallet() {
             variant="flat"
             color="primary"
             size="sm"
-            className="rounded-md"
+            className="rounded-md mb-1"
             onClick={() => setBalanceVisible((visible) => !visible)}
           >
             {renderBalanceVisibilityToggleContent(balanceVisible)}
           </Button>
         </div>
 
-        {/* <QuickWalletActions /> */}
-
-        {/* <Link href="#investment-portfolio" className="px-1 mt-7 text-white">
-            <Progress
-              label={
-                <span className="flex items-center flex-row-reverse gap-x-1">
-                  Investments{" "}
-                  <LineChart size={18} className="text-warning-400" />
-                </span>
-              }
-              size="sm"
-              value={500}
-              maxValue={750}
-              color="warning"
-              formatOptions={{ style: "currency", currency: "NGN" }}
-              showValueLabel={true}
-              className="max-w-md"
-            />
-          </Link> */}
+        <Link
+          href="#investment-portfolio"
+          className="flex items-center gap-x-4 justify-between mt-6 mb-2 max-w-md"
+        >
+          <Progress
+            label={
+              <span className="flex items-center gap-x-2 text-zinc-400">
+                <TrendingUpIcon className="text-success.. size-4" /> Investments
+              </span>
+            }
+            size="sm"
+            value={7}
+            maxValue={30}
+            color="primary"
+            valueLabel={`${icons["NGN"]?.symbol || "#"} 40,00`}
+            showValueLabel={true}
+            className="w-full hover font-medium"
+          />
+          <span className="p-1.5 rounded-md bg-default-100 grid place-content-center text-zinc-200 hover:text-primary">
+            <CircleArrowRightIcon className="size-5" />
+          </span>
+        </Link>
 
         {/* <ButtonGroup
           className="mt-auto.. items-start flex gap-1 flex-wrap content-end shadow-lg"
@@ -206,7 +214,7 @@ export default function Wallet() {
         </ButtonGroup> */}
       </div>
 
-      <div className="cardBackground border rounded-b-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-4 sm:pt-1.5 mx-auto">
+      <div className="cardBackground border rounded-b-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-3 sm:ptb-1.5 mx-auto">
         <QuickWalletActions />
       </div>
 
