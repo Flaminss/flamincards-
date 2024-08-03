@@ -92,7 +92,7 @@ export default function DashboardPage() {
       <div className="px-4 pt-2 pb-8 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
         <WalletSection />
         <div className="flex flex-col lg:gap-x-12 justify-between grow gap-y-10 xl:gap-y-8">
-          <PrimaryBankCard />
+          <PrimaryBankCard classnames="my-auto" />
           <RecentTransactionsSection />
         </div>
       </div>

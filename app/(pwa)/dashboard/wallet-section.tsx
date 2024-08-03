@@ -161,7 +161,7 @@ export default function Wallet() {
 
         <Link
           href="#investment-portfolio"
-          className="flex items-center gap-x-4 justify-between mt-6 mb-2 max-w-md"
+          className="flex items-center gap-x-4 xl:gap-x-5 justify-between mt-8 pe-.5 mb-2 max-w-md"
         >
           <Progress
             label={
