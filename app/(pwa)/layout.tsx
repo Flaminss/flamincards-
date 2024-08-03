@@ -21,7 +21,8 @@ export default function PublicUserInterface({
       <SidebarNavigation
         className={clsx(
           "hidden md:block max-w-[28%] lg:max-w-72 sticky-top shadow-lg",
-          "lg:h-[calc(100vh_-_(0.875rem_*_2))]"
+          "lg:h-[calc(100vh_-_(0.875rem_*_2))]",
+          "z-[1]"
         )}
       />
       {/* NOTE: "pe-x" adds breathing room between content and scrollbar */}
