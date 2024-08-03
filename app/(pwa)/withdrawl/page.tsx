@@ -133,9 +133,7 @@ export default function WithdrawlPage() {
                 </ModalBody>
                 <ModalFooter className="flex-wrap gap-4">
                   <Button
-                    as={Link}
                     size="lg"
-                    href="/transactions"
                     color="primary"
                     variant="solid"
                     onPress={onClose}
