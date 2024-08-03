@@ -16,7 +16,11 @@ import clsx from "clsx";
 import { LandmarkIcon, PenBoxIcon, WalletIcon } from "lucide-react";
 import { useState } from "react";
 
-export default function PrimaryBankCard() {
+export default function PrimaryBankCard({
+  classnames,
+}: {
+  classnames: string;
+}) {
   const {
     isOpen: editing,
     onOpen: edit,
@@ -32,7 +36,7 @@ export default function PrimaryBankCard() {
   });
 
   return (
-    <div className="grid gap-y-1 max-w-md w-full mx-auto">
+    <div className={clsx("grid gap-y-1 max-w-md w-full mx-auto", classnames)}>
       <article className="relative border shadow p-4 sm:p-5 lg:p-4 text-zinc-100">
         <div className="flex gap-x-3 mb-3">
           <div className="inline-flex items-center">
