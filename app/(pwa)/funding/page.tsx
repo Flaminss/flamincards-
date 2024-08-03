@@ -23,6 +23,7 @@ import icons from "currency-icons";
 import { useState } from "react";
 import clsx from "clsx";
 import PWAPageTitle from "../page-title";
+import AmountDialpad from "../dashboard/amount-dialpad";
 
 export default function FundingPage() {
   const {
@@ -45,20 +46,19 @@ export default function FundingPage() {
   const [depositProcessStep, setDepositProcessStep] = useState(1);
 
   return (
-    <div className="pb-48">
+    <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
-        {/* <h1 className="text-2xl lg:text-3xl">Fund Your Account</h1> */}
         <PWAPageTitle title="Fund your Account" />
       </header>
 
-      <section className="pt-0 pb-4 px-4 max-w-xl">
+      <section className="pt-6 pb-4 px-4 max-w-xl">
         <div
           className={clsx({
             "space-y-4 block": depositProcessStep === 1,
             hidden: depositProcessStep !== 1,
           })}
         >
-          <Listbox className="px-0">
+          {/* <Listbox className="px-0">
             <ListboxItem
               key="bank"
               startContent={
@@ -116,9 +116,9 @@ export default function FundingPage() {
               title="Sunday Awanu Paul"
               description="Account Name"
             />
-          </Listbox>
+          </Listbox> */}
 
-          <div className="pt-2">
+          {/* <div className="pt-2">
             <Input
               type="number"
               label="Amount"
@@ -135,12 +135,14 @@ export default function FundingPage() {
               labelPlacement="outside"
               startContent={<span className="text-xl font-meidum">₦</span>}
             />
-          </div>
+          </div> */}
 
-          <p className="text-sm items-start text-warning flex gap-x-2 px-2">
+          <AmountDialpad />
+
+          {/* <p className="text-sm items-start text-warning flex gap-x-2 px-2">
             <CircleAlertIcon className="size-4 mt-1" />
             Kobo will not be recognized
-          </p>
+          </p> */}
 
           <footer className="pt-8">
             <Button
@@ -156,7 +158,7 @@ export default function FundingPage() {
                   <ChevronsRightIcon className="size-5" />
                 </span>
               }
-              isDisabled={!amountToBeDeposited}
+              // isDisabled={!amountToBeDeposited}
             >
               Submit Recepit
             </Button>
@@ -170,6 +172,66 @@ export default function FundingPage() {
           })}
         >
           <div>
+            <Listbox className="px-0 mb-4">
+              <ListboxItem
+                key="bank"
+                startContent={
+                  <div className="p-3 rounded-md text-primary bg-primary-50 shadow">
+                    <LandmarkIcon className="size-6" />
+                  </div>
+                }
+                endContent={
+                  <span className="text-zinc-400">
+                    <CopyIcon className="size-4" />
+                  </span>
+                }
+                classNames={{
+                  title: "text-medium",
+                  base: "px-0 gap-x-4",
+                }}
+                title="Palmpay"
+                description="Bank"
+              />
+              <ListboxItem
+                key="acct-no"
+                startContent={
+                  <div className="p-3 rounded-md text-primary bg-primary-50 shadow">
+                    <Hash className="size-6" />
+                  </div>
+                }
+                endContent={
+                  <span className="text-zinc-400">
+                    <CopyIcon className="size-4" />
+                  </span>
+                }
+                classNames={{
+                  title: "text-xl font-semibold",
+                  base: "px-0 gap-x-4",
+                }}
+                title="903 622 7457"
+                description="Account Number"
+              />
+              <ListboxItem
+                key="acct-name"
+                startContent={
+                  <div className="p-3 rounded-md text-primary bg-primary-50 shadow">
+                    <UserCircleIcon className="size-6" />
+                  </div>
+                }
+                endContent={
+                  <span className="text-zinc-400">
+                    <CopyIcon className="size-4" />
+                  </span>
+                }
+                classNames={{
+                  title: "text-medium",
+                  base: "px-0 gap-x-4",
+                }}
+                title="Sunday Awanu Paul"
+                description="Account Name"
+              />
+            </Listbox>
+
             <ul
               className={clsx("space-y-1.5 mb-4", {
                 hidden: depositTransactionDetails.detailsHidden,
@@ -235,12 +297,12 @@ export default function FundingPage() {
               <p className="mb-6 text-xs text-gray-500 dark:text-gray-400">
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
               </p>
-              <Input type="file" radius="lg" />
+              <p className="flex gap-x-2 pb-4 items-center text-sm text-warning">
+                <CircleAlertIcon className="size-4" /> Ensure you upload a clear
+                picture
+              </p>
+              {/* <Input type="file" radius="lg" /> */}
             </label>
-            <p className="flex gap-x-2 items-center text-sm text-warning">
-              <CircleAlertIcon className="size-4" /> Ensure you upload a clear
-              picture
-            </p>
           </div>
 
           <footer className="pt-6 flex items-center gap-x-2">
