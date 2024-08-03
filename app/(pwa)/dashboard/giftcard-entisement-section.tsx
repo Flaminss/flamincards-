@@ -77,12 +77,14 @@ export default function GiftCardEntisementSection() {
               <Link
                 key={`${index}#${tag}`}
                 href={`/giftcards/${name}/sell`}
-                className="slick-dark-bg.. bg-zinc-900 text-white shadow rounded-lg p-4 lg:p-5 flex items-center gap-x-4"
+                className="slick-dark-bg.. bg-zinc-900 text-white shadow rounded-lg p-4 lg:p-5 flex items-center gap-x-5"
               >
                 <Image
                   radius="sm"
                   alt="giftcard"
-                  classNames={{ wrapper: "hidden lg:block border-2 size-12" }}
+                  classNames={{
+                    wrapper: "bg-default-100 hidden lg:block size-14",
+                  }}
                 />
                 <div className="space-y-1 lg:space-y-1.5">
                   <h5 className="text-sm lg:text-base">
