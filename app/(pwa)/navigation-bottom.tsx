@@ -154,20 +154,24 @@ export default function BottomNavigationPro({
                             href={href}
                             size="lg"
                             isDisabled={disabled}
-                            className="text-white rounded-lg gap-x-4 justify-normal px-3.5 py-3 h-auto flex-col gap-y-3 text-xs max-w-[28ch].. grow whitespace-normal text-center"
+                            className="text-white rounded-lg gap-x-4 justify-normal px-3.5 py-3 h-auto flex-col gap-y-3 text-xs grow whitespace-normal text-center"
                             onClick={() => closeSubMenu()}
                             startContent={<Icon className="size-6 shrink-0" />}
                           >
-                            {!description ? (
-                              label
-                            ) : (
-                              <div className="grid gap-y-1">
-                                <span>{label}</span>
-                                <span className="block text-xs text-zinc-400 text-ellipsis text-nowrap">
-                                  {description}
-                                </span>
+                            {
+                              <div className="max-w-[24ch]">
+                                {!description ? (
+                                  label
+                                ) : (
+                                  <div className="grid gap-y-1">
+                                    <span>{label}</span>
+                                    <span className="block text-xs text-zinc-400">
+                                      {description}
+                                    </span>
+                                  </div>
+                                )}
                               </div>
-                            )}
+                            }
                           </Button>
                         );
                       }
