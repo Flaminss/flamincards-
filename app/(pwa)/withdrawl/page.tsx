@@ -23,6 +23,7 @@ import icons from "currency-icons";
 import { useState } from "react";
 import clsx from "clsx";
 import PWAPageTitle from "../page-title";
+import AmountDialpad from "../dashboard/amount-dialpad";
 
 export default function WithdrawlPage() {
   const {
@@ -42,7 +43,7 @@ export default function WithdrawlPage() {
 
       <section className="pt-0 pb-4 overflow-y-auto px-4 max-w-xl">
         <div className={clsx("space-y-6 block pt-4")}>
-          <div>
+          <div className="mb-16">
             <h4 className="mb-3 text-sm text-zinc-100">Receiving Account</h4>
             <article className="flex gap-x-4 items-center p-2 bg-default-100 rounded-xl">
               <div className="p-4 rounded-lg text-primary bg-primary-50 shadow">
@@ -59,7 +60,7 @@ export default function WithdrawlPage() {
             </article>
           </div>
 
-          <div className="pt-2">
+          {/* <div className="pt-2">
             <Input
               type="number"
               label="Amount (#)"
@@ -80,9 +81,9 @@ export default function WithdrawlPage() {
             <p className="text-sm text-zinc-400 flex items-center gap-x-1.5 py-2.5 px-1.5">
               <WalletIcon className="size-4" /> Balance: 18,000.00
             </p>
-          </div>
+          </div> */}
 
-          <div className="hidden lg:flex flex-wrap gap-3">
+          {/* <div className="flex-wrap gap-3">
             {[1000, 5000, 10_000].map((amount, index) => {
               return (
                 <Button
@@ -95,7 +96,9 @@ export default function WithdrawlPage() {
                 </Button>
               );
             })}
-          </div>
+          </div> */}
+
+          <AmountDialpad />
 
           <Button
             variant="solid"
@@ -105,7 +108,7 @@ export default function WithdrawlPage() {
             fullWidth
             onClick={() => showWithdrawlRequestOutcome()}
             className="font-semibold"
-            isDisabled={!amountToBeWithdrawn}
+            // isDisabled={!amountToBeWithdrawn}
           >
             Withdraw
           </Button>
