@@ -18,6 +18,7 @@ import {
   ArrowBigRightDashIcon,
   ArrowRightSquareIcon,
   ChevronDown,
+  ChevronRight,
   ChevronRightCircle,
   ChevronRightCircleIcon,
   ChevronUp,
@@ -127,7 +128,7 @@ export default function Wallet() {
     <section className="grid gap-y-2 grow">
       <div className="cardBackground border rounded-t-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-5 pb-6 justify-center mx-auto">
         <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
-          <span className="flex items-center gap-x-2"><SmileIcon className="size-4" /> Good morning,</span>
+          Good morning,
           <span className="text-white text-base">
             Mr. {user.lastname} {user.firstname}
           </span>
@@ -161,23 +162,24 @@ export default function Wallet() {
 
         <Link
           href="#investment-portfolio"
-          className="flex items-center gap-x-4 xl:gap-x-5 justify-between mt-8 pe-.5 mb-2 max-w-md"
+          className="flex items-center gap-x-4 justify-between mt-7 mb-2"
         >
           <Progress
             label={
-              <span className="flex items-center gap-x-2 text-zinc-400">
-                <TrendingUpIcon className="text-success.. size-4" /> Investments 
+              <span className="flex items-center text-zinc-400 gap-x-2">
+                <TrendingUpIcon className="size-4 text-warning" /> Investments
               </span>
             }
             size="sm"
             value={7}
             maxValue={30}
-            valueLabel={`${icons["NGN"]?.symbol || "#"} 40,00`}
+            color="warning"
+            valueLabel={`${icons["NGN"]?.symbol || "#"} 40,000`}
             showValueLabel={true}
-            className="w-full hover font-medium"
+            className="w-full"
           />
-          <span className="p-1.5 rounded-md bg-default-100 grid place-content-center text-zinc-200 hover:text-primary">
-            <CircleArrowRightIcon className="size-5" />
+          <span className="px-1 grid place-content-center text-zinc-400 hover:text-primary">
+            <ChevronsRightIcon className="size-4" />
           </span>
         </Link>
 
