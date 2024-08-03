@@ -37,8 +37,10 @@ import {
   ScrollIcon,
   SearchIcon,
   ShieldCheck,
+  SmileIcon,
   SunIcon,
   TrendingUpIcon,
+  User,
   UserCircleIcon,
   WalletIcon,
 } from "lucide-react";
@@ -125,7 +127,7 @@ export default function Wallet() {
     <section className="grid gap-y-2 grow">
       <div className="cardBackground border rounded-t-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-5 pb-6 justify-center mx-auto">
         <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
-          Good morning,
+          <span className="flex items-center gap-x-2"><SmileIcon className="size-4" /> Good morning,</span>
           <span className="text-white text-base">
             Mr. {user.lastname} {user.firstname}
           </span>
@@ -148,9 +150,9 @@ export default function Wallet() {
           </p>
           <Button
             variant="flat"
-            color="primary"
+            // color="primary"
             size="sm"
-            className="rounded-md mb-1"
+            className="rounded-md mb-1 text-primary.."
             onClick={() => setBalanceVisible((visible) => !visible)}
           >
             {renderBalanceVisibilityToggleContent(balanceVisible)}
@@ -164,13 +166,12 @@ export default function Wallet() {
           <Progress
             label={
               <span className="flex items-center gap-x-2 text-zinc-400">
-                <TrendingUpIcon className="text-success.. size-4" /> Investments
+                <TrendingUpIcon className="text-success.. size-4" /> Investments 
               </span>
             }
             size="sm"
             value={7}
             maxValue={30}
-            color="primary"
             valueLabel={`${icons["NGN"]?.symbol || "#"} 40,00`}
             showValueLabel={true}
             className="w-full hover font-medium"
