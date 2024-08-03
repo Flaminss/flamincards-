@@ -6,6 +6,11 @@ import {
   Input,
   Listbox,
   ListboxItem,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
 import {
@@ -13,10 +18,12 @@ import {
   ChevronUp,
   ChevronsRightIcon,
   CircleAlertIcon,
+  ClipboardSignature,
   CloudUploadIcon,
   CopyIcon,
   Hash,
   LandmarkIcon,
+  TimerIcon,
   UserCircleIcon,
 } from "lucide-react";
 import icons from "currency-icons";
@@ -27,10 +34,10 @@ import AmountDialpad from "../dashboard/amount-dialpad";
 
 export default function FundingPage() {
   const {
-    isOpen: depositing,
-    onOpen: startDepositProcess,
-    onOpenChange: onDeposit,
-    onClose: closeDepositProcess,
+    isOpen: showingFundRequestOutcome,
+    onOpen: showFundRequestOutcome,
+    onOpenChange: displayFundRequestOutcome,
+    onClose: hideFundRequestOutcome,
   } = useDisclosure();
 
   const receiptAttached = false;
@@ -160,7 +167,7 @@ export default function FundingPage() {
               }
               // isDisabled={!amountToBeDeposited}
             >
-              Submit Recepit
+              Continue
             </Button>
           </footer>
         </div>
@@ -172,7 +179,7 @@ export default function FundingPage() {
           })}
         >
           <div>
-            <Listbox className="px-0 mb-4">
+            <Listbox className="-mx-2 px-0 mb-4">
               <ListboxItem
                 key="bank"
                 startContent={
@@ -181,13 +188,13 @@ export default function FundingPage() {
                   </div>
                 }
                 endContent={
-                  <span className="text-zinc-400">
+                  <span className="text-zinc-400 px-2">
                     <CopyIcon className="size-4" />
                   </span>
                 }
                 classNames={{
                   title: "text-medium",
-                  base: "px-0 gap-x-4",
+                  base: "gap-x-4",
                 }}
                 title="Palmpay"
                 description="Bank"
@@ -200,13 +207,13 @@ export default function FundingPage() {
                   </div>
                 }
                 endContent={
-                  <span className="text-zinc-400">
+                  <span className="text-zinc-400 px-2">
                     <CopyIcon className="size-4" />
                   </span>
                 }
                 classNames={{
                   title: "text-xl font-semibold",
-                  base: "px-0 gap-x-4",
+                  base: "gap-x-4",
                 }}
                 title="903 622 7457"
                 description="Account Number"
@@ -219,13 +226,13 @@ export default function FundingPage() {
                   </div>
                 }
                 endContent={
-                  <span className="text-zinc-400">
+                  <span className="text-zinc-400 px-2">
                     <CopyIcon className="size-4" />
                   </span>
                 }
                 classNames={{
                   title: "text-medium",
-                  base: "px-0 gap-x-4",
+                  base: "gap-x-4",
                 }}
                 title="Sunday Awanu Paul"
                 description="Account Name"
@@ -255,7 +262,8 @@ export default function FundingPage() {
 
             <Button
               variant="flat"
-              size="sm"
+              size="md"
+              radius="sm"
               color="default"
               fullWidth
               className="justify-between"
@@ -294,7 +302,7 @@ export default function FundingPage() {
                 <span className="font-semibold">Upload your receipt</span> or
                 drag and drop
               </p>
-              <p className="mb-6 text-xs text-gray-500 dark:text-gray-400">
+              <p className="mb-4 text-xs text-gray-500 dark:text-gray-400">
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
               </p>
               <p className="flex gap-x-2 pb-4 items-center text-sm text-warning">
@@ -305,34 +313,77 @@ export default function FundingPage() {
             </label>
           </div>
 
-          <footer className="pt-6 flex items-center gap-x-2">
+          <footer className="pt-6 flex flex-col items-center gap-y-4">
+            <Button
+              variant="solid"
+              color="primary"
+              size="lg"
+              radius="sm"
+              fullWidth
+              onClick={() => showFundRequestOutcome()}
+              // isDisabled={!receiptAttached}
+            >
+              Submit
+            </Button>
             <Button
               variant="flat"
               color="danger"
               size="lg"
-              radius="md"
+              radius="sm"
               fullWidth
               onClick={() => {
                 setDepositProcessStep(1);
               }}
               isDisabled={receiptAttached}
             >
-              New Deposit
-            </Button>
-            <Button
-              variant="solid"
-              color="primary"
-              size="lg"
-              radius="md"
-              fullWidth
-              onClick={() => closeDepositProcess()}
-              // isDisabled={!receiptAttached}
-            >
-              Done!
+              Cancel and Restart
             </Button>
           </footer>
         </div>
       </section>
+
+      <Modal
+        isOpen={showingFundRequestOutcome}
+        onOpenChange={displayFundRequestOutcome}
+        backdrop="opaque"
+        placement="center"
+        hideCloseButton
+        isDismissable={false}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalBody className="px-6 py-12 flex items-center justify-center">
+                <ClipboardSignature className="size-10 text-warning mb-4" />
+                <h3 className="text-xl">Your transaction is being reviewed</h3>
+                <p className="text-zinc-400 text-xs flex gap-x-2 items-center">
+                  <TimerIcon className="size-4" /> Average wait time: 2 min
+                </p>
+              </ModalBody>
+              <ModalFooter className="flex-col">
+                <Button
+                  as={Link}
+                  href="/transactions"
+                  color="primary"
+                  variant="solid"
+                  onPress={onClose}
+                >
+                  View Status
+                </Button>
+                <Button
+                  as={Link}
+                  href="/dashboard"
+                  color="primary"
+                  variant="flat"
+                  onPress={onClose}
+                >
+                  Back to Dashboard
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }
