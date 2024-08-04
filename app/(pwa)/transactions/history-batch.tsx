@@ -164,7 +164,7 @@ export default function HistoryBatch() {
   return (
     <Table
       aria-label="Example table with custom cells"
-      classNames={{ wrapper: "p-0 bg-transparent" }}
+      classNames={{ wrapper: "p-0 bg-transparent border-none" }}
     >
       <TableHeader columns={columns}>
         {(column) => (
