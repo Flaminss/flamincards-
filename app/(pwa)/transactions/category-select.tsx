@@ -11,13 +11,8 @@ const categories = [
     // money always GOES out of wallet
   },
   {
-    key: "withdrawl",
+    key: "wallet",
     label: "Wallet",
-    // money always GOES out of wallet
-  },
-  {
-    key: "funding",
-    label: "Deposit",
     // money always GOES out of wallet
   },
   {
