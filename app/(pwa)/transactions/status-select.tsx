@@ -1,35 +1,32 @@
-"use client" 
+"use client";
 
 import React from "react";
 import { Select, SelectItem } from "@nextui-org/react";
+import { Scan } from "lucide-react";
 
 const statuses = [
   {
-    key: "all",
-    label: "All Status",
-  },
-  {
-    key: "danger",
+    key: "failed",
     label: "Failed",
   },
   {
-    key: "primary",
+    key: "refunded",
     label: "Refunded",
   },
   {
-    key: "danger",
+    key: "cancelled",
     label: "Cancelled",
   },
   {
-    key: "default",
+    key: "pending",
     label: "Pending",
   },
   {
-    key: "warning",
+    key: "processing",
     label: "Processing",
   },
   {
-    key: "danger",
+    key: "rejected",
     label: "Rejected",
   },
   {
@@ -40,17 +37,17 @@ const statuses = [
 
 export default function StatusSelect() {
   return (
-    <div className="w-full flex flex-row flex-wrap gap-4">
-      <Select
-        label="Status"
-        radius="md"
-        defaultSelectedKeys={["cat"]}
-        className="max-w-[45%]"
-      >
-        {statuses.map((animal) => (
-          <SelectItem key={animal.key}>{animal.label}</SelectItem>
-        ))}
-      </Select>
-    </div>
+    <Select
+      label="Status"
+      placeholder="All Status"
+      radius="md"
+      defaultSelectedKeys={["all"]}
+      className="max-w-[45%] lg:max-w-[30%] grow"
+      startContent={<Scan className="size-4 text-warning me-1" />}
+    >
+      {statuses.map((animal) => (
+        <SelectItem key={animal.key}>{animal.label}</SelectItem>
+      ))}
+    </Select>
   );
 }
