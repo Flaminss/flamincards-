@@ -20,30 +20,34 @@ export default function TransactionsPage() {
       </header>
 
       <section className="px-4 py-6">
-        <div className=" flex flex-wrap items-center gap-4 mb-4">
+        <div className=" flex flex-wrap items-center gap-8 xl:gap-12 xl:flex-nowrap mb-4">
           <CategorySelect values={values} setValues={setValues} />
           <StatusSelect />
           <FundsFlowSelect />
         </div>
         <p className="text-sm text-zinc-400">
-          <span className="pe-1 text-primary">Showing Transactions Of:</span>{" "}
+          <span className="pe-1 text-warning">Showing Records of:</span>{" "}
           <span className="capitalize">{Array.from(values).join(", ")}</span>
         </p>
       </section>
 
-      <section className="py-6 px-4 grid gap-y-14">
+      <section className="py-6 px-4 grid gap-y-16">
         <article>
-          <h3 className="mb-4 ps-1 text-lg">Today</h3>
+          <h3 className="mb-2 text-lg">Today</h3>
           <HistoryBatch />
         </article>
         <article>
-          <h3 className="mb-4 ps-1 text-lg">Yesterday</h3>
+          <h3 className="mb-2 text-lg">Yesterday</h3>
+          <HistoryBatch />
+        </article>
+        <article>
+          <h3 className="mb-2 text-lg">August</h3>
           <HistoryBatch />
         </article>
       </section>
 
-      <p className="text-xs text-zinc-400 text-center py-2 mt-12 mb-6">
-        -- End --
+      <p className="text-sm text-zinc-400 text-center py-2 mt-8 mb-6">
+        -- You’ve reached the end of the list --
       </p>
     </div>
   );
