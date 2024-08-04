@@ -16,6 +16,11 @@ const categories = [
     // money always GOES out of wallet
   },
   {
+    key: "funding",
+    label: "Deposit",
+    // money always GOES out of wallet
+  },
+  {
     key: "giftcard",
     label: "GiftCard",
     // money COMES or GOES of wallet
@@ -67,6 +72,8 @@ export default function CategorySelect({
       selectedKeys={values}
       className="w-full lg:max-w-[40%] grow"
       onSelectionChange={setValues} 
+      variant="underlined"
+      classNames={{ label: "mb-4" }}
       startContent={<PieChart className="size-4 text-warning me-1" />}
     >
       {categories.map((animal) => (
