@@ -46,7 +46,7 @@ export default function QuickWalletActions() {
       <Button
         as={Link}
         variant="light"
-        href="/dashboard#investment-portfolio"
+        href="/transactions"
         radius="sm"
         size="md"
         className="h-auto gap-x-4 grid justify-center items-center text-center hover:!bg-transparent hover:text-primary-800 gap-y-1 lg:gap-y-1.5 text-zinc-400 font-medium text-xs"
