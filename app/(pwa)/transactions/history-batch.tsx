@@ -14,7 +14,7 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
-import { HandshakeIcon } from "lucide-react";
+import { HandshakeIcon, Plus } from "lucide-react";
 import icons from "currency-icons";
 import clsx from "clsx";
 
@@ -22,7 +22,7 @@ const columns = [
   { name: "", uid: "visuals" },
   { name: "Mobile Brief", uid: "mobile-brief" },
   { name: "Mobile Figures", uid: "mobile-figures" },
-  { name: "Name", uid: "name" },
+  { name: "", uid: "name" },
   { name: "Amount", uid: "amount" },
   { name: "Flow", uid: "flow" },
   { name: "Status", uid: "status" },
@@ -103,56 +103,56 @@ export default function HistoryBatch() {
     switch (columnKey) {
       case "visuals":
         return (
-          <div className="flex items-center justify-center rounded-md p-3 bg-success-50 text-success w-fit">
+          <div className="flex items-center justify-center rounded-md p-3 lg:p-4 bg-success-50 text-success w-fit">
             <HandshakeIcon className="size-6" />
           </div>
         );
       case "mobile-brief":
         return (
-          <div>
-            <p className="text-sm font-meidum mb-1">Investment</p>
+          <Link href="/transactions/some-id" className="grid text-zinc">
+            <p className="text-medium font-meidum mb-1">Investment</p>
             <p className="text-xs text-zinc-400">May 20th at 9:00pm</p>
-          </div>
+          </Link>
         );
       case "mobile-figures":
         return (
-          <div className="grid gap-y-1 justify-items-end">
-            <p className="text-sm lg:text-base whitespace-nowrap">
-              + {icons["NGN"]?.symbol || "₿"} 0.0005
+          <Link
+            href="/transactions/some-id"
+            className="grid gap-y-1 justify-items-end text-zinc"
+          >
+            <p className="text-medium lg:text-base whitespace-nowrap flex items-center gap-x-2">
+              <Plus className="size-3" />
+              {icons["NGN"]?.symbol || "₿"} 5,000
             </p>
             <p className="text-xs text-success">Successful</p>
-          </div>
+          </Link>
         );
       case "name":
         return (
           <div>
-            <p className="text-sm font-meidum mb-1">Investment</p>
+            <p className="text-sm lg:text-medium mb-1">Withdrawl</p>
             <p className="text-xs text-zinc-400">May 20th at 9:00pm</p>
           </div>
         );
       case "amount":
-        return <p>50,000</p>;
+        return <p className="lg:text-medium">50,000</p>;
       case "flow":
         return <span className="text-center uppercase font-mono">In</span>;
       case "status":
         return (
           <Chip
-            className="capitalize font-medium px-2"
             color={statusColorMap[user.status]}
             size="sm"
             variant="flat"
+            radius="sm"
+            className="capitalize font-medium px-2 leading-loose"
           >
             {cellValue}
           </Chip>
         );
       case "actions":
         return (
-          <Button
-            as={Link}
-            href="/transactions/#this-is-some-id"
-            size="sm"
-            radius="lg"
-          >
+          <Button as={Link} href="/transactions/some-id" size="sm" radius="lg">
             View Details
           </Button>
         );
@@ -164,7 +164,7 @@ export default function HistoryBatch() {
   return (
     <Table
       aria-label="Example table with custom cells"
-      classNames={{ wrapper: "px-4" }}
+      classNames={{ wrapper: "p-0 bg-transparent" }}
     >
       <TableHeader columns={columns}>
         {(column) => (
@@ -175,16 +175,20 @@ export default function HistoryBatch() {
                 ? "center"
                 : "start"
             }
-            className={clsx("hidden", "lg:table-cell", {
-              "lg:hidden": ["mobile-brief", "mobile-figures"].includes(
-                column.uid
-              ),
-              "hidden lg:table-cell": ![
-                "visuals",
-                "mobile-brief",
-                "mobile-figures",
-              ].includes(column.uid as any),
-            })}
+            className={clsx(
+              "bg-content1 text-sm py-2 !rounded-b-none hidden",
+              "lg:table-cell",
+              {
+                "lg:hidden": ["mobile-brief", "mobile-figures"].includes(
+                  column.uid
+                ),
+                "hidden lg:table-cell": ![
+                  "visuals",
+                  "mobile-brief",
+                  "mobile-figures",
+                ].includes(column.uid as any),
+              }
+            )}
           >
             {column.name}
           </TableColumn>
@@ -192,7 +196,7 @@ export default function HistoryBatch() {
       </TableHeader>
       <TableBody items={history}>
         {(record) => (
-          <TableRow key={record.id} className="h-16">
+          <TableRow key={record.id} className="h-[5rem]">
             {(columnKey) => (
               <TableCell
                 className={clsx({
