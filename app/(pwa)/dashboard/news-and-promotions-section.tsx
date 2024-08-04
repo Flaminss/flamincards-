@@ -17,11 +17,14 @@ export default function NewsAndPromotionsSection() {
       <div className="flex flex-wrap lg:flex-nowrap gap-8 lg:gap-10">
         {[1, 2, 3].map((article) => {
           return (
-            <article key={article} className="flex gap-x-2 max-w-[34ch] grow">
-              <figure className="w-14 h-12 bg-zinc-800"></figure>
+            <article
+              key={article}
+              className="flex items-center gap-x-4 sm:max-w-[34ch] grow"
+            >
+              <figure className="w-16 h-12 bg-content1"></figure>
               <Link
                 href="/"
-                className="underline text-sm xl:text-base underline-offset-2"
+                className="underline text-medium xl:text-base underline-offset-2"
               >
                 Jagaban set the Nation on Haster Tonight!
               </Link>
