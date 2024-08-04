@@ -1,13 +1,10 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Select, SelectItem, Selection } from "@nextui-org/react";
+import { PieChart, Scan } from "lucide-react";
 
 const categories = [
-  {
-    key: "all",
-    label: "All Categories",
-  },
   {
     key: "investment",
     label: "Investment",
@@ -24,12 +21,12 @@ const categories = [
     // money COMES or GOES of wallet
   },
   {
-    key: "bills",
+    key: "internet",
     label: "Data Bundle",
     // money always COMES into wallet
   },
   {
-    key: "bills",
+    key: "airtime",
     label: "Airtime",
     // money always COMES into wallet
   },
@@ -55,26 +52,26 @@ const categories = [
   },
 ];
 
-export default function CategorySelect() {
-  const [values, setValues] = React.useState<Selection>(new Set(["all"]));
-
+export default function CategorySelect({
+  values,
+  setValues,
+}: {
+  values: Selection;
+  setValues: React.Dispatch<React.SetStateAction<Selection>>;
+}) {
   return (
-    <div className="flex w-full max-w-xs flex-col gap-2">
-      <Select
-        label="Payment Category"
-        selectionMode="multiple"
-        placeholder="All"
-        selectedKeys={values}
-        className="max-w-xs"
-        onSelectionChange={setValues}
-      >
-        {categories.map((animal) => (
-          <SelectItem key={animal.key}>{animal.label}</SelectItem>
-        ))}
-      </Select>
-      <p className="text-small text-default-500">
-        Selected Categories: {Array.from(values).join(", ")}
-      </p>
-    </div>
+    <Select
+      label="Payment Category"
+      selectionMode="multiple"
+      placeholder="All Categories"
+      selectedKeys={values}
+      className="w-full lg:max-w-[40%] grow"
+      onSelectionChange={setValues} 
+      startContent={<PieChart className="size-4 text-warning me-1" />}
+    >
+      {categories.map((animal) => (
+        <SelectItem key={animal.key}>{animal.label}</SelectItem>
+      ))}
+    </Select>
   );
 }
