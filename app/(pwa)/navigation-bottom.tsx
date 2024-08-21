@@ -30,6 +30,7 @@ import {
   UserPlusIcon,
   Gift,
   ShieldCheckIcon,
+  CreditCard,
 } from "lucide-react";
 import { Badge, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
@@ -55,7 +56,7 @@ export default function BottomNavigationPro({
 
   const menu = [
     {
-      title: "Dashboard",
+      title: "Home",
       href: "/dashboard",
       Icon: Home,
     },
@@ -67,7 +68,7 @@ export default function BottomNavigationPro({
     {
       title: "GiftCard",
       href: "/giftcards",
-      Icon: Gift,
+      Icon: CreditCard,
     },
     {
       title: "More",
@@ -105,18 +106,19 @@ export default function BottomNavigationPro({
         return (
           <Modal
             key={`${href}#${index}`}
-            backdrop="blur"
+            backdrop="opaque"
             isOpen={sendableTokenSelectOpened}
-            className="cardBackground h-auto"
+            className="shadow-lg cardBackground max-h-[400px] !rounded-lg"
             radius="lg"
-            size="full"
             classNames={{
               backdrop: "z-[20000] md:hidden",
-              wrapper: "z-[20000] md:hidden",
-              base: "rounded-b-none",
+              wrapper:
+                "z-[20000] md:hidden w-full px-4 pb-3.5  max-w-xl mx-auto",
             }}
             shadow="lg"
+            size="full"
             placement="bottom"
+            shouldBlockScroll={false}
             onOpenChange={onSendableTokenSelectChange}
             motionProps={{
               variants: {
@@ -143,9 +145,9 @@ export default function BottomNavigationPro({
             <ModalContent>
               {(onClose) => (
                 <>
-                  {/* <ModalBody className="py-4 px-4 gap-y-3"> */}
-                  <ModalBody className="py-4 px-4 flex flex-row flex-wrap gap-4">
-                    {list?.map(
+                  <ModalBody className="py-4 px-4 gap-y-3">
+                    {/* <ModalBody className="py-4 px-4 flex flex-row flex-wrap gap-4"> */}
+                    {/* {list?.map(
                       ({ label, Icon, href, description, disabled }) => {
                         return (
                           <Button
@@ -175,8 +177,8 @@ export default function BottomNavigationPro({
                           </Button>
                         );
                       }
-                    )}
-                    {/* {list?.map(
+                    )} */}
+                    {list?.map(
                       ({ label, Icon, href, description, disabled }) => {
                         return (
                           <Button
@@ -184,12 +186,15 @@ export default function BottomNavigationPro({
                             key={href}
                             href={href}
                             size="lg"
-                            variant="light"
+                            variant="flat"
+                            fullWidth
                             isDisabled={disabled}
-                            className="text-white text-medium rounded-lg gap-x-4 justify-normal px-3.5 py-3 h-auto"
+                            className="text-white text-sm rounded-lg gap-x-4 justify-normal ps-2 py-2 pe-3.5 h-auto"
                             onClick={() => closeSubMenu()}
                             startContent={
-                              <Icon className="size-6 text-primary.. shrink-0" />
+                              <span className="p-3 bg-primary-50 rounded-xl">
+                                <Icon className="size-5 text-primary shrink-0" />
+                              </span>
                             }
                             endContent={
                               <ChevronsRight className="ms-auto size-4 shrink-0" />
@@ -208,7 +213,7 @@ export default function BottomNavigationPro({
                           </Button>
                         );
                       }
-                    )} */}
+                    )}
                   </ModalBody>
                   <ModalFooter className="px-4">
                     <Button
@@ -235,10 +240,10 @@ export default function BottomNavigationPro({
         classNames={{
           base: "!z-[10000]",
           cursor: "hidden",
-          tab: "h-auto pt-2.5 max-w-32",
+          tab: "h-auto pt-2 px-0 max-w-28",
           tabList: clsx(
             classNames?.list,
-            "flex p-1.5 gap-4 sm:gap-x-8 justify-center"
+            "flex p-1.5 gap-2 px-4 sm:gap-x-8 justify-center pb-2 border-b-none"
           ),
           tabContent: "group-data-[selected=true]:text-primary-500",
           panel: "p-0",
@@ -255,10 +260,10 @@ export default function BottomNavigationPro({
                     if (!list) return;
                     openSendableTokenSelect();
                   }}
-                  className="text-center text-xs grid gap-x-2 justify-center items-center space-y-1.5 grow max-w-[4ch]"
+                  className="text-center grid gap-x-2 justify-center items-center space-y-1.5 grow max-w-[3ch]"
                 >
                   <Icon className="mx-auto" />
-                  <span>{title}</span>
+                  <span className="text-xs">{title}</span>
                 </div>
               }
             ></Tab>
