@@ -126,10 +126,10 @@ export default function Wallet() {
 
   return (
     <section className="grid gap-y-2 grow">
-      <div className="cardBackground border rounded-t-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-5 pb-6 justify-center mx-auto">
+      <div className="cardBackground border rounded-t-xl flex flex-col lg:max-w-lg grow w-full shrink-0 lg:shrink p-4 pb-6 justify-center mx-auto">
         <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
           Good morning,
-          <span className="text-white text-base">
+          <span className="text-white pt-1 text-sm">
             Mr. {user.lastname} {user.firstname}
           </span>
         </h3>
@@ -141,7 +141,7 @@ export default function Wallet() {
               Total Balance
             </span>
             <span
-              className={clsx("text-4xl font-medium", {
+              className={clsx("text-4xl", {
                 blur: !balanceVisible,
               })}
             >
@@ -174,13 +174,12 @@ export default function Wallet() {
             value={7}
             maxValue={30}
             color="warning"
-            valueLabel={`${icons["NGN"]?.symbol || "#"} 40,000`}
+            // valueLabel={`${icons["NGN"]?.symbol || "#"} 40,000`}
+            // showValueLabel={true}
+            valueLabel={<span className="text-primary text-xs font-medium">View Details</span>}
             showValueLabel={true}
             className="w-full"
           />
-          <span className="px-1 grid place-content-center text-zinc-400 hover:text-primary">
-            <ChevronsRightIcon className="size-4" />
-          </span>
         </Link>
 
         {/* <ButtonGroup
@@ -217,7 +216,7 @@ export default function Wallet() {
         </ButtonGroup> */}
       </div>
 
-      <div className="cardBackground border rounded-b-xl flex flex-col max-w-xl lg:max-w-lg grow w-full shrink-0 lg:shrink p-3 sm:ptb-1.5 mx-auto">
+          <div className="cardBackground border rounded-b-xl flex flex-col lg:max-w-lg grow w-full shrink-0 lg:shrink px-2 py-4 mx-auto">
         <QuickWalletActions />
       </div>
 
