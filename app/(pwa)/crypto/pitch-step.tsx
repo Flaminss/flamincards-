@@ -22,11 +22,13 @@ import {
 } from "@nextui-org/react";
 import {
   ArrowLeftRightIcon,
+  BadgeDollarSignIcon,
   CheckCircleIcon,
   ChevronRight,
   CopyIcon,
   DollarSign,
   SearchIcon,
+  WalletIcon,
 } from "lucide-react";
 import { NG } from "country-flag-icons/react/3x2";
 
@@ -60,9 +62,9 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
       <div className="flex flex-col gap-y-2 my-6">
         <Card className="rounded-lg max-w-none shadow-lg bg-zinc-800 border">
           <CardBody className="p-6">
-            <div className="flex items-center justify-between mb-1.5">
+            <div className="flex items-center justify-between mb-1">
               <p className="text-sm text-gray-300">I am Sending</p>
-              <p className="text-sm text-primary-600">Min: 0.5</p>
+              <p className="text-xs text-primary">Min: 0.0001</p>
             </div>
             <div className="flex items-center gap-x-16">
               <div className="flex items-center gap-2">
@@ -86,27 +88,29 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
                 </Button>
 
                 <Modal
-                  backdrop="blur"
+                  backdrop="opaque"
                   isOpen={sendableTokenSelectOpened}
                   classNames={{
                     backdrop: "z-[100]",
                     wrapper: "z-[110]",
-                    base: "border max-h-[min(80vh,_500px)]",
+                    base: "border max-h-[min(80vh,_400px)]",
                   }}
+                  hideCloseButton
                   shadow="lg"
+                  placement="center"
                   onOpenChange={onSendableTokenSelectChange}
                   motionProps={{
                     variants: {
                       enter: {
-                        y: 0,
+                        scale: 1,
                         opacity: 1,
                         transition: {
-                          duration: 0.3,
+                          duration: 0.2,
                           ease: "easeOut",
                         },
                       },
                       exit: {
-                        y: -20,
+                        scale: 0.95,
                         opacity: 0,
                         transition: {
                           duration: 0.2,
@@ -119,11 +123,8 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
                   <ModalContent>
                     {(onClose) => (
                       <>
-                        <ModalHeader className="flex flex-col gap-1 py-6">
-                          <h4 className="text-2xl mb-4">
-                            Select Token to{" "}
-                            <span className="text-danger-400">Send</span>
-                          </h4>
+                        <ModalHeader className="flex flex-col gap-1 p-4">
+                          {/* <h4 className="text-2xl mb-4">Cryptocurrency List</h4> */}
                           <Input
                             isClearable
                             radius="lg"
@@ -150,7 +151,7 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
                               ],
                             }}
                             size="lg"
-                            placeholder="Search by token name..."
+                            placeholder="Search by coin or token name..."
                             startContent={
                               <SearchIcon
                                 className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0 me-1"
@@ -159,18 +160,34 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
                             }
                           />
                         </ModalHeader>
-                        <ModalBody>
+                        <ModalBody className="px-2">
                           <Listbox
                             aria-label="User Menu"
-                            onAction={(key) => alert(key)}
-                            className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-content1 max-w-[300px] overflow-visible shadow-small rounded-medium"
+                            onAction={(key) => onSendableTokenSelectChange()}
+                            className="shadow-none p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-content1 overflow-visible rounded-medium"
                             itemClasses={{
-                              base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
+                              base: "px-3 rounded-lg gap-3 h-12 data-[hover=true]:bg-default-100/80",
                             }}
                           >
-                            {[1, 2, 3, 4, 5, 6, 7, 8].map((token) => {
+                            {[
+                              "Dogs",
+                              "PIXL",
+                              "NOT",
+                              "TON",
+                              "BTC",
+                              "SOL",
+                              "ETH",
+                              "HMSTR",
+                            ].map((token) => {
                               return (
-                                <ListboxItem key="issues">{token}</ListboxItem>
+                                <ListboxItem
+                                  key="token"
+                                  startContent={
+                                    <BadgeDollarSignIcon className="size-6" />
+                                  }
+                                >
+                                  {token}
+                                </ListboxItem>
                               );
                             })}
                           </Listbox>
@@ -194,27 +211,33 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
                   </ModalContent>
                 </Modal>
               </div>
-              <Input
-                type="number"
-                placeholder="0.00"
-                className="ms-auto min-w-none"
-                radius="sm"
-                fullWidth={false}
-                classNames={{
-                  input: [
-                    "text-end text-white text-3xl font-semibold",
-                    "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
-                  ],
-                  inputWrapper: "pe-0",
-                }}
-                startContent={
-                  <div className="pointer-events-none flex items-center">
-                    <span className="text-default-400 text-small">
-                      {icons["USDT"]?.symbol || ""}
-                    </span>
-                  </div>
-                }
-              />
+              <div className="grid items-end place-items-end gap-y-2">
+                <Input
+                  type="number"
+                  placeholder="0.00"
+                  className="ms-auto min-w-none"
+                  radius="sm"
+                  fullWidth={false}
+                  classNames={{
+                    input: [
+                      "text-end text-white text-3xl font-semibold",
+                      "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
+                    ],
+                    inputWrapper: "pe-0",
+                  }}
+                  startContent={
+                    <div className="pointer-events-none flex items-center">
+                      <span className="text-default-400 text-small">
+                        {icons["USDT"]?.symbol || ""}
+                      </span>
+                    </div>
+                  }
+                />
+                <p className="text-sm text-zinc-400 whitespace-nowrap flex items-center gap-x-1">
+                  <WalletIcon className="size-3" />
+                  Balance: N25,000
+                </p>
+              </div>
             </div>
           </CardBody>
         </Card>
@@ -224,17 +247,23 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
             <div className="flex items-center">
               <NG className="w-8 h-8" />
               <Button
-                onPress={openReceivableTokenSelect}
+                // onPress={openReceivableTokenSelect}
                 variant="light"
                 className="w-auto h-auto"
-                endContent={
-                  <ChevronRight className="shrink-0 w-auto" size={16} />
-                }
+                // endContent={
+                //   <ChevronRight className="shrink-0 w-auto" size={16} />
+                // }
               >
                 <h5 className="text-2xl font-medium">NGN</h5>
               </Button>
 
-              <h5 className="ms-auto font-semibold text-3xl">42,00.01</h5>
+              <div className="ms-auto place-items-end grid gap-y-2">
+                <h5 className="font-semibold text-3xl">42,00.01</h5>
+                <p className="text-sm text-zinc-400 whitespace-nowrap flex items-center gap-x-1">
+                  <WalletIcon className="size-3" />
+                  New Balance: N25,000
+                </p>
+              </div>
 
               <Modal
                 backdrop="blur"
@@ -346,22 +375,25 @@ export default function CryptoSalePaymentStep({ title }: { title: string }) {
               </Modal>
             </div>
           </CardBody>
-          <CardFooter className="card-footer flex-col gap-y-4 w-full border-t">
-            <p className="flex items-center content-center justify-center text-center gap-x-2 text-warning-600 font-seminold text-medium">
+          <CardFooter className="card-footer flex-col gap-y-4 w-full border-t py-6">
+            <p className="flex gap-x-2 font-seminold text-sm">
               %{" "}
               <span className="flex gap-x-2 items-center">
-                1 USD <ArrowLeftRightIcon size={18} /> 1400 NGN
+                1 USD <ArrowLeftRightIcon className="size-4" /> 1400 NGN
               </span>{" "}
               %
             </p>
-
-            <ul className="self-start text-sm text-gray-400 py-2 w-full hidden">
-              <li>✔ Secure payments</li>
-              <li>{`🤑 New balance: ${icons["NGN"]?.symbol}25,728.00`}</li>
-              <li>⚡ Average Release Time: 2 minutes</li>
-            </ul>
           </CardFooter>
         </Card>
+
+        <div className="card mt-4 w-full rounded-lg px-4 py-2 max-w-none">
+          <div className="cardBody">
+            <ul className="self-start text-sm text-gray-400 py-2 w-full grid gap-y-1.5">
+              <li>✔ Secure payments</li>
+              <li>⚡ Average Release Time: 2 minutes</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <Button
         radius="sm"
