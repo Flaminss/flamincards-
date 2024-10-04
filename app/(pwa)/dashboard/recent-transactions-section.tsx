@@ -3,6 +3,9 @@ import { Button } from "@nextui-org/react";
 import icons from "currency-icons";
 import Link from "next/link";
 import PWASectionTitle from "../section-title";
+import RecentTransactionItem, {
+  TransactionType,
+} from "./recent-transactions-item";
 
 export default function RecentTransactionsSection() {
   return (
@@ -21,40 +24,26 @@ export default function RecentTransactionsSection() {
         </Button>
       </header>
       <article className="flex flex-col gap-y-5">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center rounded-md p-3 bg-success-50 text-success">
-              <HandshakeIcon className="size-5" />
-            </div>
-            <div>
-              <p className="text-sm font-meidum mb-1">Investment</p>
-              <p className="text-xs text-zinc-400">May 20th at 9:00pm</p>
-            </div>
-          </div>
-          <div className="grid justify-items-end">
-            <p className="text-medium lg:text-base whitespace-nowrap">
-              + {icons["NGN"]?.symbol || "₿"}0.0005
-            </p>
-            <p className="text-xs text-success">Successful</p>
-          </div>
-        </div>
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center rounded-md p-3 bg-secondary-50 text-secondary">
-              <Landmark className="size-5" />
-            </div>
-            <div>
-              <p className="text-sm font-meidum mb-1">Withdrawal</p>
-              <p className="text-xs text-zinc-400">May 20th at 05:50am</p>
-            </div>
-          </div>
-          <div className="grid justify-items-end">
-            <p className="text-medium lg:text-base whitespace-nowrap">
-              - {icons["NGN"]?.symbol || "#"}10,000.00
-            </p>
-            <p className="text-xs text-danger">Failed</p>
-          </div>
-        </div>
+        {[
+          {
+            id: "#293ko3uo2kj3",
+            type: "Investment" as TransactionType,
+            date: new Date(),
+            amount: 500,
+            flow: "in" as const,
+            status: "successful",
+          },
+          {
+            id: "#293ko3uo2kj32e",
+            type: "Withdrawl" as TransactionType,
+            date: new Date(),
+            amount: 2000,
+            flow: "out" as const,
+            status: "successful",
+          },
+        ].map((transaction) => {
+          return <RecentTransactionItem {...transaction} />;
+        })}
       </article>
     </section>
   );
