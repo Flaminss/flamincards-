@@ -45,7 +45,7 @@ export default function RecentTransactionItem({
 
   const renderTransactionIcon = (type: TransactionType) => {
     const Icon = transactionTypeToIconMap[type] || CheckCircle2Icon;
-    return <Icon className="size-5" />;
+    return <Icon className="size-5.5" />;
   };
 
   return (
@@ -54,11 +54,11 @@ export default function RecentTransactionItem({
       className="flex items-center justify-between gap-4"
     >
       <div className="flex items-center gap-3">
-        <div className="flex items-center justify-center rounded-md p-3 bg-success-50 text-success">
+        <div className="flex items-center justify-center rounded-md p-2.5 bg-success-50 text-success">
           {renderTransactionIcon(type)}
         </div>
         <div>
-          <p className="text-sm font-medium mb-.5 text-zinc-100">{generateTitle(type)}</p>
+          <p className="text-sm font-medium mb-1 text-zinc-100">{generateTitle(type)}</p>
           <p className="text-xs text-zinc-400">{date.toUTCString()}</p>
         </div>
       </div>
