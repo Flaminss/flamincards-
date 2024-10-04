@@ -56,7 +56,7 @@ export default function BottomNavigationPro({
 
   const menu = [
     {
-      title: "Home",
+      title: "Dashboard",
       href: "/dashboard",
       Icon: Home,
     },
