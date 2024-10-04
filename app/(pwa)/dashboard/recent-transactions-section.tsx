@@ -26,7 +26,7 @@ export default function RecentTransactionsSection() {
       <article className="flex flex-col gap-y-5">
         {[
           {
-            id: "#293ko3uo2kj3",
+            id: "293ko3uo2kj3",
             type: "Investment" as TransactionType,
             date: new Date(),
             amount: 500,
@@ -34,7 +34,7 @@ export default function RecentTransactionsSection() {
             status: "successful",
           },
           {
-            id: "#293ko3uo2kj32e",
+            id: "293ko3uo2kj32e",
             type: "Withdrawl" as TransactionType,
             date: new Date(),
             amount: 2000,
