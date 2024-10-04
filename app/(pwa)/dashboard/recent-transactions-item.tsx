@@ -54,20 +54,20 @@ export default function RecentTransactionItem({
       className="flex items-center justify-between gap-4"
     >
       <div className="flex items-center gap-3">
-        <div className="flex items-center justify-center rounded-md p-2.5 bg-success-50 text-success">
+        <div className="flex items-center justify-center rounded-md p-3 bg-success-50 text-success">
           {renderTransactionIcon(type)}
         </div>
         <div>
-          <p className="text-sm font-meidum mb-1">{generateTitle(type)}</p>
+          <p className="text-sm font-medium mb-.5 text-zinc-100">{generateTitle(type)}</p>
           <p className="text-xs text-zinc-400">{date.toUTCString()}</p>
         </div>
       </div>
       <div className="grid justify-items-end">
-        <p className="text-medium lg:text-base whitespace-nowrap">
+        <p className="text-md text-medium lg:text-base whitespace-nowrap text-zinc-100">
           {getFlowIcon(flow)} {getCUrrencyIcon()}
           {amount}
         </p>
-        <p className="text-xs text-success">{status}</p>
+        <p className="text-sm text-success capitalize">{status}</p>
       </div>
     </Link>
   );
