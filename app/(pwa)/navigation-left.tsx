@@ -182,6 +182,16 @@ export default function NavigationLeft({ className }: { className?: any }) {
               </Chip> */}
             </ListboxItem>
             <ListboxItem
+              key="giftcards"
+              href="/giftcards"
+              classNames={{
+                title: "text-medium ps-1",
+              }}
+              startContent={<GiftIcon className="text-lg " />}
+            >
+              Giftcards Store
+            </ListboxItem>
+            <ListboxItem
               key="transactions"
               href="/transactions"
               classNames={{
@@ -260,7 +270,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               size="md"
               radius="sm"
               fullWidth
-              className="text-start"
+              className="h-[unset] py-1.5 text-start"
               href="/#faq"
               endContent={
                 <ChevronRight size={16} className="ms-auto text-gray-600" />
@@ -273,7 +283,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               size="md"
               radius="sm"
               fullWidth
-              className="text-start"
+              className="h-[unset] py-1.5 text-start"
               endContent={
                 <ChevronRight size={16} className="ms-auto text-gray-600" />
               }
@@ -285,7 +295,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               size="md"
               radius="sm"
               fullWidth
-              className="text-start"
+              className="h-[unset] py-1.5 text-start"
               endContent={
                 <ChevronRight size={16} className="ms-auto text-gray-600" />
               }
