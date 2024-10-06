@@ -41,8 +41,8 @@ export default function RecentTransactionsSection() {
             flow: "out" as const,
             status: "successful",
           },
-        ].map((transaction) => {
-          return <RecentTransactionItem {...transaction} />;
+        ].map((transaction, index) => {
+          return <RecentTransactionItem key={index+transaction.id} {...transaction} />;
         })}
       </article>
     </section>
