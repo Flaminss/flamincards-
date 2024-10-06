@@ -1,3 +1,5 @@
+[X] fix routing of recent transactions details item to transaction page
+
 [] search for card with name 
 [] allow sorting of cards by defined criterias
 [] design confirmation page for giftcard sell-page/action
@@ -5,8 +7,12 @@
 [] add close button to filter input of giftcard type
 [] add icons or color code to giftcard status filter input 
 [] add icons to giftcard flow filter input 
-[] reduce icon size of transaction details list item
-[] fix routing of recent transactions details item to transaction page
 
-[] center the tab section in transaction details page 
-[] reduce font size of transaction details page 
+
+[X] reduce icon size of transaction details list item
+[X] center the tab section in transaction details page 
+[X] reduce font size of transaction details page 
+
+
+FIXES
+[] Sync select and component state of filter options
