@@ -55,7 +55,7 @@ export default function TransactionDetails() {
       </header>
 
       <section className="px-4 py-6 max-w-xl">
-        <Card className="overflow-visible mb-6">
+        <Card className="overflow-visible mb-8">
           <CardBody className="items-center justify-items-center py-6 px-4 grid gap-y-6 overflow-visible">
             <div className="-mt-10">
               <Chip
@@ -75,21 +75,25 @@ export default function TransactionDetails() {
               <h4 className="hidden text-sm sm:text-medium text-zinc-400">
                 Withdrawl
               </h4>
-              <h4 className="text-4xl lg:text-4xl">+ $ 2,000</h4>
+              <h4 className="text-4xl lg:text-4xl">+ $2,000</h4>
             </div>
-            <p className="flex text-nowrap text-sm gap-x-2 items-center text-zinc-400">
+            <p className="flex text-nowrap gap-x-2 items-center text-zinc-400">
               <CheckCircle className="text-success size-4" />
               Successful
             </p>
           </CardBody>
         </Card>
 
-        <Tabs aria-label="Options" classNames={{ base: "w-full" }}>
+        <Tabs
+          aria-label="Options"
+          classNames={{ base: "w-full", tabList: "w-full max-w-sm mx-auto" }}
+          size="lg"
+        >
           <Tab key="details" title="Details" className="grid gap-y-6">
             <Card>
               <CardHeader>Summary</CardHeader>
-              <CardBody>
-                <ul className="grid gap-y-4">
+              <CardBody className="text-sm">
+                <ul className="grid gap-y-3">
                   <li className="flex justify-between gap-x-6 items-center text-zinc-400">
                     ID:{" "}
                     <div className="flex gap-x-2">
@@ -112,7 +116,7 @@ export default function TransactionDetails() {
                       {transaction.fees.toFixed(2)}
                     </span>
                   </li>
-                  <li className="flex justify-between gap-x-6 border-t border-dashed mt-4 pt-4 pb-2.5 items-center text-zinc-400">
+                  <li className="flex justify-between gap-x-6 border-t border-dashed mt-4 pt-5 pb-2.5 items-center text-zinc-400">
                     Total Amount: $
                     <span className="text-white">
                       {transaction.totalAmount.toFixed(2)}
@@ -121,54 +125,9 @@ export default function TransactionDetails() {
                 </ul>
               </CardBody>
             </Card>
-            <Card>
-              <CardHeader>Receiver Bank Details</CardHeader>
-              <CardBody>
-                <ul className="grid gap-y-4">
-                  <li className="flex justify-between gap-x-6 items-center text-zinc-400">
-                    Bank:{" "}
-                    <div className="flex gap-x-2">
-                      <span className="text-white">{transaction.id}</span>{" "}
-                      <Copy className="size-4 text-zinc-400" />
-                    </div>
-                  </li>
-                  <li className="flex justify-between gap-x-6 items-center text-zinc-400">
-                    Account Number:{" "}
-                    <span className="text-white">{transaction.date}</span>
-                  </li>
-                  <li className="flex justify-between gap-x-6 items-center text-zinc-400">
-                    Name ($):
-                    <span className="text-white">
-                      {transaction.amount.toFixed(2)}
-                    </span>
-                  </li>
-                </ul>
-              </CardBody>
-            </Card>
-
-            <div className="grid gap-2">
-              <Card>
-                <CardHeader>
-                  <h5>Sender</h5>
-                </CardHeader>
-                <CardBody>
-                  <span>Name: {transaction.sender.name}</span>
-                  <span>Account: {transaction.sender.account}</span>
-                </CardBody>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <h5>Receiver</h5>
-                </CardHeader>
-                <CardBody>
-                  <span>Name: {transaction.receiver.name}</span>
-                  <span>Account: {transaction.receiver.account}</span>
-                </CardBody>
-              </Card>
-            </div>
 
             <Card>
-              <CardBody>
+              <CardBody className="text-center justify-center p-4">
                 <p className="text-zinc-300 mb-4 font-light">
                   Any complaints or questions about this transaction?
                 </p>
@@ -178,7 +137,7 @@ export default function TransactionDetails() {
                   radius="sm"
                   onClick={handleTroubleshootClick}
                   startContent={<Headphones className="size-4" />}
-                  className="font-medium w-fit"
+                  className="font-medium w-fit mx-auto"
                 >
                   Customer Support
                 </Button>
