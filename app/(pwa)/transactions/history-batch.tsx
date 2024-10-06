@@ -103,8 +103,8 @@ export default function HistoryBatch() {
     switch (columnKey) {
       case "visuals":
         return (
-          <div className="flex items-center justify-center rounded-md p-3 lg:p-4 bg-success-50 text-success w-fit">
-            <HandshakeIcon className="size-6" />
+          <div className="flex items-center justify-center rounded-md p-3 bg-success-50 text-success w-fit">
+            <HandshakeIcon className="size-5" />
           </div>
         );
       case "mobile-brief":
@@ -130,7 +130,7 @@ export default function HistoryBatch() {
       case "name":
         return (
           <div>
-            <p className="text-sm lg:text-medium mb-1">Withdrawl</p>
+            <p className="text-sm mb-1">Withdrawl</p>
             <p className="text-xs text-zinc-400">May 20th at 9:00pm</p>
           </div>
         );
