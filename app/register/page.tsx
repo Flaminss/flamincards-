@@ -6,9 +6,29 @@ import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
 import { MailPlus } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
+import { useUserContext } from "../user-session-provider";
+import { AppwriteException } from "appwrite";
 
 export default function RegisterPage() {
   const [eligible, setEligible] = useState(false);
+  const userContext = useUserContext();
+
+  const email = "oghenetefa@gmail.cmo";
+  const password = "password1";
+
+  const handleRegisteration = async () => {
+    try {
+      const registeredUser = await userContext.register(email, password);
+      console.log("registered user: ", registeredUser);
+    } catch (exception) {
+      if (exception instanceof AppwriteException) {
+        const { type, message } = exception;
+        console.log("excep msg: ", message);
+      } else {
+        throw exception;
+      }
+    }
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
@@ -51,7 +71,8 @@ export default function RegisterPage() {
               fullWidth
               radius="sm"
               size="lg"
-              onClick={() => setEligible(true)}
+              // onClick={() => setEligible(true)}
+              onPress={() => handleRegisteration()}
             >
               Complete your Profile
             </Button>
