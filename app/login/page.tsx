@@ -1,10 +1,52 @@
 "use client";
 
-import { UserCircle } from "lucide-react";
+import { useState } from "react";
+import {
+  AlertCircle,
+  AlertCircleIcon,
+  UserCircle,
+  XCircleIcon,
+  XIcon,
+} from "lucide-react";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
 import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
+import { useUserContext } from "../user-session-provider";
+import { AppwriteException } from "appwrite";
+
+const exceptionTypeToStatus = {
+  user_invalid_credentials: "danger",
+} as any;
 
 export default function LoginPage() {
+  const user = useUserContext();
+
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const email = "oghenetefa@gmail.com";
+  const password = "safeadminpassword";
+
+  const [error, setError] = useState<null | {
+    status: string;
+    message: string;
+  }>(null);
+
+  const handleLogin = async () => {
+    try {
+      await user.login(email, password);
+    } catch (exception) {
+      if (exception instanceof AppwriteException) {
+        const { type, message } = exception;
+        setError({ status: exceptionTypeToStatus[type], message });
+      } else {
+        throw exception;
+      }
+    }
+  };
+
+  const acknowledgeError = () => {
+    setError(null);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-black">
       <AuthFlowNavigationTop
@@ -34,6 +76,21 @@ export default function LoginPage() {
           </header>
 
           <form className="pt-10">
+            {error === null ? null : (
+              <div className="mb-10 p-3 gap-x-4 flex items-center border border-danger-200 w-full">
+                <AlertCircle className="size-6 text-danger-300" />
+                <p className="text-sm font-medium text-danger-950">
+                  {error.message}
+                </p>
+                <button
+                  className="ms-auto btn btn-circle size-8"
+                  onClick={() => acknowledgeError()}
+                >
+                  <XIcon className="size-4" />
+                </button>
+              </div>
+            )}
+
             <div className="grid gap-y-6 mb-10">
               <Input radius="sm" variant="flat" label="Email" />
               <Input
@@ -69,7 +126,7 @@ export default function LoginPage() {
                 size="lg"
                 className="mb-2"
                 as={Link}
-                href="/dashboard"
+                onPress={() => handleLogin()}
               >
                 Login
               </Button>
