@@ -19,7 +19,8 @@ interface UserType {
   current: User | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  register: (email: string, password: string) => Promise<User>;
+  // register: (email: string, password: string) => Promise<User>;
+  register: (email: string, password: string) => any;
 }
 
 const UserContext = createContext<UserType | undefined>(undefined);
@@ -53,7 +54,7 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   };
 
   const register = async (email: string, password: string) => {
-    return account.create(ID.unique(), email, password);
+    await account.create(ID.unique(), email, password);
   };
 
   const init = async () => {

@@ -51,7 +51,8 @@
     "tailwind-extended-shadows": "^0.4.0",
     "tailwind-merge": "^2.3.0",
     "tailwind-variants": "^0.1.20",
-    "tailwindcss": "3.4.3"
+    "tailwindcss": "3.4.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "encoding": "^0.1.13",

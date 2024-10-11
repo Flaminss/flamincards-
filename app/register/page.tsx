@@ -8,27 +8,64 @@ import { useState } from "react";
 import clsx from "clsx";
 import { useUserContext } from "../user-session-provider";
 import { AppwriteException } from "appwrite";
+import { redirect, useRouter } from "next/navigation";
+import { z } from "zod";
+
+const registrationFormSchema = z
+  .object({
+    email: z.string().email("Invalid email address"),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters long." })
+      .regex(/[A-Z]/, {
+        message: "Password must contain at least one uppercase letter.",
+      })
+      .regex(/[a-z]/, {
+        message: "Password must contain at least one lowercase letter.",
+      })
+      .regex(/[0-9]/, { message: "Password must contain at least one number." })
+      .regex(/[\W_]/, {
+        message: "Password must contain at least one special character.",
+      }),
+  })
+  .refine((data: any) => data.password === data.retypedPassword, {
+    message: "Passwords do not match.",
+    path: ["retypedPassword"],
+  });
 
 export default function RegisterPage() {
-  const [eligible, setEligible] = useState(false);
+  const router = useRouter();
   const userContext = useUserContext();
+  const [eligible, setEligible] = useState(false);
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
-  const email = "oghenetefa@gmail.cmo";
+  const email = "test-5@gmail.cmo";
   const password = "password1";
 
   const handleRegisteration = async () => {
     try {
-      const registeredUser = await userContext.register(email, password);
-      console.log("registered user: ", registeredUser);
+      await userContext.register(email, password);
+      router.replace("email-verification");
     } catch (exception) {
       if (exception instanceof AppwriteException) {
         const { type, message } = exception;
+        console.log("type: ", type);
         console.log("excep msg: ", message);
+        if (type === "user_already_exists") {
+          setFormErrors((prevErrors) => {
+            return {
+              ...prevErrors,
+              email: [
+                "An account is already registered with this email address. Login or Reset Password",
+              ],
+            } as any;
+          });
+        }
       } else {
         throw exception;
       }
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
@@ -52,6 +89,10 @@ export default function RegisterPage() {
             </p>
           </header>
 
+          <p className="p-4 my-6 border-2 border-danger-400">
+            {formErrors?.email}
+          </p>
+
           <form className={clsx("pt-10", { hidden: eligible })}>
             <section className="grid gap-y-6 mb-10">
               <Input
@@ -74,7 +115,7 @@ export default function RegisterPage() {
               // onClick={() => setEligible(true)}
               onPress={() => handleRegisteration()}
             >
-              Complete your Profile
+              Register
             </Button>
           </form>
 
