@@ -11,6 +11,10 @@ import { AppwriteException } from "appwrite";
 import { redirect, useRouter } from "next/navigation";
 import { z } from "zod";
 
+const generalErrorMessageTemplates = {
+  unexpected: "Something unexpected happened. Its not you, its us",
+};
+
 const registrationFormSchema = z
   .object({
     email: z.string().email("Invalid email address"),
