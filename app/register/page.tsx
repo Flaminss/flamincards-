@@ -44,7 +44,7 @@ export default function RegisterPage() {
   const userContext = useUserContext();
   const [eligible, setEligible] = useState(false);
   const [formErrors, setFormErrors] = useState<{
-    [key: string]: string | null;
+    [key: string]: string[] | null;
   }>({
     _all: null,
   });
