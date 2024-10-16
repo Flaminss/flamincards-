@@ -102,29 +102,29 @@ export default function RegisterPage() {
             </p>
           </header>
 
-          <p
-            data-description="general-form-error"
-            className={clsx(
-              " flex items-center gap-x-6 p-4 my-6 border border-danger-300 bg-danger-50 rounded-sm text-sm",
-              {
-                hidden: formErrors._all === null,
-              }
-            )}
-          >
-            <span className="w-full">{formErrors?._all}</span>
-
-            <Button
-              isIconOnly
-              size="sm"
-              color="danger"
-              radius="sm"
-              onPress={clearGeneralFormError}
-            >
-              <XIcon className="size-4" />
-            </Button>
-          </p>
-
           <form className={clsx("pt-10", { hidden: eligible })}>
+            <p
+              data-description="general-form-error"
+              className={clsx(
+                " flex items-center gap-x-6 p-2.5 mb-10 border border-danger-300 bg-danger-50 rounded-lg text-sm text-danger-900",
+                {
+                  hidden: formErrors._all === null,
+                }
+              )}
+            >
+              <span className="w-full px-1">{formErrors?._all}</span>
+
+              <Button
+                isIconOnly
+                size="sm"
+                color="danger"
+                radius="sm"
+                onPress={clearGeneralFormError}
+              >
+                <XIcon className="size-4" />
+              </Button>
+            </p>
+
             <section className="grid gap-y-6 mb-10">
               <Input
                 isRequired
