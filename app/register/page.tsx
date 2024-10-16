@@ -3,7 +3,7 @@
 import { Button, DatePicker, Input, Link } from "@nextui-org/react";
 import TransactionPINInput from "../(pwa)/account/transaction-pin-input";
 import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
-import { MailPlus } from "lucide-react";
+import { MailPlus, XIcon } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
 import { useUserContext } from "../user-session-provider";
@@ -71,6 +71,15 @@ export default function RegisterPage() {
     }
   };
 
+  const clearGeneralFormError = () => {
+    setFormErrors((prevErrors) => {
+      return {
+        ...prevErrors,
+        _all: null,
+      };
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-black">
       <AuthFlowNavigationTop
@@ -95,11 +104,24 @@ export default function RegisterPage() {
 
           <p
             data-description="general-form-error"
-            className={clsx("p-4 my-6 border border-danger-300 bg-danger-50 rounded-sm text-sm", {
-              hidden: formErrors._all === null,
-            })}
+            className={clsx(
+              " flex items-center gap-x-6 p-4 my-6 border border-danger-300 bg-danger-50 rounded-sm text-sm",
+              {
+                hidden: formErrors._all === null,
+              }
+            )}
           >
-            {formErrors?._all}
+            <span className="w-full">{formErrors?._all}</span>
+
+            <Button
+              isIconOnly
+              size="sm"
+              color="danger"
+              radius="sm"
+              onPress={clearGeneralFormError}
+            >
+              <XIcon className="size-4" />
+            </Button>
           </p>
 
           <form className={clsx("pt-10", { hidden: eligible })}>
