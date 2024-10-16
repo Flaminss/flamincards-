@@ -37,7 +37,11 @@ export default function RegisterPage() {
   const router = useRouter();
   const userContext = useUserContext();
   const [eligible, setEligible] = useState(false);
-  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+  const [formErrors, setFormErrors] = useState<{
+    [key: string]: string | null;
+  }>({
+    _all: null,
+  });
 
   const email = "test-5@gmail.cmo";
   const password = "password1";
@@ -91,8 +95,9 @@ export default function RegisterPage() {
 
           <p
             data-description="general-form-error"
-            hidden={formErrors?.all ? true : false}
-            className="p-4 my-6 border-2 border-danger-400"
+            className={clsx("p-4 my-6 border-2 border-danger-400", {
+              hidden: formErrors._all === null,
+            })}
           >
             {formErrors?.email}
           </p>
