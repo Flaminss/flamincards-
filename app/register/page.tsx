@@ -40,7 +40,7 @@ export default function RegisterPage() {
   const [formErrors, setFormErrors] = useState<{
     [key: string]: string | null;
   }>({
-    _all: null,
+    _all: "Something happened. Its not you, its us",
   });
 
   const email = "test-5@gmail.cmo";
@@ -95,11 +95,11 @@ export default function RegisterPage() {
 
           <p
             data-description="general-form-error"
-            className={clsx("p-4 my-6 border-2 border-danger-400", {
+            className={clsx("p-4 my-6 border border-danger-300 bg-danger-50 rounded-sm text-sm", {
               hidden: formErrors._all === null,
             })}
           >
-            {formErrors?.email}
+            {formErrors?._all}
           </p>
 
           <form className={clsx("pt-10", { hidden: eligible })}>
