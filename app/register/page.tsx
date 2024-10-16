@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { useUserContext } from "../user-session-provider";
 import { AppwriteException } from "appwrite";
 import { redirect, useRouter } from "next/navigation";
-import { z } from "zod";
+import { z, ZodError } from "zod";
 
 const generalErrorMessageTemplates = {
   unexpected: "Something unexpected happened. Its not you, its us",
@@ -57,12 +57,25 @@ export default function RegisterPage() {
   const retypedPassword = "password1-nope";
 
   const handleRegisteration = async () => {
-    console.log('registering');
     try {
-      await userContext.register(email, password);
-      router.replace("email-verification");
+      registrationFormSchema.parse({
+        email,
+        password,
+        retypedPassword,
+      });
+      console.log('successful validation');
+      // await userContext.register(email, password);
+      // router.replace("email-verification");
     } catch (exception) {
-      if (exception instanceof AppwriteException) {
+      if (exception instanceof ZodError) {
+        console.log("zod errors: ", exception);
+        // setFormErrors((prevErrors) => {
+        //   return {
+        //     ...prevErrors,
+
+        //   }
+        // })
+      } else if (exception instanceof AppwriteException) {
         const { type, message } = exception;
         console.log("type: ", type);
         console.log("excep msg: ", message);
