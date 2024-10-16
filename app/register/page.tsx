@@ -15,6 +15,8 @@ const generalErrorMessageTemplates = {
   unexpected: "Something unexpected happened. Its not you, its us",
 };
 
+const inputErrorClassNames = "pt-1 text-sm text-red-200";
+
 const registrationFormSchema = z
   .object({
     email: z.string().email("Invalid email address"),
@@ -49,8 +51,10 @@ export default function RegisterPage() {
 
   const email = "test-5@gmail.cmo";
   const password = "password1";
+  const retypedPassword = "password1-nope";
 
   const handleRegisteration = async () => {
+    console.log('registering');
     try {
       await userContext.register(email, password);
       router.replace("email-verification");
@@ -136,9 +140,26 @@ export default function RegisterPage() {
                 type="email"
                 radius="sm"
                 label="Email"
+                isInvalid={formErrors?.email === null}
+                errorMessage={formErrors?.email}
+                classNames={{ errorMessage: inputErrorClassNames }}
               />
-              <Input radius="sm" type="password" label="Password" />
-              <Input radius="sm" type="password" label="Re-type Password" />
+              <Input
+                radius="sm"
+                type="password"
+                label="Password"
+                isInvalid={formErrors?.password === null}
+                errorMessage={formErrors?.password}
+                classNames={{ errorMessage: inputErrorClassNames }}
+              />
+              <Input
+                radius="sm"
+                type="password"
+                label="Re-type Password"
+                isInvalid={formErrors?.retypedPassword === null}
+                errorMessage={formErrors?.retypedPassword}
+                classNames={{ errorMessage: inputErrorClassNames }}
+              />
             </section>
 
             <Button
