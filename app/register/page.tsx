@@ -89,7 +89,11 @@ export default function RegisterPage() {
             </p>
           </header>
 
-          <p className="p-4 my-6 border-2 border-danger-400">
+          <p
+            data-description="general-form-error"
+            hidden={formErrors?.all ? true : false}
+            className="p-4 my-6 border-2 border-danger-400"
+          >
             {formErrors?.email}
           </p>
 
