@@ -43,6 +43,11 @@ export default function RegisterPage() {
   const router = useRouter();
   const userContext = useUserContext();
   const [eligible, setEligible] = useState(false);
+
+  const [email, setEmail] = useState("test-5@gmail.com");
+  const [password, setPassword] = useState("password");
+  const [retypedPassword, setRetypedPassword] = useState("password-nope");
+
   const [formErrors, setFormErrors] = useState<{
     [key: string]: string[] | null;
   }>({
@@ -51,10 +56,6 @@ export default function RegisterPage() {
     password: null,
     retypedPassword: null,
   });
-
-  const email = "test-5@gmail.cmo";
-  const password = "password1";
-  const retypedPassword = "password1-nope";
 
   const handleRegisteration = async () => {
     try {
@@ -156,6 +157,9 @@ export default function RegisterPage() {
                 type="email"
                 radius="sm"
                 label="Email"
+                placeholder=""
+                value={email}
+                onValueChange={setEmail}
                 isInvalid={formErrors?.email !== null}
                 errorMessage={formErrors?.email}
                 classNames={{ errorMessage: inputErrorClassNames }}
@@ -164,6 +168,8 @@ export default function RegisterPage() {
                 radius="sm"
                 type="password"
                 label="Password"
+                value={password}
+                onValueChange={setPassword}
                 isInvalid={formErrors?.password !== null}
                 errorMessage={formErrors?.password}
                 classNames={{ errorMessage: inputErrorClassNames }}
@@ -172,6 +178,9 @@ export default function RegisterPage() {
                 radius="sm"
                 type="password"
                 label="Re-type Password"
+                value={retypedPassword}
+                onValueChange={setRetypedPassword}
+                isClearable
                 isInvalid={formErrors?.retypedPassword !== null}
                 errorMessage={formErrors?.retypedPassword}
                 classNames={{ errorMessage: inputErrorClassNames }}
