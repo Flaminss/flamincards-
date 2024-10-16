@@ -47,6 +47,9 @@ export default function RegisterPage() {
     [key: string]: string[] | null;
   }>({
     _all: null,
+    email: null,
+    password: null,
+    retypedPassword: null,
   });
 
   const email = "test-5@gmail.cmo";
@@ -140,7 +143,7 @@ export default function RegisterPage() {
                 type="email"
                 radius="sm"
                 label="Email"
-                isInvalid={formErrors?.email === null}
+                isInvalid={formErrors?.email !== null}
                 errorMessage={formErrors?.email}
                 classNames={{ errorMessage: inputErrorClassNames }}
               />
@@ -148,7 +151,7 @@ export default function RegisterPage() {
                 radius="sm"
                 type="password"
                 label="Password"
-                isInvalid={formErrors?.password === null}
+                isInvalid={formErrors?.password !== null}
                 errorMessage={formErrors?.password}
                 classNames={{ errorMessage: inputErrorClassNames }}
               />
@@ -156,7 +159,7 @@ export default function RegisterPage() {
                 radius="sm"
                 type="password"
                 label="Re-type Password"
-                isInvalid={formErrors?.retypedPassword === null}
+                isInvalid={formErrors?.retypedPassword !== null}
                 errorMessage={formErrors?.retypedPassword}
                 classNames={{ errorMessage: inputErrorClassNames }}
               />
