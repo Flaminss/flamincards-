@@ -40,7 +40,7 @@ export default function RegisterPage() {
   const [formErrors, setFormErrors] = useState<{
     [key: string]: string | null;
   }>({
-    _all: "Something happened. Its not you, its us",
+    _all: null,
   });
 
   const email = "test-5@gmail.cmo";
