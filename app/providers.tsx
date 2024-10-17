@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { UserAuthContextProvider } from "./user-auth-provider";
+import { EmailValidationContextProvider } from "./verify-email/status-notice-provider";
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -17,7 +18,11 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   return (
     <NextThemesProvider {...themeProps}>
       <NextUIProvider navigate={router.push}>
-        <UserAuthContextProvider>{children}</UserAuthContextProvider>
+        <UserAuthContextProvider>
+          <EmailValidationContextProvider>
+            {children}
+          </EmailValidationContextProvider>
+        </UserAuthContextProvider>
       </NextUIProvider>
     </NextThemesProvider>
   );
