@@ -22,7 +22,7 @@ export default function LoginPage() {
   const user = useUserContext();
 
   const [email, setEmail] = useState("test-6@gmail.com");
-  const [password, setPassword] = useState("passwordnotsafe");
+  const [password, setPassword] = useState("password123");
 
   const [error, setError] = useState<null | {
     status: string;
@@ -31,12 +31,14 @@ export default function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      await user.login(email, password);
+      const res = await user.login(email, password);
+      console.log("res: ", res);
     } catch (exception) {
       if (exception instanceof AppwriteException) {
         const { type, message } = exception;
         setError({ status: exceptionTypeToStatus[type], message });
       } else {
+        console.log("exception: ", exception);
         throw exception;
       }
     }
