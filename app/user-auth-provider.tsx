@@ -14,30 +14,32 @@ interface UserInfo {
   emailVerified: boolean;
 }
 
-interface UserAuthState {
+interface UserAuth {
   current: UserInfo | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
 }
 
-const UserContext = createContext<UserAuthState | undefined>(undefined);
+const UserAuthContext = createContext<UserAuth | undefined>(undefined);
 
-export function useUserContext() {
-  const context = useContext(UserContext);
+export function useUserAuthContext() {
+  const context = useContext(UserAuthContext);
   if (!context) {
-    throw new Error("useUserContext must be used within a UserContextProvider");
+    throw new Error(
+      "useUserAuthContext must be used within a UserAuthContextProvider"
+    );
   }
   return context;
 }
 
-interface UserContextProviderProps {
+interface UserAuthContextProviderProps {
   children: ReactNode;
 }
 
-export const UserContextProvider: React.FC<UserContextProviderProps> = ({
+export default function UserAuthContextProvider({
   children,
-}) => {
+}: UserAuthContextProviderProps) {
   const [user, setUser] = useState<UserInfo | null>(null);
 
   async function login(email: string, password: string) {
@@ -76,8 +78,10 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   }, []);
 
   return (
-    <UserContext.Provider value={{ current: user, login, logout, register }}>
+    <UserAuthContext.Provider
+      value={{ current: user, login, logout, register }}
+    >
       {children}
-    </UserContext.Provider>
+    </UserAuthContext.Provider>
   );
-};
+}
