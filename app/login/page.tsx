@@ -89,7 +89,7 @@ export default function LoginPage() {
               </div>
             )}
 
-            <div className="grid gap-y-6 mb-10">
+            <div className="grid gap-y-4 mb-10">
               <Input
                 radius="sm"
                 variant="flat"
@@ -105,18 +105,19 @@ export default function LoginPage() {
                 value={password}
                 onValueChange={setPassword}
               />
-              <div className="flex justify-between items-center gap-x-6">
+              <div className="flex justify-between items-center gap-x-6 py-1.5">
                 <Checkbox
-                  size="md"
-                  radius="full"
+                  size="sm"
+                  radius="sm"
                   color="primary"
+                  className="ps-2.5"
                   classNames={{ label: "text-zinc-200" }}
                 >
                   Remember me
                 </Checkbox>
                 <Link
                   href="/recover-password"
-                  className="text-medium font-medium text-primary"
+                  className="text-sm font-medium text-primary"
                 >
                   Forgot password
                 </Link>
