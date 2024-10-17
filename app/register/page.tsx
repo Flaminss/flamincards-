@@ -1,12 +1,12 @@
 "use client";
 
 import { Button, DatePicker, Input, Link } from "@nextui-org/react";
-import TransactionPINInput from "./(pwa)/account/transaction-pin-input";
-import AuthFlowNavigationTop from "./(pwa)/auth-flow-navigation-top";
+import TransactionPINInput from "../(pwa)/account/transaction-pin-input";
+import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
 import { MailPlus, XIcon } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
-import { useUserContext } from "./user-session-provider";
+import { useUserContext } from "../user-session-provider";
 import { AppwriteException } from "appwrite";
 import { redirect, useRouter } from "next/navigation";
 import { TypeOf, z, ZodError } from "zod";
