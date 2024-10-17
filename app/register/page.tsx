@@ -81,7 +81,7 @@ export default function RegisterPage() {
         retypedPassword,
       });
       await userContext.register(email, password);
-      router.replace("/email-verification");
+      router.replace("/verify-email");
     } catch (exception) {
       if (exception instanceof ZodError) {
         type RegistrationForm = z.infer<typeof registrationFormSchema>;
