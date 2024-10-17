@@ -6,7 +6,7 @@ import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
 import { MailPlus, XIcon } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
-import { useUserContext } from "../user-session-provider";
+import { useUserAuthContext } from "../user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { redirect, useRouter } from "next/navigation";
 import { TypeOf, z, ZodError } from "zod";
@@ -57,7 +57,7 @@ const registrationFormSchema = z
 
 export default function RegisterPage() {
   const router = useRouter();
-  const userContext = useUserContext();
+  const userAuthContext = useUserAuthContext();
   const [eligible, setEligible] = useState(false);
 
   const [email, setEmail] = useState("test-5@gmail.com");
@@ -80,7 +80,7 @@ export default function RegisterPage() {
         password,
         retypedPassword,
       });
-      await userContext.register(email, password);
+      await userAuthContext.register(email, password);
       router.replace("/verify-email");
     } catch (exception) {
       if (exception instanceof ZodError) {

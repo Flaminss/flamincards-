@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
 import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
-import { useUserContext } from "../user-session-provider";
+import { useUserAuthContext } from "../user-auth-provider";
 import { AppwriteException } from "appwrite";
 import clsx from "clsx";
 
@@ -19,7 +19,7 @@ const exceptionTypeToStatus = {
 } as any;
 
 export default function LoginPage() {
-  const user = useUserContext();
+  const user = useUserAuthContext();
 
   const [email, setEmail] = useState("test-6@gmail.com");
   const [password, setPassword] = useState("password123");
