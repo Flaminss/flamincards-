@@ -36,7 +36,7 @@ export function EmailValidationContextProvider({
   children,
 }: EmailValidationContextProviderProps) {
   const userAuthContext = useUserAuthContext();
-  const [showModal, setShowModal] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   function showFeedbackModal(message: string) {
     setShowModal(true);
