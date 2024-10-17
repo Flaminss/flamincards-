@@ -1,4 +1,4 @@
-import { ID } from "appwrite";
+import { AppwriteException, ID } from "appwrite";
 import {
   createContext,
   useContext,
@@ -8,21 +8,20 @@ import {
 } from "react";
 import { account } from "./appwrite";
 
-interface User {
+interface UserInfo {
   $id: string;
-  name?: string;
-  email?: string;
+  email: string;
+  emailVerified: boolean;
 }
 
-interface UserType {
-  current: User | null;
+interface UserAuthState {
+  current: UserInfo | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  // register: (email: string, password: string) => Promise<User>;
-  register: (email: string, password: string) => any;
+  register: (email: string, password: string) => Promise<void>;
 }
 
-const UserContext = createContext<UserType | undefined>(undefined);
+const UserContext = createContext<UserAuthState | undefined>(undefined);
 
 export function useUserContext() {
   const context = useContext(UserContext);
@@ -39,33 +38,41 @@ interface UserContextProviderProps {
 export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   children,
 }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserInfo | null>(null);
 
-  const login = async (email: string, password: string) => {
-    const loggedIn = await account.createEmailPasswordSession(email, password);
-    setUser(loggedIn);
-  };
+  async function login(email: string, password: string) {
+    const { $id } = await account.createEmailPasswordSession(email, password);
+    setUser({ $id, email, emailVerified: false });
+  }
 
-  const logout = async () => {
+  async function logout() {
     await account.deleteSession("current");
     setUser(null);
-  };
+  }
 
-  const register = async (email: string, password: string) => {
+  async function register(email: string, password: string) {
     await account.create(ID.unique(), email, password);
-  };
+  }
 
-  const init = async () => {
+  async function initVisit() {
     try {
-      const loggedIn = await account.get();
-      setUser(loggedIn);
-    } catch (err) {
-      setUser(null);
+      const {
+        $id,
+        email,
+        emailVerification: emailVerified,
+      } = await account.get();
+      setUser({ $id, email, emailVerified });
+    } catch (exception) {
+      if (exception instanceof AppwriteException) {
+        setUser(null);
+      } else {
+        throw exception;
+      }
     }
-  };
+  }
 
   useEffect(() => {
-    init();
+    initVisit();
   }, []);
 
   return (
