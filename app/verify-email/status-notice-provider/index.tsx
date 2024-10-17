@@ -46,13 +46,6 @@ export function EmailValidationContextProvider({
     setShowModal(false);
   }
 
-  useEffect(() => {
-    setShowModal(() => {
-      const { emailVerified = false } = userAuthContext.current || {};
-      return emailVerified ? false : true;
-    });
-  }, [userAuthContext.current]);
-
   return (
     <EmailValidationContext.Provider
       value={{
