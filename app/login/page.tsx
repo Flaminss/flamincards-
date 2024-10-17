@@ -20,10 +20,8 @@ const exceptionTypeToStatus = {
 export default function LoginPage() {
   const user = useUserContext();
 
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  const email = "oghenetefa@gmail.com";
-  const password = "safeadminpassword";
+  const [email, setEmail] = useState("test-6@gmail.com");
+  const [password, setPassword] = useState("passwordnotsafe");
 
   const [error, setError] = useState<null | {
     status: string;
