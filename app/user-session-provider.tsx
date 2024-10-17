@@ -6,7 +6,6 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { redirect, RedirectType } from "next/navigation";
 import { account } from "./appwrite";
 
 interface User {
@@ -45,7 +44,6 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   const login = async (email: string, password: string) => {
     const loggedIn = await account.createEmailPasswordSession(email, password);
     setUser(loggedIn);
-    redirect("/dashboard", RedirectType.replace);
   };
 
   const logout = async () => {
