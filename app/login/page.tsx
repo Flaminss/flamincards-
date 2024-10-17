@@ -92,7 +92,7 @@ export default function LoginPage() {
                   size="sm"
                   color="danger"
                   radius="sm"
-                  // onPress={clearGeneralFormError}
+                  onPress={acknowledgeError}
                 >
                   <XIcon className="size-4" />
                 </Button>
