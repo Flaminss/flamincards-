@@ -90,12 +90,20 @@ export default function LoginPage() {
             )}
 
             <div className="grid gap-y-6 mb-10">
-              <Input radius="sm" variant="flat" label="Email" />
+              <Input
+                radius="sm"
+                variant="flat"
+                label="Email"
+                value={email}
+                onValueChange={setEmail}
+              />
               <Input
                 radius="sm"
                 variant="flat"
                 type="password"
                 label="Password"
+                value={password}
+                onValueChange={setPassword}
               />
               <div className="flex justify-between items-center gap-x-6">
                 <Checkbox
