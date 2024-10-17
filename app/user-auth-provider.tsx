@@ -37,7 +37,7 @@ interface UserAuthContextProviderProps {
   children: ReactNode;
 }
 
-export default function UserAuthContextProvider({
+export function UserAuthContextProvider({
   children,
 }: UserAuthContextProviderProps) {
   const [user, setUser] = useState<UserInfo | null>(null);
