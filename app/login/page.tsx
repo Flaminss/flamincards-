@@ -12,6 +12,7 @@ import { Button, Checkbox, Input, Link } from "@nextui-org/react";
 import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
 import { useUserContext } from "../user-session-provider";
 import { AppwriteException } from "appwrite";
+import clsx from "clsx";
 
 const exceptionTypeToStatus = {
   user_invalid_credentials: "danger",
@@ -75,18 +76,27 @@ export default function LoginPage() {
 
           <form className="pt-10">
             {error === null ? null : (
-              <div className="mb-10 p-3 gap-x-4 flex items-center border border-danger-200 w-full">
-                <AlertCircle className="size-6 text-danger-300" />
-                <p className="text-sm font-medium text-danger-950">
-                  {error.message}
-                </p>
-                <button
-                  className="ms-auto btn btn-circle size-8"
-                  onClick={() => acknowledgeError()}
+              <p
+                data-description="general-form-error"
+                className={clsx(
+                  " flex items-center gap-x-6 p-2.5 mb-10 border border-danger-300 bg-danger-50 rounded-lg text-sm text-danger-900",
+                  {
+                    hidden: error === null,
+                  }
+                )}
+              >
+                <span className="w-full px-1.5">{error.message}</span>
+
+                <Button
+                  isIconOnly
+                  size="sm"
+                  color="danger"
+                  radius="sm"
+                  // onPress={clearGeneralFormError}
                 >
                   <XIcon className="size-4" />
-                </button>
-              </div>
+                </Button>
+              </p>
             )}
 
             <div className="grid gap-y-4 mb-10">
