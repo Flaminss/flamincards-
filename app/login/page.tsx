@@ -12,6 +12,7 @@ import { Button, Checkbox, Input, Link } from "@nextui-org/react";
 import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
 import { useUserAuthContext } from "../user-auth-provider";
 import { AppwriteException } from "appwrite";
+import { useRouter } from "next/navigation";
 import clsx from "clsx";
 
 const exceptionTypeToStatus = {
@@ -20,6 +21,7 @@ const exceptionTypeToStatus = {
 
 export default function LoginPage() {
   const user = useUserAuthContext();
+  const router = useRouter();
 
   const [email, setEmail] = useState("test-6@gmail.com");
   const [password, setPassword] = useState("password123");
@@ -31,14 +33,13 @@ export default function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const res = await user.login(email, password);
-      console.log("res: ", res);
+      await user.login(email, password);
+      router.replace("/dashboard");
     } catch (exception) {
       if (exception instanceof AppwriteException) {
         const { type, message } = exception;
         setError({ status: exceptionTypeToStatus[type], message });
       } else {
-        console.log("exception: ", exception);
         throw exception;
       }
     }
