@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AlertCircle,
   AlertCircleIcon,
@@ -48,6 +48,12 @@ export default function LoginPage() {
   const acknowledgeError = () => {
     setError(null);
   };
+
+  useEffect(() => {
+    if (user.current) {
+      router.replace("/dashboard");
+    }
+  });
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
