@@ -196,8 +196,8 @@ export default function RegisterPage() {
                     formErrors?.password
                   ) : (
                     <ul className="flex flex-col gap-y-1 list-disc marker:text-danger-400 ps-5">
-                      {formErrors?.password?.map((error) => {
-                        return <li>{error}</li>;
+                      {formErrors?.password?.map((error, index) => {
+                        return <li key={index}>{error}</li>;
                       })}
                     </ul>
                   )
