@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, DatePicker, Input, Link } from "@nextui-org/react";
+import { Button, DatePicker, Input, Link, Spinner } from "@nextui-org/react";
 import TransactionPINInput from "../(pwa)/account/transaction-pin-input";
 import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
 import { MailPlus, XIcon } from "lucide-react";
@@ -59,6 +59,7 @@ export default function RegisterPage() {
   const router = useRouter();
   const userAuthContext = useUserAuthContext();
   const [eligible, setEligible] = useState(false);
+  const [registrationProgress, setRegistratonProgress] = useState("idle");
 
   const [email, setEmail] = useState("test-5@gmail.com");
   const [password, setPassword] = useState("P@ssw0rd");
@@ -74,6 +75,8 @@ export default function RegisterPage() {
   });
 
   const handleRegisteration = async () => {
+    setRegistratonProgress("processing");
+
     try {
       registrationFormSchema.parse({
         email,
@@ -81,8 +84,11 @@ export default function RegisterPage() {
         retypedPassword,
       });
       await userAuthContext.register(email, password);
+      setRegistratonProgress("done");
+      alert("you successfully registered");
       router.replace("/verify-email");
     } catch (exception) {
+      setRegistratonProgress("failed");
       if (exception instanceof ZodError) {
         type RegistrationForm = z.infer<typeof registrationFormSchema>;
         const { email, password, retypedPassword } = (
@@ -123,6 +129,16 @@ export default function RegisterPage() {
         _all: null,
       };
     });
+  };
+
+  const registerButtonStyle = {
+    color: () => {
+      return {
+        idle: "primary",
+        done: "default",
+        failed: "primary",
+      }[registrationProgress];
+    },
   };
 
   return (
@@ -218,15 +234,17 @@ export default function RegisterPage() {
             </section>
 
             <Button
-              color="primary"
+              color={registerButtonStyle.color() as any}
               variant="solid"
               fullWidth
+              isDisabled={registrationProgress === "done"}
               radius="sm"
               size="lg"
               // onClick={() => setEligible(true)}
               onPress={() => handleRegisteration()}
             >
-              Register
+              {registrationProgress !== "processing" && "Register"}
+              {registrationProgress === "processing" && <Spinner size="sm" />}
             </Button>
           </form>
 
