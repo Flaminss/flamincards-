@@ -32,6 +32,7 @@ import {
   useDisclosure,
   Listbox,
   ListboxItem,
+  Selection,
 } from "@nextui-org/react";
 import {
   ArrowLeftRightIcon,
@@ -49,10 +50,15 @@ import { useRouter } from "next/navigation";
 import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
 
-export default function GiftcardBuyPage() {
+export default function GiftcardBuyPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const router = useRouter();
 
-  const selectedCardType = "Steam";
+  const { id: selectedCardType } = params;
+  const [selectedRegion, setSelectedRegion] = useState<Selection>(new Set([]));
 
   const regions = [
     { key: "usa", label: "United States (USA)" },
@@ -70,7 +76,7 @@ export default function GiftcardBuyPage() {
   ];
 
   const noCardSelectionMessage = "Add Cards Below!";
-  
+
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
 
   const multipleCardSelection = [
@@ -129,6 +135,8 @@ export default function GiftcardBuyPage() {
               labelPlacement="outside"
               size="lg"
               radius="md"
+              selectedKeys={selectedRegion}
+              onSelectionChange={setSelectedRegion}
               classNames={{
                 base: "cursor-pointer",
                 label: "ps-1",
