@@ -138,8 +138,8 @@ export default function Wallet() {
   const [withdrawProcessStep, setWithdrawlProcessStep] = useState(1);
 
   return (
-    <section className="grid gap-y-2 grow">
-      <div className="cardBackground border rounded-t-xl flex flex-col lg:max-w-lg grow w-full shrink-0 lg:shrink p-4 pb-6 justify-center mx-auto">
+    <section className="grid gap-y-2 grow lg:w-[45%]">
+      <div className="cardBackground border rounded-t-lg flex flex-col grow w-full shrink-0 p-4 pb-6 justify-center mx-auto">
         <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
           Good morning,
           <span className="text-white pt-1 text-sm">
@@ -233,7 +233,7 @@ export default function Wallet() {
         </ButtonGroup> */}
       </div>
 
-      <div className="cardBackground border rounded-b-xl flex flex-col lg:max-w-lg grow w-full shrink-0 lg:shrink px-2 py-4 mx-auto">
+      <div className="cardBackground border rounded-b-lg flex flex-col grow w-full shrink-0 px-2 py-4 mx-auto">
         <QuickWalletActions />
       </div>
 
