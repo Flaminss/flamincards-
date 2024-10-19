@@ -69,7 +69,7 @@ export default function HomePage() {
       <footer className="py-4 px-4 grid place-content-center">
         <Link
           isExternal
-          href="t.me/everurstruly"
+          href="https://t.me/everurstruly"
           title="Development team portfolio website"
           className="text-default-600 font-mono font-medium flex items-center gap-x-2"
         >
