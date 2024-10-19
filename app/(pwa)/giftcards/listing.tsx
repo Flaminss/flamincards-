@@ -227,11 +227,6 @@ export default function GiftcardListing({
   return (
     <div className="gap-4 grid grid-cols-2 lg:grid-cols-4 px-4.. md:px-2..">
       {cardList
-        .filter(
-          ({ title }) =>
-            searchValue === "" ||
-            title.toLowerCase().includes(searchValue.trim())
-        )
         .filter((card: Giftcard) => {
           if (filterBy.tags[0] === "all") {
             return true;
@@ -262,6 +257,11 @@ export default function GiftcardListing({
 
           return 1;
         })
+        .filter(
+          ({ title }) =>
+            searchValue === "" ||
+            title.toLowerCase().includes(searchValue.trim())
+        )
         .map(({ id, title, imageUri, rate }, index) => (
           <Link key={index} href={`/giftcards/${id}/sell`}>
             <Card shadow="lg">
