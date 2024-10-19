@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Button, Input, Link, Spinner } from "@nextui-org/react";
 import { MailPlus, XIcon } from "lucide-react";
 import { useUserAuthContext } from "../user-auth-provider";
@@ -42,7 +42,6 @@ export default function RegisterPage() {
       await userAuthContext.register(email, password);
       setRegistratonProgress("done");
       await userAuthContext.login(email, password);
-      router.replace("/login");
       //
     } catch (exception) {
       setRegistratonProgress("failed");
@@ -100,7 +99,7 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (userAuthContext.current) {
-      router.replace("/account");
+      router.replace("/dashboard");
     }
   });
 
