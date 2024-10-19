@@ -8,7 +8,7 @@ import clsx from "clsx";
 // TODO: utilize "useToggle" package
 
 const message =
-  "🌈 New features are coming soon to enhance your shopping experience! Stay tuned!";
+  "🌈 New features are coming soon to enhance your purchasing experience! Stay tuned!";
 
 export default function AnnoucementSection() {
   const [dismissed, setDismissed] = useState(false);
