@@ -50,16 +50,12 @@ import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
 
 export default function GiftcardBuyPage() {
-  const selectedCardType = "Steam";
   const router = useRouter();
-  const multipleCardSelection = [
-    { key: 1, amount: 50, quantity: 1 },
-    { key: 2, amount: 200, quantity: 2 },
-    { key: 3, amount: 1000, quantity: 1 },
-  ];
+
+  const selectedCardType = "Steam";
 
   const regions = [
-    { key: "us", label: "United States (USA)" },
+    { key: "usa", label: "United States (USA)" },
     { key: "uk", label: "United Kingdom (UK)" },
     { key: "eu", label: "Europe (EU)" },
     { key: "ca", label: "Canada (CA)" },
@@ -68,21 +64,19 @@ export default function GiftcardBuyPage() {
     { key: "cn", label: "China (CN)" },
     { key: "sa", label: "Saudi Arabia (SA)" },
     { key: "in", label: "India (IN)" },
-    { key: "ae", label: "United Arab Emirates (UAE)" },
+    { key: "aef", label: "United Arab Emirates (UAE)" },
     { key: "za", label: "South Africa (ZA)" },
     { key: "br", label: "Brazil (BR)" },
   ];
 
-  // const multipleCardSelection = [] as {
-  //   key: number;
-  //   amount: number;
-  //   quantity: number;
-  // }[];
-
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
 
-  const noCardSelectionMessage = "Add Cards Below!";
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const multipleCardSelection = [
+    { key: 1, amount: 50, quantity: 1 },
+    { key: 2, amount: 200, quantity: 2 },
+    { key: 3, amount: 1000, quantity: 1 },
+  ];
+
   const {
     isOpen: orderSubmitted,
     onOpen: onSubmitOrder,
@@ -148,7 +142,11 @@ export default function GiftcardBuyPage() {
 
             <div>
               <h4 className="ps-1 mb-2.5 text-medium text-ellipsis">
-                Quantity of {selectedCardType} Card you have?
+                Quantity of {selectedCardType} (
+                {regions
+                  .find((region) => region.key === "us")
+                  ?.key.toUpperCase()}
+                ) Card you have?
               </h4>
               <Tabs
                 size="lg"
@@ -472,14 +470,13 @@ export default function GiftcardBuyPage() {
                   </span>
                 </p>
               </div>
-
+              checked={consentToTradeAgreement}
               <Checkbox
                 size="sm"
                 radius="sm"
                 color="primary"
                 className="gap-x-2"
                 classNames={{ icon: "size-4" }}
-                checked={consentToTradeAgreement}
                 onClick={() =>
                   setConsentToTradeAgreement((consent) => !consent)
                 }
@@ -490,13 +487,13 @@ export default function GiftcardBuyPage() {
             </CardBody>
             <CardFooter className="flex-col items-start px-5 pb-5 gap-y-8">
               <Button
+                isDisabled={!consentToTradeAgreement}
                 size="lg"
                 variant="solid"
                 color="primary"
                 radius="sm"
                 fullWidth={true}
                 className="border shadow-lg"
-                isDisabled={!consentToTradeAgreement}
                 onClick={() => onSubmitOrder()}
               >
                 Submit
