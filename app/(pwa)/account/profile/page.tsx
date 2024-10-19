@@ -3,7 +3,7 @@ import { Button, DatePicker, Input } from "@nextui-org/react";
 import clsx from "clsx";
 import TransactionPINInput from "../transaction-pin-input";
 
-export function ProfilePage() {
+export default function ProfilePage() {
   return (
     <form className={clsx("pt-10")}>
       <section className="grid gap-y-6 mb-10">
