@@ -57,10 +57,11 @@ export default function RecentTransactionsSection() {
         <div className="rounded-md shadow bg-content1 grid gap-y-2.5 text-center place-items-center p-4 py-8">
           <ListIcon className="size-8 mx-auto text-gray-600" />
           <p className="text-sm text-gray-500 max-w-[32ch] ">
-            You have an empty transaction history. Redeem your{" "}
+            You have no transactions yet.{" "}
             <Link size="sm" href="/giftcards" underline="always">
-              giftcards
-            </Link>
+              Redeem a gift card
+            </Link>{" "}
+            to get started!
           </p>
         </div>
       ) : (
