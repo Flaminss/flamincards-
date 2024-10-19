@@ -59,10 +59,10 @@ export const figureAsBalance = (figure: number) => {
 
 export default function Wallet() {
   const user = {
-    firstname: "Sunday",
-    lastname: "Awanu",
+    firstname: "Guest",
+    lastname: "Anonymous",
     wallet: {
-      balance: 64_000,
+      balance: 0,
       settings: {
         balanceVisible: true,
       },
