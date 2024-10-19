@@ -26,7 +26,11 @@ export default function NewsAndPromotionsSection() {
                 href="/"
                 className="underline text-medium xl:text-base underline-offset-2"
               >
-                Jagaban set the Nation on Haster Tonight!
+                {article === 1
+                  ? "Top 10 Nigerian Movies to Watch This Year"
+                  : article === 2
+                  ? "How to Participate in the Latest Crypto Airdrops"
+                  : "Nigerian Music Artists Making Waves in 2023"}
               </Link>
             </article>
           );
