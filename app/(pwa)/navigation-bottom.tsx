@@ -249,10 +249,10 @@ export default function BottomNavigationPro({
           panel: "p-0",
         }}
       >
-        {menu.map(({ title, href, Icon, list }) => {
+        {menu.map(({ title, href, Icon, list }, index) => {
           return (
             <Tab
-              key={href}
+              key={`${href}#${index}`}
               href={href ? href : undefined}
               title={
                 <div
