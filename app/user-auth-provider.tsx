@@ -1,4 +1,3 @@
-import { AppwriteException, ID } from "appwrite";
 import {
   createContext,
   useContext,
@@ -6,7 +5,8 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { account } from "./appwrite";
+import { AppwriteException } from "appwrite";
+import { account, ID } from "./appwrite";
 
 interface UserInfo {
   $id: string;
