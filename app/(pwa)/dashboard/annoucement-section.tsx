@@ -13,14 +13,10 @@ export default function AnnoucementSection() {
   const dismiss = () => setDismissed(true);
 
   return (
-    <section
-      className={clsx("px-4 pb-6", { block: !dismissed, hidden: dismissed })}
-    >
+    <section className={clsx("px-4 pb-8", { block: !dismissed, hidden: dismissed })}>
       <div className="shadow border slick-dark-bg rounded-lg ps-4 pe-2.5 sm:ps-5 py-3 flex gap-x-2.5 items-center">
-        <MessageCircleWarningIcon className="size-6 shrink-0 text-primary" />
-        <p className="w-full text-sm">
-          We just launched some cool stuff!
-        </p>
+        <MessageCircleWarningIcon className="size-6 shrink-0 text-primary me-1" />
+        <p className="w-full text-sm">We just launched some cool stuff!</p>
         <Button
           isIconOnly
           size="sm"
