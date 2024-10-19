@@ -101,7 +101,7 @@ export default function DashboardPage() {
 
       <GiftCardEntisementSection />
 
-      <MiscellaneousSection title="Airdrops & Crypto Currency">
+      {/* <MiscellaneousSection title="Web3 - Airdrops">
         <div className="px-4 flex items-center gap-x-4">
           {[1, 2, 3].map((card, index) => {
             return (
@@ -127,7 +127,7 @@ export default function DashboardPage() {
             );
           })}
         </div>
-      </MiscellaneousSection>
+      </MiscellaneousSection> */}
 
       {/* <InvestmentPortfolioSection /> */}
 
