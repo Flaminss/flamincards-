@@ -64,6 +64,7 @@ import NewsAndPromotionsSection from "./news-and-promotions-section";
 import GiftCardEntisementSection from "./giftcard-entisement-section";
 import PWAPageTitle from "../page-title";
 import MiscellaneousSection from "./miscellaneous-section";
+import OnboardingSection from "./onboarding-section";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
@@ -88,6 +89,7 @@ export default function DashboardPage() {
       </header>
 
       <AnnoucementSection />
+      <OnboardingSection />
 
       <div className="px-4 pt-2 pb-8 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
         <WalletSection />
