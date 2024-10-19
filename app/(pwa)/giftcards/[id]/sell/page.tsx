@@ -57,6 +57,22 @@ export default function GiftcardBuyPage() {
     { key: 2, amount: 200, quantity: 2 },
     { key: 3, amount: 1000, quantity: 1 },
   ];
+
+  const regions = [
+    { key: "us", label: "United States (USA)" },
+    { key: "uk", label: "United Kingdom (UK)" },
+    { key: "eu", label: "Europe (EU)" },
+    { key: "ca", label: "Canada (CA)" },
+    { key: "au", label: "Australia (AU)" },
+    { key: "jp", label: "Japan (JP)" },
+    { key: "cn", label: "China (CN)" },
+    { key: "sa", label: "Saudi Arabia (SA)" },
+    { key: "in", label: "India (IN)" },
+    { key: "ae", label: "United Arab Emirates (UAE)" },
+    { key: "za", label: "South Africa (ZA)" },
+    { key: "br", label: "Brazil (BR)" },
+  ];
+
   // const multipleCardSelection = [] as {
   //   key: number;
   //   amount: number;
@@ -109,63 +125,27 @@ export default function GiftcardBuyPage() {
                 <ArrowRightCircleIcon className="size-6 text-zinc-400" />
               }
             />
-            <Input
-              label="Choose a Region"
-              value="United States (USD)"
+
+            <Select
+              items={regions}
+              defaultSelectedKeys={["us"]}
+              label="Choose card(s) Region"
               labelPlacement="outside"
               size="lg"
               radius="md"
-              type="button"
               classNames={{
                 base: "cursor-pointer",
-                input: "text-start",
                 label: "ps-1",
               }}
-              onClick={onOpen}
-              endContent={
+              selectorIcon={
                 <ChevronDownCircle className="size-6 text-zinc-400" />
               }
-            />
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
-              <ModalContent>
-                {(onClose) => (
-                  <>
-                    <ModalHeader className="flex flex-col gap-1">
-                      Select a region
-                    </ModalHeader>
-                    <ModalBody className="p-4">
-                      <Listbox>
-                        {[
-                          "United Kingdon (UK)",
-                          "United States (USA)",
-                          "Europe (EU)",
-                          "Canada (CA",
-                          "Australia (AU)",
-                        ].map((state) => {
-                          return (
-                            <ListboxItem
-                              key={state}
-                              onClick={onClose}
-                              className="!text-lg"
-                            >
-                              {state}
-                            </ListboxItem>
-                          );
-                        })}
-                      </Listbox>
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button color="danger" variant="light" onPress={onClose}>
-                        Close
-                      </Button>
-                      <Button color="primary" variant="flat" onPress={onClose}>
-                        Confirm
-                      </Button>
-                    </ModalFooter>
-                  </>
-                )}
-              </ModalContent>
-            </Modal>
+            >
+              {(region) => (
+                <SelectItem key={region.key}>{region.label}</SelectItem>
+              )}
+            </Select>
+
             <div>
               <h4 className="ps-1 mb-2.5 text-medium text-ellipsis">
                 Quantity of {selectedCardType} Card you have?
