@@ -69,6 +69,8 @@ export default function GiftcardBuyPage() {
     { key: "br", label: "Brazil (BR)" },
   ];
 
+  const noCardSelectionMessage = "Add Cards Below!";
+  
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
 
   const multipleCardSelection = [
