@@ -58,7 +58,9 @@ export default function GiftcardBuyPage({
   const router = useRouter();
 
   const { id: selectedCardType } = params;
-  const [selectedRegion, setSelectedRegion] = useState<Selection>(new Set([]));
+  const [selectedRegion, setSelectedRegion] = useState<Selection>(
+    new Set(["usa"])
+  );
 
   const regions = [
     { key: "usa", label: "United States (USA)" },
@@ -132,7 +134,6 @@ export default function GiftcardBuyPage({
 
             <Select
               items={regions}
-              defaultSelectedKeys={["usa"]}
               label="Choose card(s) Region"
               labelPlacement="outside"
               size="lg"
