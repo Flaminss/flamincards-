@@ -130,7 +130,7 @@ export default function GiftcardBuyPage({
 
             <Select
               items={regions}
-              defaultSelectedKeys={["us"]}
+              defaultSelectedKeys={["usa"]}
               label="Choose card(s) Region"
               labelPlacement="outside"
               size="lg"
