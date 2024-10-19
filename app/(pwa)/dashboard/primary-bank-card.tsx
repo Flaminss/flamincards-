@@ -21,6 +21,12 @@ export default function PrimaryBankCard({
 }: {
   classnames: string;
 }) {
+  const cardDetails = {
+    bank: "Your Bank Name",
+    accountNumber: "XXX XXXX XXX",
+    fullName: "Your Full Name",
+  };
+
   return (
     <div className={clsx("grid gap-y-1 max-w-md w-full mx-auto", classnames)}>
       <article className="relative p-5 sm:p-5 text-zinc-100 bg-zinc-900 rounded-sm">
@@ -31,10 +37,12 @@ export default function PrimaryBankCard({
           </div>
           <span className="text-xs text-zinc-400 uppercase">Primary</span>
         </div>
-        <p className="text-lg sm:text-xl font-mono mb-1.5">1234 2342 2422</p>
+        <p className="text-lg sm:text-xl font-mono mb-1.5">
+          {cardDetails.accountNumber}
+        </p>
         <p className="text-sm sm:text-medium font-mono flex items-center justify-between gap-x-4">
-          <span>John Doe</span>
-          <span className="text-xs">Opay Bank</span>
+          <span>{cardDetails.fullName}</span>
+          <span className="text-xs">{cardDetails.bank}</span>
         </p>
         <Button
           variant="light"
