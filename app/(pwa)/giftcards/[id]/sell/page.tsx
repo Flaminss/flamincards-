@@ -90,9 +90,10 @@ export default function GiftcardBuyPage() {
             className="md:hidden object-contain h-[192px] w-full max-w-screen-md mb-12 me-auto"
             classNames={{ wrapper: "bg-default-50 !max-w-[unset] w-full" }}
           />
+
           <form className="grid gap-y-8">
             <Input
-              label="Your Selected Vendor"
+              label="Your Selected Card"
               value={selectedCardType}
               labelPlacement="outside"
               size="lg"
@@ -450,7 +451,7 @@ export default function GiftcardBuyPage() {
             className="shadow-xl cardBackground max-w-md mx-auto"
             radius="lg"
           >
-            {/* <CardHeader className="flex-col">
+            <CardHeader className="hidden xl:flex flex-col p-6">
               <Image
                 shadow="lg"
                 radius="lg"
@@ -462,13 +463,13 @@ export default function GiftcardBuyPage() {
                 size="md"
                 color="warning"
                 variant="light"
-                className="p-0"
+                className="py-0"
                 href="/market/giftcard"
                 endContent={<ArrowRightCircleIcon size={16} />}
               >
                 Choose different card
               </Button>
-            </CardHeader> */}
+            </CardHeader>
             <CardBody className="pt-5 pb-4 px-5">
               <div className="mb-6">
                 <p className="flex flex-wrap justify-between items-center gap-x-6 gap-y-2 mb-2">
@@ -485,7 +486,7 @@ export default function GiftcardBuyPage() {
                     <ArrowLeftRightIcon className="inline-flex size-4" />{" "}
                     Exchange Rate:
                   </span>{" "}
-                  <span className="ms-auto text-warning">
+                  <span className="ms-auto lg:text-xl text-success font-medium">
                     {currencyIcons["NGN"]?.symbol}1200/
                     {currencyIcons["USD"]?.symbol}
                   </span>
@@ -529,7 +530,7 @@ export default function GiftcardBuyPage() {
         isOpen={orderSubmitted}
         onOpenChange={onOrderSubmitChange}
         backdrop="opaque"
-        placement="center" 
+        placement="center"
         classNames={{ backdrop: "z-[2000]", wrapper: "z-[2001]" }}
         isDismissable={false}
         hideCloseButton
