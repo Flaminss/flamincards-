@@ -51,10 +51,9 @@ import clsx from "clsx";
 import DepositionScreen from "./deposition-screen";
 import WithdrawlScreen from "./withdrawl-screen";
 import QuickWalletActions from "./quick-wallet-actions";
-import commaNumber from "comma-number";
 
 export const figureAsBalance = (figure: number) => {
-  return commaNumber(figure) + ".00";
+  return figure.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 export default function Wallet() {
@@ -176,7 +175,11 @@ export default function Wallet() {
             color="warning"
             // valueLabel={`${icons["NGN"]?.symbol || "#"} 40,000`}
             // showValueLabel={true}
-            valueLabel={<span className="text-primary text-xs font-medium">View Details</span>}
+            valueLabel={
+              <span className="text-primary text-xs font-medium">
+                View Details
+              </span>
+            }
             showValueLabel={true}
             className="w-full"
           />
@@ -216,7 +219,7 @@ export default function Wallet() {
         </ButtonGroup> */}
       </div>
 
-          <div className="cardBackground border rounded-b-xl flex flex-col lg:max-w-lg grow w-full shrink-0 lg:shrink px-2 py-4 mx-auto">
+      <div className="cardBackground border rounded-b-xl flex flex-col lg:max-w-lg grow w-full shrink-0 lg:shrink px-2 py-4 mx-auto">
         <QuickWalletActions />
       </div>
 
