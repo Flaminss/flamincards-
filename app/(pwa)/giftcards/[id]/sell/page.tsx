@@ -112,7 +112,9 @@ export default function GiftcardBuyPage({
           <form className="grid gap-y-8">
             <Input
               label="Your Selected Card"
-              value={selectedCardType}
+              value={
+                selectedCardType[0].toUpperCase() + selectedCardType.slice(1)
+              }
               labelPlacement="outside"
               size="lg"
               radius="md"
