@@ -89,7 +89,7 @@ export default function DashboardPage() {
       </header>
 
       <AnnoucementSection />
-      <OnboardingSection />
+      {/* <OnboardingSection /> */}
 
       <div className="px-4 pt-2 pb-8 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
         <WalletSection />
