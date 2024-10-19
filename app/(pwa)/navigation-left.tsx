@@ -224,7 +224,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             }}
           >
             <ListboxItem
-              key="invite-friends"
+              key="earn-rewards"
               description="Earn Rewards and Insentives"
               startContent={
                 <span className="p-2 rounded-lg bg-success/10 text-success">
