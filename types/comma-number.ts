@@ -1,3 +1,3 @@
 declare module "comma-number" {
-  export default function (figure: number): any;
+  export default function (figure: number): string;
 }
