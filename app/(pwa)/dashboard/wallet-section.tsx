@@ -56,10 +56,21 @@ export const figureAsBalance = (figure: number) => {
   return figure.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
+const getUserPronoun = (gender: string) => {
+  if (gender.startsWith("M")) {
+    return "Mr.";
+  }
+  if (gender.startsWith("F")) {
+    return "Mr.";
+  }
+  return null;
+};
+
 export default function Wallet() {
   const user = {
     firstname: "Guest",
     lastname: "Anonymous",
+    gender: "Male", // M / F
     wallet: {
       balance: 0,
       settings: {
@@ -129,7 +140,7 @@ export default function Wallet() {
         <h3 className="text-xs text-zinc-400 flex flex-col mb-6">
           Good morning,
           <span className="text-white pt-1 text-sm">
-            Mr. {user.lastname} {user.firstname}
+            {getUserPronoun(user.gender)} {user.lastname} {user.firstname}
           </span>
         </h3>
 
