@@ -260,7 +260,7 @@ export default function GiftcardListing({
         .filter(
           ({ title }) =>
             searchValue === "" ||
-            title.toLowerCase().includes(searchValue.trim())
+            title.toLowerCase().includes(searchValue.trim().toLowerCase())
         )
         .map(({ id, title, imageUri, rate }, index) => (
           <Link key={index} href={`/giftcards/${id}/sell`}>
