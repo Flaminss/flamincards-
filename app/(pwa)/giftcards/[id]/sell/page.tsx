@@ -50,7 +50,7 @@ import currencyIcons from "currency-icons";
 import { useRouter } from "next/navigation";
 import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
-import ListWithUpload from "./file-input";
+import FileInput from "./file-input";
 
 export default function GiftcardBuyPage({
   params,
