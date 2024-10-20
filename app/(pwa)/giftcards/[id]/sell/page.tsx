@@ -35,6 +35,7 @@ import {
   Selection,
 } from "@nextui-org/react";
 import {
+  ArrowDownCircleIcon,
   ArrowLeftRightIcon,
   ArrowRightCircleIcon,
   CheckCircle2Icon,
@@ -49,6 +50,7 @@ import currencyIcons from "currency-icons";
 import { useRouter } from "next/navigation";
 import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
+import ListWithUpload from "./file-input";
 
 export default function GiftcardBuyPage({
   params,
@@ -94,6 +96,19 @@ export default function GiftcardBuyPage({
     onOpenChange: onOrderSubmitChange,
   } = useDisclosure();
 
+  const formattedSelectedCardType =
+    selectedCardType[0].toUpperCase() + selectedCardType.slice(1);
+
+  const getRegionInitials = () => {
+    const value = Array.from(selectedRegion)[0];
+
+    if (selectedRegion === "all") {
+      return "";
+    }
+
+    return value.toString().toUpperCase();
+  };
+
   return (
     <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
       <header className="py-5 md:pt-0 px-4 mb-2">
@@ -111,12 +126,10 @@ export default function GiftcardBuyPage({
             classNames={{ wrapper: "bg-default-50 !max-w-[unset] w-full" }}
           />
 
-          <form className="grid gap-y-8">
+          <form className="grid gap-y-7">
             <Input
               label="Your Selected Card"
-              value={
-                selectedCardType[0].toUpperCase() + selectedCardType.slice(1)
-              }
+              value={formattedSelectedCardType}
               labelPlacement="outside"
               size="lg"
               radius="md"
@@ -128,7 +141,7 @@ export default function GiftcardBuyPage({
                 label: "ps-1",
               }}
               endContent={
-                <ArrowRightCircleIcon className="size-6 text-zinc-400" />
+                <ArrowRightCircleIcon className="!size-4 text-zinc-400" />
               }
             />
 
@@ -140,26 +153,249 @@ export default function GiftcardBuyPage({
               radius="md"
               selectedKeys={selectedRegion}
               onSelectionChange={setSelectedRegion}
+              selectorIcon={<ArrowDownCircleIcon />}
               classNames={{
                 base: "cursor-pointer",
                 label: "ps-1",
+                selectorIcon: "shrink-0 w-auto h-auto !size-4 text-zinc-400",
               }}
-              selectorIcon={
-                <ChevronDownCircle className="size-6 text-zinc-400" />
-              }
             >
               {(region) => (
                 <SelectItem key={region.key}>{region.label}</SelectItem>
               )}
             </Select>
 
-            <div>
+            <Select
+              label="Amount (#)"
+              labelPlacement="outside"
+              radius="md"
+              size="lg"
+              defaultSelectedKeys={["20"]}
+              selectorIcon={<ArrowDownCircleIcon />}
+              classNames={{
+                selectorIcon: "shrink-0 w-auto h-auto !size-4 text-zinc-400",
+              }}
+            >
+              {[
+                { key: "20", label: "20" },
+                { key: "25", label: "25" },
+                { key: "50", label: "50" },
+              ].map((item) => (
+                <SelectItem
+                  key={item.key}
+                  value={item.label}
+                  className="text-white"
+                >
+                  {item.label}
+                </SelectItem>
+              ))}
+            </Select>
+
+            <Input
+              label="E-Code (Optional)"
+              labelPlacement="outside"
+              placeholder="XXXX-XXXX-XXXX"
+              size="lg"
+              radius="md"
+            />
+
+            <FileInput />
+
+            <Textarea
+              label="Add a Comment (Optional)"
+              placeholder="Write some additional details or give some heads up"
+              labelPlacement="outside"
+              classNames={{
+                label: "ps-1 text-base font-medium mb-.5",
+                input: "p-1.5",
+              }}
+            />
+          </form>
+        </div>
+
+        <div className="md:pt-6 grow w-full lg:max-w-xl xl:max-w-sm">
+          <Card
+            className="shadow-xl cardBackground max-w-md mx-auto"
+            radius="lg"
+          >
+            <CardHeader className="hidden xl:flex flex-col p-6">
+              <Image
+                shadow="lg"
+                radius="lg"
+                src="https://th.bing.com/th/id/OIP.I89DeQMyCgVqj_eo-QgPYAHaEr?rs=1&pid=ImgDetMain"
+                alt=""
+                className="hidden md:block object-contain h-[120px] max-w-screen-md mb-2"
+              />
+              <Button
+                size="md"
+                color="warning"
+                variant="light"
+                className="py-0"
+                href="/market/giftcard"
+                endContent={<ArrowRightCircleIcon size={16} />}
+              >
+                Choose different card
+              </Button>
+            </CardHeader>
+            <CardBody className="pt-5 pb-4 px-5">
+              <div className="mb-6">
+                <p className="flex flex-wrap justify-between items-center gap-x-6 gap-y-2 mb-2">
+                  <span className="inline-flex items-center text-ellipsis gap-x-4 text-sm">
+                    <WalletMinimalIcon className="inline-flex size-4" /> You'll
+                    receive:
+                  </span>
+                  <span className="text-3xl font-medium text-success..">
+                    {currencyIcons["NGN"]?.symbol}5000
+                  </span>
+                </p>
+                <p className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+                  <span className="inline-flex items-center text-ellipsis gap-x-4 text-sm">
+                    <ArrowLeftRightIcon className="inline-flex size-4" />{" "}
+                    Exchange Rate:
+                  </span>{" "}
+                  <span className="ms-auto lg:text-xl text-success font-medium">
+                    {currencyIcons["NGN"]?.symbol}1200/
+                    {currencyIcons["USD"]?.symbol}
+                  </span>
+                </p>
+              </div>
+              <Checkbox
+                size="sm"
+                radius="sm"
+                color="primary"
+                className="gap-x-2"
+                checked={consentToTradeAgreement}
+                classNames={{ icon: "size-4" }}
+                onClick={() =>
+                  setConsentToTradeAgreement((consent) => !consent)
+                }
+              >
+                I understand errors and attempted fraud may cause delay or
+                refusal of payment.
+              </Checkbox>
+            </CardBody>
+            <CardFooter className="flex-col items-start px-5 pb-5 gap-y-8">
+              <Button
+                isDisabled={!consentToTradeAgreement}
+                size="lg"
+                variant="solid"
+                color="primary"
+                radius="sm"
+                fullWidth={true}
+                className="border shadow-lg"
+                onClick={() => onSubmitOrder()}
+              >
+                Submit
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </section>
+
+      <Modal
+        isOpen={orderSubmitted}
+        onOpenChange={onOrderSubmitChange}
+        backdrop="opaque"
+        placement="center"
+        classNames={{ backdrop: "z-[2000]", wrapper: "z-[2001]" }}
+        isDismissable={false}
+        hideCloseButton
+      >
+        <ModalContent className="border">
+          {(onClose) => (
+            <>
+              <ModalBody className="justify-center items-center p-8 pb-6">
+                <CheckCircleIcon className="size-14 mb-2 text-success" />
+                <h3 className="text-3xl">Successfully Submitted</h3>
+                <p className="text-sm text-zinc-400">
+                  Thank you for doing business with us, Sir!{" "}
+                </p>
+              </ModalBody>
+              <ModalFooter className="items-center p-5">
+                <Button
+                  color="primary"
+                  radius="sm"
+                  size="lg"
+                  variant="flat"
+                  fullWidth
+                  className="text-sm font-normal"
+                  onPress={() => onCompleteOrder()}
+                >
+                  Done
+                </Button>
+                <Button
+                  color="primary"
+                  radius="sm"
+                  size="lg"
+                  variant="solid"
+                  fullWidth
+                  className="text-sm font-normal"
+                  onPress={(e) => {
+                    onClose();
+                    router.push("/transactions?commodity=giftcards");
+                  }}
+                >
+                  View Order Status
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </div>
+  );
+}
+
+// DROPZONE
+
+{
+  /* <div className="grid gap-y-3 w-full">
+              <label
+                htmlFor="dropzone-file"
+                className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-default-400 bg-default-100 rounded-lg cursor-pointer"
+              >
+                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg
+                    className="size-10 mb-2 text-gray-400 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
+                    <span className="font-semibold">Upload image proof</span> or
+                    drag and drop
+                  </p>
+                  <p className="text-xs mb-2 text-gray-500 dark:text-gray-400">
+                    SVG, PNG, JPG or GIF (MAX. 800x400px)
+                  </p>
+                  <p className="ps-1 py-1 flex gap-x-2 items-center text-sm text-warning-600 mb-2">
+                    <CircleAlertIcon className="size-4" /> Make sure you upload
+                    clear pictures
+                  </p>
+                </div>
+                <input id="dropzone-file" type="file" className="hidden" />
+              </label>
+            </div> */
+}
+
+// ALLOW MULTIPLE CARD TYPE
+{
+  /* <div>
               <h4 className="ps-1 mb-2.5 text-medium text-ellipsis">
-                Quantity of {selectedCardType} (
-                {regions
-                  .find((region) => region.key === "us")
-                  ?.key.toUpperCase()}
-                ) Card you have?
+                Hom many{" "}
+                <span className="font-medium">
+                  {formattedSelectedCardType} ({getRegionInitials()})
+                </span>{" "}
+                Card do you have?
               </h4>
               <Tabs
                 size="lg"
@@ -173,13 +409,13 @@ export default function GiftcardBuyPage({
                     <Select
                       label="Amount (#)"
                       radius="md"
-                      size="lg"
+                      size="sm"
                       selectionMode="single"
                       defaultSelectedKeys={[20]}
-                      selectorIcon={<ChevronDownCircle />}
+                      selectorIcon={<ArrowDownCircleIcon />}
                       classNames={{
                         selectorIcon:
-                          "shrink-0 w-auto h-auto size-4 text-zinc-400",
+                          "shrink-0 w-auto h-auto !size-4 text-zinc-400",
                       }}
                     >
                       {[
@@ -217,9 +453,9 @@ export default function GiftcardBuyPage({
                           >
                             <path
                               stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
                               d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                             />
                           </svg>
@@ -384,9 +620,9 @@ export default function GiftcardBuyPage({
                             >
                               <path
                                 stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                               />
                             </svg>
@@ -425,147 +661,5 @@ export default function GiftcardBuyPage({
                   </div>
                 </Tab>
               </Tabs>
-            </div>
-            {/* <Textarea
-            label="Add a Comment (Optional)"
-            placeholder="Write some additional details or heads up"
-            labelPlacement="outside"
-            classNames={{
-              label: "ps-1",
-            }}
-          /> */}
-          </form>
-        </div>
-
-        <div className="md:pt-6 grow w-full lg:max-w-xl xl:max-w-sm">
-          <Card
-            className="shadow-xl cardBackground max-w-md mx-auto"
-            radius="lg"
-          >
-            <CardHeader className="hidden xl:flex flex-col p-6">
-              <Image
-                shadow="lg"
-                radius="lg"
-                src="https://th.bing.com/th/id/OIP.I89DeQMyCgVqj_eo-QgPYAHaEr?rs=1&pid=ImgDetMain"
-                alt=""
-                className="hidden md:block object-contain h-[120px] max-w-screen-md mb-2"
-              />
-              <Button
-                size="md"
-                color="warning"
-                variant="light"
-                className="py-0"
-                href="/market/giftcard"
-                endContent={<ArrowRightCircleIcon size={16} />}
-              >
-                Choose different card
-              </Button>
-            </CardHeader>
-            <CardBody className="pt-5 pb-4 px-5">
-              <div className="mb-6">
-                <p className="flex flex-wrap justify-between items-center gap-x-6 gap-y-2 mb-2">
-                  <span className="inline-flex items-center text-ellipsis gap-x-4 text-sm">
-                    <WalletMinimalIcon className="inline-flex size-4" /> You'll
-                    receive:
-                  </span>
-                  <span className="text-3xl font-medium text-success..">
-                    {currencyIcons["NGN"]?.symbol}5000
-                  </span>
-                </p>
-                <p className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-                  <span className="inline-flex items-center text-ellipsis gap-x-4 text-sm">
-                    <ArrowLeftRightIcon className="inline-flex size-4" />{" "}
-                    Exchange Rate:
-                  </span>{" "}
-                  <span className="ms-auto lg:text-xl text-success font-medium">
-                    {currencyIcons["NGN"]?.symbol}1200/
-                    {currencyIcons["USD"]?.symbol}
-                  </span>
-                </p>
-              </div>
-              checked={consentToTradeAgreement}
-              <Checkbox
-                size="sm"
-                radius="sm"
-                color="primary"
-                className="gap-x-2"
-                classNames={{ icon: "size-4" }}
-                onClick={() =>
-                  setConsentToTradeAgreement((consent) => !consent)
-                }
-              >
-                I understand errors and attempted fraud may cause delay or
-                refusal of payment.
-              </Checkbox>
-            </CardBody>
-            <CardFooter className="flex-col items-start px-5 pb-5 gap-y-8">
-              <Button
-                isDisabled={!consentToTradeAgreement}
-                size="lg"
-                variant="solid"
-                color="primary"
-                radius="sm"
-                fullWidth={true}
-                className="border shadow-lg"
-                onClick={() => onSubmitOrder()}
-              >
-                Submit
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-      </section>
-
-      <Modal
-        isOpen={orderSubmitted}
-        onOpenChange={onOrderSubmitChange}
-        backdrop="opaque"
-        placement="center"
-        classNames={{ backdrop: "z-[2000]", wrapper: "z-[2001]" }}
-        isDismissable={false}
-        hideCloseButton
-      >
-        <ModalContent className="border">
-          {(onClose) => (
-            <>
-              <ModalBody className="justify-center items-center p-8 pb-6">
-                <CheckCircleIcon className="size-14 mb-2 text-success" />
-                <h3 className="text-3xl">Successfully Submitted</h3>
-                <p className="text-sm text-zinc-400">
-                  Thank you for doing business with us, Sir!{" "}
-                </p>
-              </ModalBody>
-              <ModalFooter className="items-center p-5">
-                <Button
-                  color="primary"
-                  radius="sm"
-                  size="lg"
-                  variant="flat"
-                  fullWidth
-                  className="text-sm font-normal"
-                  onPress={() => onCompleteOrder()}
-                >
-                  Done
-                </Button>
-                <Button
-                  color="primary"
-                  radius="sm"
-                  size="lg"
-                  variant="solid"
-                  fullWidth
-                  className="text-sm font-normal"
-                  onPress={(e) => {
-                    onClose();
-                    router.push("/transactions?commodity=giftcards");
-                  }}
-                >
-                  View Order Status
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    </div>
-  );
+            </div> */
 }
