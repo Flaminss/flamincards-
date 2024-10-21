@@ -33,6 +33,7 @@ import {
   Listbox,
   ListboxItem,
   Selection,
+  Chip,
 } from "@nextui-org/react";
 import {
   ArrowDownCircleIcon,
@@ -43,7 +44,11 @@ import {
   ChevronDownCircle,
   CircleAlertIcon,
   ClockIcon,
+  CloudUploadIcon,
   DeleteIcon,
+  ImagePlusIcon,
+  PlusIcon,
+  Trash2,
   Trash2Icon,
   WalletMinimalIcon,
 } from "lucide-react";
@@ -52,6 +57,8 @@ import { useRouter } from "next/navigation";
 import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
 import FileInput from "./file-input";
+import Files from "react-files";
+import ProofInput from "./proof-input";
 
 export default function GiftcardBuyPage({
   params,
@@ -166,41 +173,279 @@ export default function GiftcardBuyPage({
               )}
             </Select>
 
-            <Select
-              label="Amount (#)"
-              labelPlacement="outside"
-              radius="md"
-              size="lg"
-              defaultSelectedKeys={["20"]}
-              selectorIcon={<ArrowDownCircleIcon />}
-              classNames={{
-                selectorIcon: "shrink-0 w-auto h-auto !size-4 text-zinc-400",
-              }}
-            >
-              {[
-                { key: "20", label: "20" },
-                { key: "25", label: "25" },
-                { key: "50", label: "50" },
-              ].map((item) => (
-                <SelectItem
-                  key={item.key}
-                  value={item.label}
-                  className="text-white"
-                >
-                  {item.label}
-                </SelectItem>
-              ))}
-            </Select>
+            <div>
+              <h4 className="ps-1 mb-2.5 text-medium text-ellipsis">
+                Hom many{" "}
+                <span className="font-medium">
+                  {formattedSelectedCardType} ({getRegionInitials()})
+                </span>{" "}
+                Card do you have?
+              </h4>
 
-            <Input
-              label="E-Code (Optional)"
-              labelPlacement="outside"
-              placeholder="XXXX-XXXX-XXXX"
-              size="lg"
-              radius="md"
-            />
+              <Tabs
+                size="lg"
+                color="primary"
+                fullWidth={true}
+                radius="md"
+                disableAnimation={true}
+                classNames={{
+                  tab: "pt-1",
+                  panel: "pb-0"
+                }}
+              >
+                <Tab key="single" title="Just One">
+                  <div className="grid gap-y-4">
+                    <Select
+                      label="Amount (#)"
+                      radius="md"
+                      size="sm"
+                      selectionMode="single"
+                      defaultSelectedKeys={[20]}
+                      selectorIcon={<ArrowDownCircleIcon />}
+                      classNames={{
+                        selectorIcon:
+                          "shrink-0 w-auto h-auto !size-4 text-zinc-400",
+                      }}
+                    >
+                      {[
+                        { label: "20", value: 20 },
+                        { label: "25", value: 25 },
+                        { label: "50", value: 50 },
+                      ].map((item) => (
+                        <SelectItem
+                          key={item.value}
+                          value={item.value}
+                          className="text-white"
+                        >
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </Select>
 
-            <FileInput />
+                    <Input
+                      label="E-Code (Optional)"
+                      placeholder="XXXX-XXXX-XXXX"
+                      size="lg"
+                      radius="sm"
+                    />
+
+                    <ProofInput />
+                  </div>
+                </Tab>
+                <Tab key="many" title="Many">
+                  <div className="p-3 bg-content2 rounded-lg">
+                    <label className="mb-2 block">Proofs (0/3)</label>
+                    <div className="flex items-center gap-x-2">
+                      <div className="relative border rounded-lg">
+                        <Image className="size-24 border border-zinc-400 rounded-lg" />
+                        <Chip
+                          size="sm"
+                          radius="sm"
+                          variant="flat"
+                          color="danger"
+                          className="absolute bottom-1.5 right-1.5"
+                        >
+                          <Trash2 className="size-4" />
+                        </Chip>
+                      </div>
+                      <div className="relative border rounded-lg">
+                        <Image className="size-24 border border-zinc-400 rounded-lg" />
+                        <Chip
+                          size="sm"
+                          radius="sm"
+                          variant="flat"
+                          color="danger"
+                          className="absolute bottom-1.5 right-1.5"
+                        >
+                          <Trash2 className="size-4" />
+                        </Chip>
+                      </div>
+                      <div className="size-24 grid place-items-center border rounded-lg">
+                        <PlusIcon />
+                      </div>
+                    </div>
+                  </div>
+                </Tab>
+                {/* <Tab key="multiple" title="Many">
+                  <div className="pt-1">
+                    <Table
+                      isHeaderSticky
+                      aria-label="Example table with custom cells, pagination and sorting"
+                      className="mb-8"
+                      classNames={{
+                        wrapper: "max-h-[382px] p-2",
+                      }}
+                    >
+                      <TableHeader
+                        columns={[
+                          { name: "Amt", uid: "amount" },
+                          { name: "Qty", uid: "quantity" },
+                          { name: "Value", uid: "value" },
+                          { name: "Action", uid: "actions" },
+                        ]}
+                      >
+                        {(column) => (
+                          <TableColumn
+                            key={column.uid}
+                            align={
+                              column.uid === "actions" ? "center" : "start"
+                            }
+                          >
+                            {column.name}
+                          </TableColumn>
+                        )}
+                      </TableHeader>
+                      <TableBody
+                        emptyContent={noCardSelectionMessage}
+                        items={[
+                          ...multipleCardSelection.map((item) => {
+                            return {
+                              ...item,
+                              value: item.amount * item.quantity,
+                            };
+                          }),
+                          // {
+                          //   key: 0,
+                          //   amount: multipleCardSelection.reduce(
+                          //     (accumulator, value) => {
+                          //       return accumulator + value.amount;
+                          //     },
+                          //     0
+                          //   ),
+                          //   quantity: multipleCardSelection.reduce(
+                          //     (accumulator, value) => {
+                          //       return accumulator + value.quantity;
+                          //     },
+                          //     0
+                          //   ),
+                          //   value: 0,
+                          // },
+                        ]}
+                      >
+                        {(item) => (
+                          <TableRow
+                            key={item.key}
+                            className={clsx({
+                              "text-primary !font-semibold !text-base":
+                                item.key === 0,
+                            })}
+                          >
+                            {(columnKey) => (
+                              <TableCell>
+                                {columnKey !== "actions" ? (
+                                  getKeyValue(item, columnKey)
+                                ) : (
+                                  <Trash2Icon
+                                    size={16}
+                                    className="mx-auto text-danger cursor-pointer"
+                                  />
+                                )}
+                              </TableCell>
+                            )}
+                          </TableRow>
+                        )}
+                      </TableBody>
+                    </Table>
+
+                    <div className="grid gap-y-4">
+                      <div className="flex items-center gap-x-4">
+                        <Select
+                          label="Amount (#)"
+                          radius="md"
+                          className="grow w-full"
+                          defaultSelectedKeys={["20"]}
+                          classNames={{
+                            label: "text-base",
+                          }}
+                        >
+                          {["20", "100", "200"].map((amount) => (
+                            <SelectItem
+                              key={amount}
+                              value={amount}
+                              className="text-white text-4xl"
+                            >
+                              {amount}
+                            </SelectItem>
+                          ))}
+                        </Select>
+                        <Select
+                          label="Quantity"
+                          radius="md"
+                          defaultSelectedKeys={["X 1"]}
+                          classNames={{
+                            label: "text-base",
+                          }}
+                        >
+                          {["X 1", "X 2", "X 3", "X 4", "X 5"].map((amount) => (
+                            <SelectItem key={amount} value={amount}>
+                              {amount}
+                            </SelectItem>
+                          ))}
+                        </Select>
+                      </div>
+                      <Input
+                        label="E-Code (Optional)"
+                        placeholder="XXXX-XXXX-XXXX"
+                        size="lg"
+                        radius="sm"
+                      />
+                      <div className="grid gap-y-3 w-full">
+                        <label
+                          htmlFor="dropzone-file"
+                          className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-default-400 bg-default-100 rounded-lg cursor-pointer"
+                        >
+                          <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg
+                              className="size-10 mb-2 text-gray-400 dark:text-gray-400"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 20 16"
+                            >
+                              <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                              />
+                            </svg>
+                            <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
+                              <span className="font-semibold">
+                                Upload image proof
+                              </span>{" "}
+                              or drag and drop
+                            </p>
+                            <p className="text-xs mb-2 text-gray-500 dark:text-gray-400">
+                              SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            </p>
+                            <p className="ps-1 py-1 flex gap-x-2 items-center text-sm text-warning-600 mb-2">
+                              <CircleAlertIcon className="size-4" /> Make sure
+                              you upload clear pictures
+                            </p>
+                          </div>
+                          <input
+                            id="dropzone-file"
+                            type="file"
+                            className="hidden"
+                          />
+                        </label>
+                      </div>
+
+                      <Button
+                        variant="flat"
+                        color="primary"
+                        size="lg"
+                        radius="sm"
+                        className="w-full"
+                      >
+                        Add Card
+                      </Button>
+                    </div>
+                  </div>
+                </Tab> */}
+              </Tabs>
+            </div>
 
             <Textarea
               label="Add a Comment (Optional)"
@@ -336,7 +581,7 @@ export default function GiftcardBuyPage({
                   className="text-sm font-normal"
                   onPress={(e) => {
                     onClose();
-                    router.push("/transactions?commodity=giftcards");
+                    router.push("/transactions/$randomId");
                   }}
                 >
                   View Order Status
@@ -351,7 +596,6 @@ export default function GiftcardBuyPage({
 }
 
 // DROPZONE
-
 {
   /* <div className="grid gap-y-3 w-full">
               <label
