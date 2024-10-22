@@ -10,7 +10,7 @@ import {
   Select,
   SelectItem,
 } from "@nextui-org/react";
-import { ArrowDownCircleIcon, PlusCircleIcon } from "lucide-react";
+import { ArrowDownCircleIcon, PlusCircleIcon, XCircleIcon } from "lucide-react";
 import ProofInput from "./proof-input";
 
 export default function GiftCardValueEntryAdder() {
@@ -21,7 +21,7 @@ export default function GiftCardValueEntryAdder() {
       <button
         type="button"
         onClick={onOpen}
-        className="grid place-items-center gap-y-2 border-2 border-dashed rounded-lg p-8"
+        className="w-full grid place-items-center gap-y-2 border-2 border-dashed rounded-lg p-8"
       >
         <div className="grid place-items-center gap-y-4">
           <PlusCircleIcon className="size-8" />
@@ -35,15 +35,28 @@ export default function GiftCardValueEntryAdder() {
         placement="bottom-center"
         // size="md"
         scrollBehavior="inside"
+        hideCloseButton
       >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 pt-6 pb-4 px-4">
-                <h5 className="font-medium">Amazon (USA) Gift Card</h5>
-                <p className="text-xs text-gray-400">
-                  You're adding one of many cards to redeem
-                </p>
+              <ModalHeader className="pt-6 pb-4 flex items-start justify-between gap-x-4 px-4 gap-y-2.5">
+                <div className="flex flex-col gap-1">
+                  <h5 className="font-medium">Amazon (USA) Gift Card</h5>
+                  <p className="text-xs text-gray-400">
+                    You're adding one of many cards to redeem
+                  </p>
+                </div>
+                <Button
+                  isIconOnly
+                  size="md"
+                  radius="full"
+                  color="danger"
+                  variant="flat"
+                  onClick={onClose}
+                >
+                  <XCircleIcon />
+                </Button>
               </ModalHeader>
               <ModalBody className="grid gap-y-4 px-3">
                 <Select
