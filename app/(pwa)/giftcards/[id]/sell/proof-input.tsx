@@ -53,7 +53,7 @@ export default function ProofInput() {
       <div className="relative border rounded-lg overflow-hidden">
         <img
           src={files[0].preview.url}
-          className="w-full min-h-20 object-cover"
+          className="w-full min-h-20 object-cover max-h-[380px]"
         />
         <Button
           isIconOnly
