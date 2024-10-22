@@ -63,7 +63,7 @@ import { useState } from "react";
 import FileInput from "./file-input";
 import Files from "react-files";
 import ProofInput from "./proof-input";
-import MultipleCardAddButton from "./multiple-cards-add-button";
+import GiftCardValueEntryAdder from "./value-entry-adder";
 
 export default function GiftcardBuyPage({
   params,
@@ -239,7 +239,7 @@ export default function GiftcardBuyPage({
                   </div>
                 </Tab>
                 <Tab key="many" title="Many">
-                  <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-2 justify-center gap-4 sm:gap-6">
                     {multipleCardSelection.map((item) => {
                       return (
                         <Card shadow="sm" key={item.key}>
@@ -294,7 +294,7 @@ export default function GiftcardBuyPage({
                       );
                     })}
 
-                    <MultipleCardAddButton />
+                    <GiftCardValueEntryAdder />
                   </div>
 
                   {/* <div className="p-2 bg-content2 rounded-lg flex items-center gap-x-2">
