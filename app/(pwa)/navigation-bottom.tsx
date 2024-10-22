@@ -238,7 +238,7 @@ export default function BottomNavigationPro({
         selectedKey={pathname}
         className={clsx(classNames?.base, "w-full z-28")}
         classNames={{
-          base: "!z-[10000]",
+          // base: "!z-50",
           cursor: "hidden",
           tab: "h-auto pt-2 px-0 max-w-28",
           tabList: clsx(
