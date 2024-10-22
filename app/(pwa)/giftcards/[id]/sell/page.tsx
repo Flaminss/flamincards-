@@ -34,11 +34,13 @@ import {
   ListboxItem,
   Selection,
   Chip,
+  Tooltip,
 } from "@nextui-org/react";
 import {
   ArrowDownCircleIcon,
   ArrowLeftRightIcon,
   ArrowRightCircleIcon,
+  CheckCircle2,
   CheckCircle2Icon,
   CheckCircleIcon,
   ChevronDownCircle,
@@ -47,10 +49,12 @@ import {
   CloudUploadIcon,
   DeleteIcon,
   ImagePlusIcon,
+  PlusCircleIcon,
   PlusIcon,
   Trash2,
   Trash2Icon,
   WalletMinimalIcon,
+  XCircleIcon,
 } from "lucide-react";
 import currencyIcons from "currency-icons";
 import { useRouter } from "next/navigation";
@@ -59,6 +63,7 @@ import { useState } from "react";
 import FileInput from "./file-input";
 import Files from "react-files";
 import ProofInput from "./proof-input";
+import MultipleCardAddButton from "./multiple-cards-add-button";
 
 export default function GiftcardBuyPage({
   params,
@@ -91,12 +96,6 @@ export default function GiftcardBuyPage({
 
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
 
-  const multipleCardSelection = [
-    { key: 1, amount: 50, quantity: 1 },
-    { key: 2, amount: 200, quantity: 2 },
-    { key: 3, amount: 1000, quantity: 1 },
-  ];
-
   const {
     isOpen: orderSubmitted,
     onOpen: onSubmitOrder,
@@ -106,6 +105,11 @@ export default function GiftcardBuyPage({
 
   const formattedSelectedCardType =
     selectedCardType[0].toUpperCase() + selectedCardType.slice(1);
+
+  const [multipleCardSelection, setMultipleCardSelection] = useState([
+    // { key: 1, amount: 50, eCode: "skljdlkjsdfsd" },
+    // { key: 2, amount: 200, eCode: "" },
+  ]);
 
   const getRegionInitials = () => {
     const value = Array.from(selectedRegion)[0];
@@ -190,7 +194,7 @@ export default function GiftcardBuyPage({
                 disableAnimation={true}
                 classNames={{
                   tab: "pt-1",
-                  panel: "pb-0"
+                  panel: "pb-0",
                 }}
               >
                 <Tab key="single" title="Just One">
@@ -233,38 +237,85 @@ export default function GiftcardBuyPage({
                   </div>
                 </Tab>
                 <Tab key="many" title="Many">
-                  <div className="p-3 bg-content2 rounded-lg">
-                    <label className="mb-2 block">Proofs (0/3)</label>
-                    <div className="flex items-center gap-x-2">
-                      <div className="relative border rounded-lg">
-                        <Image className="size-24 border border-zinc-400 rounded-lg" />
-                        <Chip
-                          size="sm"
-                          radius="sm"
-                          variant="flat"
-                          color="danger"
-                          className="absolute bottom-1.5 right-1.5"
-                        >
-                          <Trash2 className="size-4" />
-                        </Chip>
-                      </div>
-                      <div className="relative border rounded-lg">
-                        <Image className="size-24 border border-zinc-400 rounded-lg" />
-                        <Chip
-                          size="sm"
-                          radius="sm"
-                          variant="flat"
-                          color="danger"
-                          className="absolute bottom-1.5 right-1.5"
-                        >
-                          <Trash2 className="size-4" />
-                        </Chip>
-                      </div>
-                      <div className="size-24 grid place-items-center border rounded-lg">
-                        <PlusIcon />
-                      </div>
-                    </div>
+                  <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                    {multipleCardSelection.map((item) => {
+                      return (
+                        <Card shadow="sm" key={item.key}>
+                          <CardBody className="relative p-0">
+                            <Image
+                              shadow="sm"
+                              radius="lg"
+                              width="100%"
+                              // alt={item.title}
+                              className="w-full object-cover h-[140px] rounded-b-sm"
+                              src={`https://th.bing.com/th/id/OIP.I89DeQMyCgVqj_eo-QgPYAHaEr?rs=1&pid=ImgDetMain`}
+                            />
+
+                            {/* <div className="absolute top-1.5 left-1.5 z-10">
+                              
+                            </div> */}
+
+                            <Button
+                              isIconOnly
+                              size="sm"
+                              radius="sm"
+                              color="danger"
+                              className="absolute top-2 right-2 z-10"
+                            >
+                              <Trash2
+                                className="size-4"
+                                // onClick={() => handleFileRemove(files[0].id)}
+                              />
+                            </Button>
+                          </CardBody>
+                          <CardFooter className="text-sm flex flex-wrap gap-4 justify-between p-3 pt-3">
+                            {item.eCode ? (
+                              <Tooltip content={item.eCode}>
+                                <div className="flex items-center gap-x-2 text-xs ps-3 pe-2 py-1 shadow-sm rounded-lg bg-success-50 border text-success">
+                                  E-Code
+                                  {/* <CheckCircle2 className="size-4" /> */}
+                                </div>
+                              </Tooltip>
+                            ) : (
+                              // <div className="flex items-center gap-x-2 text-xs ps-3 pe-2 py-1 shadow-sm rounded-lg bg-danger-50 border text-danger">
+                              //   E-Code
+                              //   {/* <XCircleIcon className="size-4" /> */}
+                              // </div>
+                              <p className="font-medium text-xs">Amount</p>
+                            )}
+
+                            <p className="font-medium text-default-700 px-2">
+                              ${item.amount}
+                            </p>
+                          </CardFooter>
+                        </Card>
+                      );
+                    })}
+
+                    <MultipleCardAddButton />
                   </div>
+
+                  {/* <div className="p-2 bg-content2 rounded-lg flex items-center gap-x-2">
+                    <img className="size-24 bg-content1 rounded-lg border-none" />
+                    <div className="ms-2 grid flex-grow text-xs">
+                      <p className="flex gap-x-2">
+                        Amount: <span className="font-semibold">50</span>
+                      </p>
+                      <p className="flex gap-x-2">
+                        Ecode:{" "}
+                        <span className="font-semibold">XXXX-XXXX-XXXX</span>
+                      </p>
+                    </div>
+                    <Chip
+                      size="sm"
+                      radius="sm"
+                      variant="flat"
+                      color="danger"
+                      className="self-end"
+                    >
+                      <Trash2 className="size-4" />
+                    </Chip>
+                  </div> */}
                 </Tab>
                 {/* <Tab key="multiple" title="Many">
                   <div className="pt-1">
