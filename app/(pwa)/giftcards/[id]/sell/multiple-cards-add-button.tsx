@@ -33,9 +33,8 @@ export default function MultipleCardAddButton() {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         placement="bottom-center"
-        size="sm"
+        // size="md"
         scrollBehavior="inside"
-        className="mb-16"
       >
         <ModalContent>
           {(onClose) => (
