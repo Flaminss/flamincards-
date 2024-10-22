@@ -106,7 +106,9 @@ export default function GiftcardBuyPage({
   const formattedSelectedCardType =
     selectedCardType[0].toUpperCase() + selectedCardType.slice(1);
 
-  const [multipleCardSelection, setMultipleCardSelection] = useState([
+  const [multipleCardSelection, setMultipleCardSelection] = useState<
+    { key: number; amount: number; eCode: string }[]
+  >([
     // { key: 1, amount: 50, eCode: "skljdlkjsdfsd" },
     // { key: 2, amount: 200, eCode: "" },
   ]);
