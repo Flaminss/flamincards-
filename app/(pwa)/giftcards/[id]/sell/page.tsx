@@ -43,6 +43,7 @@ import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
 import ImageProofInput, { FileInputPayload } from "./image-proof-input";
 import RouterLink from "next/link";
+import AmountInput from "./amount-input";
 
 export default function GiftcardBuyPage({
   params,
@@ -105,7 +106,7 @@ export default function GiftcardBuyPage({
     string[]
   >([]);
 
-  const [cardValueEntryAmount, setCardValueEntryAmount] = useState<number>(0);
+  const [cardValueEntryAmount, setCardValueEntryAmount] = useState<string>("");
   const [cardValueEntryEcode, setCardValueEntryEcode] = useState<string>();
   const [cardValueEntryProof, setCardValueEntryProof] = useState(
     [] as FileInputPayload[]
@@ -129,7 +130,7 @@ export default function GiftcardBuyPage({
   const [cardValueEntries, setCardValueEntries] = useState(
     [] as {
       id: string;
-      amount: number;
+      amount: string;
       ecode?: string;
       proof: FileInputPayload[];
     }[]
@@ -167,22 +168,20 @@ export default function GiftcardBuyPage({
       ];
     });
 
-    setCardValueEntryAmount(20);
+    setCardValueEntryAmount("");
     setCardValueEntryEcode(undefined);
     setCardValueEntryProof([]);
     setCardValueEntryProofUploadErrors([]);
     onCardValueEntryAdderClose();
   };
 
-  const updateCardValueAmount = (value: string) => {
-    const [minValue, maxValue] = [1, 100_000];
-    const valueInt = parseInt(value) || 0;
-    if (valueInt < minValue || valueInt > maxValue) {
-      setCardValueAmount("");
-      return;
-    }
-    setCardValueAmount(valueInt.toString());
-  };
+  const updateCardValueAmount = createUpdateCardValueAmountHandler({
+    onSetValue: setCardValueAmount,
+  });
+
+  const updateCardValueEntryAmount = createUpdateCardValueAmountHandler({
+    onSetValue: setCardValueEntryAmount,
+  });
 
   return (
     <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
@@ -262,56 +261,9 @@ export default function GiftcardBuyPage({
               >
                 <Tab key="single" title="Just One">
                   <div className="grid gap-y-4">
-                    <Input
-                      type="number"
-                      label="Amount (#)"
-                      radius="md"
-                      size="lg"
+                    <AmountInput
                       value={cardValueAmount}
-                      placeholder="50"
                       onValueChange={updateCardValueAmount}
-                      classNames={{
-                        input: "remove-browser-input-counter",
-                      }}
-                      endContent={
-                        <div className="flex gap-x-2 items-center">
-                          <Button
-                            size="md"
-                            radius="sm"
-                            onClick={() => {
-                              updateCardValueAmount(
-                                (
-                                  (parseInt(cardValueAmount) || 0) - 5
-                                ).toString()
-                              );
-                            }}
-                            className="px-2.5 min-w-[unset] text-base font-semibold items-center hover:border-2"
-                          >
-                            <span className="text-2xl text-warning leading-none">
-                              -
-                            </span>
-                            5
-                          </Button>
-
-                          <Button
-                            size="md"
-                            radius="sm"
-                            onClick={() => {
-                              updateCardValueAmount(
-                                (
-                                  (parseInt(cardValueAmount) || 0) + 5
-                                ).toString()
-                              );
-                            }}
-                            className="px-2.5 min-w-[unset] text-base font-semibold items-center hover:border-2"
-                          >
-                            <span className="text-2xl text-warning leading-none">
-                              +
-                            </span>
-                            5
-                          </Button>
-                        </div>
-                      }
                     />
 
                     <Input
@@ -428,32 +380,10 @@ export default function GiftcardBuyPage({
                               </Button>
                             </ModalHeader>
                             <ModalBody className="grid gap-y-4 px-3">
-                              <Select
-                                label="Amount (#)"
-                                radius="md"
-                                size="sm"
-                                selectionMode="single"
-                                defaultSelectedKeys={[20]}
-                                selectorIcon={<ArrowDownCircleIcon />}
-                                classNames={{
-                                  selectorIcon:
-                                    "shrink-0 w-auto h-auto !size-4 text-zinc-400",
-                                }}
-                              >
-                                {[
-                                  { label: "20", value: 20 },
-                                  { label: "25", value: 25 },
-                                  { label: "50", value: 50 },
-                                ].map((item) => (
-                                  <SelectItem
-                                    key={item.value}
-                                    value={item.value}
-                                    className="text-white"
-                                  >
-                                    {item.label}
-                                  </SelectItem>
-                                ))}
-                              </Select>
+                              <AmountInput
+                                value={cardValueEntryAmount}
+                                onValueChange={updateCardValueEntryAmount}
+                              />
 
                               <Input
                                 label="E-Code (Optional)"
@@ -517,6 +447,8 @@ export default function GiftcardBuyPage({
               <Image
                 shadow="lg"
                 radius="lg"
+                width={undefined}
+                height={undefined}
                 src="https://th.bing.com/th/id/OIP.I89DeQMyCgVqj_eo-QgPYAHaEr?rs=1&pid=ImgDetMain"
                 alt=""
                 className="hidden md:block object-contain h-[120px] max-w-screen-md mb-2"
@@ -677,5 +609,21 @@ function createCardValueProofChangeHandler({
 
       return curatedFiles;
     });
+  };
+}
+
+function createUpdateCardValueAmountHandler({
+  onSetValue,
+}: {
+  onSetValue: (value: string) => void;
+}) {
+  return function (value: string) {
+    const [minValue, maxValue] = [1, 100_000];
+    const valueInt = parseInt(value) || 0;
+    if (valueInt < minValue || valueInt > maxValue) {
+      onSetValue("");
+      return;
+    }
+    onSetValue(valueInt.toString());
   };
 }
