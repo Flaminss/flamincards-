@@ -198,12 +198,6 @@ export default function GiftcardBuyPage({
   const formattedSelectedCardType =
     selectedCardType[0].toUpperCase() + selectedCardType.slice(1);
 
-  const [multipleCardSelection, setMultipleCardSelection] = useState<
-    { key: number; amount: number; ecode: string }[]
-  >([
-    // { key: 2, amount: 200, ecode: "" },
-  ]);
-
   const getRegionInitials = () => {
     const value = Array.from(selectedRegion)[0];
 
