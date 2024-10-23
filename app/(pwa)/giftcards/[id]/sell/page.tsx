@@ -181,7 +181,12 @@ export default function GiftcardBuyPage({
   };
 
   const canAddCardValueEntry = () => {
-    if (!cardValueEntryAmount && cardValueEntryProof) {
+    const missingRequiredEcode =
+      selectedCardForm === "ecode" && !cardValueEntryEcode;
+    const missingRequiredProof =
+      selectedCardForm === "image" && cardValueEntryProof.length === 0;
+
+    if (!cardValueEntryAmount || missingRequiredEcode || missingRequiredProof) {
       return false;
     }
     return true;
@@ -323,14 +328,25 @@ export default function GiftcardBuyPage({
                       return (
                         <Card shadow="sm" key={valueEntry.id}>
                           <CardBody className="relative p-0">
-                            <Image
-                              shadow="sm"
-                              radius="lg"
-                              width="100%"
-                              alt={`Image proof of giftcard with amount of: ${valueEntry.amount}`}
-                              className="w-full object-cover h-[140px] rounded-b-sm"
-                              src={valueEntry.proof[0].preview.url}
-                            />
+                            {valueEntry.ecode ? (
+                              <div className="w-full object-cover h-[140px] rounded-b-sm pt-4 text-3xl text-default-800 text-center grid place-items-center radius-lg shadow-sm">
+                                <h5 className="flex flex-col gap-y-1 items-center">
+                                  ECODE
+                                  <span className="text-xs font-mono text-default-400 font-extralight">
+                                    {valueEntry.ecode}
+                                  </span>
+                                </h5>
+                              </div>
+                            ) : (
+                              <Image
+                                shadow="sm"
+                                radius="lg"
+                                width="100%"
+                                alt={`Image proof of giftcard with amount of: ${valueEntry.amount}`}
+                                className="w-full object-cover h-[140px] rounded-b-sm"
+                                src={valueEntry.proof[0].preview.url}
+                              />
+                            )}
 
                             <Button
                               isIconOnly
@@ -346,17 +362,19 @@ export default function GiftcardBuyPage({
                             </Button>
                           </CardBody>
                           <CardFooter className="text-sm flex flex-wrap gap-4 justify-between p-3 pt-3">
-                            {valueEntry.ecode ? (
+                            {/* {valueEntry.ecode ? (
                               <Tooltip content={valueEntry.ecode}>
                                 <div className="flex valueEntrys-center gap-x-2 text-xs ps-3 pe-2 py-1 shadow-sm rounded-lg bg-success-50 border text-success">
                                   E-Code
                                 </div>
                               </Tooltip>
                             ) : (
-                              <p className="font-medium text-xs">Amount</p>
-                            )}
+                            )} */}
+                            <p className="text-xs uppercase text-default-500">
+                              Amount
+                            </p>
 
-                            <p className="font-medium text-default-700 px-2">
+                            <p className="font-medium text-default-800 px-1">
                               ${valueEntry.amount}
                             </p>
                           </CardFooter>
