@@ -64,6 +64,7 @@ import FileInput from "./file-input";
 import Files from "react-files";
 import ProofInput from "./proof-input";
 import GiftCardValueEntryAdder from "./value-entry-adder";
+import RouterLink from "next/link";
 
 export default function GiftcardBuyPage({
   params,
@@ -109,7 +110,7 @@ export default function GiftcardBuyPage({
   const [multipleCardSelection, setMultipleCardSelection] = useState<
     { key: number; amount: number; eCode: string }[]
   >([
-    // { key: 1, amount: 50, eCode: "skljdlkjsdfsd" },
+    { key: 1, amount: 50, eCode: "XXX-XXXX-XXX" },
     // { key: 2, amount: 200, eCode: "" },
   ]);
 
@@ -239,7 +240,12 @@ export default function GiftcardBuyPage({
                   </div>
                 </Tab>
                 <Tab key="many" title="Many">
-                  <div className="grid grid-cols-2 justify-center gap-4 sm:gap-6">
+                  <div
+                    className={clsx({
+                      "grid grid-cols-2 gap-4 sm:gap-6":
+                        multipleCardSelection.length > 0,
+                    })}
+                  >
                     {multipleCardSelection.map((item) => {
                       return (
                         <Card shadow="sm" key={item.key}>
@@ -530,7 +536,8 @@ export default function GiftcardBuyPage({
                 color="warning"
                 variant="light"
                 className="py-0"
-                href="/market/giftcard"
+                href="/giftcards"
+                as={RouterLink}
                 endContent={<ArrowRightCircleIcon size={16} />}
               >
                 Choose different card
