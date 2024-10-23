@@ -64,26 +64,29 @@ export default function ImageProofInput({
   // };
 
   if (payloads.length > 0) {
-    return (
-      <div className="relative border rounded-lg overflow-hidden">
-        <img
-          src={payloads[0].preview.url}
-          className="w-full min-h-20 object-cover max-h-[380px]"
-        />
-        <Button
-          isIconOnly
-          size="sm"
-          radius="sm"
-          color="danger"
-          className="absolute top-2 right-2"
-        >
-          <Trash2
-            className="size-5"
-            onClick={() => onRemovePayload(payloads[0].id)}
+    payloads.map((payload) => {
+      return (
+        <div className="relative border rounded-lg overflow-hidden">
+          <img
+            src={payload.preview.url}
+            className="w-full min-h-20 object-cover max-h-[380px]"
           />
-        </Button>
-      </div>
-    );
+
+          <Button
+            isIconOnly
+            size="sm"
+            radius="sm"
+            color="danger"
+            className="absolute top-2 right-2"
+          >
+            <Trash2
+              className="size-5"
+              onClick={() => onRemovePayload(payload.id)}
+            />
+          </Button>
+        </div>
+      );
+    });
   }
 
   return (
