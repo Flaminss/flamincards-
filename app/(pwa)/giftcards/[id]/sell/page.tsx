@@ -582,7 +582,7 @@ export default function GiftcardBuyPage({
                   className="text-sm font-normal"
                   onPress={() => onCompleteOrder()}
                 >
-                  Buy again
+                  Close
                 </Button>
                 <Button
                   color="primary"
