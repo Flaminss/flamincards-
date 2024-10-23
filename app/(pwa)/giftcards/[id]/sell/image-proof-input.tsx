@@ -2,7 +2,7 @@ import { Button, Chip } from "@nextui-org/react";
 import { ImagePlusIcon, Trash2 } from "lucide-react";
 import Files from "react-files";
 
-type FileInputPayload = {
+export type FileInputPayload = {
   id: string;
   type: string;
   name: string;
@@ -31,38 +31,6 @@ export default function ImageProofInput({
   onFileInputChange,
   onRemovePayload,
 }: ImageProofInputProps) {
-  // const [payloadUploadErrors, setFileUplaodError] = useState("");
-  // const [files, setFiles] = useState([] as FileInputPayload[]);
-
-  // const handleChange = (newFiles: any[]) => {
-  //   setFiles((prevFiles) => {
-  //     let exceededLimit = false;
-  //     const curatedFiles = [...prevFiles];
-
-  //     newFiles.forEach((newFile) => {
-  //       if (curatedFiles.length < maxUploadableFiles) {
-  //         curatedFiles.push(newFile);
-  //       } else {
-  //         exceededLimit = true;
-  //       }
-  //     });
-
-  //     // setFileUplaodError(() => {
-  //       const message = "Max amount of payloads reached";
-  //       return !exceededLimit ? "" : message;
-  //     });
-
-  //     return curatedFiles;
-  //   });
-  // };
-
-  // const handleFileRemove = (fileId: any) => {
-  //   setFiles((prevFiles) => {
-  //     // setFileUplaodError("");
-  //     return prevFiles.filter((prevFile) => prevFile.id !== fileId);
-  //   });
-  // };
-
   if (payloads.length > 0) {
     payloads.map((payload) => {
       return (
