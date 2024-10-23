@@ -121,3 +121,12 @@
 .thin-scrollbar::-webkit-scrollbar-track {
   background: rgb(var(--gray-1)); /* Background of the scrollbar track */
 }
+input.remove-browser-input-counter::-webkit-outer-spin-button,
+input.remove-browser-input-counter::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.remove-browser-input-counter[type="number"] {
+  -moz-appearance: textfield;
+}
