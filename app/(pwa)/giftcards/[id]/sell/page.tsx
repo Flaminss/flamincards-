@@ -271,6 +271,8 @@ export default function GiftcardBuyPage({
                       placeholder="XXXX-XXXX-XXXX"
                       size="lg"
                       radius="sm"
+                      value={cardValueEcode}
+                      onValueChange={setCardValueEcode}
                     />
 
                     <ImageProofInput
@@ -390,6 +392,8 @@ export default function GiftcardBuyPage({
                                 placeholder="XXXX-XXXX-XXXX"
                                 size="lg"
                                 radius="sm"
+                                value={cardValueEntryEcode}
+                                onValueChange={setCardValueEntryEcode}
                               />
 
                               <ImageProofInput
