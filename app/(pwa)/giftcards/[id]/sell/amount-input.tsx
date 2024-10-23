@@ -31,7 +31,7 @@ export default function AmountInput({
             }}
             className="px-2.5 min-w-[unset] text-base font-semibold items-center hover:border-2"
           >
-            <span className="text-2xl text-warning leading-none">-</span>5
+            <span className="text-xl text-primary leading-none">-</span>5
           </Button>
 
           <Button
@@ -42,7 +42,7 @@ export default function AmountInput({
             }}
             className="px-2.5 min-w-[unset] text-base font-semibold items-center hover:border-2"
           >
-            <span className="text-2xl text-warning leading-none">+</span>5
+            <span className="text-xl text-primary leading-none">+</span>5
           </Button>
         </div>
       }
