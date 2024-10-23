@@ -47,6 +47,14 @@ export default function GiftcardBuyPage({
   params: { id: string };
 }) {
   const router = useRouter();
+
+  const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
+  const {
+    isOpen: orderSubmitted,
+    onOpen: onSubmitOrder,
+    onClose: onCompleteOrder,
+    onOpenChange: onOrderSubmitChange,
+  } = useDisclosure();
   const {
     isOpen: isCardValueEntryAdderOpen,
     onOpen: onCardValueEntryAdderOpen,
@@ -54,12 +62,10 @@ export default function GiftcardBuyPage({
     onOpenChange: onCardValueEntryAdderOpenChange,
   } = useDisclosure();
 
-  const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
-
   const { id: selectedCardType } = params;
-  const [selectedRegion, setSelectedRegion] = useState<Selection>(
-    new Set(["usa"])
-  );
+  const formattedSelectedCardType =
+    selectedCardType[0].toUpperCase() + selectedCardType.slice(1);
+
   const regions = [
     { key: "usa", label: "United States (USA)" },
     { key: "uk", label: "United Kingdom (UK)" },
@@ -74,6 +80,18 @@ export default function GiftcardBuyPage({
     { key: "za", label: "South Africa (ZA)" },
     { key: "br", label: "Brazil (BR)" },
   ];
+  const [selectedRegion, setSelectedRegion] = useState<Selection>(
+    new Set(["usa"])
+  );
+  const getRegionInitials = () => {
+    const value = Array.from(selectedRegion)[0];
+
+    if (selectedRegion === "all") {
+      return "";
+    }
+
+    return value.toString().toUpperCase();
+  };
 
   const [cardValueAmount, setCardValueAmount] = useState<number>(0);
   const [cardValueEcode, setCardValueEcode] = useState<string>();
@@ -89,9 +107,22 @@ export default function GiftcardBuyPage({
   const [cardValueEntryProof, setCardValueEntryProof] = useState(
     [] as FileInputPayload[]
   );
+
+  const handleCardValueProofChange = createCardValueProofChangeHandler({
+    maxUploads: 1,
+    onSetProof: setCardValueProof,
+    onSetUploadErrors: setCardValueProofUploadErrors,
+  });
+
+  const removeCardValueProof = (fileId: any) => {
+    setCardValueProof((prevFiles) => {
+      setCardValueProofUploadErrors([]);
+      return prevFiles.filter((prevFile) => prevFile.id !== fileId);
+    });
+  };
+
   const [cardValueEntryProofUploadErrors, setCardValueEntryProofUploadErrors] =
     useState<string[]>([]);
-
   const [cardValueEntries, setCardValueEntries] = useState(
     [] as {
       id: string;
@@ -101,59 +132,11 @@ export default function GiftcardBuyPage({
     }[]
   );
 
-  const createCardValueProofChangeHandler =
-    ({
-      maxUploads,
-      onSetProof,
-      onSetUploadErrors,
-    }: {
-      maxUploads: number;
-      onSetProof: (
-        updateFn: (files: FileInputPayload[]) => FileInputPayload[]
-      ) => void;
-      onSetUploadErrors: (updateFn: (errors?: string[]) => string[]) => void;
-    }) =>
-    (newFiles: FileInputPayload[]) => {
-      onSetProof((prevFiles: FileInputPayload[]) => {
-        let exceededLimit = false;
-        const curatedFiles = [...prevFiles];
-        const maxUploadableFiles = maxUploads;
-
-        newFiles.forEach((newFile) => {
-          if (curatedFiles.length < maxUploadableFiles) {
-            curatedFiles.push(newFile);
-          } else {
-            exceededLimit = true;
-          }
-        });
-
-        onSetUploadErrors(() => {
-          const message = "Max amount of payloads reached";
-          return !exceededLimit ? [] : [message];
-        });
-
-        return curatedFiles;
-      });
-    };
-
-  const handleCardValueProofChange = createCardValueProofChangeHandler({
-    maxUploads: 1,
-    onSetProof: setCardValueProof,
-    onSetUploadErrors: setCardValueProofUploadErrors,
-  });
-
   const handleCardValueEntryProofChange = createCardValueProofChangeHandler({
     maxUploads: 1,
     onSetProof: setCardValueEntryProof,
     onSetUploadErrors: setCardValueEntryProofUploadErrors,
   });
-
-  const removeCardValueProof = (fileId: any) => {
-    setCardValueProof((prevFiles) => {
-      setCardValueProofUploadErrors([]);
-      return prevFiles.filter((prevFile) => prevFile.id !== fileId);
-    });
-  };
 
   const removeCardEntryValueProof = (fileId: any) => {
     setCardValueEntryProof((prevFiles) => {
@@ -188,33 +171,13 @@ export default function GiftcardBuyPage({
     onCardValueEntryAdderClose();
   };
 
-  const {
-    isOpen: orderSubmitted,
-    onOpen: onSubmitOrder,
-    onClose: onCompleteOrder,
-    onOpenChange: onOrderSubmitChange,
-  } = useDisclosure();
-
-  const formattedSelectedCardType =
-    selectedCardType[0].toUpperCase() + selectedCardType.slice(1);
-
-  const getRegionInitials = () => {
-    const value = Array.from(selectedRegion)[0];
-
-    if (selectedRegion === "all") {
-      return "";
-    }
-
-    return value.toString().toUpperCase();
-  };
-
   return (
     <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
       <header className="py-5 md:pt-0 px-4 mb-2">
         <PWAPageTitle title="Sell (Redeem) your Gift Card" />
       </header>
 
-      <section className="px-4 py-6 flex flex-col gap-y-8 xl:flex-row gap-x-12">
+      <main className="px-4 py-6 flex flex-col gap-y-8 xl:flex-row gap-x-12">
         <div className="max-w-xl grow">
           <Image
             shadow="lg"
@@ -585,14 +548,15 @@ export default function GiftcardBuyPage({
             </CardFooter>
           </Card>
         </div>
-      </section>
+      </main>
 
       <Modal
         isOpen={orderSubmitted}
         onOpenChange={onOrderSubmitChange}
         backdrop="opaque"
         placement="center"
-        classNames={{ backdrop: "z-[2000]", wrapper: "z-[2001]" }}
+        // classNames={{ backdrop: "z-50", wrapper: "z-50" }}
+        className="z-50"
         isDismissable={false}
         hideCloseButton
       >
@@ -642,4 +606,39 @@ export default function GiftcardBuyPage({
       </Modal>
     </div>
   );
+}
+
+function createCardValueProofChangeHandler({
+  maxUploads,
+  onSetProof,
+  onSetUploadErrors,
+}: {
+  maxUploads: number;
+  onSetProof: (
+    updateFn: (files: FileInputPayload[]) => FileInputPayload[]
+  ) => void;
+  onSetUploadErrors: (updateFn: (errors?: string[]) => string[]) => void;
+}) {
+  return function (newFiles: FileInputPayload[]) {
+    onSetProof((prevFiles: FileInputPayload[]) => {
+      let exceededLimit = false;
+      const curatedFiles = [...prevFiles];
+      const maxUploadableFiles = maxUploads;
+
+      newFiles.forEach((newFile) => {
+        if (curatedFiles.length < maxUploadableFiles) {
+          curatedFiles.push(newFile);
+        } else {
+          exceededLimit = true;
+        }
+      });
+
+      onSetUploadErrors(() => {
+        const message = "Max amount of payloads reached";
+        return !exceededLimit ? [] : [message];
+      });
+
+      return curatedFiles;
+    });
+  };
 }
