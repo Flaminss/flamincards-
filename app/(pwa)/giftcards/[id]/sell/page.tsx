@@ -97,6 +97,8 @@ export default function GiftcardBuyPage({
     return value.toString().toUpperCase();
   };
 
+  const [cardValueQuantity, setCardValueQuantity] = useState("single");
+
   const [cardValueAmount, setCardValueAmount] = useState<string>("");
   const [cardValueEcode, setCardValueEcode] = useState<string>();
   const [cardValueProof, setCardValueProof] = useState(
@@ -258,6 +260,10 @@ export default function GiftcardBuyPage({
                   tab: "pt-1",
                   panel: "pb-0",
                 }}
+                selectedKey={cardValueQuantity}
+                onSelectionChange={(key) =>
+                  setCardValueQuantity(key.toString())
+                }
               >
                 <Tab key="single" title="Just One">
                   <div className="grid gap-y-4">
@@ -287,7 +293,7 @@ export default function GiftcardBuyPage({
                   </div>
                 </Tab>
 
-                <Tab key="many" title="Many">
+                <Tab key="multiple" title="Many">
                   <div
                     className={clsx({
                       "grid grid-cols-2 gap-4 sm:gap-6":
