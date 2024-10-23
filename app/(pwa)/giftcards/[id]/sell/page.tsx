@@ -62,7 +62,7 @@ import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
 import FileInput from "./file-input";
 import Files from "react-files";
-import ProofInput from "./proof-input";
+import ProofInput from "./image-proof-input";
 import GiftCardValueEntryAdder from "./value-entry-adder";
 import RouterLink from "next/link";
 

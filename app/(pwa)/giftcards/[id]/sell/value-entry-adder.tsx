@@ -11,7 +11,7 @@ import {
   SelectItem,
 } from "@nextui-org/react";
 import { ArrowDownCircleIcon, PlusCircleIcon, XCircleIcon } from "lucide-react";
-import ProofInput from "./proof-input";
+import ProofInput from "./image-proof-input";
 
 export default function GiftCardValueEntryAdder() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

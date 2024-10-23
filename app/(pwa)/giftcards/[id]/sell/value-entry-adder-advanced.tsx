@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import { ArrowDownCircleIcon } from "lucide-react";
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import ProofInput from "./proof-input";
+import ProofInput from "./image-proof-input";
 
 type GiftCardValueEntry = {
   key: string;
