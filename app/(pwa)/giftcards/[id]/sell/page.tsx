@@ -23,6 +23,8 @@ import {
   useDisclosure,
   Selection,
   Tooltip,
+  Radio,
+  RadioGroup,
 } from "@nextui-org/react";
 import {
   ArrowDownCircleIcon,
@@ -44,6 +46,7 @@ import { useState } from "react";
 import ImageProofInput, { FileInputPayload } from "./image-proof-input";
 import RouterLink from "next/link";
 import AmountInput from "./amount-input";
+import GiftCardFormatInput from "./card-format-input";
 
 export default function GiftcardBuyPage({
   params,
@@ -177,6 +180,13 @@ export default function GiftcardBuyPage({
     onCardValueEntryAdderClose();
   };
 
+  const canAddCardValueEntry = () => {
+    if (!cardValueEntryAmount && cardValueEntryProof) {
+      return false;
+    }
+    return true;
+  };
+
   const updateCardValueAmount = createUpdateCardValueAmountHandler({
     onSetValue: setCardValueAmount,
   });
@@ -184,6 +194,8 @@ export default function GiftcardBuyPage({
   const updateCardValueEntryAmount = createUpdateCardValueAmountHandler({
     onSetValue: setCardValueEntryAmount,
   });
+
+  const [selectedCardForm, setSelectedCardForm] = useState("image");
 
   return (
     <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
@@ -267,29 +279,36 @@ export default function GiftcardBuyPage({
               >
                 <Tab key="single" title="Just One">
                   <div className="grid gap-y-4">
+                    <GiftCardFormatInput
+                      value={selectedCardForm}
+                      onValueChange={setSelectedCardForm}
+                    />
+
                     <AmountInput
                       value={cardValueAmount}
                       onValueChange={updateCardValueAmount}
                     />
 
-                    <Input
-                      label="E-Code (Optional)"
-                      placeholder="XXXX-XXXX-XXXX"
-                      size="lg"
-                      radius="sm"
-                      value={cardValueEcode}
-                      onValueChange={setCardValueEcode}
-                    />
-
-                    <ImageProofInput
-                      payloads={cardValueProof}
-                      payloadUploadErrors={cardValueProofUploadErrors}
-                      payloadMaxByteSize={1_500_000}
-                      allowUploadOnClick
-                      bulkSelectUploadMaxCount={1}
-                      onFileInputChange={handleCardValueProofChange}
-                      onRemovePayload={removeCardValueProof}
-                    />
+                    {selectedCardForm === "ecode" ? (
+                      <Input
+                        label="E-Code (Optional)"
+                        placeholder="XXXX-XXXX-XXXX"
+                        size="lg"
+                        radius="sm"
+                        value={cardValueEcode}
+                        onValueChange={setCardValueEcode}
+                      />
+                    ) : (
+                      <ImageProofInput
+                        payloads={cardValueProof}
+                        payloadUploadErrors={cardValueProofUploadErrors}
+                        payloadMaxByteSize={1_500_000}
+                        allowUploadOnClick
+                        bulkSelectUploadMaxCount={1}
+                        onFileInputChange={handleCardValueProofChange}
+                        onRemovePayload={removeCardValueProof}
+                      />
+                    )}
                   </div>
                 </Tab>
 
@@ -388,33 +407,40 @@ export default function GiftcardBuyPage({
                               </Button>
                             </ModalHeader>
                             <ModalBody className="grid gap-y-4 px-3">
+                              <GiftCardFormatInput
+                                value={selectedCardForm}
+                                onValueChange={setSelectedCardForm}
+                              />
+
                               <AmountInput
                                 value={cardValueEntryAmount}
                                 onValueChange={updateCardValueEntryAmount}
                               />
 
-                              <Input
-                                label="E-Code (Optional)"
-                                placeholder="XXXX-XXXX-XXXX"
-                                size="lg"
-                                radius="sm"
-                                value={cardValueEntryEcode}
-                                onValueChange={setCardValueEntryEcode}
-                              />
-
-                              <ImageProofInput
-                                payloads={cardValueEntryProof}
-                                payloadUploadErrors={
-                                  cardValueEntryProofUploadErrors
-                                }
-                                payloadMaxByteSize={1_500_000}
-                                allowUploadOnClick
-                                bulkSelectUploadMaxCount={1}
-                                onFileInputChange={
-                                  handleCardValueEntryProofChange
-                                }
-                                onRemovePayload={removeCardEntryValueProof}
-                              />
+                              {selectedCardForm === "ecode" ? (
+                                <Input
+                                  label="E-Code (Optional)"
+                                  placeholder="XXXX-XXXX-XXXX"
+                                  size="lg"
+                                  radius="sm"
+                                  value={cardValueEntryEcode}
+                                  onValueChange={setCardValueEntryEcode}
+                                />
+                              ) : (
+                                <ImageProofInput
+                                  payloads={cardValueEntryProof}
+                                  payloadUploadErrors={
+                                    cardValueEntryProofUploadErrors
+                                  }
+                                  payloadMaxByteSize={1_500_000}
+                                  allowUploadOnClick
+                                  bulkSelectUploadMaxCount={1}
+                                  onFileInputChange={
+                                    handleCardValueEntryProofChange
+                                  }
+                                  onRemovePayload={removeCardEntryValueProof}
+                                />
+                              )}
                             </ModalBody>
                             <ModalFooter className="px-3 py-2">
                               <Button
@@ -423,6 +449,7 @@ export default function GiftcardBuyPage({
                                 size="lg"
                                 fullWidth
                                 onPress={() => addCardValueEntry()}
+                                isDisabled={!canAddCardValueEntry()}
                               >
                                 Add Card
                               </Button>
