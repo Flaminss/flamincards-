@@ -175,7 +175,7 @@ export default function GiftcardBuyPage({
         {
           id: crypto.randomUUID(),
           amount: cardValueEntryAmount,
-          ecode: cardValueEcode,
+          ecode: cardValueEntryEcode,
           proof: cardValueEntryProof,
         },
       ];
