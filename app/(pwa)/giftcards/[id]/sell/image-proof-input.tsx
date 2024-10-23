@@ -32,29 +32,33 @@ export default function ImageProofInput({
   onRemovePayload,
 }: ImageProofInputProps) {
   if (payloads.length > 0) {
-    payloads.map((payload) => {
-      return (
-        <div className="relative border rounded-lg overflow-hidden">
-          <img
-            src={payload.preview.url}
-            className="w-full min-h-20 object-cover max-h-[380px]"
-          />
+    return (
+      <>
+        {payloads.map((payload) => {
+          return (
+            <div className="relative border rounded-lg overflow-hidden">
+              <img
+                src={payload.preview.url}
+                className="w-full min-h-20 object-cover max-h-[380px]"
+              />
 
-          <Button
-            isIconOnly
-            size="sm"
-            radius="sm"
-            color="danger"
-            className="absolute top-2 right-2"
-          >
-            <Trash2
-              className="size-5"
-              onClick={() => onRemovePayload(payload.id)}
-            />
-          </Button>
-        </div>
-      );
-    });
+              <Button
+                isIconOnly
+                size="sm"
+                radius="sm"
+                color="danger"
+                className="absolute top-2 right-2"
+              >
+                <Trash2
+                  className="size-5"
+                  onClick={() => onRemovePayload(payload.id)}
+                />
+              </Button>
+            </div>
+          );
+        })}
+      </>
+    );
   }
 
   return (
@@ -64,7 +68,7 @@ export default function ImageProofInput({
       maxFiles={bulkSelectUploadMaxCount}
       maxFileSize={payloadMaxByteSize}
       clickable={allowUploadOnClick}
-      onChange={(onFileInputChange)}
+      onChange={onFileInputChange}
       single
     >
       <div className="flex flex-col items-center justify-center text-center pt-8 pb-8 px-4">
