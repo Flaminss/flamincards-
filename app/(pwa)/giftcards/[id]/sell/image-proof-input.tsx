@@ -5,19 +5,29 @@ import Files from "react-files";
 
 const maxUploadableFiles = 1;
 
+type FileInputPayload = {
+  id: string;
+  type: string;
+  name: string;
+  preview: { type: string; url: string };
+  extension: string;
+  url: string;
+  sizeReadable: number;
+} & BlobPart;
+
+type ImageProofInputProps = {
+  payloads: FileInputPayload[];
+  payloadUploadErrors: string[];
+  payloadMaxByteSize: number;
+  allowUploadOnClick: boolean;
+  bulkSelectUploadMaxCount: number;
+  onChange: (newUploads: FileInputPayload[]) => void;
+  onRemovePayload: (payloadId: string) => void;
+};
+
 export default function ImageProofInput() {
   const [fileUploadError, setFileUplaodError] = useState("");
-  const [files, setFiles] = useState(
-    [] as ({
-      id: string;
-      type: string;
-      name: string;
-      preview: { type: string; url: string };
-      extension: string;
-      url: string;
-      sizeReadable: number;
-    } & BlobPart)[]
-  );
+  const [files, setFiles] = useState([] as FileInputPayload[]);
 
   const handleChange = (newFiles: any[]) => {
     setFiles((prevFiles) => {
@@ -33,7 +43,7 @@ export default function ImageProofInput() {
       });
 
       setFileUplaodError(() => {
-        const message = "Max amount of uploads reached";
+        const message = "Max amount of payloads reached";
         return !exceededLimit ? "" : message;
       });
 
@@ -91,7 +101,7 @@ export default function ImageProofInput() {
 
         <p className="text-xs mb-6 font-light">JPG or MP4 (Max Size. 1.5MB)</p>
 
-        <p className="text-xs text-warning">Ensure you upload clear images</p>
+        <p className="text-xs text-warning">Ensure you payload clear images</p>
       </div>
     </Files>
   );
