@@ -43,6 +43,8 @@ export default function ImageProofInput({
             >
               <Img
                 src={payload.preview.url}
+                width={800}
+                height={800}
                 alt=""
                 className="w-full min-h-20 object-cover max-h-[380px]"
               />
