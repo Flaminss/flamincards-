@@ -61,11 +61,11 @@ export default function ImageProofInput({
     <Files
       className="flex flex-col items-center justify-center w-full h-48.. border.. border-dashed.. border-default-400 bg-default-100 rounded-md shadow cursor-pointer"
       accepts={["image/*", "video/mp4"]}
-      onFileInputChange={onFileInputChange}
-      single
       maxFiles={bulkSelectUploadMaxCount}
       maxFileSize={payloadMaxByteSize}
       clickable={allowUploadOnClick}
+      onChange={(onFileInputChange)}
+      single
     >
       <div className="flex flex-col items-center justify-center text-center pt-8 pb-8 px-4">
         <ImagePlusIcon className="size-10 mb-4 text-zinc-400" />
