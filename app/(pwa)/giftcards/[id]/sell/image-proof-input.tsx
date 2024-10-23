@@ -39,14 +39,14 @@ export default function ImageProofInput({
           return (
             <div
               key={payload.id}
-              className="relative border rounded-lg overflow-hidden"
+              className="relative border rounded-lg"
             >
               <Img
                 src={payload.preview.url}
                 width={800}
                 height={800}
                 alt=""
-                className="w-full min-h-20 object-cover max-h-[380px]"
+                className="w-full min-h-[320px] object-cover max-h-[560px]"
               />
 
               <Button
