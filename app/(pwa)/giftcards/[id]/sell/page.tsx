@@ -404,11 +404,11 @@ export default function GiftcardBuyPage({
                       <ModalContent>
                         {(onClose) => (
                           <>
-                            <ModalHeader className="pt-6 pb-4 flex items-start justify-between gap-x-4 px-4 gap-y-2.5">
+                            <ModalHeader className="pt-6 pb-4 flex items-start justify-between gap-x-4 px-5 gap-y-2.5">
                               <div className="flex flex-col gap-1">
-                                <h5 className="font-medium">
+                                <h4 className="text-2xl font-medium">
                                   Amazon (USA) Gift Card
-                                </h5>
+                                </h4>
                                 <p className="text-xs text-gray-400">
                                   You're adding one of many cards to redeem
                                 </p>
@@ -424,7 +424,7 @@ export default function GiftcardBuyPage({
                                 <XCircleIcon />
                               </Button>
                             </ModalHeader>
-                            <ModalBody className="grid gap-y-4 px-3">
+                            <ModalBody className="grid gap-y-4 px-4">
                               <GiftCardFormatInput
                                 value={selectedCardForm}
                                 onValueChange={setSelectedCardForm}
@@ -460,7 +460,7 @@ export default function GiftcardBuyPage({
                                 />
                               )}
                             </ModalBody>
-                            <ModalFooter className="px-3 py-2">
+                            <ModalFooter className="px-4 pt-6 pb-2">
                               <Button
                                 color="primary"
                                 radius="sm"
