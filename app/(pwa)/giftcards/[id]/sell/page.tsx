@@ -555,7 +555,6 @@ export default function GiftcardBuyPage({
         onOpenChange={onOrderSubmitChange}
         backdrop="opaque"
         placement="center"
-        // classNames={{ backdrop: "z-50", wrapper: "z-50" }}
         className="z-50"
         isDismissable={false}
         hideCloseButton
