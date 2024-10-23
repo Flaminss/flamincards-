@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import { ArrowDownCircleIcon } from "lucide-react";
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import ProofInput from "./image-proof-input";
+// import ProofInput from "./image-proof-input";
 
 type GiftCardValueEntry = {
   key: string;
@@ -143,7 +143,7 @@ export default function GiftCardValueEntryAdder() {
                 radius="sm"
               />
 
-              <ProofInput />
+              {/* <ProofInput /> */}
             </ModalBody>
             <ModalFooter className="px-3 py-2">
               <Button
