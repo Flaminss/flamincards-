@@ -5,7 +5,7 @@ import Files from "react-files";
 
 const maxUploadableFiles = 1;
 
-export default function ProofInput() {
+export default function ImageProofInput() {
   const [fileUploadError, setFileUplaodError] = useState("");
   const [files, setFiles] = useState(
     [] as ({
