@@ -437,8 +437,8 @@ export default function GiftcardBuyPage({
             </div>
 
             <Textarea
-              label="Add a Comment (Optional)"
-              placeholder="Write some additional details or give some heads up"
+              label="Write a Comment (Optional)"
+              placeholder="Give special instructions or explanations on usage (if any)..."
               labelPlacement="outside"
               classNames={{
                 label: "ps-1 text-base font-medium mb-.5",
