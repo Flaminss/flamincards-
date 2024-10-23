@@ -29,7 +29,10 @@ import {
   ArrowLeftRightIcon,
   ArrowRightCircleIcon,
   ClockIcon,
+  MinusCircle,
   PlusCircleIcon,
+  PlusIcon,
+  PlusSquareIcon,
   Trash2,
   WalletMinimalIcon,
   XCircleIcon,
@@ -93,7 +96,7 @@ export default function GiftcardBuyPage({
     return value.toString().toUpperCase();
   };
 
-  const [cardValueAmount, setCardValueAmount] = useState<number>(0);
+  const [cardValueAmount, setCardValueAmount] = useState<string>("");
   const [cardValueEcode, setCardValueEcode] = useState<string>();
   const [cardValueProof, setCardValueProof] = useState(
     [] as FileInputPayload[]
@@ -169,6 +172,16 @@ export default function GiftcardBuyPage({
     setCardValueEntryProof([]);
     setCardValueEntryProofUploadErrors([]);
     onCardValueEntryAdderClose();
+  };
+
+  const updateCardValueAmount = (value: string) => {
+    const [minValue, maxValue] = [1, 100_000];
+    const valueInt = parseInt(value) || 0;
+    if (valueInt < minValue || valueInt > maxValue) {
+      setCardValueAmount("");
+      return;
+    }
+    setCardValueAmount(valueInt.toString());
   };
 
   return (
@@ -249,32 +262,57 @@ export default function GiftcardBuyPage({
               >
                 <Tab key="single" title="Just One">
                   <div className="grid gap-y-4">
-                    <Select
+                    <Input
+                      type="number"
                       label="Amount (#)"
                       radius="md"
-                      size="sm"
-                      selectionMode="single"
-                      defaultSelectedKeys={[20]}
-                      selectorIcon={<ArrowDownCircleIcon />}
+                      size="lg"
+                      value={cardValueAmount}
+                      placeholder="50"
+                      onValueChange={updateCardValueAmount}
                       classNames={{
-                        selectorIcon:
-                          "shrink-0 w-auto h-auto !size-4 text-zinc-400",
+                        input: "remove-browser-input-counter",
                       }}
-                    >
-                      {[
-                        { label: "20", value: 20 },
-                        { label: "25", value: 25 },
-                        { label: "50", value: 50 },
-                      ].map((item) => (
-                        <SelectItem
-                          key={item.value}
-                          value={item.value}
-                          className="text-white"
-                        >
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </Select>
+                      endContent={
+                        <div className="flex gap-x-2 items-center">
+                          <Button
+                            size="md"
+                            radius="sm"
+                            onClick={() => {
+                              updateCardValueAmount(
+                                (
+                                  (parseInt(cardValueAmount) || 0) - 5
+                                ).toString()
+                              );
+                            }}
+                            className="px-2.5 min-w-[unset] text-base font-semibold items-center hover:border-2"
+                          >
+                            <span className="text-2xl text-warning leading-none">
+                              -
+                            </span>
+                            5
+                          </Button>
+
+                          <Button
+                            size="md"
+                            radius="sm"
+                            onClick={() => {
+                              updateCardValueAmount(
+                                (
+                                  (parseInt(cardValueAmount) || 0) + 5
+                                ).toString()
+                              );
+                            }}
+                            className="px-2.5 min-w-[unset] text-base font-semibold items-center hover:border-2"
+                          >
+                            <span className="text-2xl text-warning leading-none">
+                              +
+                            </span>
+                            5
+                          </Button>
+                        </div>
+                      }
+                    />
 
                     <Input
                       label="E-Code (Optional)"
