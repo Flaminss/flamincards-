@@ -37,7 +37,10 @@ export default function ImageProofInput({
       <>
         {payloads.map((payload) => {
           return (
-            <div className="relative border rounded-lg overflow-hidden">
+            <div
+              key={payload.id}
+              className="relative border rounded-lg overflow-hidden"
+            >
               <Img
                 src={payload.preview.url}
                 alt=""
