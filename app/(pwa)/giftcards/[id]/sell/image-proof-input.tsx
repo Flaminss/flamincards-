@@ -1,6 +1,7 @@
 import { Button, Chip } from "@nextui-org/react";
 import { ImagePlusIcon, Trash2 } from "lucide-react";
 import Files from "react-files";
+import Img from "next/image";
 
 export type FileInputPayload = {
   id: string;
@@ -37,8 +38,9 @@ export default function ImageProofInput({
         {payloads.map((payload) => {
           return (
             <div className="relative border rounded-lg overflow-hidden">
-              <img
+              <Img
                 src={payload.preview.url}
+                alt=""
                 className="w-full min-h-20 object-cover max-h-[380px]"
               />
 
