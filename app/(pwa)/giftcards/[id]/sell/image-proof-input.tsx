@@ -18,7 +18,7 @@ type ImageProofInputProps = {
   payloadMaxByteSize: number;
   allowUploadOnClick: boolean;
   bulkSelectUploadMaxCount: number;
-  onChange: (newUploads: FileInputPayload[]) => void;
+  onFileInputChange: (newUploads: FileInputPayload[]) => void;
   onRemovePayload: (payloadId: string) => void;
 };
 
@@ -28,7 +28,7 @@ export default function ImageProofInput({
   payloadMaxByteSize,
   allowUploadOnClick,
   bulkSelectUploadMaxCount,
-  onChange,
+  onFileInputChange,
   onRemovePayload,
 }: ImageProofInputProps) {
   // const [payloadUploadErrors, setFileUplaodError] = useState("");
@@ -90,7 +90,7 @@ export default function ImageProofInput({
     <Files
       className="flex flex-col items-center justify-center w-full h-48.. border.. border-dashed.. border-default-400 bg-default-100 rounded-md shadow cursor-pointer"
       accepts={["image/*", "video/mp4"]}
-      onChange={onChange}
+      onFileInputChange={onFileInputChange}
       single
       maxFiles={bulkSelectUploadMaxCount}
       maxFileSize={payloadMaxByteSize}
