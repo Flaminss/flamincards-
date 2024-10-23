@@ -13,46 +13,24 @@ import {
   ModalHeader,
   Select,
   SelectItem,
-  Spacer,
   Tab,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
   Tabs,
   Textarea,
-  getKeyValue,
   Card,
   CardHeader,
-  Divider,
   CardBody,
   Checkbox,
   useDisclosure,
-  Listbox,
-  ListboxItem,
   Selection,
-  Chip,
   Tooltip,
 } from "@nextui-org/react";
 import {
   ArrowDownCircleIcon,
   ArrowLeftRightIcon,
   ArrowRightCircleIcon,
-  CheckCircle2,
-  CheckCircle2Icon,
-  CheckCircleIcon,
-  ChevronDownCircle,
-  CircleAlertIcon,
   ClockIcon,
-  CloudUploadIcon,
-  DeleteIcon,
-  ImagePlusIcon,
   PlusCircleIcon,
-  PlusIcon,
   Trash2,
-  Trash2Icon,
   WalletMinimalIcon,
   XCircleIcon,
 } from "lucide-react";
@@ -60,8 +38,6 @@ import currencyIcons from "currency-icons";
 import { useRouter } from "next/navigation";
 import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
-import FileInput from "./file-input";
-import Files from "react-files";
 import ImageProofInput, { FileInputPayload } from "./image-proof-input";
 import RouterLink from "next/link";
 
