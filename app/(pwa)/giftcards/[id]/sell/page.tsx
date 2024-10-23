@@ -62,7 +62,7 @@ import PWAPageTitle from "@/app/(pwa)/page-title";
 import { useState } from "react";
 import FileInput from "./file-input";
 import Files from "react-files";
-import ProofInput from "./image-proof-input";
+import ImageProofInput, { FileInputPayload } from "./image-proof-input";
 import GiftCardValueEntryAdder from "./value-entry-adder";
 import RouterLink from "next/link";
 
@@ -72,12 +72,19 @@ export default function GiftcardBuyPage({
   params: { id: string };
 }) {
   const router = useRouter();
+  const {
+    isOpen: isCardValueEntryAdderOpen,
+    onOpen: onCardValueEntryAdderOpen,
+    onClose: onCardValueEntryAdderClose,
+    onOpenChange: onCardValueEntryAdderOpenChange,
+  } = useDisclosure();
+
+  const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
 
   const { id: selectedCardType } = params;
   const [selectedRegion, setSelectedRegion] = useState<Selection>(
     new Set(["usa"])
   );
-
   const regions = [
     { key: "usa", label: "United States (USA)" },
     { key: "uk", label: "United Kingdom (UK)" },
@@ -93,9 +100,141 @@ export default function GiftcardBuyPage({
     { key: "br", label: "Brazil (BR)" },
   ];
 
-  const noCardSelectionMessage = "Add Cards Below!";
+  const [cardValueAmount, setCardValueAmount] = useState<number>(0);
+  const [cardValueEcode, setCardValueEcode] = useState<string>();
+  const [cardValueProof, setCardValueProof] = useState(
+    [] as FileInputPayload[]
+  );
+  const [cardValueProofUploadErrors, setCardValueProofUploadErrors] = useState<
+    string[]
+  >([]);
 
-  const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
+  const [cardValueEntryAmount, setCardValueEntryAmount] = useState<number>(0);
+  const [cardValueEntryEcode, setCardValueEntryEcode] = useState<string>();
+  const [cardValueEntryProof, setCardValueEntryProof] = useState(
+    [] as FileInputPayload[]
+  );
+  const [cardValueEntryProofUploadErrors, setCardValueEntryProofUploadErrors] =
+    useState<string[]>([]);
+
+  const [cardValueEntries, setCardValueEntries] = useState(
+    [] as {
+      id: string;
+      amount: number;
+      ecode?: string;
+      proof: FileInputPayload[];
+    }[]
+  );
+
+  const X_handleCardValueProofChange = (newFiles: any[]) => {
+    setCardValueProof((prevFiles) => {
+      let exceededLimit = false;
+      const curatedFiles = [...prevFiles];
+      const maxUploadableFiles = 1;
+
+      newFiles.forEach((newFile) => {
+        if (curatedFiles.length < maxUploadableFiles) {
+          curatedFiles.push(newFile);
+        } else {
+          exceededLimit = true;
+        }
+      });
+
+      setCardValueProofUploadErrors(() => {
+        const message = "Max amount of payloads reached";
+        return !exceededLimit ? [] : [message];
+      });
+
+      return curatedFiles;
+    });
+  };
+
+  const createCardValueProofChangeHandler =
+    ({
+      maxUploads,
+      onSetProof,
+      onSetUploadErrors,
+    }: {
+      maxUploads: number;
+      onSetProof: (
+        updateFn: (files: FileInputPayload[]) => FileInputPayload[]
+      ) => void;
+      onSetUploadErrors: (updateFn: (errors?: string[]) => string[]) => void;
+    }) =>
+    (newFiles: FileInputPayload[]) => {
+      onSetProof((prevFiles: FileInputPayload[]) => {
+        let exceededLimit = false;
+        const curatedFiles = [...prevFiles];
+        const maxUploadableFiles = maxUploads;
+
+        newFiles.forEach((newFile) => {
+          if (curatedFiles.length < maxUploadableFiles) {
+            curatedFiles.push(newFile);
+          } else {
+            exceededLimit = true;
+          }
+        });
+
+        onSetUploadErrors(() => {
+          const message = "Max amount of payloads reached";
+          return !exceededLimit ? [] : [message];
+        });
+
+        return curatedFiles;
+      });
+    };
+
+  const handleCardValueProofChange = createCardValueProofChangeHandler({
+    maxUploads: 1,
+    onSetProof: setCardValueProof,
+    onSetUploadErrors: setCardValueProofUploadErrors,
+  });
+
+  const handleCardValueEntryProofChange = createCardValueProofChangeHandler({
+    maxUploads: 1,
+    onSetProof: setCardValueEntryProof,
+    onSetUploadErrors: setCardValueEntryProofUploadErrors,
+  });
+
+  const removeCardValueProof = (fileId: any) => {
+    setCardValueProof((prevFiles) => {
+      setCardValueProofUploadErrors([]);
+      return prevFiles.filter((prevFile) => prevFile.id !== fileId);
+    });
+  };
+
+  const removeCardEntryValueProof = (fileId: any) => {
+    setCardValueEntryProof((prevFiles) => {
+      setCardValueEntryProofUploadErrors([]);
+      return prevFiles.filter((prevFile) => prevFile.id !== fileId);
+    });
+  };
+
+  const removeCardEntry = (id: string) => {
+    setCardValueEntries((prevEntries) => {
+      return prevEntries.filter((entry) => entry.id !== id);
+    });
+  };
+
+  const addCardValueEntry = () => {
+    setCardValueEntries((prevEntries) => {
+      return [
+        ...prevEntries,
+        {
+          id: crypto.randomUUID(),
+          amount: cardValueEntryAmount,
+          ecode: cardValueEcode,
+          proof: cardValueEntryProof,
+        },
+      ];
+    });
+
+    setCardValueEntryAmount(20);
+    setCardValueEntryEcode(undefined);
+    setCardValueEntryProof([]);
+    setCardValueEntryProofUploadErrors([]);
+    onCardValueEntryAdderClose();
+  };
 
   const {
     isOpen: orderSubmitted,
@@ -108,10 +247,10 @@ export default function GiftcardBuyPage({
     selectedCardType[0].toUpperCase() + selectedCardType.slice(1);
 
   const [multipleCardSelection, setMultipleCardSelection] = useState<
-    { key: number; amount: number; eCode: string }[]
+    { key: number; amount: number; ecode: string }[]
   >([
-    { key: 1, amount: 50, eCode: "XXX-XXXX-XXX" },
-    // { key: 2, amount: 200, eCode: "" },
+    { key: 1, amount: 50, ecode: "XXX-XXXX-XXX" },
+    // { key: 2, amount: 200, ecode: "" },
   ]);
 
   const getRegionInitials = () => {
@@ -236,27 +375,36 @@ export default function GiftcardBuyPage({
                       radius="sm"
                     />
 
-                    <ProofInput />
+                    <ImageProofInput
+                      payloads={cardValueProof}
+                      payloadUploadErrors={cardValueProofUploadErrors}
+                      payloadMaxByteSize={1_500_000}
+                      allowUploadOnClick
+                      bulkSelectUploadMaxCount={1}
+                      onFileInputChange={handleCardValueProofChange}
+                      onRemovePayload={removeCardValueProof}
+                    />
                   </div>
                 </Tab>
+
                 <Tab key="many" title="Many">
                   <div
                     className={clsx({
                       "grid grid-cols-2 gap-4 sm:gap-6":
-                        multipleCardSelection.length > 0,
+                        cardValueEntries.length > 0,
                     })}
                   >
-                    {multipleCardSelection.map((item) => {
+                    {cardValueEntries.map((valueEntry) => {
                       return (
-                        <Card shadow="sm" key={item.key}>
+                        <Card shadow="sm" key={valueEntry.id}>
                           <CardBody className="relative p-0">
                             <Image
                               shadow="sm"
                               radius="lg"
                               width="100%"
-                              // alt={item.title}
+                              alt={`Image proof of giftcard with amount of: ${valueEntry.amount}`}
                               className="w-full object-cover h-[140px] rounded-b-sm"
-                              src={`https://th.bing.com/th/id/OIP.I89DeQMyCgVqj_eo-QgPYAHaEr?rs=1&pid=ImgDetMain`}
+                              src={valueEntry.proof[0].preview.url}
                             />
 
                             {/* <div className="absolute top-1.5 left-1.5 z-10">
@@ -272,20 +420,20 @@ export default function GiftcardBuyPage({
                             >
                               <Trash2
                                 className="size-4"
-                                // onClick={() => handleFileRemove(files[0].id)}
+                                onClick={() => removeCardEntry(valueEntry.id)}
                               />
                             </Button>
                           </CardBody>
                           <CardFooter className="text-sm flex flex-wrap gap-4 justify-between p-3 pt-3">
-                            {item.eCode ? (
-                              <Tooltip content={item.eCode}>
-                                <div className="flex items-center gap-x-2 text-xs ps-3 pe-2 py-1 shadow-sm rounded-lg bg-success-50 border text-success">
+                            {valueEntry.ecode ? (
+                              <Tooltip content={valueEntry.ecode}>
+                                <div className="flex valueEntrys-center gap-x-2 text-xs ps-3 pe-2 py-1 shadow-sm rounded-lg bg-success-50 border text-success">
                                   E-Code
                                   {/* <CheckCircle2 className="size-4" /> */}
                                 </div>
                               </Tooltip>
                             ) : (
-                              // <div className="flex items-center gap-x-2 text-xs ps-3 pe-2 py-1 shadow-sm rounded-lg bg-danger-50 border text-danger">
+                              // <div className="flex valueEntrys-center gap-x-2 text-xs ps-3 pe-2 py-1 shadow-sm rounded-lg bg-danger-50 border text-danger">
                               //   E-Code
                               //   {/* <XCircleIcon className="size-4" /> */}
                               // </div>
@@ -293,14 +441,119 @@ export default function GiftcardBuyPage({
                             )}
 
                             <p className="font-medium text-default-700 px-2">
-                              ${item.amount}
+                              ${valueEntry.amount}
                             </p>
                           </CardFooter>
                         </Card>
                       );
                     })}
 
-                    <GiftCardValueEntryAdder />
+                    <button
+                      type="button"
+                      onClick={onCardValueEntryAdderOpen}
+                      className="w-full grid place-items-center gap-y-2 border-2 border-dashed rounded-lg p-8"
+                    >
+                      <div className="grid place-items-center gap-y-4">
+                        <PlusCircleIcon className="size-8" />
+                        <p className="text-sm font-medium">Add Card</p>
+                      </div>
+                    </button>
+
+                    <Modal
+                      isOpen={isCardValueEntryAdderOpen}
+                      onOpenChange={onCardValueEntryAdderOpenChange}
+                      placement="bottom-center"
+                      // size="md"
+                      scrollBehavior="inside"
+                      hideCloseButton
+                    >
+                      <ModalContent>
+                        {(onClose) => (
+                          <>
+                            <ModalHeader className="pt-6 pb-4 flex items-start justify-between gap-x-4 px-4 gap-y-2.5">
+                              <div className="flex flex-col gap-1">
+                                <h5 className="font-medium">
+                                  Amazon (USA) Gift Card
+                                </h5>
+                                <p className="text-xs text-gray-400">
+                                  You're adding one of many cards to redeem
+                                </p>
+                              </div>
+                              <Button
+                                isIconOnly
+                                size="md"
+                                radius="full"
+                                color="danger"
+                                variant="flat"
+                                onClick={onClose}
+                              >
+                                <XCircleIcon />
+                              </Button>
+                            </ModalHeader>
+                            <ModalBody className="grid gap-y-4 px-3">
+                              <Select
+                                label="Amount (#)"
+                                radius="md"
+                                size="sm"
+                                selectionMode="single"
+                                defaultSelectedKeys={[20]}
+                                selectorIcon={<ArrowDownCircleIcon />}
+                                classNames={{
+                                  selectorIcon:
+                                    "shrink-0 w-auto h-auto !size-4 text-zinc-400",
+                                }}
+                              >
+                                {[
+                                  { label: "20", value: 20 },
+                                  { label: "25", value: 25 },
+                                  { label: "50", value: 50 },
+                                ].map((item) => (
+                                  <SelectItem
+                                    key={item.value}
+                                    value={item.value}
+                                    className="text-white"
+                                  >
+                                    {item.label}
+                                  </SelectItem>
+                                ))}
+                              </Select>
+
+                              <Input
+                                label="E-Code (Optional)"
+                                placeholder="XXXX-XXXX-XXXX"
+                                size="lg"
+                                radius="sm"
+                              />
+
+                              <ImageProofInput
+                                payloads={cardValueEntryProof}
+                                payloadUploadErrors={
+                                  cardValueEntryProofUploadErrors
+                                }
+                                payloadMaxByteSize={1_500_000}
+                                allowUploadOnClick
+                                bulkSelectUploadMaxCount={1}
+                                onFileInputChange={
+                                  handleCardValueEntryProofChange
+                                }
+                                onRemovePayload={removeCardEntryValueProof}
+                              />
+                            </ModalBody>
+                            <ModalFooter className="px-3 py-2">
+                              <Button
+                                color="primary"
+                                radius="sm"
+                                size="lg"
+                                fullWidth
+                                onPress={() => addCardValueEntry()}
+                              >
+                                Add Card
+                              </Button>
+                            </ModalFooter>
+                          </>
+                        )}
+                      </ModalContent>
+                    </Modal>
                   </div>
 
                   {/* <div className="p-2 bg-content2 rounded-lg flex items-center gap-x-2">
@@ -325,6 +578,7 @@ export default function GiftcardBuyPage({
                     </Chip>
                   </div> */}
                 </Tab>
+
                 {/* <Tab key="multiple" title="Many">
                   <div className="pt-1">
                     <Table
