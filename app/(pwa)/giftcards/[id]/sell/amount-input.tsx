@@ -16,7 +16,7 @@ export default function AmountInput({
       radius="md"
       size="lg"
       value={value}
-      placeholder="50"
+      placeholder="0"
       onValueChange={onValueChange}
       classNames={{
         input: "remove-browser-input-counter",
