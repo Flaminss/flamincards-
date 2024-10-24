@@ -11,7 +11,7 @@ export type FileInputPayload = {
   extension: string;
   url: string;
   sizeReadable: number;
-} & BlobPart;
+} & Blob;
 
 type ImageProofInputProps = {
   payloads: FileInputPayload[];
