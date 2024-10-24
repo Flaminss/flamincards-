@@ -1,5 +1,6 @@
 "use client";
 
+import { z } from "zod";
 import clsx from "clsx";
 import {
   Button,
@@ -48,6 +49,54 @@ import RouterLink from "next/link";
 import AmountInput from "./amount-input";
 import GiftCardFormatInput from "./card-format-input";
 
+const cardValueSchema = z.object({
+  amount: z.number().min(1).max(100_000),
+  ecode: z.string().optional(),
+  physical: z.array(z.any()),
+});
+
+const singleCardFormSchema = z.object({
+  title: z.string(),
+  region: z.object({
+    name: z.string(),
+    abbr: z.string(),
+  }),
+  value: cardValueSchema,
+});
+
+const multipleCardFormSchema = z.object({
+  title: z.string(),
+  region: z.object({
+    name: z.string(),
+    abbr: z.string(),
+  }),
+  value: z.array(cardValueSchema),
+});
+
+type CardValue = {
+  amount: number;
+  ecode: string;
+  physical: FileInputPayload[];
+};
+
+type SingleCardForm = {
+  title: string;
+  region: {
+    name: string;
+    abbr: string;
+  };
+  value: CardValue;
+};
+
+type MultipleCardForm = {
+  title: string;
+  region: {
+    name: string;
+    abbr: string;
+  };
+  value: CardValue[];
+};
+
 export default function GiftcardBuyPage({
   params,
 }: {
@@ -58,8 +107,8 @@ export default function GiftcardBuyPage({
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
   const {
     isOpen: orderSubmitted,
-    onOpen: onSubmitOrder,
     onClose: onCompleteOrder,
+    onOpen: onSubmitOrder,
     onOpenChange: onOrderSubmitChange,
   } = useDisclosure();
   const {
@@ -201,6 +250,115 @@ export default function GiftcardBuyPage({
   });
 
   const [selectedCardForm, setSelectedCardForm] = useState("image");
+
+  const validateOrderForm = () => {
+    const cardForm = {
+      title: formattedSelectedCardType,
+      region: {
+        name:
+          regions.find((region) => region.key === Array.from(selectedRegion)[0])
+            ?.label || "",
+        abbr: getRegionInitials(),
+      },
+    } as SingleCardForm | MultipleCardForm;
+
+    if (cardValueQuantity === "single") {
+      const singleCardValue = {
+        amount: parseFloat(cardValueAmount),
+        ecode: cardValueEcode || "",
+        physical: selectedCardForm === "image" ? cardValueProof : [],
+      };
+
+      if (selectedCardForm === "ecode" && !singleCardValue.ecode) {
+        return {
+          success: false,
+          error: "E-Code is required for E-Code form",
+          data: undefined,
+        };
+      }
+
+      if (
+        selectedCardForm === "image" &&
+        singleCardValue.physical.length === 0
+      ) {
+        return {
+          success: false,
+          error: "Image proof is required for Image form",
+          data: undefined,
+        };
+      }
+
+      cardForm.value = singleCardValue;
+
+      return singleCardFormSchema.safeParse(cardForm);
+    }
+
+    if (cardValueEntries.length === 0) {
+      return {
+        success: false,
+        error: "At least one card entry is required for multiple quantity",
+      };
+    }
+
+    cardForm.value = cardValueEntries.map((entry) => ({
+      amount: parseFloat(entry.amount),
+      ecode: entry.ecode || "",
+      physical: entry.proof,
+    }));
+
+    return multipleCardFormSchema.safeParse(cardForm);
+  };
+
+  const canSubmitOrder = () => {
+    if (consentToTradeAgreement && validateOrderForm().success) {
+      return true;
+    }
+    return false;
+  };
+
+  const submitOrder = () => {
+    const { data: cardForm } = validateOrderForm();
+    if (cardForm === undefined) {
+      // handle unexpected behaviour
+      return;
+    }
+
+    const formDataObject = new FormData();
+    formDataObject.append("card[title]", cardForm.title);
+    formDataObject.append("card[region][name]", cardForm.region.name);
+    formDataObject.append("card[region][abbr]", cardForm.region.abbr);
+
+    if (cardValueQuantity === "single") {
+      const singleCardForm = cardForm as SingleCardForm;
+      formDataObject.append(
+        "card[value][amount]",
+        singleCardForm.value.amount.toString()
+      );
+      formDataObject.append("card[value][ecode]", singleCardForm.value.ecode);
+      singleCardForm.value.physical.forEach((payload, index: number) => {
+        formDataObject.append(`card[value][physical][${index}]`, payload);
+      });
+    } else {
+      const multipleCardForm = cardForm as MultipleCardForm;
+      multipleCardForm.value.forEach((entry, entryIndex) => {
+        formDataObject.append(
+          `card[value][${entryIndex}][amount]`,
+          entry.amount.toString()
+        );
+        formDataObject.append(`card[value][${entryIndex}][ecode]`, entry.ecode);
+        entry.physical.forEach((file, fileIndex) => {
+          formDataObject.append(
+            `card[value][${entryIndex}][physical][${fileIndex}]`,
+            file
+          );
+        });
+      });
+    }
+
+    for (let [key, value] of Array.from(formDataObject.entries())) {
+      console.log(`${key}: ${value}`);
+    }
+  };
 
   return (
     <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
@@ -559,14 +717,14 @@ export default function GiftcardBuyPage({
             </CardBody>
             <CardFooter className="flex-col items-start px-5 pb-5 gap-y-8">
               <Button
-                isDisabled={!consentToTradeAgreement}
+                isDisabled={!canSubmitOrder()}
                 size="lg"
                 variant="solid"
                 color="primary"
                 radius="sm"
                 fullWidth={true}
                 className="border shadow-lg"
-                onClick={() => onSubmitOrder()}
+                onClick={() => submitOrder()}
               >
                 Submit
               </Button>
