@@ -29,20 +29,20 @@ export default function PrimaryBankCard({
 
   return (
     <div className={clsx("grid gap-y-1 max-w-md w-full mx-auto", classnames)}>
-      <article className="relative p-5 sm:p-5 text-zinc-100 bg-zinc-900 rounded-sm">
-        <div className="flex gap-x-3 mb-4">
+      <article className="relative p-5 sm:p-5 text-zinc-100 bg-content1 rounded-sm">
+        <div className="flex gap-x-3 mb-5">
           <div className="inline-flex items-center">
             <div className="size-4 rounded-full bg-warning"></div>
             <div className="size-4 rounded-full bg-danger -ms-1.5"></div>
           </div>
           <span className="text-xs text-zinc-400 uppercase">Primary</span>
         </div>
-        <p className="text-lg sm:text-xl font-mono mb-1.5">
+        <p className="text-lg sm:text-xl font-mono mb-2.5">
           {cardDetails.accountNumber}
         </p>
         <p className="text-sm sm:text-medium font-mono flex items-center justify-between gap-x-4">
-          <span>{cardDetails.fullName}</span>
-          <span className="text-xs">{cardDetails.bank}</span>
+          <span className="text-sm">{cardDetails.fullName}</span>
+          <span className="text-sm text-gray-500">{cardDetails.bank}</span>
         </p>
         <Button
           variant="light"
