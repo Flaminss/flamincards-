@@ -14,7 +14,7 @@ import {
   OctagonAlertIcon,
   X,
 } from "lucide-react";
-import { account } from "../../lib/appwrite";
+import { account } from "@lib/appwrite";
 
 const verificationProgressContent = {
   processing: {

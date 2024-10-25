@@ -6,7 +6,7 @@ import {
   ReactNode,
 } from "react";
 import { AppwriteException } from "appwrite";
-import { account, ID } from "../../lib/appwrite";
+import { account, ID } from "@lib/appwrite";
 
 interface UserInfo {
   $id: string;
