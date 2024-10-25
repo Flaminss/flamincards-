@@ -16,14 +16,11 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "appwrite": "^14.0.1",
     "axios": "^1.7.2",
-    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "country-flag-icons": "^1.5.11",
-    "cryptocurrency-icons": "^0.18.1",
     "currency-icons": "^1.0.14",
     "framer-motion": "^11.3.7",
     "input-otp": "^1.2.4",
-    "intl-messageformat": "^10.5.0",
     "lucide-react": "^0.378.0",
     "next": "^13.5.6",
     "next-themes": "^0.2.1",
@@ -31,7 +28,6 @@
     "react-dom": "^18.3.1",
     "react-files": "^3.0.3",
     "rippleui": "^1.12.1",
-    "rooks": "^7.14.1",
     "tailwind-extended-shadows": "^0.4.0",
     "tailwind-merge": "^2.3.0",
     "tailwind-variants": "^0.1.20",
@@ -44,11 +40,11 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.19",
+    "encoding": "^0.1.13",
     "eslint": "8.48.0",
     "eslint-config-next": "^13.5.6",
     "postcss": "8.4.38",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.4.5",
-    "encoding": "^0.1.13"
+    "typescript": "^5.4.5"
   }
 }
