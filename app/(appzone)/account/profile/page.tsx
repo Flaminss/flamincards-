@@ -1,4 +1,4 @@
-import { Link } from "@mui/material";
+import RouterLink from "next/link";
 import { Button, DatePicker, Input } from "@nextui-org/react";
 import clsx from "clsx";
 import TransactionPINInput from "../transaction-pin-input";
@@ -31,7 +31,7 @@ export default function ProfilePage() {
         </section>
 
         <Button
-          as={Link}
+          as={RouterLink}
           href="/dashboard"
           color="primary"
           variant="solid"
