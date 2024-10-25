@@ -1,4 +1,4 @@
-import NavigationBarTop from "@app/navigation-bar-top";
+import NavigationBarTop from "@app/(marketing)/navigation-bar-top";
 import { Link, Button } from "@nextui-org/react";
 
 export default function HomePage() {
