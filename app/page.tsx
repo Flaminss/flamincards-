@@ -1,12 +1,13 @@
 "use client";
 
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+import { button as buttonStyles } from "@nextui-org/react";
 import { title, subtitle } from "@/app/lib/primitives";
 import { GithubIcon } from "@/vendors/icons";
 import {
+  Link,
+  Snippet,
+  Code,
+  Button,
   Navbar,
   NavbarContent,
   NavbarMenu,
@@ -14,14 +15,12 @@ import {
   NavbarBrand,
   NavbarItem,
   NavbarMenuItem,
-} from "@nextui-org/navbar";
+  Kbd, Input
+} from "@nextui-org/react";
 import React from "react";
 import NextLink from "next/link";
 import { BrandName } from "./(appzone)/navigation-top";
 import { ThemeSwitch } from "@/vendors/theme-switch";
-import { Button } from "@nextui-org/button";
-import { Kbd } from "@nextui-org/kbd";
-import { Input } from "@nextui-org/input";
 import { HeartFilledIcon, SearchIcon } from "@/vendors/icons";
 import clsx from "clsx";
 import {
@@ -57,7 +56,7 @@ export default function HomePage() {
               variant="solid"
               size="lg"
               href="/register"
-              radius="md" 
+              radius="md"
               className="block w-fit h-auto py-3 mx-auto"
             >
               Register with us Today!
