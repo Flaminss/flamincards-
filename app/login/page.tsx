@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { UserCircleIcon, XIcon } from "lucide-react";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
-import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
 import { useUserAuthContext } from "@app/(appzone)/account/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
+import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
 import clsx from "clsx";
 
 const exceptionTypeToStatus = {
@@ -19,13 +19,12 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("test-6@gmail.com");
   const [password, setPassword] = useState("password123");
-
   const [error, setError] = useState<null | {
     status: string;
     message: string;
   }>(null);
 
-  const handleLogin = async () => {
+  async function handleLogin() {
     try {
       await user.login(email, password);
       router.replace("/dashboard");
@@ -37,7 +36,7 @@ export default function LoginPage() {
         throw exception;
       }
     }
-  };
+  }
 
   const acknowledgeError = () => {
     setError(null);
