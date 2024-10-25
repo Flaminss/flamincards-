@@ -3,7 +3,7 @@
 // import MultiStep from "react-multistep";
 import CryptoSalePitchStep from "./pitch-step";
 import CryptoSalePaymentStep from "./payment-step";
-import { Button } from "@nextui-org/button";
+import { Button } from "@nextui-org/react";
 import PWAPageTitle from "../page-title";
 
 export default function CryptoSellPage() {

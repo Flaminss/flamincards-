@@ -15,13 +15,12 @@ import {
   TableHeader,
   TableRow,
   getKeyValue,
+  Input,
+  Select, SelectItem,
 } from "@nextui-org/react";
 import icons from "currency-icons";
 import Link from "next/link";
 import clsx from "clsx";
-
-import { Input } from "@nextui-org/input";
-import { Select, SelectItem } from "@nextui-org/react";
 import {
   ArrowUpDown,
   EllipsisVerticalIcon,
