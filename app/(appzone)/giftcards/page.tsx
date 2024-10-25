@@ -1,7 +1,6 @@
 "use client";
 
-import { Input } from "@nextui-org/input";
-import { Select, SelectItem, SharedSelection } from "@nextui-org/react";
+import { Input, Select, SelectItem, SharedSelection } from "@nextui-org/react";
 import {
   ArrowUpDown,
   ArrowUpDownIcon,
