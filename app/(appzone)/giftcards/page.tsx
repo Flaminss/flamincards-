@@ -12,7 +12,7 @@ import {
 import GiftcardListing, {
   GiftcardSortFilter,
   GiftcardSortOrder,
-} from "@/app/(pwa)/giftcards/listing";
+} from "@/app/(appzone)/giftcards/listing";
 import PWAPageTitle from "../page-title";
 import { ChangeEvent, useState } from "react";
 

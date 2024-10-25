@@ -4,8 +4,8 @@ import { NextUIProvider } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
-import { UserAuthContextProvider } from "./user-auth-provider";
-import { EmailValidationContextProvider } from "./verify-email/status-notice-provider";
+import { UserAuthContextProvider } from "./(appzone)/account/user-auth-provider";
+import { EmailValidationContextProvider } from "./email/verify/status-notice-provider";
 
 export interface ProvidersProps {
   children: React.ReactNode;

@@ -9,8 +9,8 @@ import {
   XIcon,
 } from "lucide-react";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
-import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
-import { useUserAuthContext } from "../user-auth-provider";
+import AuthFlowNavigationTop from "../(appzone)/auth-flow-navigation-top";
+import { useUserAuthContext } from "../(appzone)/account/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Client, Account, AppwriteException } from "appwrite";
 import RouterLink, { useRouter } from "next/navigation";
 import Link, { Button, Spinner } from "@nextui-org/react";
-import AuthFlowNavigationTop from "../(pwa)/auth-flow-navigation-top";
+import AuthFlowNavigationTop from "../../(appzone)/auth-flow-navigation-top";
 import clsx from "clsx";
 import {
   CheckCircle,
@@ -14,7 +14,7 @@ import {
   OctagonAlertIcon,
   X,
 } from "lucide-react";
-import { account } from "../appwrite";
+import { account } from "../../lib/appwrite";
 
 const verificationProgressContent = {
   processing: {

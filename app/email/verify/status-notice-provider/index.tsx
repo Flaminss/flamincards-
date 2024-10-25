@@ -6,7 +6,7 @@ import {
   useEffect,
 } from "react";
 import EmailValidationFeedbackModal from "./modal";
-import { useUserAuthContext } from "@/app/user-auth-provider";
+import { useUserAuthContext } from "@/app/(appzone)/account/user-auth-provider";
 
 interface EmailValidationContextProps {
   showModal: boolean;

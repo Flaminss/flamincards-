@@ -1,10 +1,9 @@
-import "@/styles/globals.css";
+import "@app/globals.css";
 import { Metadata } from "next";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "./site";
 import { Providers } from "./providers";
-import clsx from "clsx";
-import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google";
+import clsx from "clsx";
 
 const fontSans = FontSans({
   subsets: ["latin"],

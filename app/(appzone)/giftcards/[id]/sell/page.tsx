@@ -42,7 +42,7 @@ import {
 } from "lucide-react";
 import currencyIcons from "currency-icons";
 import { useRouter } from "next/navigation";
-import PWAPageTitle from "@/app/(pwa)/page-title";
+import PWAPageTitle from "@/app/(appzone)/page-title";
 import { useState } from "react";
 import ImageProofInput, { FileInputPayload } from "./image-proof-input";
 import RouterLink from "next/link";

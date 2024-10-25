@@ -1,6 +1,6 @@
 "use client";
 
-import { title } from "@/app/primitives";
+import { title } from "@/app/lib/primitives";
 import { Button, Chip, Listbox, ListboxItem, Switch } from "@nextui-org/react";
 import {
   BugIcon,

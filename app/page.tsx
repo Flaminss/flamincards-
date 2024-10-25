@@ -4,8 +4,8 @@ import { Link } from "@nextui-org/link";
 import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
-import { title, subtitle } from "@/app/primitives";
-import { GithubIcon } from "@/lib/icons";
+import { title, subtitle } from "@/app/lib/primitives";
+import { GithubIcon } from "@/vendors/icons";
 import {
   Navbar,
   NavbarContent,
@@ -17,12 +17,12 @@ import {
 } from "@nextui-org/navbar";
 import React from "react";
 import NextLink from "next/link";
-import { BrandName } from "./(pwa)/navigation-top";
-import { ThemeSwitch } from "@/app/theme-switch";
+import { BrandName } from "./(appzone)/navigation-top";
+import { ThemeSwitch } from "@/vendors/theme-switch";
 import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Input } from "@nextui-org/input";
-import { HeartFilledIcon, SearchIcon } from "@/lib/icons";
+import { HeartFilledIcon, SearchIcon } from "@/vendors/icons";
 import clsx from "clsx";
 import {
   ChevronRightIcon,
