@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { UserCircleIcon, XIcon } from "lucide-react";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
-import AuthFlowNavigationTop from "../(appzone)/auth-flow-navigation-top";
-import { useUserAuthContext } from "../(appzone)/account/user-auth-provider";
+import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
+import { useUserAuthContext } from "@app/(appzone)/account/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
