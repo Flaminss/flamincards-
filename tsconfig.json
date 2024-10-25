@@ -22,8 +22,8 @@
     "paths": {
       "@/*": ["./*"],
       "@app/*": ["./app/*"],
-      "@lib/*": ["./app/lib/*"],
-      "@store/*": ["./app/store/*"],
+      "@lib/*": ["./lib/*"],
+      "@store/*": ["./store/*"],
       "@vendors/*": ["./vendors/*"]
     }
   },
