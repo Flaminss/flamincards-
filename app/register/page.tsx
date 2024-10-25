@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Input, Link, Spinner } from "@nextui-org/react";
 import { MailPlus, XIcon } from "lucide-react";
 import { useUserAuthContext } from "../(appzone)/account/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
 import { z, ZodError } from "zod";
-import AuthFlowNavigationTop from "../(appzone)/auth-flow-navigation-top";
+import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
 import clsx from "clsx";
 
 export default function RegisterPage() {
