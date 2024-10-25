@@ -1,13 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  AlertCircle,
-  AlertCircleIcon,
-  UserCircle,
-  XCircleIcon,
-  XIcon,
-} from "lucide-react";
+import { useState } from "react";
+import { UserCircleIcon, XIcon } from "lucide-react";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
 import AuthFlowNavigationTop from "../(appzone)/auth-flow-navigation-top";
 import { useUserAuthContext } from "../(appzone)/account/user-auth-provider";
@@ -73,7 +67,7 @@ export default function LoginPage() {
       <main>
         <section className="pt-12 py-8 px-4 max-w-lg mx-auto">
           <header>
-            <UserCircle className="block mx-auto size-10 mb-2.5 sm:size-12 sm:mb-4" />
+            <UserCircleIcon className="block mx-auto size-10 mb-2.5 sm:size-12 sm:mb-4" />
             <h1 className="text-2xl sm:text-3xl text-center mb-1 sm:mb-2 font-medium">
               Welcome Back 👋
             </h1>
