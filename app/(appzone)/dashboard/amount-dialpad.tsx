@@ -1,9 +1,9 @@
 "use client";
 
 import { Button, Input } from "@nextui-org/react";
-import commaNumber from "comma-number";
 import { DeleteIcon, WalletIcon } from "lucide-react";
 import { useState } from "react";
+import { figureAsBalance } from "./wallet-section";
 
 export default function AmountDialpad() {
   const [amount, setAmount] = useState("");
@@ -22,7 +22,7 @@ export default function AmountDialpad() {
   };
 
   const getDisplayValue = () => {
-    const value = commaNumber(parseInt(amount));
+    const value = figureAsBalance(parseInt(amount));
 
     if (value === "NaN") {
       return "";
