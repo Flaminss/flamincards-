@@ -1,8 +1,8 @@
 "use client";
 
 import icons from "currency-icons";
-import { Button } from "@nextui-org/button";
 import {
+  Button,
   Card,
   CardBody,
   CardFooter,
