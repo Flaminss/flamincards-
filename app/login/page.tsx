@@ -49,11 +49,10 @@ export default function LoginPage() {
     setError(null);
   };
 
-  useEffect(() => {
-    if (user.current) {
-      router.replace("/dashboard");
-    }
-  });
+  if (user.current) {
+    router.replace("/dashboard");
+    return;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
