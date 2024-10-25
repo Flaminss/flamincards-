@@ -1,12 +1,7 @@
 "use client";
 
-import { button as buttonStyles } from "@nextui-org/react";
-import { title, subtitle } from "@/app/lib/primitives";
-import { GithubIcon } from "@/vendors/icons";
 import {
   Link,
-  Snippet,
-  Code,
   Button,
   Navbar,
   NavbarContent,
@@ -15,19 +10,10 @@ import {
   NavbarBrand,
   NavbarItem,
   NavbarMenuItem,
-  Kbd, Input
 } from "@nextui-org/react";
-import React from "react";
-import NextLink from "next/link";
+import { useState } from "react";
 import { BrandName } from "./(appzone)/navigation-top";
-import { ThemeSwitch } from "@/vendors/theme-switch";
-import { HeartFilledIcon, SearchIcon } from "@/vendors/icons";
-import clsx from "clsx";
-import {
-  ChevronRightIcon,
-  ChevronsRight,
-  ChevronsRightIcon,
-} from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -81,7 +67,7 @@ export default function HomePage() {
 }
 
 const TopNavigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
     { title: "Dashboard", href: "/dashboard" },
@@ -94,10 +80,6 @@ const TopNavigation = () => {
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} classNames={{ wrapper: "px-4" }}>
       <NavbarContent>
-        {/* <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        /> */}
         <NavbarBrand>
           <BrandName className="sm:text-xl" />
         </NavbarBrand>
@@ -125,14 +107,6 @@ const TopNavigation = () => {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        {/* <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem> */}
-        {/* <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Start here!
-          </Button>
-        </NavbarItem> */}
       </NavbarContent>
 
       <NavbarMenu>
