@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Link, Tab, Tabs } from "@nextui-org/react";
-import { ComingSoonScene } from "@/app/lib/coming-soon-scene";
+import { ComingSoonScene } from "@lib/coming-soon-scene";
 import PWAPageTitle from "../page-title";
 import BeatsCatalogPage from "./beats-page";
 import { ArrowRightCircle } from "lucide-react";
