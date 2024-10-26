@@ -11,6 +11,8 @@ import clsx from "clsx";
 import * as schema from "./schema";
 
 export default function RegisterPage() {
+  const inputErrorClassNames = "pt-1 text-sm text-red-200";
+
   const router = useRouter();
   const userAuthContext = useUserAuthContext();
 
@@ -41,7 +43,6 @@ export default function RegisterPage() {
       await userAuthContext.register(email, password);
       setRegistratonProgress("done");
       await userAuthContext.login(email, password);
-      //
     } catch (exception) {
       setRegistratonProgress("failed");
 
@@ -214,5 +215,3 @@ export default function RegisterPage() {
     </div>
   );
 }
-
-const inputErrorClassNames = "pt-1 text-sm text-red-200";
