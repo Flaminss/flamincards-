@@ -6,9 +6,9 @@ import { MailPlus, XIcon } from "lucide-react";
 import { useUserAuthContext } from "@app/(appzone)/account/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
-import { z, ZodError } from "zod";
 import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
 import clsx from "clsx";
+import * as schema from "./schema";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -17,7 +17,6 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("test-5@gmail.com");
   const [password, setPassword] = useState("P@ssw0rd");
   const [retypedPassword, setRetypedPassword] = useState("P@ssw0rd");
-
   const [registrationProgress, setRegistratonProgress] = useState("idle");
 
   const [formErrors, setFormErrors] = useState<{
@@ -33,7 +32,7 @@ export default function RegisterPage() {
     setRegistratonProgress("processing");
 
     try {
-      registrationFormSchema.parse({
+      schema.registrationFormSchema.parse({
         email,
         password,
         retypedPassword,
@@ -46,9 +45,9 @@ export default function RegisterPage() {
     } catch (exception) {
       setRegistratonProgress("failed");
 
-      if (exception instanceof ZodError) {
+      if (exception instanceof schema.ZodError) {
         const { email, password, retypedPassword } = (
-          exception as z.ZodError<RegistrationForm>
+          exception as schema.ZodError<schema.RegistrationForm>
         ).format();
         setFormErrors((prevErrors) => {
           return {
@@ -217,43 +216,3 @@ export default function RegisterPage() {
 }
 
 const inputErrorClassNames = "pt-1 text-sm text-red-200";
-
-const registrationFormSchema = z
-  .object({
-    email: z.string().email("Invalid email address"),
-    password: z
-      .string()
-      .min(8, { message: "Password must be at least 8 characters long." })
-      .regex(/[A-Z]/, {
-        message: "Password must contain at least one uppercase letter.",
-      })
-      .regex(/[a-z]/, {
-        message: "Password must contain at least one lowercase letter.",
-      })
-      .regex(/[0-9]/, { message: "Password must contain at least one number." })
-      .regex(/[\W_]/, {
-        message: "Password must contain at least one special character.",
-      }),
-    retypedPassword: z.string(),
-  })
-  .refine((data: any) => data.password === data.retypedPassword, {
-    message: "Passwords do not match.",
-    path: ["retypedPassword"],
-  });
-// .superRefine((data, ctx) => {
-//   const message = "Passwords do not match.";
-//   if (data.password !== data.retypedPassword) {
-//     ctx.addIssue({
-//       code: z.ZodIssueCode.custom,
-//       path: ["password"],
-//       message,
-//     });
-//     ctx.addIssue({
-//       code: z.ZodIssueCode.custom,
-//       path: ["retypedPassword"],
-//       message,
-//     });
-//   }
-// });
-
-type RegistrationForm = z.infer<typeof registrationFormSchema>;
