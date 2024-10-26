@@ -11,7 +11,7 @@ import {
 import GiftcardListing, {
   GiftcardSortFilter,
   GiftcardSortOrder,
-} from "@/app/(appzone)/giftcards/listing";
+} from "@app/(appzone)/giftcards/listing";
 import PWAPageTitle from "../page-title";
 import { ChangeEvent, useState } from "react";
 

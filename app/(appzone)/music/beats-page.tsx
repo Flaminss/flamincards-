@@ -29,7 +29,7 @@ import {
   Trash2Icon,
   VerifiedIcon,
 } from "lucide-react";
-import GiftcardListing from "@/app/(appzone)/giftcards/listing";
+import GiftcardListing from "@app/(appzone)/giftcards/listing";
 import ComingSoonScene from "../transactions/page";
 
 const sortOrders = [
