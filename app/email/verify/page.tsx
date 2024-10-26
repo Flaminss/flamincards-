@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Client, Account, AppwriteException } from "appwrite";
 import RouterLink, { useRouter } from "next/navigation";
 import Link, { Button, Spinner } from "@nextui-org/react";
-import AuthFlowNavigationTop from "../@app/(appzone)/auth-flow-navigation-top";
+import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
 import clsx from "clsx";
 import {
   CheckCircle,
