@@ -32,7 +32,6 @@
     "react-dom": "^18.3.1",
     "react-files": "^3.0.3",
     "rippleui": "^1.12.1",
-    "supports-color": "^9.4.0",
     "tailwind-extended-shadows": "^0.4.0",
     "tailwind-merge": "^2.3.0",
     "tailwind-variants": "^0.1.20",
@@ -41,6 +40,7 @@
     "zustand": "^5.0.0"
   },
   "devDependencies": {
+    "supports-color": "^9.4.0",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
