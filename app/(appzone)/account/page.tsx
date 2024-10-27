@@ -137,7 +137,7 @@ export default function BlogPage() {
           color="danger"
           onPress={() => logout()}
           isLoading={loggingOut}
-          spinner={<Spinner className="size-4" />}
+          spinner={<Spinner size="sm" />}
         >
           Logout
         </Button>
