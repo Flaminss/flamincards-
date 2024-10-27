@@ -81,13 +81,13 @@ export default function EmailVerificationPage({
   searchParams: {
     userId?: string;
     secret?: string;
-    backToRoute?: string;
+    nextExpectedRoute?: string;
   };
 }) {
-  const { userId, secret, backToRoute = "/dashboard" } = searchParams;
+  const { userId, secret, nextExpectedRoute = "/dashboard" } = searchParams;
 
   useEffect(() => {
-    window.history.replaceState(null, "", backToRoute);
+    window.history.replaceState(null, "", nextExpectedRoute);
   });
 
   const [accountVerification, setAccountVerification] = useState<{

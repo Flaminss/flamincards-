@@ -8,13 +8,13 @@ export default function EmailConfirmationRequirementNoticePage({
   searchParams,
 }: {
   searchParams: {
-    backToRoute?: string;
+    nextExpectedRoute?: string;
   };
 }) {
-  const { backToRoute = "/dashboard" } = searchParams;
+  const { nextExpectedRoute = "/dashboard" } = searchParams;
 
   useEffect(() => {
-    window.history.replaceState(null, "", backToRoute);
+    window.history.replaceState(null, "", nextExpectedRoute);
   });
 
   return (
