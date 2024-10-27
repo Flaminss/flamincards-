@@ -1,7 +1,14 @@
 "use client";
 
 import { title } from "@lib/primitives";
-import { Button, Chip, Listbox, ListboxItem, Switch } from "@nextui-org/react";
+import {
+  Avatar,
+  Button,
+  Chip,
+  Listbox,
+  ListboxItem,
+  Switch,
+} from "@nextui-org/react";
 import {
   BugIcon,
   CakeIcon,
@@ -18,6 +25,7 @@ import {
   MailWarningIcon,
   MessageCircleQuestionIcon,
   MoonIcon,
+  NotebookPenIcon,
   PhoneIcon,
   ShieldPlusIcon,
   TrophyIcon,
@@ -36,19 +44,32 @@ export default function BlogPage() {
       </header>
 
       <section className="pt-4 px-4 space-y-10">
+        <Button
+          fullWidth
+          radius="sm"
+          variant="solid"
+          color="default"
+          className="bg-content1 text-sm h-[unset] py-4 gap-x-4"
+          startContent={
+            <div className="p-2.5 rounded-lg border">
+              <UserCircleIcon className="size-8 text-primary" />
+            </div>
+          }
+          endContent={
+            <div className="">
+              <NotebookPenIcon className="text-zinc-400" />
+            </div>
+          }
+        >
+          <div className="flex flex-col gap-y-.5 flex-grow text-start items-start">
+            <h4 className="text-lg">Your Fullname</h4>
+            <p className="text-zinc-400">Edit your Profile</p>
+          </div>
+        </Button>
+
         <MenuBlock
-          title="Profile"
+          title="Billing & Payments"
           list={[
-            {
-              title: "Full Name",
-              description: "Sunday Awanu",
-              Icon: UserCircleIcon,
-            },
-            {
-              title: "Date of Birth",
-              description: "11/05/2024 (18 yrs)",
-              Icon: CalendarDaysIcon,
-            },
             { title: "Bank Details", Icon: WalletIcon },
             { title: "Investment Plans", Icon: CircleDollarSign },
           ]}
@@ -68,6 +89,11 @@ export default function BlogPage() {
             },
             { title: "Change Transaction PIN", Icon: ShieldPlusIcon },
             { title: "Change Password", Icon: KeyRoundIcon },
+          ]}
+        />
+        <MenuBlock
+          title="Help & Support"
+          list={[
             {
               title: "Dark Mode",
               Icon: MoonIcon,
@@ -82,11 +108,6 @@ export default function BlogPage() {
                 );
               },
             },
-          ]}
-        />
-        <MenuBlock
-          title="Help & Support"
-          list={[
             { title: "FAQ", Icon: MessageCircleQuestionIcon },
             { title: "Customer Support", Icon: HeadsetIcon },
             { title: "Report a Bug", Icon: BugIcon },
