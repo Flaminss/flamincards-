@@ -84,10 +84,11 @@ export default function EmailVerificationPage({
     backToRoute?: string;
   };
 }) {
-  const { userId, secret, backToRoute } = searchParams;
+  const { userId, secret, backToRoute = "/" } = searchParams;
 
-  const prevRoute = document.referrer;
-  window.history.replaceState(null, "", backToRoute || prevRoute);
+  useEffect(() => {
+    window.history.replaceState(null, "", backToRoute);
+  });
 
   const [accountVerification, setAccountVerification] = useState<{
     status: "idle" | "processing" | "success" | "failed";
