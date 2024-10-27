@@ -12,6 +12,7 @@ import * as schema from "./schema";
 
 export default function RegisterPage() {
   const inputErrorClassNames = "pt-1 text-sm text-red-200";
+  const unsecureButStrongPassword = "Th1sIsP@s#w0rd";
 
   const router = useRouter();
   const userAuthContext = useUserAuthContext();
@@ -22,9 +23,9 @@ export default function RegisterPage() {
     }
   }, [userAuthContext.current]);
 
-  const [email, setEmail] = useState("test-5@gmail.com");
-  const [password, setPassword] = useState("P@ssw0rd");
-  const [retypedPassword, setRetypedPassword] = useState("P@ssw0rd");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [retypedPassword, setRetypedPassword] = useState("");
   const [registrationProgress, setRegistratonProgress] = useState("idle");
 
   const [formErrors, setFormErrors] = useState<{
@@ -168,7 +169,7 @@ export default function RegisterPage() {
                 type="password"
                 label="Password"
                 value={password}
-                onValueChange={setPassword} 
+                onValueChange={setPassword}
                 isInvalid={formErrors?.password !== null}
                 errorMessage={
                   formErrors?.password && formErrors?.password.length === 1 ? (
