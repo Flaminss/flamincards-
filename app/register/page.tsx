@@ -16,6 +16,12 @@ export default function RegisterPage() {
   const router = useRouter();
   const userAuthContext = useUserAuthContext();
 
+  useEffect(() => {
+    if (userAuthContext.current) {
+      router.replace("/dashboard");
+    }
+  }, [userAuthContext.current]);
+
   const [email, setEmail] = useState("test-5@gmail.com");
   const [password, setPassword] = useState("P@ssw0rd");
   const [retypedPassword, setRetypedPassword] = useState("P@ssw0rd");
@@ -42,6 +48,7 @@ export default function RegisterPage() {
 
       await userAuthContext.register(email, password);
       setRegistratonProgress("done");
+      router.replace("/email/confirm?nextExpectedRoute=/dashboard");
       await userAuthContext.login(email, password);
     } catch (exception) {
       setRegistratonProgress("failed");
@@ -96,12 +103,6 @@ export default function RegisterPage() {
       }[registrationProgress];
     },
   };
-
-  useEffect(() => {
-    if (userAuthContext.current) {
-      router.replace("/dashboard");
-    }
-  });
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
