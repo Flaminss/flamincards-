@@ -7,6 +7,7 @@ import {
   Chip,
   Listbox,
   ListboxItem,
+  Spinner,
   Switch,
 } from "@nextui-org/react";
 import {
@@ -34,8 +35,22 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import PWAPageTitle from "../page-title";
+import { useUserAuthContext } from "./user-auth-provider";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function BlogPage() {
+  const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
+  const userAuthContext = useUserAuthContext();
+
+  const logout = async () => {
+    setLoggingOut(true);
+    await userAuthContext.logout();
+    setLoggingOut(false);
+    router.push("/login");
+  };
+
   return (
     <div className="max-w-xl mx-auto lg:mx-0">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
@@ -114,7 +129,16 @@ export default function BlogPage() {
           ]}
         />
 
-        <Button fullWidth radius="sm" variant="solid" size="lg" color="danger">
+        <Button
+          fullWidth
+          radius="sm"
+          variant="solid"
+          size="lg"
+          color="danger"
+          onPress={() => logout()}
+          isLoading={loggingOut}
+          spinner={<Spinner className="size-4" />}
+        >
           Logout
         </Button>
       </section>
