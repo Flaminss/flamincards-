@@ -17,7 +17,7 @@ import axios from "axios";
 //   return Promise.reject(error);
 // });
 
-export const handlerInstance = axios.create;
+export const createHandler = axios.create;
 
 export default {
   get: axios.get,
