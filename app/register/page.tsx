@@ -169,7 +169,7 @@ export default function RegisterPage() {
                 type="password"
                 label="Password"
                 value={password}
-                onValueChange={setPassword}
+                onValueChange={setPassword} 
                 isInvalid={formErrors?.password !== null}
                 errorMessage={
                   formErrors?.password && formErrors?.password.length === 1 ? (
@@ -191,7 +191,6 @@ export default function RegisterPage() {
                 label="Re-type Password"
                 value={retypedPassword}
                 onValueChange={setRetypedPassword}
-                isClearable
                 isInvalid={formErrors?.retypedPassword !== null}
                 errorMessage={formErrors?.retypedPassword}
                 classNames={{ errorMessage: inputErrorClassNames }}
