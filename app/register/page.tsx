@@ -67,8 +67,7 @@ export default function RegisterPage() {
         });
       } else if (exception instanceof AppwriteException) {
         const { type, message } = exception;
-        // console.log("type: ", type);
-        // console.log("excep msg: ", message);
+
         if (type === "user_already_exists") {
           setFormErrors((prevErrors) => {
             return {
