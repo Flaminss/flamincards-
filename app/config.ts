@@ -28,6 +28,12 @@ const config = {
         apiKey: process.env.MARKETPLACE_API_KEY || 'your-marketplace-api-key',
         supportedGiftCards: ['Amazon', 'iTunes', 'Google Play'],
         tradingFee: 0.10 // 10% fee
+    },
+    email: {
+        addresses: {
+            org: {},
+            management: {},
+        }
     }
 };
 
