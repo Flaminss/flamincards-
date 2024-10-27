@@ -1,0 +1,14 @@
+declare module "@lib/http-cycle-handler" {
+  interface HttpRequestConfig {
+    baseURL: string;
+    timeout: number;
+    headers: Record<string, string>;
+  }
+
+  interface HttpRequest {
+    handlerInstance(config: HttpRequestConfig): any;
+  }
+
+  const httpRequest: HttpRequest;
+  export default httpRequest;
+}
