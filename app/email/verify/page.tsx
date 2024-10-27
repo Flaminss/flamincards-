@@ -81,9 +81,14 @@ export default function EmailVerificationPage({
   searchParams: {
     userId?: string;
     secret?: string;
+    backToRoute?: string;
   };
 }) {
-  const { userId, secret } = searchParams; // Get query params using Next.js useRouter
+  const { userId, secret, backToRoute } = searchParams;
+
+  const prevRoute = document.referrer;
+  window.history.replaceState(null, "", backToRoute || prevRoute);
+
   const [accountVerification, setAccountVerification] = useState<{
     status: "idle" | "processing" | "success" | "failed";
     message?: string;
@@ -94,7 +99,7 @@ export default function EmailVerificationPage({
   useEffect(() => {
     const verifyUser = async (userId: string, secret: string) => {
       try {
-        console.log('verifying...');
+        console.log("verifying...");
 
         await account.updateVerification(userId, secret);
         setAccountVerification({
@@ -103,7 +108,7 @@ export default function EmailVerificationPage({
         });
       } catch (exception) {
         console.log("Caught an error while verifying...");
-        
+
         if (exception instanceof AppwriteException) {
           const status = "failed";
           let message = "";
