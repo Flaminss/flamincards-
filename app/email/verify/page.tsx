@@ -84,7 +84,7 @@ export default function EmailVerificationPage({
     backToRoute?: string;
   };
 }) {
-  const { userId, secret, backToRoute = "/" } = searchParams;
+  const { userId, secret, backToRoute = "/dashboard" } = searchParams;
 
   useEffect(() => {
     window.history.replaceState(null, "", backToRoute);
