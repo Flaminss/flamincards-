@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import {
   Navbar,
   NavbarContent,
@@ -8,8 +7,9 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Link,
 } from "@nextui-org/react";
-import { Link, ChevronRightIcon } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
 import { BrandName } from "@app/(appzone)/navigation-top";
 
