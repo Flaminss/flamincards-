@@ -3,6 +3,8 @@
 import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
 import { MailSearchIcon } from "lucide-react";
 import { useEffect } from "react";
+import { Button } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 export default function EmailConfirmationRequirementNoticePage({
   searchParams,
@@ -11,11 +13,16 @@ export default function EmailConfirmationRequirementNoticePage({
     nextExpectedRoute?: string;
   };
 }) {
+  const router = useRouter();
   const { nextExpectedRoute = "/dashboard" } = searchParams;
 
   useEffect(() => {
     window.history.replaceState(null, "", nextExpectedRoute);
   });
+
+  const continueUsingApp = () => {
+    router.back();
+  };
 
   return (
     <div className="bg-black min-h-screen">
@@ -34,11 +41,21 @@ export default function EmailConfirmationRequirementNoticePage({
             <p className="text-md text-primary">someemal@whatever.domain</p>
           </div>
 
-          <p className="text-center text-default-400 max-w-md mx-auto">
+          <p className="text-center text-default-400 max-w-md mx-auto mb-8">
             We've sent a confirmation link to your email address display above.
             Please verify your email to unlock full access.{" "}
             <span className="text-primary">Click here to resend</span>
           </p>
+
+          <Button
+            size="md"
+            color="primary"
+            radius="md"
+            className="justify-self-center"
+            onPress={() => continueUsingApp()}
+          >
+            Continue using the app
+          </Button>
         </section>
       </main>
     </div>
