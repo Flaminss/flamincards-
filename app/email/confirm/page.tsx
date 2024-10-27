@@ -2,6 +2,7 @@
 
 import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
 import { MailSearchIcon } from "lucide-react";
+import { useEffect } from "react";
 
 export default function EmailConfirmationRequirementNoticePage({
   searchParams,
@@ -10,10 +11,11 @@ export default function EmailConfirmationRequirementNoticePage({
     backToRoute?: string;
   };
 }) {
-  const { backToRoute } = searchParams;
-  const prevRoute = document.referrer;
+  const { backToRoute = "/dashboard" } = searchParams;
 
-  window.history.replaceState(null, "", backToRoute || prevRoute);
+  useEffect(() => {
+    window.history.replaceState(null, "", backToRoute);
+  });
 
   return (
     <div className="bg-black min-h-screen">
