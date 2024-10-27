@@ -19,6 +19,7 @@ interface UserAuth {
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
+  forceLogout: () => void;
 }
 
 const UserAuthContext = createContext<UserAuth | undefined>(undefined);
@@ -52,6 +53,10 @@ export function UserAuthContextProvider({
     setUser(null);
   }
 
+  async function forceLogout() {
+    setUser(null);
+  }
+
   async function register(email: string, password: string) {
     await account.create(ID.unique(), email, password);
   }
@@ -79,7 +84,7 @@ export function UserAuthContextProvider({
 
   return (
     <UserAuthContext.Provider
-      value={{ current: user, login, logout, register }}
+      value={{ current: user, login, logout, register, forceLogout }}
     >
       {children}
     </UserAuthContext.Provider>
