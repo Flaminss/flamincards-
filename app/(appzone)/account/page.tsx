@@ -38,6 +38,7 @@ import PWAPageTitle from "../page-title";
 import { useUserAuthContext } from "./user-auth-provider";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AppwriteException } from "appwrite";
 
 export default function BlogPage() {
   const router = useRouter();
@@ -45,10 +46,23 @@ export default function BlogPage() {
   const userAuthContext = useUserAuthContext();
 
   const logout = async () => {
-    setLoggingOut(true);
-    await userAuthContext.logout();
-    setLoggingOut(false);
-    router.push("/login");
+    try {
+      setLoggingOut(true);
+      await userAuthContext.logout();
+      setLoggingOut(false);
+      router.push("/login");
+    } catch (exception) {
+      setLoggingOut(false);
+
+      if (exception instanceof AppwriteException) {
+        const { type } = exception;
+
+        if (type === "general_unauthorized_scope") {
+          userAuthContext.forceLogout();
+          router.push("/register");
+        }
+      }
+    }
   };
 
   return (
