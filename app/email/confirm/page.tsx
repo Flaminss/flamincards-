@@ -16,12 +16,8 @@ export default function EmailConfirmationRequirementNoticePage({
   const router = useRouter();
   const { nextExpectedRoute = "/dashboard" } = searchParams;
 
-  useEffect(() => {
-    window.history.replaceState(null, "", nextExpectedRoute);
-  });
-
   const continueUsingApp = () => {
-    router.back();
+    router.replace(nextExpectedRoute);
   };
 
   return (
