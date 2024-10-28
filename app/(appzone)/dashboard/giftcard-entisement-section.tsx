@@ -77,7 +77,7 @@ export default function GiftCardEntisementSection() {
               <Link
                 key={`${index}#${tag}`}
                 href={`/giftcards/${name}/sell`}
-                className="bg-content1 text-white shadow rounded-lg p-4 lg:p-5 flex items-center gap-x-5"
+                className="bg-content1 text-white shadow rounded-md p-4 lg:p-5 flex items-center gap-x-5"
               >
                 <Image
                   radius="sm"
@@ -108,7 +108,7 @@ export default function GiftCardEntisementSection() {
                   isIconOnly
                   variant="light"
                   size="sm"
-                  className="ms-auto"
+                  className="ms-auto -me-2"
                 >
                   <ChevronsRight className="size-4 lg:size-5" />
                 </Button>
