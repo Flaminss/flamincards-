@@ -18,7 +18,7 @@ export default function GiftCardEntisementSection() {
             color="primary"
             className="pe-0"
           >
-            View All
+            See more
           </Button>
         </header>
 
