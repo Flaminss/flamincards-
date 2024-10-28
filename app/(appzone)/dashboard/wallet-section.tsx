@@ -153,13 +153,13 @@ export default function Wallet() {
               <WalletIcon className="me-1 size-4" />
               Total Balance
             </span>
-            <span
-              className={clsx("text-3xl lg:text-4xl", {
-                blur: !balanceVisible,
-              })}
-            >
+            <span className="text-3xl lg:text-4xl">
               {icons["NGN"]?.symbol || "#"}
-              {figureAsBalance(user.wallet.balance)}
+              {balanceVisible ? (
+                figureAsBalance(user.wallet.balance)
+              ) : (
+                <span className="ps-1 align-middle leading-[1]">*****</span>
+              )}
             </span>
           </p>
           <Button
