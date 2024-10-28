@@ -17,11 +17,9 @@ export default function RegisterPage() {
   const router = useRouter();
   const userAuthContext = useUserAuthContext();
 
-  useEffect(() => {
-    if (userAuthContext.current) {
-      router.replace("/dashboard");
-    }
-  }, [userAuthContext.current]);
+  if (userAuthContext.current) {
+    router.replace("/dashboard");
+  }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
