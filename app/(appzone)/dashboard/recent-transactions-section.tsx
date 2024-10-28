@@ -54,9 +54,9 @@ export default function RecentTransactionsSection() {
         </Button>
       </header>
       {transactions.length === 0 ? (
-        <div className="rounded-md shadow bg-content1 grid gap-y-2.5 text-center place-items-center p-4 py-8">
-          <ListIcon className="size-8 mx-auto text-gray-600" />
-          <p className="text-sm text-gray-500 max-w-[32ch] ">
+        <div className="rounded-md bg-content1 grid gap-y-2.5 text-center place-items-center p-4 py-8 pb-10 shadow-sm">
+          <ListIcon className="size-8 mx-auto text-default-500" />
+          <p className="text-sm text-default-700 max-w-[32ch] ">
             You have no transactions yet.{" "}
             <Link size="sm" href="/giftcards" underline="always">
               Redeem a gift card
