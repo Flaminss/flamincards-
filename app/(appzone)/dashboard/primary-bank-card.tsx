@@ -22,7 +22,7 @@ export default function PrimaryBankCard({
   classnames: string;
 }) {
   const cardDetails = {
-    bank: "Your Bank Name",
+    bank: "Bank",
     accountNumber: "XXX XXXX XXX",
     fullName: "Your Full Name",
   };
@@ -32,17 +32,19 @@ export default function PrimaryBankCard({
       <article className="relative p-5 sm:p-5 text-zinc-100 bg-content1 rounded-sm">
         <div className="flex gap-x-3 mb-5">
           <div className="inline-flex items-center">
-            <div className="size-4 rounded-full bg-warning"></div>
-            <div className="size-4 rounded-full bg-danger -ms-1.5"></div>
+            <div className="size-4 rounded-full bg-warning-200"></div>
+            <div className="size-4 rounded-full bg-danger-100 -ms-2"></div>
           </div>
-          <span className="text-xs text-zinc-400 uppercase">Primary</span>
+          <span className="text-xs text-zinc-400 uppercase font-mono">
+            Primary Details
+          </span>
         </div>
-        <p className="text-lg sm:text-xl font-mono mb-2.5">
+        <p className="text-xl sm:text-xl font-mono mb-2.5">
           {cardDetails.accountNumber}
         </p>
-        <p className="text-sm sm:text-medium font-mono flex items-center justify-between gap-x-4">
-          <span className="text-sm">{cardDetails.fullName}</span>
-          <span className="text-sm text-gray-500">{cardDetails.bank}</span>
+        <p className="text-sm text-gray-500 sm:text-medium flex items-center justify-between gap-x-4">
+          <span className=" font-semibold">{cardDetails.fullName}</span>
+          <span className="">{cardDetails.bank}</span>
         </p>
         <Button
           variant="light"
