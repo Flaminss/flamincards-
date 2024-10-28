@@ -17,11 +17,6 @@ export default function LoginPage() {
   const user = useUserAuthContext();
   const router = useRouter();
 
-  if (user.current) {
-    router.replace("/dashboard");
-    return;
-  }
-
   const [email, setEmail] = useState("test-6@gmail.com");
   const [password, setPassword] = useState("password123");
   const [error, setError] = useState<null | {
@@ -46,6 +41,11 @@ export default function LoginPage() {
   const acknowledgeError = () => {
     setError(null);
   };
+
+  if (user.current) {
+    router.replace("/dashboard");
+    return;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
