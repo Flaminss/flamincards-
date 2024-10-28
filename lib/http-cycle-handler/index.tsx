@@ -19,13 +19,15 @@ import axios from "axios";
 
 export const createHandler = axios.create;
 
-export default {
+const handlerMethods = {
   get: axios.get,
   post: axios.post,
   patch: axios.patch,
   put: axios.put,
   delete: axios.delete,
 };
+
+export default handlerMethods;
 
 // MOVE TO DECLARATION FILE
 declare module "@lib/http-cycle-handler" {
