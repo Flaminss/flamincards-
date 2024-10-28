@@ -17,8 +17,8 @@ export default function LoginPage() {
   const user = useUserAuthContext();
   const router = useRouter();
 
-  const [email, setEmail] = useState("test-6@gmail.com");
-  const [password, setPassword] = useState("password123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<null | {
     status: string;
     message: string;
