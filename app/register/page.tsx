@@ -18,7 +18,12 @@ export default function RegisterPage() {
   const userAuthContext = useUserAuthContext();
 
   if (userAuthContext.current) {
-    router.replace("/dashboard");
+    const { emailVerified } = userAuthContext.current;
+    if (emailVerified) {
+      router.replace("/dashboard");
+    } else {
+      router.replace("/email/confirm?nextExpectedRoute=/dashboard");
+    }
   }
 
   const [email, setEmail] = useState("");
@@ -46,9 +51,8 @@ export default function RegisterPage() {
       });
 
       await userAuthContext.register(email, password);
-      setRegistratonProgress("done");
-      router.replace("/email/confirm?nextExpectedRoute=/dashboard");
       await userAuthContext.login(email, password);
+      setRegistratonProgress("done");
     } catch (exception) {
       setRegistratonProgress("failed");
 
