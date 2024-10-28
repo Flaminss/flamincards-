@@ -1,5 +1,6 @@
 import NavigationBarTop from "@app/(marketing)/navigation-bar-top";
 import { Link, Button } from "@nextui-org/react";
+import DeveloperAttributionLink from "./developer-attribution-link";
 
 export default function HomePage() {
   return (
@@ -38,15 +39,7 @@ export default function HomePage() {
       </main>
 
       <footer className="py-4 px-4 grid place-content-center">
-        <Link
-          isExternal
-          href="https://t.me/everurstruly"
-          title="Development team portfolio website"
-          className="text-default-600 font-mono font-medium flex items-center gap-x-2"
-        >
-          Developed by
-          <span className="text-primary font-semibold">YoursTruly</span>
-        </Link>
+        <DeveloperAttributionLink />
       </footer>
     </div>
   );

@@ -39,6 +39,7 @@ import { useUserAuthContext } from "./user-auth-provider";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AppwriteException } from "appwrite";
+import DeveloperAttributionLink from "@/app/developer-attribution-link";
 
 export default function BlogPage() {
   const router = useRouter();
@@ -158,12 +159,7 @@ export default function BlogPage() {
       </section>
 
       <footer className="mt-10 px-4 py-4 text-center">
-        <Link
-          href="t.me/everurstruly"
-          className="text-sm text-zinc-200 font-mono"
-        >
-          Developed by <span className="text-primary-400">YoursTruly</span>
-        </Link>
+        <DeveloperAttributionLink />
       </footer>
     </div>
   );
