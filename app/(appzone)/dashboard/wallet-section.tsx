@@ -72,7 +72,7 @@ const getUserPronoun = (gender?: string) => {
 export default function Wallet() {
   const user = {
     firstname: "Guest",
-    lastname: "Anonymous",
+    lastname: "",
     gender: undefined, // M / F
     wallet: {
       balance: 0,
@@ -154,11 +154,11 @@ export default function Wallet() {
               Total Balance
             </span>
             <span className="text-3xl lg:text-4xl">
-              {icons["NGN"]?.symbol || "#"}
+              <span className="pe-1">{icons["NGN"]?.symbol || "#"}</span>
               {balanceVisible ? (
                 figureAsBalance(user.wallet.balance)
               ) : (
-                <span className="ps-1 align-middle leading-[1]">*****</span>
+                <span className="align-middle leading-[1]">*****</span>
               )}
             </span>
           </p>
