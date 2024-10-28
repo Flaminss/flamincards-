@@ -84,11 +84,8 @@ export default function EmailVerificationPage({
     nextExpectedRoute?: string;
   };
 }) {
+  const router = useRouter();
   const { userId, secret, nextExpectedRoute = "/dashboard" } = searchParams;
-
-  useEffect(() => {
-    window.history.replaceState(null, "", nextExpectedRoute);
-  });
 
   const [accountVerification, setAccountVerification] = useState<{
     status: "idle" | "processing" | "success" | "failed";
@@ -97,16 +94,20 @@ export default function EmailVerificationPage({
     status: "processing",
   });
 
+  const content =
+    verificationProgressContent[
+      accountVerification.status as keyof typeof verificationProgressContent
+    ];
+
   useEffect(() => {
     const verifyUser = async (userId: string, secret: string) => {
       try {
-        console.log("verifying...");
-
         await account.updateVerification(userId, secret);
         setAccountVerification({
           status: "success",
           message: "We're logging you in automatically...",
         });
+        router.replace(nextExpectedRoute);
       } catch (exception) {
         console.log("Caught an error while verifying...");
 
@@ -143,11 +144,6 @@ export default function EmailVerificationPage({
       });
     }
   }, [userId, secret]);
-
-  const content =
-    verificationProgressContent[
-      accountVerification.status as keyof typeof verificationProgressContent
-    ];
 
   return (
     <div className="bg-black min-h-screen">
