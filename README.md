@@ -12,6 +12,7 @@ The project adopts a pragmatic architectural approach, primarily following a fea
 
 - **`app/config.ts`**: Contains configurations specific to the project's functional application, distinct from technical and environment setup configurations.
 - **`vendors`**: Stores reusable files that can be utilized within this project and other codebases. These files are not coupled to the project in terms of settings, tooling, and other dependencies.
-- **`lib`**: Intended for project-specific modules and scripts to perform tasks, implement, and encapsulate integrations. This includes hooks, utility functions, and abstractions over services like APIs and email. In other projects, this might be split into `services` and `utils` directories.
-- **`store`**: Manages global state logic, focusing on state management rather than storing modules for various actions.
+- **`lib`**: Intended for project-specific modules and scripts to perform tasks, implement, and encapsulate integrations. This includes hooks, utility functions, and abstractions over services like APIs and mail. In other projects, this might be split into `services` and `utils` directories.
+- **`store`**: Manages global ui state logic, focusing on state management rather than storing modules for various actions.
+- **`modules`**: Handles business logic by managing various modules that enable the project to achieve its intended purpose. It processes data, interacts with services, and performs tasks that make the application dynamic and distinct from a static site. One could think of modules as a set of related app `actions`
 
