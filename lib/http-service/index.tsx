@@ -30,7 +30,7 @@ const handlerMethods = {
 export default handlerMethods;
 
 // MOVE TO DECLARATION FILE
-declare module "@lib/http-cycle-handler" {
+declare module "@lib/http-service" {
   interface HttpRequestConfig {
     baseURL: string;
     timeout: number;

@@ -1,4 +1,4 @@
-import * as httpRequest from "@lib/http-cycle-handler";
+import * as httpRequest from "@/lib/http-service";
 
 export default httpRequest.createHandler({
   baseURL: "",
