@@ -27,6 +27,7 @@ export default function SubmissionSummary({
   canSubmitOrder: any;
   submitOrder: any;
 }) {
+  // selected payment info = accessed from context
   return (
     <div className="md:pt-6 grow w-full lg:max-w-xl xl:max-w-sm">
       <Card
