@@ -59,7 +59,7 @@ export default function BlogPage() {
         const { type } = exception;
 
         if (type === "general_unauthorized_scope") {
-          UserAuthContext.forceLogout();
+          UserAuthContext.logout();
           router.push("/register");
         }
       }
