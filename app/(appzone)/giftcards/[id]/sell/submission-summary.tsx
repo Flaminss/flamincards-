@@ -15,6 +15,7 @@ import {
   ArrowLeftRightIcon,
   LandmarkIcon,
 } from "lucide-react";
+import PaymentMethodModifier from "./payment-method-modifier";
 
 export default function SubmissionSummary({
   agreedToTerms,
@@ -28,6 +29,7 @@ export default function SubmissionSummary({
   submitOrder: any;
 }) {
   // selected payment info = accessed from context
+
   return (
     <div className="md:pt-6 grow w-full lg:max-w-xl xl:max-w-sm">
       <Card
@@ -84,23 +86,7 @@ export default function SubmissionSummary({
               </span>
             </p>
 
-            <div className="mb-4 flex items-center justify-between gap-x-4 mt-2">
-              <h5 className="text-sm flex items-center">
-                <LandmarkIcon className="inline-flex size-4" />
-              </h5>
-              <div className="flex-grow text-sm text-zinc-200">
-                <p>Sunday Awanu Paul</p>
-                <p className="text-default-400">Palmpay (99****1202)</p>
-              </div>
-              <Button
-                size="sm"
-                color="primary"
-                variant="light"
-                // onClick={handleChangeBankDetails}
-              >
-                Change
-              </Button>
-            </div>
+            <PaymentMethodModifier />
           </div>
 
           <Checkbox
