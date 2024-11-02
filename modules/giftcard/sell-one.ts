@@ -2,7 +2,7 @@
 //
 // };
 
-export type PurchaseForm = {
+export type SaleForm = {
   card: {
     $id: string;
   };
