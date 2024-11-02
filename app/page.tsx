@@ -1,11 +1,11 @@
-import NavigationBarTop from "@app/(marketing)/navigation-bar-top";
-import { Link, Button } from "@nextui-org/react";
+import TopNavigationBar from "@/app/(marketing)/top-navigation";
 import DeveloperAttributionLink from "./developer-attribution-link";
+import { Link, Button } from "@nextui-org/react";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-black">
-      <NavigationBarTop />
+      <TopNavigationBar />
 
       <main className="flex-grow">
         <section id="hero" className="pt-20 md:pt-28 pb-20 px-4">
@@ -15,7 +15,7 @@ export default function HomePage() {
               <br />
               <span className="inline-block pt-2">
                 Your Go-To Platform for{" "}
-                <span className="text-primary">Giftcards</span>, Crypto, and{" "}
+                <span className="text-primary">Gift Cards</span>, Crypto, and{" "}
                 <span className="text-warning">Music</span>!
               </span>
             </h1>
