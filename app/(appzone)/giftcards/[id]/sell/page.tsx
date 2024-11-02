@@ -104,6 +104,7 @@ export default function GiftcardBuyPage({
 }) {
   const router = useRouter();
 
+  const [paymentMethodConfirmed, setPaymentMethodConfirmed] = useState(false);
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
   const {
     isOpen: orderSubmitted,
@@ -315,6 +316,7 @@ export default function GiftcardBuyPage({
     if (
       consentToTradeAgreement &&
       paymentMethodSelected &&
+      paymentMethodConfirmed &&
       validateOrderForm().success
     ) {
       return true;
@@ -660,7 +662,10 @@ export default function GiftcardBuyPage({
         <SubmissionSummary
           agreedToTerms={consentToTradeAgreement}
           updateTermAgreement={setConsentToTradeAgreement}
+          paymentMethodConfirmed={paymentMethodConfirmed}
+          confirmPaymentMethod={setPaymentMethodConfirmed}
           canSubmitOrder={canSubmitOrder}
+          formValidated={validateOrderForm().success}
           submitOrder={submitOrder}
           paymentMethodSelected={paymentMethodSelected}
           onSelectPaymentMethod={() =>
