@@ -14,22 +14,29 @@ import {
   WalletMinimalIcon,
   ArrowLeftRightIcon,
   LandmarkIcon,
+  AlertCircleIcon,
 } from "lucide-react";
 import PaymentMethodModifier from "./payment-method-modifier";
 
 export default function SubmissionSummary({
   agreedToTerms,
+  formValidated,
   updateTermAgreement,
+  confirmPaymentMethod,
   canSubmitOrder,
   submitOrder,
   paymentMethodSelected,
+  paymentMethodConfirmed,
   onSelectPaymentMethod,
 }: {
   agreedToTerms: boolean;
+  formValidated: boolean;
   updateTermAgreement: any;
+  confirmPaymentMethod: any;
   canSubmitOrder: any;
   submitOrder: any;
   paymentMethodSelected: any;
+  paymentMethodConfirmed: boolean;
   onSelectPaymentMethod: () => void;
 }) {
   // selected payment info = accessed from context
@@ -100,6 +107,23 @@ export default function SubmissionSummary({
             size="sm"
             radius="sm"
             color="primary"
+            className="gap-x-2 mb-2"
+            checked={paymentMethodConfirmed}
+            isDisabled={!paymentMethodSelected}
+            classNames={{ icon: "size-4" }}
+            onClick={() =>
+              confirmPaymentMethod((confirmation: boolean) => !confirmation)
+            }
+          >
+            {!paymentMethodSelected
+              ? "Choose Payment Method"
+              : "I've confirmed payment method"}
+          </Checkbox>
+
+          <Checkbox
+            size="sm"
+            radius="sm"
+            color="primary"
             className="gap-x-2"
             checked={agreedToTerms}
             classNames={{ icon: "size-4" }}
@@ -110,7 +134,7 @@ export default function SubmissionSummary({
           </Checkbox>
         </CardBody>
 
-        <CardFooter className="flex-col items-start px-5 pb-5 gap-y-8">
+        <CardFooter className="flex-col items-start px-5 pb-5 gap-y-2">
           <Button
             isDisabled={!canSubmitOrder()}
             size="lg"
@@ -121,8 +145,14 @@ export default function SubmissionSummary({
             className="border shadow-lg"
             onClick={() => submitOrder()}
           >
-            Submit
+            Redeem
           </Button>
+
+          {formValidated ? null : (
+            <small className="text-gray-400 flex items-center gap-x-3 px-.5">
+              Some Card Details are Missing - Check and provide them
+            </small>
+          )}
         </CardFooter>
       </Card>
     </div>
