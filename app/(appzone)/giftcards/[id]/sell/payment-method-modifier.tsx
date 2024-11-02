@@ -20,7 +20,7 @@ export default function PaymentMethod({
             <Button
               size="sm"
               color="warning"
-              variant="flat"
+              variant="light"
               className="ms-auto"
               onClick={() => onSelectMethod()}
             >
