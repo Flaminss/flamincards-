@@ -22,11 +22,11 @@ interface UserAuthContext {
 
 const UserAuthContext = createContext<UserAuthContext | undefined>(undefined);
 
-export function userUserAuthContext() {
+export function useUserAuthContext() {
   const context = useContext(UserAuthContext);
   if (!context) {
     throw new Error(
-      "userUserAuthContext must be used within a UserAuthProvider"
+      "useUserAuthContext must be used within a UserAuthProvider"
     );
   }
   return context;

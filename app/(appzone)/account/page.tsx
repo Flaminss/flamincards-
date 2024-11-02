@@ -35,7 +35,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import PWAPageTitle from "../page-title";
-import { userUserAuthContext } from "../../(auth)/user-auth-provider";
+import { useUserAuthContext } from "../../(auth)/user-auth-provider";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AppwriteException } from "appwrite";
@@ -44,7 +44,7 @@ import DeveloperAttributionLink from "@/app/developer-attribution-link";
 export default function BlogPage() {
   const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
-  const UserAuthContext = userUserAuthContext();
+  const UserAuthContext = useUserAuthContext();
 
   const logout = async () => {
     try {

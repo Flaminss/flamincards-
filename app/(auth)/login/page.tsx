@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { UserCircleIcon, XIcon } from "lucide-react";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
-import { userUserAuthContext } from "@/app/(auth)/user-auth-provider";
+import { useUserAuthContext } from "@/app/(auth)/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
 import AuthNavigationTop from "@app/(auth)/auth-navigation-top";
@@ -15,7 +15,7 @@ const exceptionTypeToStatus = {
 
 export default function LoginPage() {
   const router = useRouter();
-  const userAuth = userUserAuthContext();
+  const userAuth = useUserAuthContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

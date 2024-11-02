@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button, Input, Link, Spinner } from "@nextui-org/react";
 import { MailPlus, XIcon } from "lucide-react";
-import { userUserAuthContext } from "@/app/(auth)/user-auth-provider";
+import { useUserAuthContext } from "@/app/(auth)/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
 import AuthNavigationTop from "@/app/(auth)/auth-navigation-top";
@@ -15,7 +15,7 @@ const unsecureButStrongPassword = "Th1sIsP@s#w0rd";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const userAuth = userUserAuthContext();
+  const userAuth = useUserAuthContext();
 
   if (userAuth.session) {
     // check if account email is already verified

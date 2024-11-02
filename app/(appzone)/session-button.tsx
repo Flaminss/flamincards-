@@ -1,10 +1,10 @@
 import { Button } from "@nextui-org/react";
 import { LogInIcon, UserCircle2Icon } from "lucide-react";
-import { userUserAuthContext } from "@app/(auth)/user-auth-provider";
+import { useUserAuthContext } from "@app/(auth)/user-auth-provider";
 import Link from "next/link";
 
 export default function SessionButton() {
-  const userAuth = userUserAuthContext();
+  const userAuth = useUserAuthContext();
 
   if (userAuth.session) {
     return (
