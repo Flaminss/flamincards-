@@ -32,8 +32,8 @@ export default function PrimaryBankCard({
       <article className="relative p-5 sm:p-5 text-zinc-100 bg-content1 rounded-sm">
         <div className="flex gap-x-3 mb-5">
           <div className="inline-flex items-center">
-            <div className="size-4 rounded-full bg-warning-200"></div>
-            <div className="size-4 rounded-full bg-danger-100 -ms-2"></div>
+            <div className="size-3.5 rounded-full bg-warning-400"></div>
+            <div className="size-3.5 rounded-full bg-red-600 -ms-1.5 shadow-sm"></div>
           </div>
           <span className="text-xs text-zinc-400 uppercase font-mono">
             Primary Details
