@@ -1,7 +1,12 @@
+import { UserId } from "./update-profile";
+
 export type AccountInfo = {
-  // primary bank-billing info full-name
   $id: string;
-  fullName: string;
+  names: {
+    first: string;
+    last: string;
+    middle: string;
+  };
   phone: {
     no: number;
     verified: boolean;
@@ -15,4 +20,6 @@ export type AccountInfo = {
   referalCode: string;
 };
 
-export default async function action() {}
+export default async function action(search: { userId: UserId }) {
+  return;
+}
