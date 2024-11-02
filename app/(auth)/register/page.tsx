@@ -3,22 +3,23 @@
 import { useEffect, useState } from "react";
 import { Button, Input, Link, Spinner } from "@nextui-org/react";
 import { MailPlus, XIcon } from "lucide-react";
-import { useUserAuthContext } from "@app/(appzone)/account/user-auth-provider";
+import { userUserAuthContext } from "@/app/(auth)/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
-import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
-import clsx from "clsx";
+import AuthNavigationTop from "@/app/(auth)/auth-navigation-top";
 import * as schema from "./schema";
+import clsx from "clsx";
+
+const inputErrorClassNames = "pt-1 text-sm text-red-200";
+const unsecureButStrongPassword = "Th1sIsP@s#w0rd";
 
 export default function RegisterPage() {
-  const inputErrorClassNames = "pt-1 text-sm text-red-200";
-  const unsecureButStrongPassword = "Th1sIsP@s#w0rd";
-
   const router = useRouter();
-  const userAuthContext = useUserAuthContext();
+  const userAuth = userUserAuthContext();
 
-  if (userAuthContext.current) {
-    const { emailVerified } = userAuthContext.current;
+  if (userAuth.session) {
+    // check if account email is already verified
+    const emailVerified = false;
     if (emailVerified) {
       router.replace("/dashboard");
     } else {
@@ -50,8 +51,8 @@ export default function RegisterPage() {
         retypedPassword,
       });
 
-      await userAuthContext.register(email, password);
-      await userAuthContext.login(email, password);
+      await userAuth.register({ email, password });
+      await userAuth.login({ email, password });
       setRegistratonProgress("done");
     } catch (exception) {
       setRegistratonProgress("failed");
@@ -108,7 +109,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
-      <AuthFlowNavigationTop
+      <AuthNavigationTop
         renderCTA={() => (
           <Button as={Link} color="default" size="sm" radius="sm" href="/login">
             Login

@@ -13,7 +13,7 @@ import { ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
 import { BrandName } from "@app/(appzone)/navigation-top";
 
-export default function NavigationBarTop() {
+export default function TopNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button, Badge } from "@nextui-org/react";
 import { Bell, LogInIcon, Settings2, UserCircle2Icon } from "lucide-react";
 import clsx from "clsx";
+import SessionButton from "./session-button";
 
 export default function TopNavigation({ className }: { className?: string }) {
   const notificationCount = 2;
@@ -20,29 +21,7 @@ export default function TopNavigation({ className }: { className?: string }) {
           <BrandName />
         </div>
         <div className="navbar-end ms-auto gap-x-2">
-          <Button
-            endContent={<LogInIcon className="size-5" />}
-            color="primary"
-            variant="solid"
-            size="md"
-            radius="lg"
-            className="hidden"
-          >
-            Login
-          </Button>
-
-          <Button
-            isIconOnly
-            radius="lg"
-            aria-label="unread notifications count"
-            variant="flat"
-            size="md"
-            className="text-zinc-300"
-            href="/account"
-            as={Link}
-          >
-            <UserCircle2Icon className="size-6" />
-          </Button>
+          <SessionButton />
 
           <Badge
             content={""}

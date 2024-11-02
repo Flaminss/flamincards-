@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { UserCircleIcon, XIcon } from "lucide-react";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
-import { useUserAuthContext } from "@app/(appzone)/account/user-auth-provider";
+import { userUserAuthContext } from "@/app/(auth)/user-auth-provider";
 import { AppwriteException } from "appwrite";
 import { useRouter } from "next/navigation";
-import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
+import AuthNavigationTop from "@app/(auth)/auth-navigation-top";
 import clsx from "clsx";
 
 const exceptionTypeToStatus = {
@@ -14,8 +14,8 @@ const exceptionTypeToStatus = {
 } as any;
 
 export default function LoginPage() {
-  const user = useUserAuthContext();
   const router = useRouter();
+  const userAuth = userUserAuthContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +26,7 @@ export default function LoginPage() {
 
   async function handleLogin() {
     try {
-      await user.login(email, password);
+      await userAuth.login({ email, password });
       router.replace("/dashboard");
     } catch (exception) {
       if (exception instanceof AppwriteException) {
@@ -42,14 +42,14 @@ export default function LoginPage() {
     setError(null);
   };
 
-  if (user.current) {
+  if (userAuth.session) {
     router.replace("/dashboard");
     return;
   }
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
-      <AuthFlowNavigationTop
+      <AuthNavigationTop
         renderCTA={() => (
           <Button
             as={Link}

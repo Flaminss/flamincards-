@@ -189,7 +189,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               }}
               startContent={<GiftIcon className="text-lg " />}
             >
-              Giftcards Store
+              Gift Cards Store
             </ListboxItem>
             <ListboxItem
               key="transactions"

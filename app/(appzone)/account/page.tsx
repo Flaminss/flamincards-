@@ -35,7 +35,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import PWAPageTitle from "../page-title";
-import { useUserAuthContext } from "./user-auth-provider";
+import { userUserAuthContext } from "../../(auth)/user-auth-provider";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AppwriteException } from "appwrite";
@@ -44,12 +44,12 @@ import DeveloperAttributionLink from "@/app/developer-attribution-link";
 export default function BlogPage() {
   const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
-  const userAuthContext = useUserAuthContext();
+  const UserAuthContext = userUserAuthContext();
 
   const logout = async () => {
     try {
       setLoggingOut(true);
-      await userAuthContext.logout();
+      await UserAuthContext.logout();
       setLoggingOut(false);
       router.push("/login");
     } catch (exception) {
@@ -59,7 +59,7 @@ export default function BlogPage() {
         const { type } = exception;
 
         if (type === "general_unauthorized_scope") {
-          userAuthContext.forceLogout();
+          UserAuthContext.forceLogout();
           router.push("/register");
         }
       }

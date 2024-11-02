@@ -1,8 +1,8 @@
 "use client";
 
-import AuthFlowNavigationTop from "@app/(appzone)/auth-flow-navigation-top";
-import { MailSearchIcon } from "lucide-react";
+import AuthNavigationTop from "@app/(auth)/auth-navigation-top";
 import { useEffect } from "react";
+import { MailSearchIcon } from "lucide-react";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
@@ -22,7 +22,7 @@ export default function EmailConfirmationRequirementNoticePage({
 
   return (
     <div className="bg-black min-h-screen">
-      <AuthFlowNavigationTop renderCTA={() => null} />
+      <AuthNavigationTop renderCTA={() => null} />
 
       <main className="pt-10 py-8 px-4 max-w-lg mx-auto">
         <section className="py-10 grid place-content-center text-center">

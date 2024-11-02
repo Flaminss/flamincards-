@@ -1,8 +1,7 @@
-import { Button, Link } from "@nextui-org/react";
-import { BrandName } from "./navigation-top";
+import { BrandName } from "@/app/(appzone)/navigation-top";
 import React from "react";
 
-export default function AuthFlowNavigationTop({
+export default function AuthNavigationTop({
   renderCTA,
 }: {
   renderCTA: (...args: any[]) => React.ReactNode;

@@ -6,7 +6,7 @@ import {
   useEffect,
 } from "react";
 import EmailValidationFeedbackModal from "./modal";
-import { useUserAuthContext } from "@app/(appzone)/account/user-auth-provider";
+import { userUserAuthContext } from "@/app/(auth)/user-auth-provider";
 
 interface EmailValidationContextProps {
   showModal: boolean;
@@ -35,7 +35,7 @@ interface EmailValidationContextProviderProps {
 export function EmailValidationContextProvider({
   children,
 }: EmailValidationContextProviderProps) {
-  const userAuthContext = useUserAuthContext();
+  const UserAuthContext = userUserAuthContext();
   const [showModal, setShowModal] = useState<boolean>(false);
 
   function showFeedbackModal(message: string) {

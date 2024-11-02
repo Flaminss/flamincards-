@@ -1,18 +1,12 @@
-[X] fix routing of recent transactions details item to transaction page
+// FEATUERS 
+[] Add billing info selection to card purchase submission form
+[] Add push notifications for purchases 
+[] Write onboarding tasks checkers logic 
+[] Add Onboardding section 
+[] Add onboarding reset/reteach toggle to site help section
 
-[X] search for card with name 
-[X] allow sorting of cards by defined criterias
-[] design confirmation page for giftcard sell-page/action
-
-[] add close button to filter input of giftcard type
-[] add icons or color code to giftcard status filter input 
-[] add icons to giftcard flow filter input 
-
-
-[X] reduce icon size of transaction details list item
-[X] center the tab section in transaction details page 
-[X] reduce font size of transaction details page 
-
-
-FIXES
-[] Sync select and component state of filter options
+// FIXES
+[] Refactor validation logic for card purchase form 
+[] Brighten primary bank billing info in dashbaord page 
+[] Swap exchange-rate ui for tags in giftcard item listing 
+[] Add one of many card values modal cutting off visuals
