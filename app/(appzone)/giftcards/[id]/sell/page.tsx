@@ -166,6 +166,8 @@ export default function GiftcardBuyPage({
     [] as FileInputPayload[]
   );
 
+  const [paymentMethodSelected, setPaymentMethodSelected] = useState("");
+
   const handleCardValueProofChange = createCardValueProofChangeHandler({
     maxUploads: 1,
     onSetProof: setCardValueProof,
@@ -310,7 +312,11 @@ export default function GiftcardBuyPage({
   };
 
   const canSubmitOrder = () => {
-    if (consentToTradeAgreement && validateOrderForm().success) {
+    if (
+      consentToTradeAgreement &&
+      paymentMethodSelected &&
+      validateOrderForm().success
+    ) {
       return true;
     }
     return false;
@@ -656,6 +662,10 @@ export default function GiftcardBuyPage({
           updateTermAgreement={setConsentToTradeAgreement}
           canSubmitOrder={canSubmitOrder}
           submitOrder={submitOrder}
+          paymentMethodSelected={paymentMethodSelected}
+          onSelectPaymentMethod={() =>
+            setPaymentMethodSelected("paymentMethodId")
+          }
         />
       </main>
 
