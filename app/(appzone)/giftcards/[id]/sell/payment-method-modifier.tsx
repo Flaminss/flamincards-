@@ -1,12 +1,13 @@
-"use client";
-
 import { Button } from "@nextui-org/react";
 import { LandmarkIcon } from "lucide-react";
-import { useState } from "react";
 
-export default function PaymentMethod() {
-  const [methodSelected, setMethodSelected] = useState(false);
-
+export default function PaymentMethod({
+  methodSelected,
+  onSelectMethod,
+}: {
+  methodSelected: boolean;
+  onSelectMethod: () => void;
+}) {
   return (
     <div className="mb-4 mt-2 flex">
       <span className="me-4">
@@ -21,9 +22,9 @@ export default function PaymentMethod() {
               color="warning"
               variant="flat"
               className="ms-auto"
-              onClick={() => setMethodSelected(true)}
+              onClick={() => onSelectMethod()}
             >
-              Add
+              Choose
             </Button>
           </>
         ) : (
@@ -37,7 +38,7 @@ export default function PaymentMethod() {
               size="sm"
               color="primary"
               variant="light"
-              onClick={() => setMethodSelected(false)}
+              onClick={() => onSelectMethod()}
             >
               Change
             </Button>
