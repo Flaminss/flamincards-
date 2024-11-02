@@ -9,7 +9,7 @@ export default function GiftCardEntisementSection() {
     <div>
       <section className="py-8 px-4">
         <header className="flex justify-between items-center gap-2 mb-4">
-          <PWASectionTitle title="Redeem your Giftcards" />
+          <PWASectionTitle title="Redeem your Gift Cards" />
           <Button
             as={Link}
             href="/giftcards"
