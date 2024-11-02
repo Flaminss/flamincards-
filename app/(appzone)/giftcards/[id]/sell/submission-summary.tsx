@@ -22,11 +22,15 @@ export default function SubmissionSummary({
   updateTermAgreement,
   canSubmitOrder,
   submitOrder,
+  paymentMethodSelected,
+  onSelectPaymentMethod,
 }: {
   agreedToTerms: boolean;
   updateTermAgreement: any;
   canSubmitOrder: any;
   submitOrder: any;
+  paymentMethodSelected: any;
+  onSelectPaymentMethod: () => void;
 }) {
   // selected payment info = accessed from context
 
@@ -86,7 +90,10 @@ export default function SubmissionSummary({
               </span>
             </p>
 
-            <PaymentMethodModifier />
+            <PaymentMethodModifier
+              methodSelected={paymentMethodSelected}
+              onSelectMethod={onSelectPaymentMethod}
+            />
           </div>
 
           <Checkbox
