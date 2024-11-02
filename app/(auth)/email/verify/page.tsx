@@ -143,7 +143,7 @@ export default function EmailVerificationPage({
           "Something went wrong. Check your email and try the verification link again.",
       });
     }
-  }, [userId, secret]);
+  }, [userId, secret, nextExpectedRoute, router]);
 
   return (
     <div className="bg-black min-h-screen">
