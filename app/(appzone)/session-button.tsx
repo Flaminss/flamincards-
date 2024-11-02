@@ -29,6 +29,8 @@ export default function SessionButton() {
       color="primary"
       variant="flat"
       size="md"
+      href="/login"
+      as={Link}
       endContent={<LogInIcon className="size-5" />}
     >
       Login
