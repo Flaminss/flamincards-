@@ -363,7 +363,7 @@ export default function GiftcardBuyPage({
   return (
     <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
       <header className="py-5 md:pt-0 px-4 mb-2">
-        <PWAPageTitle title="Sell (Redeem) your Gift Card" />
+        <PWAPageTitle title="Sell - Redeem your Gift Card" />
       </header>
 
       <main className="px-4 py-6 flex flex-col gap-y-8 xl:flex-row gap-x-12">
