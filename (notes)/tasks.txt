@@ -6,6 +6,7 @@
 [] Add onboarding reset/reteach toggle to site help section
 
 // FIXES
+[] Refactor Gift Card sell page into smaller components
 [] Refactor validation logic for card purchase form 
 [] Brighten primary bank billing info in dashbaord page 
 [] Swap exchange-rate ui for tags in giftcard item listing 
