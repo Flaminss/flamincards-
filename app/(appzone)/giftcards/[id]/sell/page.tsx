@@ -348,9 +348,13 @@ export default function GiftcardBuyPage({
     const sale = await sellGiftcard(
       { userId: "this-is-a-user-id" },
       {
+        $id: "this-is-a-sale-id",
         cover: cardValueProof[0],
         title: form.title,
-        region: form.region,
+        region: {
+          ...form.region,
+          $id: "this-is-a-region-id",
+        },
         values,
         bank: {
           name: "Bank of America",
