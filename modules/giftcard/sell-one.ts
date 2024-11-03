@@ -6,6 +6,7 @@ import {
   mediaStorage,
 } from "@lib/appwrite";
 import { UserId } from "@modules/user/update-profile";
+import { Query } from "appwrite";
 
 const TRANSACTION_TYPE = "GIFTCARD";
 const BUCKET_ID = "hello";
@@ -24,11 +25,14 @@ type BankDetails = {
 };
 
 export type SaleForm = {
+  $id: string;
   cover: File;
   title: string;
   region: {
+    $id: string;
     name: string;
     abbr: string;
+    currency?: string;
   };
   values: Array<Value>;
   bank: BankDetails;
@@ -74,6 +78,25 @@ export default async function action(
   //   form.cover
   // );
 
+  const totalValueAmount = calcTotalAmount(form.values);
+
+  const regionValue = await databases.listDocuments(
+    DATABSE_ID,
+    collections.GIFTCARDS.REGION.VALUES.id,
+    [
+      Query.equal("region", [form.region.abbr]),
+      Query.and([
+        Query.lessThan("minAmount", totalValueAmount),
+        Query.greaterThan("maxAmount", totalValueAmount),
+      ]),
+    ]
+  );
+
+  let exchangeRate = -1;
+  if (regionValue.total > 0) {
+    exchangeRate = (regionValue as any)[0].rate;
+  }
+
   const transactionInDb = await databases.createDocument(
     DATABSE_ID,
     collections.TRANSACTIONS.id,
@@ -81,7 +104,7 @@ export default async function action(
     {
       UserId: search.userId,
       type: TRANSACTION_TYPE,
-      amount: calcTotalAmount(form.values),
+      amount: totalValueAmount * exchangeRate,
       status: "PENDING",
       flow: "IN",
       medium: "BANK",
