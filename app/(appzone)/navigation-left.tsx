@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import classnames from "clsx";
 import {
   Badge,
   Button,
@@ -64,52 +65,32 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </svg>
             <BrandName className="@max-w-20:hidden" />
           </div>
-          <Link href="/notifications">
-            {/* <Button
-              className="min-w-[unset] h-auto p-2"
-              size="md"
-              radius="sm"
+          
+          <Badge
+            content={""}
+            shape="circle"
+            color="danger"
+            variant="solid"
+            size="sm"
+            href="/notifications"
+            as={Link}
+          >
+            <Button
+              isIconOnly
+              radius="lg"
+              aria-label="unread notifications count"
               variant="flat"
-              // color="primary"
+              size="md"
+              className="text-zinc-300"
             >
-              <Badge
-                content={6}
-                // isInvisible={true}
-                size="md"
-                color="warning"
-                showOutline={false}
-                className="font-medium"
-              >
-                <Bell className="text-base" />
-              </Badge>
-            </Button> */}
-            <Badge
-              content={""}
-              shape="circle"
-              color="danger"
-              variant="solid"
-              size="sm"
-              href="/notifications"
-              as={Link}
-            >
-              <Button
-                isIconOnly
-                radius="lg"
-                aria-label="unread notifications count"
-                variant="flat"
-                size="md"
-                className="text-zinc-300"
-              >
-                <Bell className="size-5" />
-              </Button>
-            </Badge>
-          </Link>
+              <Bell className="size-5" />
+            </Button>
+          </Badge>
         </header>
 
         <section className="grow grid py-5 pt-20 pb-16 bg-zinc-950">
           <Listbox
             aria-label="Applicaitno Menu"
-            // onAction={(key) => alert(key)}
             className="p-0 gap-0 divide-y overflow-visible rounded-md px-2"
             itemClasses={{
               base: "px-3 py-3 rounded-md shadow-md text-lg gap-3 data-[hover=true]:bg-default-100/80",
@@ -118,6 +99,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             <ListboxItem
               key="dashboard"
               href="/dashboard"
+              description=""
               classNames={{
                 title: "text-medium ps-1",
               }}
@@ -129,12 +111,14 @@ export default function NavigationLeft({ className }: { className?: any }) {
             >
               Dashboard
             </ListboxItem>
-            {/* <ListboxSection
+
+            <ListboxSection
               title="Store"
               classNames={{ heading: "pt-4 ps-2" }}
               itemClasses={{
                 base: "px-3 py-3 rounded-md shadow-md text-lg gap-3 data-[hover=true]:bg-default-100/80",
               }}
+              hidden
             >
               <ListboxItem
                 key="lskdj"
@@ -146,6 +130,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
               >
                 Gift Cards
               </ListboxItem>
+
               <ListboxItem
                 key="23k2"
                 classNames={{
@@ -155,23 +140,21 @@ export default function NavigationLeft({ className }: { className?: any }) {
               >
                 Music
               </ListboxItem>
-            </ListboxSection> */}
-            <ListboxItem
+            </ListboxSection>
+
+            {/* <ListboxItem
               key="music"
               href="/music"
+              description=""
               classNames={{
                 title: "text-medium ps-1",
               }}
               startContent={
-                // <IconWrapper className="bg-warning/10 text-warning">
-                // <IconWrapper className="bg-default/50 text-foreground">
-                //   <LineChart className="text-lg " />
-                // </IconWrapper>
                 <ListMusicIcon className="" />
               }
             >
-              Music Store{" "}
-              {/* <Chip
+              Music Store{" "} */}
+            {/* <Chip
                 variant="flat"
                 color="success"
                 className="ms-2"
@@ -180,10 +163,12 @@ export default function NavigationLeft({ className }: { className?: any }) {
               >
                 New
               </Chip> */}
-            </ListboxItem>
+            {/* </ListboxItem> */}
+
             <ListboxItem
               key="giftcards"
               href="/giftcards"
+              description=""
               classNames={{
                 title: "text-medium ps-1",
               }}
@@ -191,9 +176,11 @@ export default function NavigationLeft({ className }: { className?: any }) {
             >
               Gift Cards Store
             </ListboxItem>
+
             <ListboxItem
               key="transactions"
               href="/transactions"
+              description=""
               classNames={{
                 title: "text-medium ps-1",
               }}
@@ -201,24 +188,10 @@ export default function NavigationLeft({ className }: { className?: any }) {
             >
               Transactions History
             </ListboxItem>
-            {/* <ListboxItem
-              key="license"
-              endContent={
-                <span className="text-small text-default-400">MIT</span>
-              }
-              startContent={
-                <IconWrapper className="bg-danger/10 text-danger dark:text-danger-500">
-                  <Bell />
-                </IconWrapper>
-              }
-            >
-              License
-            </ListboxItem> */}
           </Listbox>
 
           <Listbox
-           aria-label="some label goes here"
-            onAction={(key) => alert(key)}
+            aria-label="some label goes here"
             classNames={{ list: "px-2 gap-y-3" }}
             itemClasses={{
               base: "px-1 rounded-md shadow-md gap-3 data-[hover=true]:bg-default-100/80",
@@ -243,6 +216,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             >
               Invite friends
             </ListboxItem>
+
             <ListboxItem
               key="invite-friends"
               description="Keep us alive!"
@@ -341,8 +315,6 @@ export default function NavigationLeft({ className }: { className?: any }) {
     </aside>
   );
 }
-
-import classnames from "clsx";
 
 export const IconWrapper = ({
   children,
