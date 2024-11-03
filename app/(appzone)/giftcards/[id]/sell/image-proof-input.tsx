@@ -11,6 +11,8 @@ export type FileInputPayload = {
   extension: string;
   url: string;
   sizeReadable: number;
+  lastModified: any;
+  webkitRelativePath: any;
 } & Blob;
 
 type ImageProofInputProps = {
@@ -37,10 +39,7 @@ export default function ImageProofInput({
       <>
         {payloads.map((payload) => {
           return (
-            <div
-              key={payload.id}
-              className="relative border rounded-lg"
-            >
+            <div key={payload.id} className="relative border rounded-lg">
               <Img
                 src={payload.preview.url}
                 width={800}
