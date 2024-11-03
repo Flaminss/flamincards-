@@ -107,6 +107,19 @@ export default function SubmissionSummary({
             size="sm"
             radius="sm"
             color="primary"
+            className="gap-x-2"
+            checked={agreedToTerms}
+            classNames={{ icon: "size-4" }}
+            onClick={() => updateTermAgreement((consent: boolean) => !consent)}
+          >
+            I understand errors and attempted fraud may cause delay or refusal
+            of payment.
+          </Checkbox>
+
+          <Checkbox
+            size="sm"
+            radius="sm"
+            color="primary"
             className="gap-x-2 mb-2"
             checked={paymentMethodConfirmed}
             isDisabled={!paymentMethodSelected}
@@ -118,19 +131,6 @@ export default function SubmissionSummary({
             {!paymentMethodSelected
               ? "Choose Payment Method"
               : "I've confirmed payment method"}
-          </Checkbox>
-
-          <Checkbox
-            size="sm"
-            radius="sm"
-            color="primary"
-            className="gap-x-2"
-            checked={agreedToTerms}
-            classNames={{ icon: "size-4" }}
-            onClick={() => updateTermAgreement((consent: boolean) => !consent)}
-          >
-            I understand errors and attempted fraud may cause delay or refusal
-            of payment.
           </Checkbox>
         </CardBody>
 
