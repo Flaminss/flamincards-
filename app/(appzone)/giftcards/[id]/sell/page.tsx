@@ -42,17 +42,18 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import PWAPageTitle from "@app/(appzone)/page-title";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ImageProofInput, { FileInputPayload } from "./image-proof-input";
 import RouterLink from "next/link";
 import AmountInput from "./amount-input";
 import GiftCardFormatInput from "./card-format-input";
 import SubmissionSummary from "./submission-summary";
+import sellGiftcard from "@modules/giftcard/sell-one";
 
 const cardValueSchema = z.object({
   amount: z.number().min(1).max(100_000),
   ecode: z.string().optional(),
-  physical: z.array(z.any()),
+  image: z.array(z.any()),
 });
 
 const singleCardFormSchema = z.object({
@@ -76,7 +77,7 @@ const multipleCardFormSchema = z.object({
 type CardValue = {
   amount: number;
   ecode: string;
-  physical: FileInputPayload[];
+  image: FileInputPayload[];
 };
 
 type SingleCardForm = {
@@ -103,6 +104,7 @@ export default function GiftcardBuyPage({
   params: { id: string };
 }) {
   const router = useRouter();
+  const transactionId = useRef<string | null>(null);
 
   const [paymentMethodConfirmed, setPaymentMethodConfirmed] = useState(false);
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
@@ -269,7 +271,7 @@ export default function GiftcardBuyPage({
       const singleCardValue = {
         amount: parseFloat(cardValueAmount),
         ecode: cardValueEcode || "",
-        physical: selectedCardForm === "image" ? cardValueProof : [],
+        image: selectedCardForm === "image" ? cardValueProof : [],
       };
 
       if (selectedCardForm === "ecode" && !singleCardValue.ecode) {
@@ -280,10 +282,7 @@ export default function GiftcardBuyPage({
         };
       }
 
-      if (
-        selectedCardForm === "image" &&
-        singleCardValue.physical.length === 0
-      ) {
+      if (selectedCardForm === "image" && singleCardValue.image.length === 0) {
         return {
           success: false,
           error: "Image proof is required for Image form",
@@ -306,7 +305,7 @@ export default function GiftcardBuyPage({
     cardForm.value = cardValueEntries.map((entry) => ({
       amount: parseFloat(entry.amount),
       ecode: entry.ecode || "",
-      physical: entry.proof,
+      image: entry.proof,
     }));
 
     return multipleCardFormSchema.safeParse(cardForm);
@@ -324,48 +323,47 @@ export default function GiftcardBuyPage({
     return false;
   };
 
-  const submitOrder = () => {
-    const { data: cardForm } = validateOrderForm();
-    if (cardForm === undefined) {
-      // handle unexpected behaviour
+  const submitOrder = async () => {
+    const { data: form } = validateOrderForm();
+
+    // handle unexpected behaviour
+    if (form === undefined) {
       return;
     }
 
-    const formDataObject = new FormData();
-    formDataObject.append("card[title]", cardForm.title);
-    formDataObject.append("card[region][name]", cardForm.region.name);
-    formDataObject.append("card[region][abbr]", cardForm.region.abbr);
+    const values_ = (cardValueQuantity === "single"
+      ? [form.value]
+      : form.value) as unknown as any;
 
-    if (cardValueQuantity === "single") {
-      const singleCardForm = cardForm as SingleCardForm;
-      formDataObject.append(
-        "card[value][amount]",
-        singleCardForm.value.amount.toString()
-      );
-      formDataObject.append("card[value][ecode]", singleCardForm.value.ecode);
-      singleCardForm.value.physical.forEach((payload, index: number) => {
-        formDataObject.append(`card[value][physical][${index}]`, payload);
+    const values = values_.map((val: any) => {
+      const imgs = val.image.map((img: any) => {
+        return img.preview.url;
       });
-    } else {
-      const multipleCardForm = cardForm as MultipleCardForm;
-      multipleCardForm.value.forEach((entry, entryIndex) => {
-        formDataObject.append(
-          `card[value][${entryIndex}][amount]`,
-          entry.amount.toString()
-        );
-        formDataObject.append(`card[value][${entryIndex}][ecode]`, entry.ecode);
-        entry.physical.forEach((file, fileIndex) => {
-          formDataObject.append(
-            `card[value][${entryIndex}][physical][${fileIndex}]`,
-            file
-          );
-        });
-      });
-    }
+      return {
+        ...val,
+        image: imgs[0],
+      };
+    });
 
-    for (let [key, value] of Array.from(formDataObject.entries())) {
-      console.log(`${key}: ${value}`);
-    }
+    const sale = await sellGiftcard(
+      { userId: "this-is-a-user-id" },
+      {
+        cover: cardValueProof[0],
+        title: form.title,
+        region: form.region,
+        values,
+        bank: {
+          name: "Bank of America",
+          code: "BOA",
+          owner: "John Doe",
+          account: "1234567890",
+        },
+        comment: "",
+      }
+    );
+
+    transactionId.current = sale.transactionId;
+    onSubmitOrder();
   };
 
   return (
@@ -717,7 +715,7 @@ export default function GiftcardBuyPage({
                   className="text-sm font-normal"
                   onPress={() => {
                     onClose();
-                    router.push("/transactions/$randomId");
+                    router.push(`/transactions/${transactionId}`);
                   }}
                 >
                   View Order Status
@@ -781,3 +779,47 @@ function createUpdateCardValueAmountHandler({
     onSetValue(valueInt.toString());
   };
 }
+
+// const submitOrder = () => {
+//   const { data: cardForm } = validateOrderForm();
+//   if (cardForm === undefined) {
+//     // handle unexpected behaviour
+//     return;
+//   }
+
+//   const formDataObject = new FormData();
+//   formDataObject.append("card[title]", cardForm.title);
+//   formDataObject.append("card[region][name]", cardForm.region.name);
+//   formDataObject.append("card[region][abbr]", cardForm.region.abbr);
+
+//   if (cardValueQuantity === "single") {
+//     const singleCardForm = cardForm as SingleCardForm;
+//     formDataObject.append(
+//       "card[value][amount]",
+//       singleCardForm.value.amount.toString()
+//     );
+//     formDataObject.append("card[value][ecode]", singleCardForm.value.ecode);
+//     singleCardForm.value.image.forEach((payload, index: number) => {
+//       formDataObject.append(`card[value][image][${index}]`, payload);
+//     });
+//   } else {
+//     const multipleCardForm = cardForm as MultipleCardForm;
+//     multipleCardForm.value.forEach((entry, entryIndex) => {
+//       formDataObject.append(
+//         `card[value][${entryIndex}][amount]`,
+//         entry.amount.toString()
+//       );
+//       formDataObject.append(`card[value][${entryIndex}][ecode]`, entry.ecode);
+//       entry.image.forEach((file, fileIndex) => {
+//         formDataObject.append(
+//           `card[value][${entryIndex}][image][${fileIndex}]`,
+//           file
+//         );
+//       });
+//     });
+//   }
+
+//   for (let [key, value] of Array.from(formDataObject.entries())) {
+//     console.log(`${key}: ${value}`);
+//   }
+// };
