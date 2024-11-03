@@ -120,7 +120,7 @@ export default function SubmissionSummary({
             size="sm"
             radius="sm"
             color="primary"
-            className="gap-x-2 mb-2"
+            className="gap-x-2 mt-2"
             checked={paymentMethodConfirmed}
             isDisabled={!paymentMethodSelected}
             classNames={{ icon: "size-4" }}
