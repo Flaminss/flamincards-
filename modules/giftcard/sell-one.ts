@@ -119,6 +119,6 @@ export default async function action(
   );
 
   return {
-    transactionId: transactionInDb.$id,
+    transactionId: transactionInDb.$id.toString(),
   };
 }
