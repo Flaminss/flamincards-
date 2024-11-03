@@ -217,6 +217,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
           </Listbox>
 
           <Listbox
+           aria-label="some label goes here"
             onAction={(key) => alert(key)}
             classNames={{ list: "px-2 gap-y-3" }}
             itemClasses={{

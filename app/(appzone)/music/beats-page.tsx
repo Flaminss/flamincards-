@@ -337,7 +337,8 @@ export default function BeatsCatalogPage() {
         </article>
       </nav>
 
-      <Table
+      <Table 
+      aria-label="Music Catalog"
         isHeaderSticky
         classNames={{
           base: "px-4 py-6",

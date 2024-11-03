@@ -65,7 +65,10 @@ export default function FundingPage() {
             hidden: depositProcessStep !== 1,
           })}
         >
-          {/* <Listbox className="px-0">
+          {/* <Listbox className="px-0"
+                  aria-label="some label goes here"
+
+          >
             <ListboxItem
               key="bank"
               startContent={
@@ -179,7 +182,7 @@ export default function FundingPage() {
           })}
         >
           <div>
-            <Listbox className="-mx-2 px-0 mb-4">
+            <Listbox className="-mx-2 px-0 mb-4" aria-label="hello there">
               <ListboxItem
                 key="bank"
                 startContent={

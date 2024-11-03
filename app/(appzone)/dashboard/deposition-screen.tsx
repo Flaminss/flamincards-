@@ -98,7 +98,7 @@ export default function DepositionScreen({
                   hidden: depositProcessStep !== 1,
                 })}
               >
-                <Listbox className="px-0">
+                <Listbox className="px-0" aria-label="some label goes here">
                   <ListboxItem
                     key="bank"
                     startContent={

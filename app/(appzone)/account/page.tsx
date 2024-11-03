@@ -183,6 +183,7 @@ function MenuBlock({
 
       <Listbox
         variant="flat"
+        aria-label="some label goes here"
         color="default"
         className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-content1 overflow-visible shadow-small rounded-medium"
         itemClasses={{
