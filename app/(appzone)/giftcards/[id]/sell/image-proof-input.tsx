@@ -42,12 +42,7 @@ export default function ImageProofInput({
       <>
         {payloads.map((payload) => {
           return (
-            <div
-              key={payload.id}
-              className={clsx("relative border rounded-lg", {
-                hidden: "hidden",
-              })}
-            >
+            <div key={payload.id} className="relative border rounded-lg">
               <Img
                 src={payload.preview.url}
                 width={800}
@@ -77,7 +72,12 @@ export default function ImageProofInput({
 
   return (
     <Files
-      className="flex flex-col items-center justify-center w-full h-48.. border.. border-dashed.. border-default-400 bg-default-100 rounded-md shadow cursor-pointer"
+      className={clsx(
+        "flex flex-col items-center justify-center w-full h-48.. border.. border-dashed.. border-default-400 bg-default-100 rounded-md shadow cursor-pointer",
+        {
+          hidden: hidden,
+        }
+      )}
       accepts={["image/*", "video/mp4"]}
       maxFiles={bulkSelectUploadMaxCount}
       maxFileSize={payloadMaxByteSize}
