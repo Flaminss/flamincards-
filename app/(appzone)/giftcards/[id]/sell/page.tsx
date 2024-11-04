@@ -156,7 +156,7 @@ export default function GiftcardSellPage({
   const [cardValueQuantity, setCardValueQuantity] = useState("single");
 
   const [cardValueAmount, setCardValueAmount] = useState<string>("");
-  const [cardValueEcode, setCardValueEcode] = useState<string>();
+  const [cardValueEcode, setCardValueEcode] = useState<string>("");
   const [cardValueProof, setCardValueProof] = useState(
     [] as FileInputPayload[]
   );
