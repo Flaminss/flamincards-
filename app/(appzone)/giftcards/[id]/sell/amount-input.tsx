@@ -29,9 +29,9 @@ export default function AmountInput({
             onClick={() => {
               onValueChange(((parseInt(value) || 0) - 5).toString());
             }}
-            className="px-2.5 min-w-[unset] text-base font-semibold items-center hover:border-2"
+            className="border-2 border-transparent px-2 min-w-[unset] text-base font-semibold items-center group-hover:border-default-400 hover:!border-primary"
           >
-            <span className="text-xl text-primary leading-none">-</span>5
+            - 5
           </Button>
 
           <Button
@@ -40,9 +40,9 @@ export default function AmountInput({
             onClick={() => {
               onValueChange(((parseInt(value) || 0) + 5).toString());
             }}
-            className="px-2.5 min-w-[unset] text-base font-semibold items-center hover:border-2"
+            className="border-2 border-transparent px-2 min-w-[unset] text-base font-semibold items-center group-hover:border-default-400 hover:!border-primary"
           >
-            <span className="text-xl text-primary leading-none">+</span>5
+            + 5
           </Button>
         </div>
       }
