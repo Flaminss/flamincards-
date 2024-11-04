@@ -98,7 +98,7 @@ type MultipleCardForm = {
   value: CardValue[];
 };
 
-export default function GiftcardBuyPage({
+export default function GiftcardSellPage({
   params,
 }: {
   params: { id: string };
@@ -415,6 +415,7 @@ export default function GiftcardBuyPage({
               selectedKeys={selectedRegion}
               onSelectionChange={setSelectedRegion}
               selectorIcon={<ArrowDownCircleIcon />}
+              multiple={false}
               classNames={{
                 base: "cursor-pointer",
                 label: "ps-1",
