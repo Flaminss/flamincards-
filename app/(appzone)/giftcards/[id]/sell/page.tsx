@@ -109,9 +109,9 @@ export default function GiftcardSellPage({
   const [paymentMethodConfirmed, setPaymentMethodConfirmed] = useState(false);
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
   const {
-    isOpen: orderSubmitted,
-    onClose: onCompleteOrder,
-    onOpen: onSubmitOrder,
+    isOpen: orderProcessing,
+    onClose: onOrderCompleted,
+    onOpen: onOrdersubmitted,
     onOpenChange: onOrderSubmitChange,
   } = useDisclosure();
   const {
@@ -373,7 +373,7 @@ export default function GiftcardSellPage({
     );
 
     transactionId.current = sale.transactionId;
-    onSubmitOrder();
+    onOrdersubmitted();
   };
 
   return (
@@ -685,7 +685,7 @@ export default function GiftcardSellPage({
       </main>
 
       <Modal
-        isOpen={orderSubmitted}
+        isOpen={orderProcessing}
         onOpenChange={onOrderSubmitChange}
         backdrop="opaque"
         placement="center"
@@ -714,7 +714,7 @@ export default function GiftcardSellPage({
                   variant="flat"
                   fullWidth
                   className="text-sm font-normal"
-                  onPress={() => onCompleteOrder()}
+                  onPress={() => onOrderCompleted()}
                 >
                   Close
                 </Button>
