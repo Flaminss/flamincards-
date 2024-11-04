@@ -41,7 +41,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
     <aside
       className={clsx(
         className,
-        "sidebar-sticky sidebar max-w-52 justify-start overflow-x-hidden rounded-xl border"
+        "sidebar-sticky sidebar max-w-52 justify-start overflow-x-hidden rounded-xl border shadow-lg"
       )}
     >
       <div className="h-full overflow-y-auto flex flex-col thin-scrollbar">
@@ -65,7 +65,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
             </svg>
             <BrandName className="@max-w-20:hidden" />
           </div>
-          
+
           <Badge
             content={""}
             shape="circle"
@@ -77,7 +77,7 @@ export default function NavigationLeft({ className }: { className?: any }) {
           >
             <Button
               isIconOnly
-              radius="lg"
+              radius="md"
               aria-label="unread notifications count"
               variant="flat"
               size="md"
@@ -88,12 +88,12 @@ export default function NavigationLeft({ className }: { className?: any }) {
           </Badge>
         </header>
 
-        <section className="grow grid py-5 pt-20 pb-16 bg-zinc-950">
+        <section className="grow grid py-5 pt-20 pb-16 bg-zinc-950.. cardBackground">
           <Listbox
             aria-label="Applicaitno Menu"
             className="p-0 gap-0 divide-y overflow-visible rounded-md px-2"
             itemClasses={{
-              base: "px-3 py-3 rounded-md shadow-md text-lg gap-3 data-[hover=true]:bg-default-100/80",
+              base: "px-2.5 py-3 rounded-md text-default-600 data-[hover=true]:bg-default-100/80",
             }}
           >
             <ListboxItem
@@ -103,67 +103,28 @@ export default function NavigationLeft({ className }: { className?: any }) {
               classNames={{
                 title: "text-medium ps-1",
               }}
-              startContent={
-                // <IconWrapper className="bg-success/10 text-success p-1">
-                // <IconWrapper className="bg-default/50 text-foreground">
-                <Home className="" />
-              }
+              startContent={<Home className="size-5 text-default-600" />}
             >
               Dashboard
             </ListboxItem>
 
-            <ListboxSection
-              title="Store"
-              classNames={{ heading: "pt-4 ps-2" }}
-              itemClasses={{
-                base: "px-3 py-3 rounded-md shadow-md text-lg gap-3 data-[hover=true]:bg-default-100/80",
-              }}
-              hidden
-            >
-              <ListboxItem
-                key="lskdj"
-                href="/giftcards"
-                classNames={{
-                  title: "text-medium ps-1",
-                }}
-                startContent={<Gift />}
-              >
-                Gift Cards
-              </ListboxItem>
-
-              <ListboxItem
-                key="23k2"
-                classNames={{
-                  title: "text-medium ps-1",
-                }}
-                startContent={<ListMusicIcon />}
-              >
-                Music
-              </ListboxItem>
-            </ListboxSection>
-
             {/* <ListboxItem
+              hidden
               key="music"
               href="/music"
               description=""
               classNames={{
                 title: "text-medium ps-1",
               }}
-              startContent={
-                <ListMusicIcon className="" />
+              startContent={<ListMusicIcon className="" />}
+              endContent={
+                <Chip variant="flat" color="success" size="sm" radius="md">
+                  New
+                </Chip>
               }
             >
-              Music Store{" "} */}
-            {/* <Chip
-                variant="flat"
-                color="success"
-                className="ms-2"
-                size="sm"
-                radius="md"
-              >
-                New
-              </Chip> */}
-            {/* </ListboxItem> */}
+              Music Store
+            </ListboxItem> */}
 
             <ListboxItem
               key="giftcards"
@@ -172,9 +133,9 @@ export default function NavigationLeft({ className }: { className?: any }) {
               classNames={{
                 title: "text-medium ps-1",
               }}
-              startContent={<GiftIcon className="text-lg " />}
+              startContent={<GiftIcon className="size-5 text-default-600" />}
             >
-              Gift Cards Store
+              Gift Cards
             </ListboxItem>
 
             <ListboxItem
@@ -184,9 +145,9 @@ export default function NavigationLeft({ className }: { className?: any }) {
               classNames={{
                 title: "text-medium ps-1",
               }}
-              startContent={<History className="text-lg " />}
+              startContent={<History className="size-5 text-default-600" />}
             >
-              Transactions History
+              Transactions
             </ListboxItem>
           </Listbox>
 
