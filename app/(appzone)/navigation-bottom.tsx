@@ -232,13 +232,13 @@ export default function BottomNavigationPro({
           </Modal>
         );
       })}
+
       <Tabs
         color="primary"
         aria-label="Options"
         selectedKey={pathname}
-        className={clsx(classNames?.base, "w-full z-28")}
+        className={clsx(classNames?.base, "w-full z-30")}
         classNames={{
-          // base: "!z-50",
           cursor: "hidden",
           tab: "h-auto pt-2 px-0 max-w-28",
           tabList: clsx(
