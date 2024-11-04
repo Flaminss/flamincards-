@@ -44,7 +44,7 @@ export default function SubmissionSummary({
   return (
     <Card
       className="shadow-xl bg-default-100 max-w-md.. mx-auto border"
-      radius="lg"
+      radius="md"
     >
       <CardHeader className="xl:flex flex-col p-6">
         <h3 className="font-medium">Order Summary</h3>
