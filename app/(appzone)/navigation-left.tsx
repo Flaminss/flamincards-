@@ -214,10 +214,12 @@ export default function NavigationLeft({ className }: { className?: any }) {
             >
               FAQ
             </Button>
+
             <Button
               variant="light"
               size="md"
               radius="sm"
+              href="/#contact"
               fullWidth
               className="h-[unset] py-1.5 text-start"
               endContent={
@@ -226,10 +228,12 @@ export default function NavigationLeft({ className }: { className?: any }) {
             >
               Contact us
             </Button>
+
             <Button
               variant="light"
               size="md"
               radius="sm"
+              // href="/terms"
               fullWidth
               className="h-[unset] py-1.5 text-start"
               endContent={
