@@ -2,6 +2,7 @@ import { Button, Chip } from "@nextui-org/react";
 import { ImagePlusIcon, Trash2 } from "lucide-react";
 import Files from "react-files";
 import Img from "next/image";
+import clsx from "clsx";
 
 export type FileInputPayload = {
   id: string;
@@ -16,6 +17,7 @@ export type FileInputPayload = {
 } & Blob;
 
 type ImageProofInputProps = {
+  hidden?: boolean;
   payloads: FileInputPayload[];
   payloadUploadErrors: string[];
   payloadMaxByteSize: number;
@@ -26,6 +28,7 @@ type ImageProofInputProps = {
 };
 
 export default function ImageProofInput({
+  hidden = false,
   payloads,
   payloadUploadErrors,
   payloadMaxByteSize,
@@ -39,7 +42,12 @@ export default function ImageProofInput({
       <>
         {payloads.map((payload) => {
           return (
-            <div key={payload.id} className="relative border rounded-lg">
+            <div
+              key={payload.id}
+              className={clsx("relative border rounded-lg", {
+                hidden: "hidden",
+              })}
+            >
               <Img
                 src={payload.preview.url}
                 width={800}
