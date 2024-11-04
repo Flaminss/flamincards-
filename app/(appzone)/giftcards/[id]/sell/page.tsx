@@ -172,6 +172,8 @@ export default function GiftcardSellPage({
 
   const [paymentMethodSelected, setPaymentMethodSelected] = useState("");
 
+  const [comment, setComment] = useState<string>("");
+
   const handleCardValueProofChange = createCardValueProofChangeHandler({
     maxUploads: 1,
     onSetProof: setCardValueProof,
@@ -324,6 +326,20 @@ export default function GiftcardSellPage({
     return false;
   };
 
+  const completeOrder = () => {
+    setCardValueAmount("");
+    setCardValueEcode("");
+
+    setCardValueEntries([]);
+    setCardValueEntryProof([]);
+    setCardValueEntryProofUploadErrors([]);
+
+    setConsentToTradeAgreement(false);
+    setPaymentMethodConfirmed(false);
+
+    onOrderCompleted();
+  };
+
   const submitOrder = async () => {
     const { data: form } = validateOrderForm();
 
@@ -346,11 +362,6 @@ export default function GiftcardSellPage({
       };
     });
 
-    const completeOrder = () => {
-      // reset comment, card amount, card values state both of single and of multiple
-      onOrderCompleted();
-    };
-
     const sale = await sellGiftcard(
       { userId: "this-is-a-user-id" },
       {
@@ -368,7 +379,7 @@ export default function GiftcardSellPage({
           owner: "John Doe",
           account: "1234567890",
         },
-        comment: "",
+        comment,
       }
     );
 
@@ -659,6 +670,8 @@ export default function GiftcardSellPage({
               label="Write a Comment (Optional)"
               placeholder="Give special instructions or explanations on usage (if any)..."
               labelPlacement="outside"
+              value={comment}
+              onValueChange={setComment}
               classNames={{
                 label: "ps-1 text-base font-medium mb-.5",
                 input: "p-1.5",
@@ -714,7 +727,7 @@ export default function GiftcardSellPage({
                   variant="flat"
                   fullWidth
                   className="text-sm font-normal"
-                  onPress={() => onOrderCompleted()}
+                  onPress={() => completeOrder()}
                 >
                   Close
                 </Button>
