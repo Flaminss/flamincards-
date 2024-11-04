@@ -8,6 +8,7 @@ import {
   Checkbox,
   CardFooter,
   Image,
+  Spinner,
 } from "@nextui-org/react";
 import {
   ArrowRightCircleIcon,
@@ -17,8 +18,10 @@ import {
   AlertCircleIcon,
 } from "lucide-react";
 import PaymentMethodModifier from "./payment-method-modifier";
+import clsx from "clsx";
 
 export default function SubmissionSummary({
+  isSubmitting,
   agreedToTerms,
   formValidated,
   updateTermAgreement,
@@ -29,6 +32,7 @@ export default function SubmissionSummary({
   paymentMethodConfirmed,
   onSelectPaymentMethod,
 }: {
+  isSubmitting: boolean;
   agreedToTerms: boolean;
   formValidated: boolean;
   updateTermAgreement: any;
@@ -141,8 +145,12 @@ export default function SubmissionSummary({
           color="primary"
           radius="sm"
           fullWidth={true}
-          className="border shadow-lg"
+          className={clsx("border shadow-lg uppercase", {
+            "bg-default": isSubmitting,
+          })}
           onClick={() => submitOrder()}
+          isLoading={isSubmitting}
+          spinner={<Spinner size="sm" color="warning" />}
         >
           Redeem
         </Button>
