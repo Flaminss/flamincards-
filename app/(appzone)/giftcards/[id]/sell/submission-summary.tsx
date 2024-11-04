@@ -42,36 +42,36 @@ export default function SubmissionSummary({
   // selected payment info = accessed from context
 
   return (
-    <div className="md:pt-6 grow w-full lg:max-w-xl xl:max-w-sm">
+    <div className="md:pt-6 grow w-full max-w-xl xl:max-w-sm">
       <Card
-        className="shadow-xl cardBackground max-w-md mx-auto border"
+        className="shadow-xl bg-default-100 max-w-md.. mx-auto border"
         radius="lg"
       >
-        <CardHeader className="hidden xl:flex flex-col p-6">
-          {/* <h3 className="mb-8 text-lg">
-            Order Summary
-          </h3> */}
+        <CardHeader className="xl:flex flex-col p-6">
+          <h3 className="font-medium">Order Summary</h3>
 
-          <Image
-            shadow="lg"
-            radius="lg"
-            width={undefined}
-            height={undefined}
-            src="https://th.bing.com/th/id/OIP.I89DeQMyCgVqj_eo-QgPYAHaEr?rs=1&pid=ImgDetMain"
-            alt=""
-            className="hidden md:block object-cover w-full h-[120px] max-w-screen-md.. mb-2"
-          />
-          <Button
-            size="md"
-            color="warning"
-            variant="light"
-            className="py-0"
-            href="/giftcards"
-            as={RouterLink}
-            endContent={<ArrowRightCircleIcon size={16} />}
-          >
-            Choose different card
-          </Button>
+          <div className="hidden xl:block mt-8">
+            <Image
+              shadow="lg"
+              radius="lg"
+              width={undefined}
+              height={undefined}
+              src="https://th.bing.com/th/id/OIP.I89DeQMyCgVqj_eo-QgPYAHaEr?rs=1&pid=ImgDetMain"
+              alt=""
+              className="hidden md:block object-cover w-full h-[120px] max-w-screen-md.. mb-2"
+            />
+            <Button
+              size="md"
+              color="warning"
+              variant="light"
+              className="py-0"
+              href="/giftcards"
+              as={RouterLink}
+              endContent={<ArrowRightCircleIcon size={16} />}
+            >
+              Choose different card
+            </Button>
+          </div>
         </CardHeader>
 
         <CardBody className="pt-5 pb-4 px-5">
@@ -134,7 +134,7 @@ export default function SubmissionSummary({
           </Checkbox>
         </CardBody>
 
-        <CardFooter className="flex-col items-start px-5 pb-5 gap-y-2">
+        <CardFooter className="flex-col items-start px-5 pb-5 gap-y-2.5">
           <Button
             isDisabled={!canSubmitOrder()}
             size="lg"
@@ -149,7 +149,7 @@ export default function SubmissionSummary({
           </Button>
 
           {formValidated ? null : (
-            <small className="text-gray-400 flex items-center gap-x-3 px-.5">
+            <small className="text-danger-500 self-center text-center flex items-center gap-x-3 px-.5">
               Some Card Details are Missing - Check and provide them
             </small>
           )}
