@@ -480,8 +480,8 @@ export default function GiftcardSellPage({
                     />
 
                     <Input
-                      hidden={selectedCardForm !== "ecode"}
-                      label="E-Code (Optional)"
+                      className={clsx({ hidden: selectedCardForm !== "ecode" })}
+                      label="E-Code"
                       placeholder="XXXX-XXXX-XXXX"
                       size="lg"
                       radius="sm"
