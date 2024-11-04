@@ -346,6 +346,11 @@ export default function GiftcardSellPage({
       };
     });
 
+    const completeOrder = () => {
+      // reset comment, card amount, card values state both of single and of multiple
+      onOrderCompleted();
+    };
+
     const sale = await sellGiftcard(
       { userId: "this-is-a-user-id" },
       {
