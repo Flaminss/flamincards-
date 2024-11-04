@@ -479,26 +479,26 @@ export default function GiftcardSellPage({
                       onValueChange={updateCardValueAmount}
                     />
 
-                    {selectedCardForm === "ecode" ? (
-                      <Input
-                        label="E-Code (Optional)"
-                        placeholder="XXXX-XXXX-XXXX"
-                        size="lg"
-                        radius="sm"
-                        value={cardValueEcode}
-                        onValueChange={setCardValueEcode}
-                      />
-                    ) : (
-                      <ImageProofInput
-                        payloads={cardValueProof}
-                        payloadUploadErrors={cardValueProofUploadErrors}
-                        payloadMaxByteSize={1_500_000}
-                        allowUploadOnClick
-                        bulkSelectUploadMaxCount={1}
-                        onFileInputChange={handleCardValueProofChange}
-                        onRemovePayload={removeCardValueProof}
-                      />
-                    )}
+                    <Input
+                      hidden={selectedCardForm !== "ecode"}
+                      label="E-Code (Optional)"
+                      placeholder="XXXX-XXXX-XXXX"
+                      size="lg"
+                      radius="sm"
+                      value={cardValueEcode}
+                      onValueChange={setCardValueEcode}
+                    />
+
+                    <ImageProofInput
+                      hidden={selectedCardForm !== "image"}
+                      payloads={cardValueProof}
+                      payloadUploadErrors={cardValueProofUploadErrors}
+                      payloadMaxByteSize={1_500_000}
+                      allowUploadOnClick
+                      bulkSelectUploadMaxCount={1}
+                      onFileInputChange={handleCardValueProofChange}
+                      onRemovePayload={removeCardValueProof}
+                    />
                   </div>
                 </Tab>
 
