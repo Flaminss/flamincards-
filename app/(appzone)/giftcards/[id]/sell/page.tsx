@@ -49,6 +49,7 @@ import AmountInput from "./amount-input";
 import GiftCardFormatInput from "./card-format-input";
 import SubmissionSummary from "./submission-summary";
 import sellGiftcard from "@modules/giftcard/sell-one";
+import { AppwriteException } from "appwrite";
 
 const cardValueSchema = z.object({
   amount: z.number().min(1).max(100_000),
@@ -105,6 +106,8 @@ export default function GiftcardSellPage({
 }) {
   const router = useRouter();
   const transactionId = useRef<string | null>(null);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [paymentMethodConfirmed, setPaymentMethodConfirmed] = useState(false);
   const [consentToTradeAgreement, setConsentToTradeAgreement] = useState(false);
@@ -326,7 +329,7 @@ export default function GiftcardSellPage({
     return false;
   };
 
-  const completeOrder = () => {
+  const resetOrder = () => {
     setCardValueAmount("");
     setCardValueEcode("");
 
@@ -336,11 +339,10 @@ export default function GiftcardSellPage({
 
     setConsentToTradeAgreement(false);
     setPaymentMethodConfirmed(false);
-
-    onOrderCompleted();
   };
 
   const submitOrder = async () => {
+    setIsSubmitting(true);
     const { data: form } = validateOrderForm();
 
     // handle unexpected behaviour
@@ -352,38 +354,44 @@ export default function GiftcardSellPage({
       ? [form.value]
       : form.value) as unknown as any;
 
-    const values = values_.map((val: any) => {
-      const imgs = val.image.map((img: any) => {
-        return img.preview.url;
-      });
-      return {
-        ...val,
-        image: imgs[0],
-      };
-    });
+    try {
+      const sale = await sellGiftcard(
+        { userId: "this-is-a-user-id" },
+        {
+          $id: "this-is-a-sale-id",
+          cover: cardValueProof[0],
+          title: form.title,
+          region: {
+            ...form.region,
+            $id: "this-is-a-region-id",
+          },
+          values: values_.map((val: any) => {
+            const imgs = val.image.map((img: any) => img.preview.url);
+            return {
+              ...val,
+              image: imgs[0],
+            };
+          }),
+          bank: {
+            name: "Bank of America",
+            code: "BOA",
+            owner: "John Doe",
+            account: "1234567890",
+          },
+          comment,
+        }
+      );
 
-    const sale = await sellGiftcard(
-      { userId: "this-is-a-user-id" },
-      {
-        $id: "this-is-a-sale-id",
-        cover: cardValueProof[0],
-        title: form.title,
-        region: {
-          ...form.region,
-          $id: "this-is-a-region-id",
-        },
-        values,
-        bank: {
-          name: "Bank of America",
-          code: "BOA",
-          owner: "John Doe",
-          account: "1234567890",
-        },
-        comment,
+      transactionId.current = sale.transactionId;
+      resetOrder();
+    } catch (exception) {
+      if (exception instanceof AppwriteException) {
+        // alert (toast) something went wrong
       }
-    );
+    } finally {
+      setIsSubmitting(false);
+    }
 
-    transactionId.current = sale.transactionId;
     onOrdersubmitted();
   };
 
@@ -682,6 +690,7 @@ export default function GiftcardSellPage({
 
         <div className="md:pt-6 grow w-full max-w-xl xl:max-w-sm">
           <SubmissionSummary
+            isSubmitting={isSubmitting}
             agreedToTerms={consentToTradeAgreement}
             updateTermAgreement={setConsentToTradeAgreement}
             paymentMethodConfirmed={paymentMethodConfirmed}
@@ -727,7 +736,7 @@ export default function GiftcardSellPage({
                   variant="flat"
                   fullWidth
                   className="text-sm font-normal"
-                  onPress={() => completeOrder()}
+                  onPress={() => onOrderCompleted()}
                 >
                   Close
                 </Button>
