@@ -661,19 +661,21 @@ export default function GiftcardBuyPage({
           </form>
         </div>
 
-        <SubmissionSummary
-          agreedToTerms={consentToTradeAgreement}
-          updateTermAgreement={setConsentToTradeAgreement}
-          paymentMethodConfirmed={paymentMethodConfirmed}
-          confirmPaymentMethod={setPaymentMethodConfirmed}
-          canSubmitOrder={canSubmitOrder}
-          formValidated={validateOrderForm().success}
-          submitOrder={submitOrder}
-          paymentMethodSelected={paymentMethodSelected}
-          onSelectPaymentMethod={() =>
-            setPaymentMethodSelected("paymentMethodId")
-          }
-        />
+        <div className="md:pt-6 grow w-full max-w-xl xl:max-w-sm">
+          <SubmissionSummary
+            agreedToTerms={consentToTradeAgreement}
+            updateTermAgreement={setConsentToTradeAgreement}
+            paymentMethodConfirmed={paymentMethodConfirmed}
+            confirmPaymentMethod={setPaymentMethodConfirmed}
+            canSubmitOrder={canSubmitOrder}
+            formValidated={validateOrderForm().success}
+            submitOrder={submitOrder}
+            paymentMethodSelected={paymentMethodSelected}
+            onSelectPaymentMethod={() =>
+              setPaymentMethodSelected("paymentMethodId")
+            }
+          />
+        </div>
       </main>
 
       <Modal
