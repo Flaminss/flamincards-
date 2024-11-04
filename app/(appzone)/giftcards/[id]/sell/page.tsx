@@ -142,10 +142,11 @@ export default function GiftcardSellPage({
   const [selectedRegion, setSelectedRegion] = useState<Selection>(
     new Set(["usa"])
   );
+
   const getRegionInitials = () => {
     const value = Array.from(selectedRegion)[0];
 
-    if (selectedRegion === "all") {
+    if (!value || selectedRegion === "all") {
       return "";
     }
 
@@ -415,7 +416,6 @@ export default function GiftcardSellPage({
               selectedKeys={selectedRegion}
               onSelectionChange={setSelectedRegion}
               selectorIcon={<ArrowDownCircleIcon />}
-              multiple={false}
               classNames={{
                 base: "cursor-pointer",
                 label: "ps-1",
