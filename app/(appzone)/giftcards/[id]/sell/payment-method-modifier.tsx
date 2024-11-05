@@ -20,7 +20,7 @@ export default function PaymentMethod({
             <Button
               size="sm"
               color="warning"
-              variant="light"
+              variant="faded"
               className="ms-auto"
               onClick={() => onSelectMethod()}
             >
@@ -37,7 +37,7 @@ export default function PaymentMethod({
             <Button
               size="sm"
               color="primary"
-              variant="light"
+              variant="faded"
               onClick={() => onSelectMethod()}
             >
               Change

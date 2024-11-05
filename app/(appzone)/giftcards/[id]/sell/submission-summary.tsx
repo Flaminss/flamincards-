@@ -99,7 +99,9 @@ export default function SubmissionSummary({
               {currencyIcons["USD"]?.symbol}
             </span>
           </p>
+        </div>
 
+        <div className="mb-6">
           <PaymentMethodModifier
             methodSelected={paymentMethodSelected}
             onSelectMethod={onSelectPaymentMethod}
@@ -131,9 +133,7 @@ export default function SubmissionSummary({
             confirmPaymentMethod((confirmation: boolean) => !confirmation)
           }
         >
-          {!paymentMethodSelected
-            ? "Choose Payment Method"
-            : "I've confirmed payment method"}
+          I've confirmed payment method
         </Checkbox>
       </CardBody>
 
