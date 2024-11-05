@@ -602,7 +602,8 @@ export default function GiftcardSellPage({
                                 <h4 className="text-2xl font-medium">
                                   Amazon (USA) Gift Card
                                 </h4>
-                                <p className="text-xs text-gray-400">
+
+                                <p className="text-xs text-primary-400">
                                   You're adding one of many cards to redeem
                                 </p>
                               </div>
