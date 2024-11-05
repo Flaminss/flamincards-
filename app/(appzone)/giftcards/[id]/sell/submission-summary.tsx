@@ -113,9 +113,9 @@ export default function SubmissionSummary({
           radius="sm"
           color="primary"
           className="gap-x-2"
-          checked={agreedToTerms}
+          isSelected={agreedToTerms}
           classNames={{ icon: "size-4" }}
-          onClick={() => updateTermAgreement((consent: boolean) => !consent)}
+          onValueChange={() => updateTermAgreement((consent: boolean) => !consent)}
         >
           I understand errors and attempted fraud may cause delay or refusal of
           payment.
@@ -126,10 +126,10 @@ export default function SubmissionSummary({
           radius="sm"
           color="primary"
           className="gap-x-2 mt-2"
-          checked={paymentMethodConfirmed}
+          isSelected={paymentMethodConfirmed}
           isDisabled={!paymentMethodSelected}
           classNames={{ icon: "size-4" }}
-          onClick={() =>
+          onValueChange={() =>
             confirmPaymentMethod((confirmation: boolean) => !confirmation)
           }
         >
