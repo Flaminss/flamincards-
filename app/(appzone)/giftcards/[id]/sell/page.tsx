@@ -105,7 +105,7 @@ export default function GiftcardSellPage({
   params: { id: string };
 }) {
   const router = useRouter();
-  const transactionId = useRef<string | null>(null);
+  const [transactionId, setTransactionId] = useState<string | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -353,7 +353,7 @@ export default function GiftcardSellPage({
       : form.value) as unknown as any;
 
     try {
-      const sale = await sellGiftcard(
+      const { transactionId } = await sellGiftcard(
         { userId: "this-is-a-user-id" },
         {
           $id: "this-is-a-sale-id",
@@ -380,7 +380,7 @@ export default function GiftcardSellPage({
         }
       );
 
-      transactionId.current = sale.transactionId;
+      setTransactionId(transactionId);
       resetOrder();
     } catch (exception) {
       console.warn("Something went wrong");
@@ -745,7 +745,7 @@ export default function GiftcardSellPage({
                 >
                   Close
                 </Button>
-                
+
                 <Button
                   color="primary"
                   radius="sm"
