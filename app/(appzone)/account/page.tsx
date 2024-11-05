@@ -27,10 +27,13 @@ import {
   MessageCircleQuestionIcon,
   MoonIcon,
   NotebookPenIcon,
+  PenBoxIcon,
+  PenIcon,
   PhoneIcon,
   ShieldPlusIcon,
   TrophyIcon,
   UserCircleIcon,
+  UserIcon,
   WalletIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -79,21 +82,17 @@ export default function BlogPage() {
           radius="sm"
           variant="solid"
           color="default"
-          className="bg-content1 text-sm h-[unset] py-4 gap-x-4"
+          className="bg-content1 text-sm h-[unset] py-4 gap-x-3 px-3"
           startContent={
-            <div className="p-2.5 rounded-lg border">
-              <UserCircleIcon className="size-8 text-primary" />
+            <div className="p-1 rounded-md text-zinc-400">
+              <UserIcon className="size-6" />
             </div>
           }
-          endContent={
-            <div className="">
-              <NotebookPenIcon className="text-zinc-400" />
-            </div>
-          }
+          endContent={<PenIcon className="text-zinc-400 size-4" />}
         >
-          <div className="flex flex-col gap-y-.5 flex-grow text-start items-start">
-            <h4 className="text-lg">Your Fullname</h4>
-            <p className="text-zinc-400">Edit your Profile</p>
+          <div className="flex flex-col flex-grow text-start items-start">
+            <h4 className="font-medium leading-6">Guest</h4>
+            <p className="text-xs text-zinc-400">Edit your Profile</p>
           </div>
         </Button>
 
