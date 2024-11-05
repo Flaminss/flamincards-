@@ -725,14 +725,15 @@ export default function GiftcardSellPage({
               <ModalBody className="justify-center items-center text-center p-8 pb-6">
                 <ClockIcon className="size-14 mb-2 text-warning" />
                 <h3 className="text-xl font-semibold">
-                  Order Successfully Submitted
+                  Order Submitted
                 </h3>
                 <p className="text-sm text-zinc-400">
                   Your order is being processed! <br />
                   Thank you for your patience.
                 </p>
               </ModalBody>
-              <ModalFooter className="flex-col items-center p-5">
+
+              <ModalFooter className="items-center p-5">
                 <Button
                   color="primary"
                   radius="sm"
@@ -744,6 +745,7 @@ export default function GiftcardSellPage({
                 >
                   Close
                 </Button>
+                
                 <Button
                   color="primary"
                   radius="sm"
