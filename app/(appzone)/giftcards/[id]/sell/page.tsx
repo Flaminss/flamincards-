@@ -383,14 +383,15 @@ export default function GiftcardSellPage({
       transactionId.current = sale.transactionId;
       resetOrder();
     } catch (exception) {
+      console.warn("Something went wrong");
+
       if (exception instanceof AppwriteException) {
         // alert (toast) something went wrong
       }
     } finally {
       setIsSubmitting(false);
+      onOrdersubmitted();
     }
-
-    onOrdersubmitted();
   };
 
   return (
