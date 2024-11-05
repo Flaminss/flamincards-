@@ -440,6 +440,7 @@ export default function GiftcardSellPage({
               selectedKeys={selectedRegion}
               onSelectionChange={setSelectedRegion}
               selectorIcon={<ArrowDownCircleIcon />}
+              disallowEmptySelection
               classNames={{
                 base: "cursor-pointer",
                 label: "ps-1",
