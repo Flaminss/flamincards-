@@ -50,6 +50,7 @@ import GiftCardFormatInput from "./card-format-input";
 import SubmissionSummary from "./submission-summary";
 import sellGiftcard from "@modules/giftcard/sell-one";
 import { AppwriteException } from "appwrite";
+import Link from "next/link";
 
 const cardValueSchema = z.object({
   amount: z.number().min(1).max(100_000),
@@ -716,7 +717,6 @@ export default function GiftcardSellPage({
         backdrop="opaque"
         placement="center"
         className="z-50"
-        isDismissable={false}
         hideCloseButton
       >
         <ModalContent className="border">
@@ -724,9 +724,7 @@ export default function GiftcardSellPage({
             <>
               <ModalBody className="justify-center items-center text-center p-8 pb-6">
                 <ClockIcon className="size-14 mb-2 text-warning" />
-                <h3 className="text-xl font-semibold">
-                  Order Submitted
-                </h3>
+                <h3 className="text-xl font-semibold">Order Submitted</h3>
                 <p className="text-sm text-zinc-400">
                   Your order is being processed! <br />
                   Thank you for your patience.
@@ -752,11 +750,10 @@ export default function GiftcardSellPage({
                   size="lg"
                   variant="solid"
                   fullWidth
+                  as={Link}
+                  href={`/transactions/${transactionId}`}
+                  onPress={() => onClose()}
                   className="text-sm font-normal"
-                  onPress={() => {
-                    onClose();
-                    router.push(`/transactions/${transactionId}`);
-                  }}
                 >
                   View Order Status
                 </Button>
