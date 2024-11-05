@@ -318,7 +318,7 @@ export default function GiftcardSellPage({
   };
 
   const canSubmitOrder = () => {
-    if (
+    return (
       consentToTradeAgreement &&
       paymentMethodSelected &&
       paymentMethodConfirmed &&
