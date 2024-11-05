@@ -16,6 +16,7 @@ import {
   ArrowLeftRightIcon,
   LandmarkIcon,
   AlertCircleIcon,
+  AlertTriangleIcon,
 } from "lucide-react";
 import PaymentMethodModifier from "./payment-method-modifier";
 import clsx from "clsx";
@@ -110,12 +111,11 @@ export default function SubmissionSummary({
 
         <Checkbox
           size="sm"
-          radius="sm"
-          color="primary"
           className="gap-x-2"
           isSelected={agreedToTerms}
-          classNames={{ icon: "size-4" }}
-          onValueChange={() => updateTermAgreement((consent: boolean) => !consent)}
+          onValueChange={() =>
+            updateTermAgreement((consent: boolean) => !consent)
+          }
         >
           I understand errors and attempted fraud may cause delay or refusal of
           payment.
@@ -123,12 +123,9 @@ export default function SubmissionSummary({
 
         <Checkbox
           size="sm"
-          radius="sm"
-          color="primary"
           className="gap-x-2 mt-2"
           isSelected={paymentMethodConfirmed}
           isDisabled={!paymentMethodSelected}
-          classNames={{ icon: "size-4" }}
           onValueChange={() =>
             confirmPaymentMethod((confirmation: boolean) => !confirmation)
           }
@@ -138,6 +135,13 @@ export default function SubmissionSummary({
       </CardBody>
 
       <CardFooter className="flex-col items-start px-5 pb-5 gap-y-2.5">
+        {formValidated ? null : (
+          <small className="text-warning text-sm text-center.. block w-full">
+            Some card details are missing. Please check and provide them to
+            continue
+          </small>
+        )}
+
         <Button
           isDisabled={!canSubmitOrder()}
           size="lg"
@@ -154,12 +158,6 @@ export default function SubmissionSummary({
         >
           Redeem
         </Button>
-
-        {formValidated ? null : (
-          <small className="text-danger-500 self-center text-center flex items-center gap-x-3 px-.5">
-            Some Card Details are Missing - Check and provide them
-          </small>
-        )}
       </CardFooter>
     </Card>
   );
