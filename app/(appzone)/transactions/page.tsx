@@ -33,15 +33,15 @@ export default function TransactionsPage() {
 
       <section className="py-6 px-4 grid gap-y-16">
         <article>
-          <h3 className="mb-2 text-lg">Today</h3>
+          <h3 className="mb-4 text-lg">Today</h3>
           <HistoryBatch />
         </article>
         <article>
-          <h3 className="mb-2 text-lg">Yesterday</h3>
+          <h3 className="mb-4 text-lg">Yesterday</h3>
           <HistoryBatch />
         </article>
         <article>
-          <h3 className="mb-2 text-lg">August</h3>
+          <h3 className="mb-4 text-lg">August</h3>
           <HistoryBatch />
         </article>
       </section>

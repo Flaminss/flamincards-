@@ -19,7 +19,7 @@ import icons from "currency-icons";
 import clsx from "clsx";
 
 const columns = [
-  { name: "", uid: "visuals" },
+  { name: "Type", uid: "visuals" },
   { name: "Mobile Brief", uid: "mobile-brief" },
   { name: "Mobile Figures", uid: "mobile-figures" },
   { name: "", uid: "name" },
@@ -120,11 +120,11 @@ export default function HistoryBatch() {
             href="/transactions/some-id"
             className="grid gap-y-1 justify-items-end text-zinc"
           >
-            <p className="text-medium lg:text-base whitespace-nowrap flex items-center gap-x-2">
-              <Plus className="size-3" />
-              {icons["NGN"]?.symbol || "₿"} 5,000
-            </p>
-            <p className="text-xs text-success">Successful</p>
+            <span className="text-medium lg:text-base whitespace-nowrap flex items-center gap-x-1">
+              <Plus className="size-4" />
+              {icons["NGN"]?.symbol || "₿"}5,000
+            </span>
+            <span className="text-xs text-success">Successful</span>
           </Link>
         );
       case "name":
@@ -164,7 +164,7 @@ export default function HistoryBatch() {
   return (
     <Table
       aria-label="Example table with custom cells"
-      classNames={{ wrapper: "p-0 bg-transparent border-none" }}
+      // classNames={{ wrapper: "" }}
     >
       <TableHeader columns={columns}>
         {(column) => (
@@ -196,7 +196,7 @@ export default function HistoryBatch() {
       </TableHeader>
       <TableBody items={history}>
         {(record) => (
-          <TableRow key={record.id} className="h-[5rem]">
+          <TableRow key={record.id} className="h-[4.5rem]">
             {(columnKey) => (
               <TableCell
                 className={clsx({
