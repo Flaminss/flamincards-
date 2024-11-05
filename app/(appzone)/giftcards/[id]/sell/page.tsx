@@ -590,8 +590,10 @@ export default function GiftcardSellPage({
                       isOpen={isCardValueEntryAdderOpen}
                       onOpenChange={onCardValueEntryAdderOpenChange}
                       placement="bottom-center"
-                      // size="md"
                       scrollBehavior="inside"
+                      classNames={{
+                        base: "min-h-[max(400px,_100vh)].. max-h-[100vh] h-auto",
+                      }}
                       hideCloseButton
                     >
                       <ModalContent>
@@ -599,7 +601,7 @@ export default function GiftcardSellPage({
                           <>
                             <ModalHeader className="pt-6 pb-4 flex items-start justify-between gap-x-4 px-5 gap-y-2.5">
                               <div className="flex flex-col gap-1">
-                                <h4 className="text-2xl font-medium">
+                                <h4 className="text-xl font-semibold">
                                   Amazon (USA) Gift Card
                                 </h4>
 
@@ -607,6 +609,7 @@ export default function GiftcardSellPage({
                                   You're adding one of many cards to redeem
                                 </p>
                               </div>
+
                               <Button
                                 isIconOnly
                                 size="sm"
@@ -618,6 +621,7 @@ export default function GiftcardSellPage({
                                 <XCircleIcon />
                               </Button>
                             </ModalHeader>
+
                             <ModalBody className="grid gap-y-4 px-4">
                               <GiftCardFormatInput
                                 value={selectedCardForm}
