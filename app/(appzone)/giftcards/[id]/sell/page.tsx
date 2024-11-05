@@ -609,8 +609,8 @@ export default function GiftcardSellPage({
                               </div>
                               <Button
                                 isIconOnly
-                                size="md"
-                                radius="full"
+                                size="sm"
+                                radius="md"
                                 color="danger"
                                 variant="flat"
                                 onClick={onClose}
