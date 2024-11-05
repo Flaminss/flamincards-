@@ -20,15 +20,15 @@ export default function TransactionsPage() {
       </header>
 
       <section className="px-4 py-6">
-        <div className=" flex flex-wrap items-center gap-8 xl:gap-12 xl:flex-nowrap mb-4">
+        <div className="flex flex-wrap items-center gap-4 xl:flex-nowrap">
           <CategorySelect values={values} setValues={setValues} />
           <StatusSelect />
           <FundsFlowSelect />
         </div>
-        <p className="text-sm text-zinc-400">
-          <span className="pe-1 text-warning">Showing Records of:</span>{" "}
+        {/* <p className="text-sm text-zinc-400">
+          <span className="pe-1 text-primary">Showing history of:</span>{" "}
           <span className="capitalize">{Array.from(values).join(", ")}</span>
-        </p>
+        </p> */}
       </section>
 
       <section className="py-6 px-4 grid gap-y-16">

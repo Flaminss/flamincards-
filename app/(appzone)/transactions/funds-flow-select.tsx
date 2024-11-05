@@ -22,9 +22,7 @@ export default function FundsFlowSelect() {
       radius="md"
       defaultSelectedKeys={["out-flow"]}
       className="max-w-[35%] lg:max-w-[20%] grow"
-      startContent={<Signpost className="size-4 text-warning me-1" />}
-      variant="underlined"
-      classNames={{ label: "mb-4" }}
+      startContent={<Signpost className="size-4 text-primary me-1" />}
     >
       {flows.map((flow) => (
         <SelectItem key={flow.key}>{flow.label}</SelectItem>

@@ -1,8 +1,14 @@
 "use client";
 
 import React from "react";
-import { Select, SelectItem, Selection } from "@nextui-org/react";
-import { PieChart, Scan } from "lucide-react";
+import {
+  Chip,
+  Select,
+  SelectItem,
+  SelectedItems,
+  Selection,
+} from "@nextui-org/react";
+import { PieChart, PieChartIcon, Scan } from "lucide-react";
 
 const categories = [
   {
@@ -62,14 +68,26 @@ export default function CategorySelect({
   return (
     <Select
       label="Payment Category"
-      selectionMode="multiple"
       placeholder="All Categories"
       selectedKeys={values}
-      className="w-full lg:max-w-[40%] grow"
-      onSelectionChange={setValues} 
-      variant="underlined"
-      classNames={{ label: "mb-4" }}
-      startContent={<PieChart className="size-4 text-warning me-1" />}
+      isMultiline
+      selectionMode="multiple"
+      classNames={{
+        base: "max-w-[unset]",
+        trigger: "gap-y-2.5",
+      }}
+      onSelectionChange={setValues}
+      startContent={<PieChartIcon className="size-5 text-primary me-1" />}
+      size="lg"
+      renderValue={(items: SelectedItems<{ label: string }>) => {
+        return (
+          <div className="flex flex-wrap gap-2">
+            {items.map((item) => {
+              return <Chip key={item.key}>{item.textValue}</Chip>;
+            })}
+          </div>
+        );
+      }}
     >
       {categories.map((animal) => (
         <SelectItem key={animal.key}>{animal.label}</SelectItem>

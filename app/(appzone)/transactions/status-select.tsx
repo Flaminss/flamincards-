@@ -40,12 +40,10 @@ export default function StatusSelect() {
     <Select
       label="Status"
       placeholder="All Status"
-      radius="md"
+      radius="lg"
       defaultSelectedKeys={["all"]}
       className="max-w-[45%] lg:max-w-[30%] grow"
-      startContent={<Scan className="size-4 text-warning me-1" />}
-      variant="underlined"
-      classNames={{ label: "mb-4" }}
+      startContent={<Scan className="size-4 text-primary me-1" />}
     >
       {statuses.map((animal) => (
         <SelectItem key={animal.key}>{animal.label}</SelectItem>
