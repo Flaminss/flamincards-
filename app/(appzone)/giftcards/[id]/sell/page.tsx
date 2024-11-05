@@ -342,8 +342,9 @@ export default function GiftcardSellPage({
     setIsSubmitting(true);
     const { data: form } = validateOrderForm();
 
-    // handle unexpected behaviour
     if (form === undefined) {
+      alert("Something Unexpected Happened - Form Validation Failed");
+      setIsSubmitting(false);
       return;
     }
 
