@@ -323,10 +323,7 @@ export default function GiftcardSellPage({
       paymentMethodSelected &&
       paymentMethodConfirmed &&
       validateOrderForm().success
-    ) {
-      return true;
-    }
-    return false;
+    );
   };
 
   const resetOrder = () => {
