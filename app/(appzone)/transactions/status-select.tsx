@@ -41,7 +41,6 @@ export default function StatusSelect() {
       label="Status"
       placeholder="All Status"
       radius="lg"
-      defaultSelectedKeys={["all"]}
       className="max-w-[45%] lg:max-w-[30%] grow"
       startContent={<Scan className="size-4 text-primary me-1" />}
     >
