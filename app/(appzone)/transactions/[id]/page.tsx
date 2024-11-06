@@ -8,6 +8,7 @@ import {
   CardHeader,
   ButtonGroup,
   Chip,
+  Spinner,
 } from "@nextui-org/react";
 import PWAPageTitle from "../../page-title";
 import { CheckCircle, Copy, Headphones, Landmark } from "lucide-react";
@@ -77,9 +78,9 @@ export default function TransactionDetails() {
         </Card>
 
         <Card>
-          <CardHeader>Summary</CardHeader>
+          <CardHeader>Details</CardHeader>
           <CardBody className="text-sm">
-            <ul className="grid gap-y-3">
+            <ul className="grid gap-y-4">
               <li className="flex justify-between gap-x-6 items-center text-zinc-400">
                 ID:{" "}
                 <div className="flex gap-x-2">
@@ -91,37 +92,43 @@ export default function TransactionDetails() {
                 Date: <span className="text-white">{transaction.date}</span>
               </li>
               <li className="flex justify-between gap-x-6 items-center text-zinc-400">
-                Amount ($):
-                <span className="text-white">
-                  {transaction.amount.toFixed(2)}
-                </span>
+                To:
+                <div className="text-white grid text-end">
+                  <span>John Doe</span>
+                  <span>Bank (888***999)</span>
+                </div>
               </li>
-              <li className="flex justify-between gap-x-6 items-center text-zinc-400">
-                Fees ($):
-                <span className="text-white">
-                  {transaction.fees.toFixed(2)}
-                </span>
+              <li></li>
+              <li className="text-zinc-400 hidden">
+                <Button
+                  fullWidth
+                  variant="flat"
+                  className="text-white mb-2 mt-4"
+                  // isLoading={true}
+                  spinner={<Spinner size="sm" />}
+                  // color="primary"
+                >
+                  View Order Items
+                </Button>
+
+                <ul className="hidden divide-y-1.5 bg-zinc-800 p-1 rounded-lg mb-4">
+                  {[1, 2, 3, 4, 5].map((item) => {
+                    return (
+                      <li className="flex justify-between items-center gap-x-4 rounded-md.. bg-default-200.. p-2">
+                        <span className="truncate">Order Item Title</span>
+                        <span className="text-zinc-200">$500</span>
+                      </li>
+                    );
+                  })}
+                </ul>
               </li>
-              <li className="flex justify-between gap-x-6 border-t border-dashed mt-4 pt-5 pb-2.5 items-center text-zinc-400">
-                Total Amount: $
+              <li className="flex justify-between gap-x-6 border-t border-dashed pt-4 px-1 pb-2.5 items-center text-zinc-400">
+                Total Amount:
                 <span className="text-white">
-                  {transaction.totalAmount.toFixed(2)}
+                  ${transaction.totalAmount.toFixed(2)}
                 </span>
               </li>
             </ul>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody className="text-sm">
-            <div className="flex justify-between gap-x-6 items-center text-zinc-400">
-              <span>Sender:</span>
-              <span className="text-white">{transaction.sender.name}</span>
-            </div>
-            <div className="flex justify-between gap-x-6 items-center text-zinc-400">
-              <span>Account:</span>
-              <span className="text-white">{transaction.sender.account}</span>
-            </div>
           </CardBody>
         </Card>
 
