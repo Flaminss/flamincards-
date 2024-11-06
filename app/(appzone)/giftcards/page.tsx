@@ -16,8 +16,6 @@ import PWAPageTitle from "../page-title";
 import { ChangeEvent, useState } from "react";
 
 const sortOrders = [
-  { key: "rate-dsc", icon: "💰", title: "Highest Rate" },
-  { key: "rate-asc", icon: "📉", title: "Lowest Rate" },
   { key: "name-asc", icon: "💰", title: "Name (A - Z)" },
   { key: "name-dsc", icon: "💰", title: "Name (Z - A)" },
 ];
@@ -26,6 +24,8 @@ const sortFilters = [
   { key: "all", icon: "👀", title: "Browse All" },
   { key: "hot", icon: "🔥", title: "Hottest" },
 ];
+
+// fetch sortFilters from the server
 
 export default function GiftcardMarketplacePage() {
   const [cardSearchValue, setCardSearchValue] = useState("");
