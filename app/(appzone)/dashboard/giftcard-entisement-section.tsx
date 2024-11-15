@@ -4,6 +4,8 @@ import icons from "currency-icons";
 import clsx from "clsx";
 import PWASectionTitle from "../section-title";
 
+// fetch giftcards with certain labels
+
 export default function GiftCardEntisementSection() {
   return (
     <div>
