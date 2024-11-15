@@ -112,9 +112,9 @@ export default function TransactionDetails() {
                 </Button>
 
                 <ul className="hidden divide-y-1.5 bg-zinc-800 p-1 rounded-lg mb-4">
-                  {[1, 2, 3, 4, 5].map((item) => {
+                  {[1, 2, 3, 4, 5].map((_id) => {
                     return (
-                      <li className="flex justify-between items-center gap-x-4 rounded-md.. bg-default-200.. p-2">
+                      <li key={_id} className="flex justify-between items-center gap-x-4 rounded-md.. bg-default-200.. p-2">
                         <span className="truncate">Order Item Title</span>
                         <span className="text-zinc-200">$500</span>
                       </li>
