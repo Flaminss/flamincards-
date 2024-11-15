@@ -11,7 +11,7 @@ import {
 } from "@nextui-org/react";
 import { ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
-import { BrandName } from "@app/(appzone)/navigation-top";
+import { BrandName } from "@app/(appzone)/app-nav";
 
 export default function TopNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

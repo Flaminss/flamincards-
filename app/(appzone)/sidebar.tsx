@@ -34,9 +34,9 @@ import {
   UserPlus,
   PiggyBank,
 } from "lucide-react";
-import { BrandName } from "./navigation-top";
+import { BrandName } from "./app-nav";
 
-export default function NavigationLeft({ className }: { className?: any }) {
+export default function Sidebar({ className }: { className?: any }) {
   return (
     <aside
       className={clsx(

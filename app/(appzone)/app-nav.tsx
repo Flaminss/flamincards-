@@ -6,7 +6,7 @@ import { Bell, LogInIcon, Settings2, UserCircle2Icon } from "lucide-react";
 import clsx from "clsx";
 import SessionButton from "./session-button";
 
-export default function TopNavigation({ className }: { className?: string }) {
+export default function AppNav({ className }: { className?: string }) {
   const notificationCount = 2;
 
   return (

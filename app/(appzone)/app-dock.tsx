@@ -38,7 +38,7 @@ import clsx from "clsx";
 import { Input } from "postcss";
 import { Span } from "next/dist/trace";
 
-export default function BottomNavigationPro({
+export default function AppDock({
   classNames,
 }: {
   classNames?: {

@@ -1,8 +1,8 @@
 "use client";
 
-import TopNavigation from "@app/(appzone)/navigation-top";
-import BottomNavigation from "@app/(appzone)/navigation-bottom";
-import SidebarNavigation from "@app/(appzone)/navigation-left";
+import AppNav from "@app/(appzone)/app-nav";
+import AppDock from "@app/(appzone)/app-dock";
+import Sidebar from "@app/(appzone)/sidebar";
 import clsx from "clsx";
 
 export default function PublicUserInterface({
@@ -17,8 +17,8 @@ export default function PublicUserInterface({
         `lg:p-2.5 xl:px-0 xl:py-[0.875rem] pe-0 thin-scrollbar`
       )}
     >
-      <TopNavigation className="md:hidden" />
-      <SidebarNavigation
+      <AppNav className="md:hidden" />
+      <Sidebar
         className={clsx(
           "hidden md:block max-w-[28%] lg:max-w-72 sticky-top shadow-lg",
           "lg:h-[calc(100vh_-_(0.875rem_*_2))]",
@@ -69,7 +69,7 @@ export default function PublicUserInterface({
           </div>
         </div> */}
       </main>
-      <BottomNavigation
+      <AppDock
         classNames={{
           base: "sticky bottom-0 left-0 right-0 w-full md:hidden",
           list: "md:max-w-xl md:mx-auto w-full rounded-none shadow-2xl border-t -shadow-y-10 !navbar-glass shadow-black",

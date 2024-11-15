@@ -1,4 +1,4 @@
-import { BrandName } from "@/app/(appzone)/navigation-top";
+import { BrandName } from "@app/(appzone)/app-nav";
 import React from "react";
 
 export default function AuthNavigationTop({
