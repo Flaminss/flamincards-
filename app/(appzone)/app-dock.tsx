@@ -113,7 +113,7 @@ export default function AppDock({
             key={`${href}#${index}`}
             backdrop="opaque"
             isOpen={sendableTokenSelectOpened}
-            className="bg-content1 shadow border-t border-x px-2 max-h-[400px]"
+            className="bg-content1 shadow border-t border-x px-2 max-h-[400px] !rounded-b-none"
             radius="lg"
             classNames={{
               backdrop: "z-[20000] md:hidden",
