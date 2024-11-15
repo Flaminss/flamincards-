@@ -64,7 +64,7 @@ export default function AppDock({
     {
       Icon: WifiIcon,
       title: "Top Up",
-      href: "/bills/internet",
+      href: "/top-up",
       disabled: true,
     },
     {
