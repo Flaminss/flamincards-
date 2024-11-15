@@ -60,10 +60,12 @@ export default function AppDock({
       href: "/dashboard",
       Icon: Home,
     },
+
     {
-      title: "Music",
-      href: "/music",
-      Icon: MusicIcon,
+      Icon: WifiIcon,
+      title: "Top Up",
+      href: "/bills/internet",
+      disabled: true,
     },
     {
       title: "GiftCard",
@@ -81,15 +83,14 @@ export default function AppDock({
         },
         {
           Icon: CircleDollarSignIcon,
-          label: "Withdrawl Airdrop Earnings",
+          label: "Withdraw Airdrop",
           href: "/crypto",
         },
-        {
-          Icon: WifiIcon,
-          label: "Buy Cheap Data & Airtime",
-          href: "/bills/internet",
-          disabled: true,
-        },
+        // {
+        //   Icon: MusicIcon,
+        //   label: "Download Music Instrumentals",
+        //   href: "/music",
+        // },
         {
           Icon: UserPlusIcon,
           label: "Invite Friends",
@@ -108,15 +109,13 @@ export default function AppDock({
             key={`${href}#${index}`}
             backdrop="opaque"
             isOpen={sendableTokenSelectOpened}
-            className="shadow-lg cardBackground max-h-[400px] !rounded-lg"
+            className="bg-content1 shadow border-t border-x px-2 max-h-[400px]"
             radius="lg"
             classNames={{
               backdrop: "z-[20000] md:hidden",
-              wrapper:
-                "z-[20000] md:hidden w-full px-4 pb-3.5  max-w-xl mx-auto",
+              wrapper: "z-[20000] md:hidden w-full max-w-xl mx-auto",
             }}
             shadow="lg"
-            size="full"
             placement="bottom"
             shouldBlockScroll={false}
             onOpenChange={onSendableTokenSelectChange}
@@ -126,16 +125,16 @@ export default function AppDock({
                   y: 0,
                   opacity: 1,
                   transition: {
-                    duration: 0.3,
+                    duration: 0.4,
                     ease: "easeOut",
                   },
                 },
                 exit: {
-                  y: 20,
+                  y: 10,
                   opacity: 0,
                   transition: {
-                    duration: 0.2,
-                    ease: "easeIn",
+                    duration: 0.3,
+                    ease: "easeOut",
                   },
                 },
               },
@@ -145,39 +144,7 @@ export default function AppDock({
             <ModalContent>
               {(onClose) => (
                 <>
-                  <ModalBody className="py-4 px-4 gap-y-3">
-                    {/* <ModalBody className="py-4 px-4 flex flex-row flex-wrap gap-4"> */}
-                    {/* {list?.map(
-                      ({ label, Icon, href, description, disabled }) => {
-                        return (
-                          <Button
-                            as={Link}
-                            key={href}
-                            href={href}
-                            size="lg"
-                            isDisabled={disabled}
-                            className="text-white rounded-lg gap-x-4 justify-normal px-3.5 py-3 h-auto flex-col gap-y-3 text-xs grow whitespace-normal text-center"
-                            onClick={() => closeSubMenu()}
-                            startContent={<Icon className="size-6 shrink-0" />}
-                          >
-                            {
-                              <div className="max-w-[24ch]">
-                                {!description ? (
-                                  label
-                                ) : (
-                                  <div className="grid gap-y-1">
-                                    <span>{label}</span>
-                                    <span className="block text-xs text-zinc-400">
-                                      {description}
-                                    </span>
-                                  </div>
-                                )}
-                              </div>
-                            }
-                          </Button>
-                        );
-                      }
-                    )} */}
+                  <ModalBody className="px-0 gap-y-3">
                     {list?.map(
                       ({ label, Icon, href, description, disabled }) => {
                         return (
@@ -192,8 +159,8 @@ export default function AppDock({
                             className="text-white text-sm rounded-lg gap-x-4 justify-normal ps-2 py-2 pe-3.5 h-auto"
                             onClick={() => closeSubMenu()}
                             startContent={
-                              <span className="p-3 bg-primary-50 rounded-xl">
-                                <Icon className="size-5 text-primary shrink-0" />
+                              <span className="p-2.5 bg-primary-50.. rounded-lg">
+                                <Icon className="size-5 text-primary.. shrink-0" />
                               </span>
                             }
                             endContent={
@@ -215,17 +182,17 @@ export default function AppDock({
                       }
                     )}
                   </ModalBody>
-                  <ModalFooter className="px-4">
-                    <Button
-                      size="lg"
-                      radius="sm"
-                      fullWidth
-                      color="primary"
-                      onClick={() => closeSubMenu()}
-                    >
-                      Close
-                    </Button>
-                  </ModalFooter>
+
+                  <Button
+                    size="sm"
+                    radius="sm"
+                    color="danger"
+                    variant="light"
+                    className="ms-auto my-4 uppercase"
+                    onClick={() => closeSubMenu()}
+                  >
+                    Close
+                  </Button>
                 </>
               )}
             </ModalContent>
