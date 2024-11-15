@@ -78,21 +78,25 @@ export default function AppDock({
       list: [
         {
           Icon: ShieldCheckIcon,
+          disabled: true,
           label: "Buy USDT",
           href: "/crypto",
         },
         {
           Icon: CircleDollarSignIcon,
+          disabled: true,
           label: "Withdraw Airdrop",
           href: "/crypto",
         },
         // {
         //   Icon: MusicIcon,
+        //   disabled: true,
         //   label: "Download Music Instrumentals",
         //   href: "/music",
         // },
         {
           Icon: UserPlusIcon,
+          disabled: true,
           label: "Invite Friends",
           description: "Stand a chance to earn rewards",
         },
@@ -216,11 +220,12 @@ export default function AppDock({
           panel: "p-0",
         }}
       >
-        {menu.map(({ title, href, Icon, list }, index) => {
+        {menu.map(({ title, href, Icon, list, disabled }, index) => {
           return (
             <Tab
               key={`${href}#${index}`}
               href={href ? href : undefined}
+              isDisabled={disabled}
               title={
                 <div
                   onClick={() => {
