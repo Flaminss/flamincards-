@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   Input,
   Progress,
@@ -65,6 +65,7 @@ import GiftCardEntisementSection from "./giftcard-entisement-section";
 import PWAPageTitle from "../page-title";
 import MiscellaneousSection from "./miscellaneous-section";
 import OnboardingSection from "./onboarding-section";
+import createManyGiftcards from "@modules/giftcard/seed";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
@@ -82,6 +83,10 @@ export default function DashboardPage() {
     [selectedKeys]
   );
 
+  // useEffect(() => {
+  //   createManyGiftcards();
+  // }, []);
+
   return (
     <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
@@ -94,7 +99,7 @@ export default function DashboardPage() {
       <div className="px-4 pt-2 pb-8 flex flex-col lg:flex-row overflow-hidden md:gap-x-6 lg:gap-x-8 gap-y-12">
         <WalletSection />
         <div className="flex flex-col lg:gap-x-12 justify-between grow gap-y-10 xl:gap-y-8">
-          <PrimaryBankCard classnames="my-auto" />
+          <PrimaryBankCard classnames="my-auto hidden lg:block" />
           <RecentTransactionsSection />
         </div>
       </div>
