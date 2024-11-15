@@ -65,7 +65,7 @@ import GiftCardEntisementSection from "./giftcard-entisement-section";
 import PWAPageTitle from "../page-title";
 import MiscellaneousSection from "./miscellaneous-section";
 import OnboardingSection from "./onboarding-section";
-import createManyGiftcards from "@modules/giftcard/seed";
+// import createManyGiftcards from "@modules/giftcard/seed";
 
 const sortOrders = [
   { key: "all", icon: "👀", title: "Browse All" },
