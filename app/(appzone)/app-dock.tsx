@@ -31,6 +31,10 @@ import {
   Gift,
   ShieldCheckIcon,
   CreditCard,
+  SignalHighIcon,
+  RadioTowerIcon,
+  RadioReceiverIcon,
+  ArrowUpDownIcon,
 } from "lucide-react";
 import { Badge, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
@@ -65,7 +69,7 @@ export default function AppDock({
       Icon: WifiIcon,
       title: "Top Up",
       href: "/top-up",
-      disabled: true,
+      disabled: "false",
     },
     {
       title: "GiftCard",
