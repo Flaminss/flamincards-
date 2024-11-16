@@ -197,9 +197,9 @@ export default function TopUpPage() {
             <h5 className="mb-2.5 ps-1 text-sm text-zinc-400">Recents</h5>
 
             <ul className="flex flex-col gap-y-2">
-              {["lkwjel2kej", "202kjkl2jd", "2023kkljsd"].map((phone) => {
+              {["lkwjel2kej", "202kjkl2jd", "2023kkljsd"].map((phone, index) => {
                 return (
-                  <li className="bg-content1 rounded-md py-2 ps-4 pe-2 flex item-center gap-x-4 text-sm text-gray-500">
+                  <li key={index} className="bg-content1 rounded-md py-2 ps-4 pe-2 flex item-center gap-x-4 text-sm text-gray-500">
                     {phone}{" "}
                     <button className="ms-auto p-1 size-5 bg-zinc-700 aspect-square flex items-center justify-center text-center rounded-full leading-none align-middle">
                       &times;
@@ -268,9 +268,10 @@ export default function TopUpPage() {
             {["General", "Weekly", "Monthly", "SME"].map((duration, index) => {
               const _id = duration.toLowerCase();
               return (
-                <li>
+                <li 
+                  key={`${duration}#${index}`}
+                >
                   <label
-                    key={`${duration}#${index}`}
                     className={clsx({
                       "text-sm inline-block cursor-pointer border-b px-4 py-2 grow":
                         true,
