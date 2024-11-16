@@ -6,10 +6,10 @@ export default function DeveloperAttributionLink() {
       isExternal
       href="https://t.me/everurstruly"
       title="Development team portfolio website"
-      className="text-default-600 font-mono font-medium flex items-center justify-center text-center gap-x-2"
+      className="text-default-500 text-xs font-medium flex items-center justify-center text-center gap-x-1 my-4"
     >
-      Developed by
-      <span className="text-primary font-semibold">YoursTruly</span>
+      <span className="">Developed by</span>
+      <span className="text-primary">YoursTrulyLabs</span>
     </Link>
   );
 }
