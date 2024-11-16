@@ -69,7 +69,7 @@ export default function AppDock({
       Icon: WifiIcon,
       title: "Top Up",
       href: "/top-up",
-      disabled: "false",
+      disabled: false,
     },
     {
       title: "GiftCard",
