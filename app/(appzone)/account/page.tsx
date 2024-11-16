@@ -70,7 +70,7 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="max-w-xl mx-auto lg:mx-0">
+    <div className="max-w-xl mx-auto lg:mx-0..">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
         {/* <h1 className="text-2xl lg:text-3xl">Your Account Settings</h1> */}
         <PWAPageTitle title="Your Account Settings" />

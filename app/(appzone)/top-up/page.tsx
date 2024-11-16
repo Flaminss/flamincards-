@@ -81,7 +81,7 @@ export default function TopUpPage() {
   const [selectedPlan, setSelectedPlan] = useState<Selection>(new Set(["usa"]));
 
   return (
-    <div className="pb-20 max-w-xl lg:max-w-[unset] mx-auto">
+    <div className="max-w-xl mx-auto lg:border">
       <header className="py-5 md:pt-0 lg:pt-1 px-4 mb-2">
         <PWAPageTitle title="Top Up" />
       </header>
