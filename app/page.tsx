@@ -8,7 +8,7 @@ export default function HomePage() {
       <TopNavigationBar />
 
       <main className="flex-grow">
-        <section id="hero" className="pt-20 md:pt-28 pb-20 px-4">
+        <section id="hero" className="pt-20 md:pt-24 pb-20 px-4">
           <div className="mx-auto max-w-lg sm:max-w-[900px] lg:max-w-2xl">
             <h1 className="mb-6 text-3xl font-semibold text-center text-white sm:text-5xl">
               Trade, <span className="text-success">Earn</span>, Vibe:
@@ -38,9 +38,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className="py-4 px-4 grid place-content-center">
-        <DeveloperAttributionLink />
-      </footer>
+      <DeveloperAttributionLink />
     </div>
   );
 }
