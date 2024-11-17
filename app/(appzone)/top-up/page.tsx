@@ -88,16 +88,16 @@ export default function TopUpPage() {
 
       <section className="py-4 px-4 flex flex-col space-y-8">
         <div>
-          <h4 className="mb-4">Network</h4>
+          <h4 className="mb-2 font-medium">Network</h4>
 
-          <ul className="flex items-center gap-4">
+          <ul className="grid grid-cols-2 min-[300px]:grid-cols-4 items-center gap-2">
             {networks.map(({ _id, name, color }) => {
               return (
                 <li key={_id} className="flex-1 grow">
                   <label
                     htmlFor={_id}
                     className={clsx(
-                      "cursor-pointer flex flex-col items-center text-center gap-y-3 border p-4 cardBackground text-sm transition-all",
+                      "cursor-pointer shadow flex flex-col items-center text-center gap-y-3 border p-4 cardBackground text-xs min-[370px]:text-sm",
                       {
                         "border-primary": selectedNetwork == _id,
                       }
@@ -105,7 +105,7 @@ export default function TopUpPage() {
                   >
                     <span
                       className={clsx({
-                        "shadow size-4 rounded-sm aspect-square": true,
+                        "shadow size-3 rounded-sm aspect-square": true,
                         [`bg-${color}`]: true,
                       })}
                     ></span>
@@ -129,7 +129,7 @@ export default function TopUpPage() {
         </div>
 
         <div>
-          <h4 className="mb-4">Service</h4>
+          <h4 className="mb-2 font-medium">Service</h4>
 
           <ul className="flex items-center gap-x-4">
             {services.map(({ _id, name, description, Icon }) => {
@@ -138,7 +138,7 @@ export default function TopUpPage() {
                   <label
                     htmlFor={_id}
                     className={clsx(
-                      "cursor-pointer flex gap-x-4 items-center border p-4 grow transition-all",
+                      "cursor-pointer shadow rounded-md flex gap-x-2.5 items-center border p-2.5 grow",
                       {
                         "border-primary": selectedType == _id,
                         cardBackground: selectedType !== _id,
@@ -146,11 +146,11 @@ export default function TopUpPage() {
                     )}
                   >
                     <div className="rounded-md bg-zinc-800 block">
-                      <Icon className="size-5 m-2 mx-2.5" />
+                      <Icon className="size-4 m-2" />
                     </div>
 
                     <div>
-                      <h5 className="leading-tight">{name}</h5>
+                      <h5 className="text-sm leading-tight">{name}</h5>
                       <p className="text-xs text-gray-500 truncate font-medium">
                         {description}
                       </p>
@@ -173,7 +173,7 @@ export default function TopUpPage() {
         </div>
 
         <div>
-          {/* <h4 className="mb-4">Phone Number</h4> */}
+          {/* <h4 className="mb-3 font-medium">Phone Number</h4> */}
           <Input
             label={
               <>
@@ -182,7 +182,7 @@ export default function TopUpPage() {
               </>
             }
             classNames={{
-              label: "!w-full flex items-end justify-between",
+              label: "!w-full font-medium flex items-end justify-between",
             }}
             labelPlacement="outside"
             placeholder="XXXXXXXXXX"
@@ -227,6 +227,9 @@ export default function TopUpPage() {
             value={amount}
             onValueChange={setAmount}
             isDisabled={selectedType !== "airtime"}
+            classNames={{
+              label: "font-medium",
+            }}
           />
 
           <ul
@@ -255,14 +258,14 @@ export default function TopUpPage() {
           className={clsx({
             "transition-all": true,
             "max-h-[0px] overflow-hidden !my-0": selectedType === "airtime",
-            "max-h-[200px] ": selectedType !== "airtime",
+            "max-h-[100vh overflow-auto] ": selectedType !== "airtime",
           })}
         >
-          <h4 className="mb-2">Choose a Plan</h4>
+          <h4 className="mb-2 font-medium">Choose a Plan</h4>
 
           <ul
             className={clsx({
-              "flex mb-4 gap-x-1": true,
+              "flex mb-4 gap-x-1 overflow-x-auto": true,
             })}
           >
             {["General", "Weekly", "Monthly", "SME"].map((duration, index) => {
@@ -275,7 +278,7 @@ export default function TopUpPage() {
                     className={clsx({
                       "text-sm inline-block cursor-pointer border-b px-4 py-2 grow":
                         true,
-                      "transition-all hover:border-b-primary-800": true,
+                      "transition-all": true,
                       "border-b-primary": selectedPlanDuration === _id,
                     })}
                   >
