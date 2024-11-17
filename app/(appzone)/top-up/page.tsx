@@ -105,7 +105,7 @@ export default function TopUpPage() {
                   >
                     <span
                       className={clsx({
-                        "shadow size-3 rounded-sm aspect-square": true,
+                        "shadow h-3 w-4 rounded-sm aspect-square": true,
                         [`bg-${color}`]: true,
                       })}
                     ></span>
