@@ -88,7 +88,7 @@ export default function TopUpPage() {
 
       <section className="py-4 px-4 flex flex-col space-y-8">
         <div>
-          <h4 className="mb-2 font-medium">Choose Network</h4>
+          <h4 className="mb-2.5 font-medium">Choose Network</h4>
 
           <ul className="grid grid-cols-2 min-[300px]:grid-cols-4 items-center gap-2">
             {networks.map(({ _id, name, color }) => {
@@ -129,7 +129,7 @@ export default function TopUpPage() {
         </div>
 
         <div>
-          <h4 className="mb-4 font-medium">Choose Top-Up Service</h4>
+          <h4 className="mb-2.5 font-medium">Choose Top-Up Service</h4>
 
           <ul className="flex items-center gap-x-4">
             {services.map(({ _id, name, description, Icon }) => {
