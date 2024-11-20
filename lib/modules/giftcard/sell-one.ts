@@ -5,7 +5,7 @@ import {
   databases,
   mediaStorage,
 } from "@lib/appwrite";
-import { UserId } from "@modules/user/update-profile";
+import { UserId } from "@lib/modules/user/update-profile";
 import { Query } from "appwrite";
 
 const TRANSACTION_TYPE = "GIFTCARD";

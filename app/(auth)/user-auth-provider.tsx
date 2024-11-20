@@ -6,10 +6,10 @@ import {
   ReactNode,
 } from "react";
 import { AppwriteException } from "appwrite";
-import loginUser, { AuthSession } from "@/modules/user/login";
-import logoutUser from "@/modules/user/logout";
-import registerUser from "@/modules/user/register";
-import getSession from "@/modules/user/get-session";
+import loginUser, { AuthSession } from "@lib/modules/user/login";
+import logoutUser from "@lib/modules/user/logout";
+import registerUser from "@lib/modules/user/register";
+import getSession from "@lib/modules/user/get-session";
 
 type UserAuthCredentials = { email: string; password: string };
 

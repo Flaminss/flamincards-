@@ -48,7 +48,7 @@ import RouterLink from "next/link";
 import AmountInput from "./amount-input";
 import GiftCardFormatInput from "./card-format-input";
 import SubmissionSummary from "./submission-summary";
-import sellGiftcard from "@modules/giftcard/sell-one";
+import sellGiftcard from "@lib/modules/giftcard/sell-one";
 import { AppwriteException } from "appwrite";
 import Link from "next/link";
 
