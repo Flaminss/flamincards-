@@ -11,7 +11,7 @@ const cardList = [
     tags: ["hot"],
     rate: {
       value: 1600,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -22,7 +22,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1300,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -33,7 +33,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1500,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -44,7 +44,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1450,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -55,7 +55,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1200,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -66,7 +66,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1280,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -77,7 +77,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1500,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -88,7 +88,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1550,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -99,7 +99,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1400,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
@@ -121,7 +121,7 @@ const cardList = [
     tags: [],
     rate: {
       value: 1405,
-      from: "NGN",
+      from: "USD",
       to: "USD",
     },
   },
